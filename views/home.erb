@@ -1,19 +1,59 @@
+<p>Title: <%= @title %> </p>
+<p>Max period: <%= @max_period %> </p>
+<p>Number of elements: <%= @elements.length %> </p>
+<p>Last element: <%= @elementlast.atomic_num %> <%= @elementlast.name %> </p>
+<p>Number of econfigbases: <%= @econfigbases.length %> </p>
+<p>Last econfigbase: <%= @econfigbaselast.base %> </p>
+<p>Array @ebyp: <%= @ebyp %> </p>
+
+<p>Start of by-period elements listing</p>
+<% @ebyp.each do |period| %>  
+	  <article>  
+	<% period.each do |element| %>
+		<div class="inPTable">
+ 	      <span><%= element.atomic_num %></span><br>
+	      <span><%= element.symbol %></span><br>
+    	  <!--span><%= @econfigbases.select{|k,v| k = 3} %></span><br-->
+  	      <span><%= element.e_config_valence %></span>
+		  <!--      <span><%= element.name %></span>  
+          <span><%= element.e_config_valence %></span>  
+          <span><%= element.period %></span>  
+     	  <span><%= element.group %></span>
+		  -->
+		  </div>
+	<% end %>
+ 	 </article>
+<% end %> 
+<p>End of by-period elements listing</p>
+
+<!--
+Start of elements listing
 <% @elements.each do |element| %>  
   <article>  
     <p>  
-      <span><%= element.atomicnum %></span>
+      <span><%= element.atomic_num %></span>
       <br>
       <span><%= element.symbol %></span>  
-      <span><%= element.econfigvalence %></span>
+      <span><%= @econfigbases.select{|k,v| k = 3} %></span>
+      <span><%= element.e_config_valence %></span>
 <!--      <span><%= element.name %></span>  
-      <span><%= element.econfigvalence %></span>  
+      <span><%= element.e_config_valence %></span>  
       <span><%= element.period %></span>  
-      <span><%= element.group %></span>  
+      <span><%= element.group %></span>
 -->
     </p>  
   </article>
-  
+<% end %> 
+End of elements listing
+-->
+
+Start of econfigbase listing
+<% @econfigbases.each do |econfigbase| %>  
   <article>  
+    <p>  
+      <span><%= econfigbase.base %></span>
+    </p>  
   </article>
 
-<% end %> 
+<% end %>
+End of econfigbase listing

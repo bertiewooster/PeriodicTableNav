@@ -85,8 +85,8 @@
         background: #fedae3;  
     }  
       
-    article span {  
-        font-size: 0.8em;  
+    article div.inPTable {    
+        border: 1px solid red;  
     }  
       
     p {  
