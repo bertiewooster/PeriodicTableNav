@@ -37,14 +37,14 @@ get '/' do  # load home page
 
 @ebypHash = Hash.new()
     for period in 1..(@ebyp.size)
-    @ebypHash[period]=Hash.new()
+    @ebypHash[period]=Array.new()
         #puts "Working on period #{period}"
         #puts "period #{period}: #{@ebyp[period-1]}"
         for element in 1..(@ebyp[period-1].size) # Within a period,
 #            @ebypHash[period][element] = @ebyp[period-1][element-1] # number elements serially, e.g. pd2 => 1, 2, 3,...8
 			@elementToAdd = @ebyp[period-1][element-1] # the element to add next, as an object
-			@group = @elementToAdd.group
-            @ebypHash[period][@group] = @elementToAdd 
+			#@group = @elementToAdd.group
+            @ebypHash[period].push(@elementToAdd)
 #			@group = @ebyp[period-1][element-1].group
 #           @ebypHash[period][@group] = @ebyp[period-1][element-1] 
               # number elements by group, e.g. pd2 => 1, 2, 13, 14, 15,...18
@@ -53,7 +53,7 @@ get '/' do  # load home page
     
 
 
-@origin = @ebypHash[2][14] # Carbon object
+@origin = @ebypHash[2][1] # Be object
 #@before = @origin.group
 #@origin.
 

@@ -85,7 +85,11 @@
         background: #fedae3;  
     }  
       
-    article div.inPTable {    
+    td {    
+        border: 1px solid black;  
+    }  
+
+    td.inPTable {    
         border: 1px solid red;  
     }  
       
