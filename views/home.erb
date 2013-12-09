@@ -4,11 +4,15 @@
 <p>Last element: <%= @elementlast.atomic_num %> <%= @elementlast.name %> </p>
 <p>Number of econfigbases: <%= @econfigbases.length %> </p>
 <p>Last econfigbase: <%= @econfigbaselast.base %> </p>
+<p>Array @ebyp.size: <%= @ebyp.size %> </p>
 <p>Array @ebyp: <%= @ebyp %> </p>
+<p>Hash @ebypHash: <%= @ebypHash %> </p>
+<p>From <%= @origin.name %>, </p>
+<p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p>
 
 <p>Start of by-period elements listing</p>
-<% @ebyp.each do |period| %>  
-	  <article>  
+<% @ebyp.each do |period| %>
+	  <article>
 	<% period.each do |element| %>
 		<div class="inPTable">
  	      <span><%= element.atomic_num %></span><br>
