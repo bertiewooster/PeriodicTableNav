@@ -5,35 +5,36 @@
 <p>Number of econfigbases: <%= @econfigbases.length %> </p>
 <p>Last econfigbase: <%= @econfigbaselast.base %> </p>
 <p>Array @ebyp.size: <%= @ebyp.size %> </p>
-<p>Array @ebyp: <%= @ebyp %> </p>
-<p>Hash @ebypHash: <%= @ebypHash %> </p>
-<p>From <%= @origin.name %>, </p>
-<p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p>
+<!--p>Array @ebyp: <%= @ebyp %> </p>
+<p>Hash @ebypHash: <%= @ebypHash %> </p-->
+<p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p-->
 
 <p>Start of by-period elements listing</p>
 <table>
 <% @ebyp.each do |period| %>
-	  <% lastGroup = 0 %>
-	  <tr>
-			<% period.each do |element| %>
+	<% lastGroup = 0 %>
+	<tr>
+		<% period.each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
 			<% while blanks > 0 %>
-				<td>blank</td>
+				<td></td>
 				<% blanks = blanks - 1 %>
 			<% end %>
 				<td class="inPTable">
-				<!--span><%= element.atomic_num %></span><br-->
-				<span><%= element.symbol %></span><br>
-				<!--span><%= @econfigbases.select{|k,v| k = 3} %></span><br>
-				<span><%= element.e_config_valence %></span>
-				<span><%= element.name %></span>
-				<span><%= element.e_config_valence %></span>  
-				<span><%= element.period %></span>  
-				<span><%= element.group %></span>
-				-->
-		  		<% lastGroup = element.group %>
-			</td>
-	<% end %>
+			<a href="">
+					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
+					<span class="pt_symbol"><%= element.symbol %></span><br>
+					<!--span><%= @econfigbases.select{|k,v| k = 3} %></span><br!-->
+					<span class="pt_name"><%= element.name %></span><br>
+					<span class="pt_e_config_valence"><%= element.e_config_valence %></span>
+					<!--span><%= element.e_config_valence %></span>  
+					<span><%= element.period %></span>  
+					<span><%= element.group %></span>
+					-->
+					<% lastGroup = element.group %>
+			</a>
+				</td>
+		<% end %>
  	 </tr>
 <% end %> 
 </table>
