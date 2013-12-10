@@ -51,12 +51,6 @@ get '/' do  # load home page
         end
     end
     
-
-
-@origin = @ebypHash[2][1] # Be object
-#@before = @origin.group
-#@origin.
-
 #	Try this (ActiveRecord syntax--adapt for DataMapper)
 #	@elementp1 = Element.where{period: 1}
 #	SELECT * WHERE period=1
@@ -68,3 +62,25 @@ get '/' do  # load home page
 	@title = 'All Elements'
 	erb :home  # template: home page 
 end  
+
+get '/element/:atomic_num' do  # load element page
+	@elements			= Element.all :order => :atomic_num
+#	@origin = Element.get params[:atomic_num]
+	#Element.all means SELECT * (in SQL)
+#	@origin = "Yo!"	
+#	@origin = @elements.select{|element| element.atomic_num > 10}
+	@origin = Element.get([:atomic_num])
+#	@origin = @elements.select{|element| element.atomic_num == :atomic_num}
+#	@origin = @elements.select{|element| element.atomic_num == 2}
+#	@origin = @origin[0]
+	
+#	@title = :atomic_num
+	@title = "Element ##{params[:atomic_num]}"
+	erb :element # template: element
+end
+
+
+
+
+
+
