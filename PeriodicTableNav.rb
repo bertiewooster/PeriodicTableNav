@@ -9,7 +9,7 @@ DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/Elements.sqlite")
       
 class Element # Describes how to map from database 
 	include DataMapper::Resource  
-	property :atomic_num, Integer, :key => true
+	property :atomic_num, Serial, :key => true
 	property :symbol, Text
 	property :name, Text
 	property :e_config_valence, Text
@@ -69,12 +69,16 @@ get '/element/:atomic_num' do  # load element page
 	#Element.all means SELECT * (in SQL)
 #	@origin = "Yo!"	
 #	@origin = @elements.select{|element| element.atomic_num > 10}
-	@origin = Element.get([:atomic_num])
-#	@origin = @elements.select{|element| element.atomic_num == :atomic_num}
+#	@origin = Element.get!(2) #:atomic_num)
+	@originAnum = params[:atomic_num]
+#	@origin = Element.get(@originAnum)
+#	@origin = Element.get([3])
+	
+#	@origin = Element.get params[:atomic_num]
+	@origin = @elements.select{|element| element.atomic_num == params[:atomic_num]}
 #	@origin = @elements.select{|element| element.atomic_num == 2}
 #	@origin = @origin[0]
 	
-#	@title = :atomic_num
 	@title = "Element ##{params[:atomic_num]}"
 	erb :element # template: element
 end
