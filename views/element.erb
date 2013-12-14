@@ -1,13 +1,19 @@
+<% @above = Element.all(:period => @origin.period-1, :group => @origin.group) #, :order => [ :group.desc ], :limit => 1) %>
+<% @left = Element.all(:period => @origin.period, :group.lt => @origin.group, :order => [ :group.desc ], :limit => 1) %>
+<% @right = Element.all(:period => @origin.period, :group.gt => @origin.group, :order => [ :group.asc ], :limit => 1) %>
+<% @below = Element.all(:period => @origin.period+1, :group => @origin.group) #, :order => [ :group.desc ], :limit => 1) %>
+
 <table>
-	<tr><!-- Row for element above origin-->
-		<td></td>
-		<td class="inPTable">
-			<!-- For element above origin element -->
-			<% @above = Element.all(:period => @origin.period-1, :group => @origin.group) #, :order => [ :group.desc ], :limit => 1) %>
-			<% if @above.size > 0 %>
+	<!-- For element above origin element -->
+	<% if @above.size > 0 %>
+		<tr><!-- Row for element above origin-->
+			<% if @left.size > 0 %>
+				<td>Upper-left empty cell</td>
+			<% end %>
+			<td class="inPTable">
 				<% @above.each {|element| @above_element = element} %>
 				<% element = @above_element %>
-					<p>Above:</p>
+					<p>Above</p>
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
@@ -15,18 +21,19 @@
 					<!--span><%= element.e_config_valence %></span>  
 					<span><%= element.period %></span>  
 					<span><%= element.group %></span-->
+			</td>
+			<% if @right.size > 0 %>
+				<td>Upper-right empty cell</td>
 			<% end %>
-		</td>
-		<td></td>
-	</tr>
+		</tr>
+	<% end %>
 	<tr><!-- Row for left, origin, right elements-->
-		<td class="inPTable">
-			<!-- For element to the left of origin element -->
-			<% @left = Element.all(:period => @origin.period, :group.lt => @origin.group, :order => [ :group.desc ], :limit => 1) %>
-			<% if @left.size > 0 %>
+		<% if @left.size > 0 %>
+			<td class="inPTable">
+				<!-- For element to the left of origin element -->
 				<% @left.each {|element| @left_element = element} %>
 				<% element = @left_element %>
-					<p>Left:</p>
+					<p>Left</p>
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
@@ -34,27 +41,26 @@
 					<!--span><%= element.e_config_valence %></span>  
 					<span><%= element.period %></span>  
 					<span><%= element.group %></span-->
-			<% end %>
-		</td>
-		<td class="inPTable">
+			</td>
+		<% end %>
+		<td class="inPTable" rowspan="2">
 			<!-- For origin element -->
 			<% element = @origin %>
-				<p>Origin:</p>
+				<p>Origin</p>
 				<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 				<span class="pt_symbol"><%= element.symbol %></span><br>
 				<span class="pt_name"><%= element.name %></span><br>
 				<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
-				<!--span><%= element.e_config_valence %></span>  
-				<span><%= element.period %></span>  
-				<span><%= element.group %></span-->
+				<span><%= element.e_config_valence %></span><br>
+				<span><%= element.period %></span><br>
+				<span><%= element.group %></span><br>
 		</td>
-		<td class="inPTable">
-			<!-- For element to the right of origin element -->
-			<% @right = Element.all(:period => @origin.period, :group.gt => @origin.group, :order => [ :group.asc ], :limit => 1) %>
-			<% if @right.size > 0 %>
+		<% if @right.size > 0 %>
+			<td class="inPTable">
+				<!-- For element to the right of origin element -->
 				<% @right.each {|element| @right_element = element} %>
 				<% element = @right_element %>
-					<p>Right:</p>
+					<p>Right</p>
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
@@ -62,27 +68,38 @@
 					<!--span><%= element.e_config_valence %></span>  
 					<span><%= element.period %></span>  
 					<span><%= element.group %></span-->
-			<% end %>
-		</td>
+			</td>
+		<% end %>
 	</tr>
-	<tr><!-- Row for element below origin-->
-		<td></td>
-		<td class="inPTable">
-			<!-- For element below origin element -->
-			<% @below = Element.all(:period => @origin.period+1, :group => @origin.group) #, :order => [ :group.desc ], :limit => 1) %>
-			<% if @below.size > 0 %>
-				<% @below.each {|element| @below_element = element} %>
-				<% element = @below_element %>
-					<p>Below:</p>
-					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
-					<span class="pt_symbol"><%= element.symbol %></span><br>
-					<span class="pt_name"><%= element.name %></span><br>
-					<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
-					<!--span><%= element.e_config_valence %></span>  
-					<span><%= element.period %></span>  
-					<span><%= element.group %></span-->
-			<% end %>
-		</td>
-		<td></td>
+	<tr><!-- Vertical spacer row for elements to left and right of origin, to allow for more info on origin element -->
+		<% if @left.size > 0 %>
+			<td>Left vertical spacer</td>
+		<% end %>
+		<% if @right.size > 0 %>
+			<td>Right vertical spacer</td>
+		<% end %>
 	</tr>
+	<% if @below.size > 0 %>
+		<tr><!-- Row for element below origin-->
+			<% if @left.size > 0 %>
+				<td>Lower-left empty cell</td>
+			<% end %>
+			<td class="inPTable">
+				<!-- For element below origin element -->
+					<% @below.each {|element| @below_element = element} %>
+					<% element = @below_element %>
+						<p>Below</p>
+						<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
+						<span class="pt_symbol"><%= element.symbol %></span><br>
+						<span class="pt_name"><%= element.name %></span><br>
+						<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
+						<!--span><%= element.e_config_valence %></span>  
+						<span><%= element.period %></span>  
+						<span><%= element.group %></span-->
+			</td>
+			<% if @right.size > 0 %>
+				<td>Lower-right empty cell</td>
+			<% end %>
+		</tr>
+	<% end %>
 </table>
