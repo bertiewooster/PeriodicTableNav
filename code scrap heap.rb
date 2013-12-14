@@ -1,3 +1,5 @@
+<% @right = Element.all(:period => @origin.period, :group.gt => @origin.group, :order => [ :group.asc ], :limit => 1) %>
+
 previous element is <%= @before.name %> and next element is <%= @after.name %> 
 
 #Build nested (period, group) array of keys in hash

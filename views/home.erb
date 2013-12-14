@@ -5,6 +5,8 @@
 <p>Number of econfigbases: <%= @econfigbases.length %> </p>
 <p>Last econfigbase: <%= @econfigbaselast.base %> </p>
 <p>Array @ebyp.size: <%= @ebyp.size %> </p>
+<p><a href="/test/1">Link to test page #1</a></p>
+
 <!--p>Array @ebyp: <%= @ebyp %> </p>
 <p>Hash @ebypHash: <%= @ebypHash %> </p-->
 <p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p-->
@@ -20,8 +22,8 @@
 				<td></td>
 				<% blanks = blanks - 1 %>
 			<% end %>
-				<td class="inPTable">
-			<a href="">
+			<td class="inPTable">
+				<a href="/element/<%=element.atomic_num %>">
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<!--span><%= @econfigbases.select{|k,v| k = 3} %></span><br!-->
@@ -32,8 +34,8 @@
 					<span><%= element.group %></span>
 					-->
 					<% lastGroup = element.group %>
-			</a>
-				</td>
+				</a>
+			</td>
 		<% end %>
  	 </tr>
 <% end %> 

@@ -23,10 +23,16 @@ class EConfigBase
 	property :base, Text
 end
 
+class Orbital
+	include DataMapper::Resource
+	property :id, Integer, :key => true
+	property :orbital, Text
+end
+
 DataMapper.finalize.auto_upgrade!
 
 get '/' do  # load home page
-	@elements			= Element.all :order => :atomic_num
+	@elements			= Element.all :order => :atomic_num.asc
 	#Element.all means SELECT * (in SQL)
 	@max_period			= Element.last.period
 	
@@ -64,27 +70,18 @@ get '/' do  # load home page
 end  
 
 get '/element/:atomic_num' do  # load element page
-	@elements			= Element.all :order => :atomic_num
-#	@origin = Element.get params[:atomic_num]
-	#Element.all means SELECT * (in SQL)
-#	@origin = "Yo!"	
-#	@origin = @elements.select{|element| element.atomic_num > 10}
-#	@origin = Element.get!(2) #:atomic_num)
-	@originAnum = params[:atomic_num]
-#	@origin = Element.get(@originAnum)
-#	@origin = Element.get([3])
-	
-#	@origin = Element.get params[:atomic_num]
-	@origin = @elements.select{|element| element.atomic_num == params[:atomic_num]}
-#	@origin = @elements.select{|element| element.atomic_num == 2}
-#	@origin = @origin[0]
-	
+	@origin = Element.get params[:atomic_num]
 	@title = "Element ##{params[:atomic_num]}"
 	erb :element # template: element
 end
 
-
-
+get '/test/:id' do  # load testing page
+	@orbitals			= Orbital.all
+	@origin = Orbital.get params[:id]
+#	@note = Note.get params[:id]  
+	@title = "Orbital ##{params[:id]}"
+	erb :test # template: test
+end
 
 
 

@@ -1,3 +1,24 @@
-<p>Hello world</p>
-<p>@origin: <%= @origin %></p>
-<p>@originAnum: <%=@originAnum%></p>
+<% element = @origin %>
+
+					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
+					<span class="pt_symbol"><%= element.symbol %></span><br>
+					<span class="pt_name"><%= element.name %></span><br>
+					<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
+					<!--span><%= element.e_config_valence %></span>  
+					<span><%= element.period %></span>  
+					<span><%= element.group %></span-->
+
+<!-- For element to the right of origin element -->
+<!-- % @right = Element.get (@origin.atomic_num + 1) %-->
+<!--% element = @right %-->
+
+					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
+					<span class="pt_symbol"><%= element.symbol %></span><br>
+					<span class="pt_name"><%= element.name %></span><br>
+					<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
+					<!--span><%= element.e_config_valence %></span>  
+					<span><%= element.period %></span>  
+					<span><%= element.group %></span-->
+
+<% @right = Element.all(:period => @origin.period, :group.gt => @origin.group, :order => [ :group.asc ], :limit => 1) %>
+@right: <% @right.inspect %>
