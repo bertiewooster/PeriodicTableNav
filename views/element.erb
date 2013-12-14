@@ -8,12 +8,11 @@
 	<% if @above.size > 0 %>
 		<tr><!-- Row for element above origin-->
 			<% if @left.size > 0 %>
-				<td>Upper-left empty cell</td>
+				<td></td>
 			<% end %>
 			<td class="inPTable">
 				<% @above.each {|element| @above_element = element} %>
 				<% element = @above_element %>
-					<p>Above</p>
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
@@ -23,7 +22,7 @@
 					<span><%= element.group %></span-->
 			</td>
 			<% if @right.size > 0 %>
-				<td>Upper-right empty cell</td>
+				<td></td>
 			<% end %>
 		</tr>
 	<% end %>
@@ -33,7 +32,6 @@
 				<!-- For element to the left of origin element -->
 				<% @left.each {|element| @left_element = element} %>
 				<% element = @left_element %>
-					<p>Left</p>
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
@@ -46,7 +44,6 @@
 		<td class="inPTable" rowspan="2">
 			<!-- For origin element -->
 			<% element = @origin %>
-				<p>Origin</p>
 				<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 				<span class="pt_symbol"><%= element.symbol %></span><br>
 				<span class="pt_name"><%= element.name %></span><br>
@@ -60,7 +57,6 @@
 				<!-- For element to the right of origin element -->
 				<% @right.each {|element| @right_element = element} %>
 				<% element = @right_element %>
-					<p>Right</p>
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
@@ -73,22 +69,21 @@
 	</tr>
 	<tr><!-- Vertical spacer row for elements to left and right of origin, to allow for more info on origin element -->
 		<% if @left.size > 0 %>
-			<td>Left vertical spacer</td>
+			<td></td>
 		<% end %>
 		<% if @right.size > 0 %>
-			<td>Right vertical spacer</td>
+			<td></td>
 		<% end %>
 	</tr>
 	<% if @below.size > 0 %>
 		<tr><!-- Row for element below origin-->
 			<% if @left.size > 0 %>
-				<td>Lower-left empty cell</td>
+				<td></td>
 			<% end %>
 			<td class="inPTable">
 				<!-- For element below origin element -->
 					<% @below.each {|element| @below_element = element} %>
 					<% element = @below_element %>
-						<p>Below</p>
 						<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 						<span class="pt_symbol"><%= element.symbol %></span><br>
 						<span class="pt_name"><%= element.name %></span><br>
@@ -98,7 +93,7 @@
 						<span><%= element.group %></span-->
 			</td>
 			<% if @right.size > 0 %>
-				<td>Lower-right empty cell</td>
+				<td></td>
 			<% end %>
 		</tr>
 	<% end %>
