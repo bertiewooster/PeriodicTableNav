@@ -3,6 +3,7 @@
 <% if @left.size > 0 %>
 	<% @left.each {|element| @left_element = element} %>
 	<% element = @left_element %>
+		<p>Left:</p>
 
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
@@ -14,6 +15,7 @@
 <% end %>
 
 <!-- For origin element -->
+		<p>Origin:</p>
 <% element = @origin %>
 
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
@@ -29,6 +31,22 @@
 <% if @right.size > 0 %>
 	<% @right.each {|element| @right_element = element} %>
 	<% element = @right_element %>
+		<p>Right:</p>
+					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
+					<span class="pt_symbol"><%= element.symbol %></span><br>
+					<span class="pt_name"><%= element.name %></span><br>
+					<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
+					<!--span><%= element.e_config_valence %></span>  
+					<span><%= element.period %></span>  
+					<span><%= element.group %></span-->
+<% end %>
+
+<!-- For element above origin element -->
+<% @above = Element.all(:period => @origin.period-1, :group => @origin.group) #, :order => [ :group.desc ], :limit => 1) %>
+<% if @above.size > 0 %>
+	<% @above.each {|element| @above_element = element} %>
+	<% element = @above_element %>
+		<p>Above:</p>
 
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
@@ -39,7 +57,18 @@
 					<span><%= element.group %></span-->
 <% end %>
 
-<p>Element count: <%= Element.count %></p>
+<!-- For element below origin element -->
+<% @below = Element.all(:period => @origin.period+1, :group => @origin.group) #, :order => [ :group.desc ], :limit => 1) %>
+<% if @below.size > 0 %>
+	<% @below.each {|element| @below_element = element} %>
+	<% element = @below_element %>
+		<p>Below:</p>
 
-<p>@left.class: <%= @left.class %></p>
-<p>@right.class: <%= @right.class %></p>
+					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
+					<span class="pt_symbol"><%= element.symbol %></span><br>
+					<span class="pt_name"><%= element.name %></span><br>
+					<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
+					<!--span><%= element.e_config_valence %></span>  
+					<span><%= element.period %></span>  
+					<span><%= element.group %></span-->
+<% end %>
