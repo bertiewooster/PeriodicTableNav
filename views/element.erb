@@ -13,6 +13,7 @@
 			<td class="inPTable">
 				<% @above.each {|element| @above_element = element} %>
 				<% element = @above_element %>
+				<a href="/element/<%=element.atomic_num %>">
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
@@ -20,6 +21,7 @@
 					<!--span><%= element.e_config_valence %></span>  
 					<span><%= element.period %></span>  
 					<span><%= element.group %></span-->
+				</a>
 			</td>
 			<% if @right.size > 0 %>
 				<td></td>
@@ -32,6 +34,7 @@
 				<!-- For element to the left of origin element -->
 				<% @left.each {|element| @left_element = element} %>
 				<% element = @left_element %>
+				<a href="/element/<%=element.atomic_num %>">
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
@@ -39,6 +42,7 @@
 					<!--span><%= element.e_config_valence %></span>  
 					<span><%= element.period %></span>  
 					<span><%= element.group %></span-->
+				</a>
 			</td>
 		<% end %>
 		<td class="inPTable" rowspan="2">
@@ -51,12 +55,16 @@
 				<span><%= element.e_config_valence %></span><br>
 				<span><%= element.period %></span><br>
 				<span><%= element.group %></span><br>
+				<span>Melting point: xxx</span><br>
+				<span>Boiling point: ttt</span><br>
+				<span>Atomic weight: yyy</span><br>
 		</td>
 		<% if @right.size > 0 %>
 			<td class="inPTable">
 				<!-- For element to the right of origin element -->
 				<% @right.each {|element| @right_element = element} %>
 				<% element = @right_element %>
+				<a href="/element/<%=element.atomic_num %>">
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
@@ -64,6 +72,7 @@
 					<!--span><%= element.e_config_valence %></span>  
 					<span><%= element.period %></span>  
 					<span><%= element.group %></span-->
+				</a>
 			</td>
 		<% end %>
 	</tr>
@@ -84,6 +93,7 @@
 				<!-- For element below origin element -->
 					<% @below.each {|element| @below_element = element} %>
 					<% element = @below_element %>
+					<a href="/element/<%=element.atomic_num %>">
 						<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 						<span class="pt_symbol"><%= element.symbol %></span><br>
 						<span class="pt_name"><%= element.name %></span><br>
@@ -91,6 +101,7 @@
 						<!--span><%= element.e_config_valence %></span>  
 						<span><%= element.period %></span>  
 						<span><%= element.group %></span-->
+					</a>
 			</td>
 			<% if @right.size > 0 %>
 				<td></td>
