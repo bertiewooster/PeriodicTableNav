@@ -1,3 +1,11 @@
+<% @test.each do |element| %>  
+	<% @test_element = element %>
+<% end %> 
+
+<p>@test.atomic_num: <%= @test.atomic_num %></p>
+
+<p>@right.size: <% @right.size %></p>
+
 <% @right = Element.all(:period => @origin.period, :group.gt => @origin.group, :order => [ :group.asc ], :limit => 1) %>
 
 previous element is <%= @before.name %> and next element is <%= @after.name %> 
