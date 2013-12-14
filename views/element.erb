@@ -45,7 +45,7 @@
 				</a>
 			</td>
 		<% end %>
-		<td class="inPTable" rowspan="2">
+		<td class="origin">
 			<!-- For origin element -->
 			<% element = @origin %>
 				<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
@@ -74,14 +74,6 @@
 					<span><%= element.group %></span-->
 				</a>
 			</td>
-		<% end %>
-	</tr>
-	<tr><!-- Vertical spacer row for elements to left and right of origin, to allow for more info on origin element -->
-		<% if @left.size > 0 %>
-			<td></td>
-		<% end %>
-		<% if @right.size > 0 %>
-			<td></td>
 		<% end %>
 	</tr>
 	<% if @below.size > 0 %>

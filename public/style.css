@@ -102,6 +102,10 @@
         border: 1px solid black;
     }  
 
+    td.origin {    
+        border: 5px solid yellow;
+    }  
+
     td.inPTable a {    
         text-decoration: none;
     }  
