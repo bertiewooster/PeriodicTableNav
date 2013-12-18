@@ -53,12 +53,22 @@
 				<span class="pt_name"><%= element.name %></span><br>
 				<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
 				<span><%= element.e_config_valence %></span><br>
-				<span><%= element.period %></span><br>
-				<span><%= element.group %></span><br>
-				<span>Melting point: xxx</span><br>
-				<span>Boiling point: ttt</span><br>
-				<span>Atomic weight: yyy</span><br>
-		</td>
+    <span class="pt_"name_origin">name_origin: <%= element.name_origin %></span><br>
+    <span class="pt_"group">group: <%= element.group %></span><br>
+    <span class="pt_"period">period: <%= element.period %></span><br>
+    <span class="pt_"atomic_weight">atomic_weight: <%= element.atomic_weight %></span><br>
+    <span class="pt_"atomic_wt_is_mass_number_of_longest_lived_isotope">atomic_wt_is_mass_number_of_longest_lived_isotope: <%= element.atomic_wt_is_mass_number_of_longest_lived_isotope %></span><br>
+    <span class="pt_"specific_heat_capacity_J_per_gK">specific_heat_capacity_j_per_gk: <%= element.specific_heat_capacity_j_per_gk %></span><br>
+    <span class="pt_"density_g_per_cm3">density_g_per_cm3: <%= element.density_g_per_cm3 %></span><br>
+    <span class="pt_"density_is_estimated">density_is_estimated: <%= element.density_is_estimated %></span><br>
+    <span class="pt_"melting_point_k">melting_point_k: <%= element.melting_point_k %></span><br>
+    <span class="pt_"melt_is_estimated">melt_is_estimated: <%= element.melt_is_estimated %></span><br>
+    <span class="pt_"boiling_point_k">boiling_point_k: <%= element.boiling_point_k %></span><br>
+    <span class="pt_"boil_is_estimated">boil_is_estimated: <%= element.boil_is_estimated %></span><br>
+    <span class="pt_"electronegativity">electronegativity: <%= element.electronegativity %></span><br>
+    <span class="pt_"abundance_mg_per_kg">abundance_mg_per_kg: <%= element.abundance_mg_per_kg %></span><br>
+    <span class="pt_"abundance_is_upper_limit">abundance_is_upper_limit: <%= element.abundance_is_upper_limit %></span><br>
+    <span class="pt_"e_config_valence">e_config_valence: <%= element.e_config_valence %></span><br>		</td>
 		<% if @right.size > 0 %>
 			<td class="inPTable">
 				<!-- For element to the right of origin element -->
