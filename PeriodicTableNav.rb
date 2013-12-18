@@ -12,9 +12,22 @@ class Element # Describes how to map from database
 	property :atomic_num, Serial, :key => true
 	property :symbol, Text
 	property :name, Text
-	property :e_config_valence, Text
-	property :period, Integer
+	property :name_origin, Text
 	property :group, Integer
+	property :period, Integer
+	property :atomic_weight, Float
+	property :atomic_wt_is_mass_number_of_longest_lived_isotope, Boolean
+	property :specific_heat_capacity_J_per_gK, Float
+	property :density_g_per_cm3, Float
+	property :density_is_estimated, Boolean
+	property :melting_point_k, Float
+	property :melt_is_estimated, Boolean
+	property :boiling_point_k, Float
+	property :boil_is_estimated, Boolean
+	property :electronegativity, Float
+	property :abundance_mg_per_kg, Float
+	property :abundance_is_upper_limit, Boolean
+	property :e_config_valence, Text
 end
 
 class EConfigBase
