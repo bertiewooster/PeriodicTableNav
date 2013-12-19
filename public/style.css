@@ -91,6 +91,10 @@
         width: 1170px;
     }
     
+    th {
+		font-size: 150%;
+    }
+    
     td {
     	width: 65px;
     	height: 80px;

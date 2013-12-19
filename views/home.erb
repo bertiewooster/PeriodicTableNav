@@ -1,4 +1,4 @@
-<p>Max period: <%= @max_period %> </p>
+<!--p>Max period: <%= @max_period %> </p>
 <p>Number of elements: <%= @elements.length %> </p>
 <p>Element count: <%= Element.count %></p>
 <p>Last element: <%= @elementlast.atomic_num %> <%= @elementlast.name %> </p>
@@ -7,12 +7,17 @@
 <p>Array @ebyp.size: <%= @ebyp.size %> </p>
 <p><a href="/test/1">Link to test page #1</a></p>
 
-<!--p>Array @ebyp: <%= @ebyp %> </p>
-<p>Hash @ebypHash: <%= @ebypHash %> </p-->
-<p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p-->
+<p>Array @ebyp: <%= @ebyp %> </p>
+<p>Hash @ebypHash: <%= @ebypHash %> </p>
+<p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p>
 
-<p>Start of by-period elements listing</p>
+<p>Start of by-period elements listing</p-->
 <table>
+	<tr>
+		<% for group_header in 1..18 do %>
+			<th><%= group_header %></th>
+		<% end %>
+	</tr>
 <% @ebyp.each do |period| %>
 	<% lastGroup = 0 %>
 	<tr>
@@ -47,7 +52,7 @@
  	 </tr>
 <% end %> 
 </table>
-<p>End of by-period elements listing</p>
+<!--p>End of by-period elements listing</p>
 
 <!--
 Start of elements listing
@@ -59,16 +64,16 @@ Start of elements listing
       <span><%= element.symbol %></span>  
       <span><%= @econfigbases.select{|k,v| k = 3} %></span>
       <span><%= element.e_config_valence %></span>
-<!--      <span><%= element.name %></span>  
+      <span><%= element.name %></span>  
       <span><%= element.e_config_valence %></span>  
       <span><%= element.period %></span>  
       <span><%= element.group %></span>
--->
+
     </p>  
   </article>
 <% end %> 
 End of elements listing
--->
+
 
 Start of econfigbase listing
 <% @econfigbases.each do |econfigbase| %>  
@@ -80,3 +85,4 @@ Start of econfigbase listing
 
 <% end %>
 End of econfigbase listing
+-->

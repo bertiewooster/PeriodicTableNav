@@ -47,15 +47,18 @@ DataMapper.finalize.auto_upgrade!
 
 get '/' do  # load home page
 	@elements			= Element.all :order => :atomic_num.asc
-	#Element.all means SELECT * (in SQL)
+	# Element.all means SELECT * (in SQL)
 	@max_period			= Element.last.period
+	#max_group_element = Element.all(:order => [ :group.desc ], :limit => 1)
+	#max_group_element {|element| @max_group = element.group}
+
 	
 	@ebyp = Array.new(@max_period) # array to temporarily hold elements (will convert to hash later)
 	@ebyp.each_index do |period| # build a 2D array: by period, then by element
 		@ebyp[period] = @elements.select{|element| element.period == period+1}
 	end
 
-@ebypHash = Hash.new()
+	@ebypHash = Hash.new()
     for period in 1..(@ebyp.size)
     @ebypHash[period]=Array.new()
         #puts "Working on period #{period}"

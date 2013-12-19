@@ -1,7 +1,7 @@
-<% @above = Element.all(:period => @origin.period-1, :group => @origin.group) #, :order => [ :group.desc ], :limit => 1) %>
+<% @above = Element.all(:period => @origin.period-1, :group => @origin.group) %>
 <% @left = Element.all(:period => @origin.period, :group.lt => @origin.group, :order => [ :group.desc ], :limit => 1) %>
 <% @right = Element.all(:period => @origin.period, :group.gt => @origin.group, :order => [ :group.asc ], :limit => 1) %>
-<% @below = Element.all(:period => @origin.period+1, :group => @origin.group) #, :order => [ :group.desc ], :limit => 1) %>
+<% @below = Element.all(:period => @origin.period+1, :group => @origin.group) %>
 
 <table>
 	<!-- For element above origin element -->
