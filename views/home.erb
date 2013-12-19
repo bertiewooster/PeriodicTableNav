@@ -12,11 +12,15 @@
 <p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p>
 
 <p>Start of by-period elements listing</p-->
+<% period_header = 1 # labels for periods %>
+
 <table>
 	<tr>
+	
+		<th>Group</th>
 		<% for group_header in 1..18 do %>
 			<th>
-				<% if group_header == 1 %> Group <% end %>
+				<% if group_header == 1111 %> Group <% end %>
 				<%= group_header %>
 			</th>
 		<% end %>
@@ -24,6 +28,10 @@
 <% @ebyp.each do |period| %>
 	<% lastGroup = 0 %>
 	<tr>
+		<th class="period_header">
+			<% if period_header == 1 %> Period <% end %>
+			<%= period_header %> <% period_header += 1 %>
+		</th>
 		<% period.each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
 			<% while blanks > 0 %>

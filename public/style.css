@@ -93,7 +93,11 @@
     
     th {
 		font-size: 150%;
-		vertical-align:bottom;
+		vertical-align: bottom;
+    }
+    
+    th.period_header {
+    	vertical-align: middle;
     }
     
     td {
