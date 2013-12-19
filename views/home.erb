@@ -29,7 +29,13 @@
 					<!--span><%= @econfigbases.select{|k,v| k = 3} %></span><br!-->
 					<span class="pt_name"><%= element.name %></span><br>
 					<span class="pt_e_config_valence"><%= element.e_config_valence %></span>
-					<span class="pt_atomic_weight"><%= element.atomic_weight %></span>
+					<span class="pt_atomic_weight"> 
+						<% if element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
+							[<%= element.atomic_weight.round %>]
+						<% else %>
+							<%= element.atomic_weight %>
+						<% end %>
+					</span><br>
 					<!--span><%= element.e_config_valence %></span>  
 					<span><%= element.period %></span>  
 					<span><%= element.group %></span>

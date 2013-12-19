@@ -65,7 +65,13 @@
 				</span><br>
 				<span class="pt_atomic_wt_is_mass_number_of_longest_lived_isotope">atomic_wt_is_mass_number_of_longest_lived_isotope: <%= element.atomic_wt_is_mass_number_of_longest_lived_isotope %></span><br>
 				<span class="pt_specific_heat_capacity_J_per_gK">specific_heat_capacity_j_per_gk: <%= element.specific_heat_capacity_j_per_gk %></span><br>
-				<span class="pt_density_g_per_cm3">density_g_per_cm3: <%= element.density_g_per_cm3 %></span><br>
+				<span class="pt_density_g_per_cm3">density_g_per_cm3: 
+					<% if element.density_is_estimated == 1 %>
+						(<%= element.density_g_per_cm3.round %>)
+					<% else %>
+						<%= element.density_g_per_cm3 %>
+					<% end %>
+				</span><br>
 				<span class="pt_density_is_estimated">density_is_estimated: <%= element.density_is_estimated %></span><br>
 				<span class="pt_melting_point_k">melting_point_k: 
 					<% if element.melt_is_estimated == 1 %>
@@ -75,7 +81,13 @@
 					<% end %>			
 				</span><br>
 				<span class="pt_melt_is_estimated">melt_is_estimated: <%= element.melt_is_estimated %></span><br>
-				<span class="pt_boiling_point_k">boiling_point_k: <%= element.boiling_point_k %></span><br>
+				<span class="pt_boiling_point_k">boiling_point_k: 
+					<% if element.boil_is_estimated == 1 %>
+						(<%= element.boiling_point_k.round %>)
+					<% else %>
+						<%= element.boiling_point_k %>
+					<% end %>			
+				</span><br>				
 				<span class="pt_boil_is_estimated">boil_is_estimated: <%= element.boil_is_estimated %></span><br>
 				<span class="pt_electronegativity">electronegativity: <%= element.electronegativity %></span><br>
 				<span class="pt_abundance_mg_per_kg">abundance_mg_per_kg: 
