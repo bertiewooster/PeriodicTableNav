@@ -15,7 +15,10 @@
 <table>
 	<tr>
 		<% for group_header in 1..18 do %>
-			<th><%= group_header %></th>
+			<th>
+				<% if group_header == 1 %> Group <% end %>
+				<%= group_header %>
+			</th>
 		<% end %>
 	</tr>
 <% @ebyp.each do |period| %>
