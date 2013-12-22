@@ -46,6 +46,7 @@ end
 DataMapper.finalize.auto_upgrade!
 
 get '/' do  # load home page
+
 	@elements			= Element.all :order => :atomic_num.asc
 	# Element.all means SELECT * (in SQL)
 	@max_period			= Element.last.period
@@ -90,6 +91,26 @@ get '/element/:atomic_num' do  # load element page
 	@origin = Element.get params[:atomic_num]
 	@title = "Element ##{params[:atomic_num]}"
 	erb :element # template: element
+end
+
+get '/period/:period' do  # load element page
+	@elements			= Element.all :order => :atomic_num.asc
+	# Element.all means SELECT * (in SQL)
+	@max_period			= Element.last.period
+	#max_group_element = Element.all(:order => [ :group.desc ], :limit => 1)
+	#max_group_element {|element| @max_group = element.group}
+	@period = params[:period].to_i
+
+	if @period > @max_period
+		redirect '/'
+	else
+		@ebyp = Array.new(@max_period) # array to temporarily hold elements (will convert to hash later)
+		@ebyp.each_index do |period| # build a 2D array: by period, then by element
+			@ebyp[period] = @elements.select{|element| element.period == period+1}
+		end
+	end
+	@title = "Period ##{params[:period]}"
+	erb :period # template: period
 end
 
 get '/test/:id' do  # load testing page

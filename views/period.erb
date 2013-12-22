@@ -1,38 +1,6 @@
-<!--
-<p>Max period: <%= @max_period %> </p>
-<p>Number of elements: <%= @elements.length %> </p>
-<p>Element count: <%= Element.count %></p>
-<p>Last element: <%= @elementlast.atomic_num %> <%= @elementlast.name %> </p>
+<% @ethisp = @ebyp[@period-1] %>
 
-<% chosen = 2 %>
-<% @Base_entity_test = Base.all(:id => chosen) %>
-<% @Base_entity_test.each {|base| @Base_test = base} %>
-
-<p>@Base_entity_test.length: <%= @Base_entity_test.length %></p>
-<p>Base #<%= chosen %>: <%= @Base_test.base %> </p>
-
-<p>Number of bases: <%= @bases.length %> </p>
-
-<table>
-	<% @bases.each do |base| %>  
-		<td>  
-			<p>  
-				<span><%= base.base %></span>
-			</p>  
-		</td>
-	<% end %>
-</table>
-
-<p>Last base: <%= @baselast.base %> </p>
-<!--p>Array @ebyp.size: <%= @ebyp.size %> </p>
-
-<p>Array @ebyp: <%= @ebyp %> </p>
-<p>Hash @ebypHash: <%= @ebypHash %> </p>
-<p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p>
-
-<p>Start of by-period elements listing</p-->
-<% period_header = 0 # labels for periods %>
-
+<!--p>Start of table of elements for selected period </p-->
 <table>
 	<tr>
 		<th>Group</th>
@@ -43,17 +11,16 @@
 			</th>
 		<% end %>
 	</tr>
-<% @ebyp.each do |period| %>
-	<% period_header += 1 #increment the period number in preparation for next period %>
+	<% period_header = @period #go to the period of this page %>
 	<% lastGroup = 0 %>
 	<tr>
 		<th class="period_header">
-			<% if period_header == 1 %> Period <% end %>
-			<a href="period/<%=period_header %>""><%= period_header %></a>	
-				<% @Base_entity = Base.all(:id => period_header) %>
+			Period
+			<%= @period %>	
+				<% @Base_entity = Base.all(:id => @period) %>
 				<% @Base_entity.each {|base| @Base = base.base} %>
 		</th>
-		<% period.each do |element| %>
+		<% @ethisp.each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
 			<% while blanks > 0 %>
 				<td></td>
@@ -82,6 +49,5 @@
 			</td>
 		<% end %>
  	 </tr>
-<% end %> 
 </table>
-<!--p>End of by-period elements listing</p>
+<!--p>End of table of elements for selected period </p-->
