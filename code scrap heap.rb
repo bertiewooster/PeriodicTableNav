@@ -1,3 +1,14 @@
+Start of econfigbase listing
+<% @econfigbases.each do |econfigbase| %>  
+  <article>  
+    <p>  
+      <span><%= econfigbase.base %></span>
+    </p>  
+  </article>
+
+<% end %>
+End of econfigbase listing
+
 <% @test.each do |element| %>  
 	<% @test_element = element %>
 <% end %> 

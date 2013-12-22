@@ -88,7 +88,7 @@
     
     table {
 		table-layout: fixed;
-        width: 1170px;
+        width: 96.9%; /*1170px;*/
     }
     
     th {
@@ -101,7 +101,7 @@
     }
     
     td {
-    	width: 65px;
+    	width: 5.1%; /* 95% / 19 cols 65px;*/
     	height: 80px;
         /*border: 1px solid black;  */
         text-align: center;

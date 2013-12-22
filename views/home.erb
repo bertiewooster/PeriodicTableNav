@@ -1,18 +1,36 @@
 <!--p>Max period: <%= @max_period %> </p>
 <p>Number of elements: <%= @elements.length %> </p>
 <p>Element count: <%= Element.count %></p>
-<p>Last element: <%= @elementlast.atomic_num %> <%= @elementlast.name %> </p>
-<p>Number of econfigbases: <%= @econfigbases.length %> </p>
-<p>Last econfigbase: <%= @econfigbaselast.base %> </p>
-<p>Array @ebyp.size: <%= @ebyp.size %> </p>
-<p><a href="/test/1">Link to test page #1</a></p>
+<p>Last element: <%= @elementlast.atomic_num %> <%= @elementlast.name %> </p-->
+
+<% chosen = 2 %>
+<% @Base_entity_test = Base.all(:id => chosen) %>
+<% @Base_entity_test.each {|base| @Base_test = base} %>
+
+<p>@Base_entity_test.length: <%= @Base_entity_test.length %></p>
+<p>Base #<%= chosen %>: <%= @Base_test.base %> </p>
+
+<p>Number of bases: <%= @bases.length %> </p>
+
+<table>
+	<% @bases.each do |base| %>  
+		<td>  
+			<p>  
+				<span><%= base.base %></span>
+			</p>  
+		</td>
+	<% end %>
+</table>
+
+<p>Last base: <%= @baselast.base %> </p>
+<!--p>Array @ebyp.size: <%= @ebyp.size %> </p>
 
 <p>Array @ebyp: <%= @ebyp %> </p>
 <p>Hash @ebypHash: <%= @ebypHash %> </p>
 <p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p>
 
 <p>Start of by-period elements listing</p-->
-<% period_header = 1 # labels for periods %>
+<% period_header = 0 # labels for periods %>
 
 <table>
 	<tr>
@@ -20,17 +38,20 @@
 		<th>Group</th>
 		<% for group_header in 1..18 do %>
 			<th>
-				<% if group_header == 1111 %> Group <% end %>
+				<% # if group_header == 1 %> Group <% # end %>
 				<%= group_header %>
 			</th>
 		<% end %>
 	</tr>
 <% @ebyp.each do |period| %>
+	<% period_header += 1 #increment the period number in preparation for next period %>
 	<% lastGroup = 0 %>
 	<tr>
 		<th class="period_header">
 			<% if period_header == 1 %> Period <% end %>
-			<%= period_header %> <% period_header += 1 %>
+			<%= period_header %>
+				<% @Base_entity = Base.all(:id => period_header) %>
+				<% @Base_entity.each {|base| @Base = base.base} %>
 		</th>
 		<% period.each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
@@ -42,18 +63,18 @@
 				<a href="/element/<%=element.atomic_num %>">
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
-					<!--span><%= @econfigbases.select{|k,v| k = 3} %></span><br!-->
 					<span class="pt_name"><%= element.name %></span><br>
 					<span class="pt_e_config_valence"><%= element.e_config_valence %></span>
-					<span class="pt_atomic_weight"> 
+					<!--span class="pt_atomic_weight"> 
 						<% if element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
 							[<%= element.atomic_weight.round %>]
 						<% else %>
 							<%= element.atomic_weight %>
 						<% end %>
-					</span><br>
-					<!--span><%= element.e_config_valence %></span>  
-					<span><%= element.period %></span>  
+					</span><br-->
+					<!--span><%= element.e_config_valence %></span-->  
+					<span><%= @Base %></span>
+					<!--span><%= element.period %></span>  
 					<span><%= element.group %></span>
 					-->
 					<% lastGroup = element.group %>
@@ -64,36 +85,3 @@
 <% end %> 
 </table>
 <!--p>End of by-period elements listing</p>
-
-<!--
-Start of elements listing
-<% @elements.each do |element| %>  
-  <article>  
-    <p>  
-      <span><%= element.atomic_num %></span>
-      <br>
-      <span><%= element.symbol %></span>  
-      <span><%= @econfigbases.select{|k,v| k = 3} %></span>
-      <span><%= element.e_config_valence %></span>
-      <span><%= element.name %></span>  
-      <span><%= element.e_config_valence %></span>  
-      <span><%= element.period %></span>  
-      <span><%= element.group %></span>
-
-    </p>  
-  </article>
-<% end %> 
-End of elements listing
-
-
-Start of econfigbase listing
-<% @econfigbases.each do |econfigbase| %>  
-  <article>  
-    <p>  
-      <span><%= econfigbase.base %></span>
-    </p>  
-  </article>
-
-<% end %>
-End of econfigbase listing
--->

@@ -31,9 +31,9 @@ class Element # Describes how to map from database
 	property :e_config_valence, Text
 end
 
-class EConfigBase
+class Base
 	include DataMapper::Resource
-	property :id, Integer, :key => true
+	property :id, Serial, :key => true
 	property :base, Text
 end
 
@@ -80,8 +80,8 @@ get '/' do  # load home page
 	
 	@elementlast		= Element.last
 	@elementp1			= @elements.select{|element| element.period == 1}
-	@econfigbases		= EConfigBase.all
-	@econfigbaselast	= EConfigBase.last
+	@bases				= Base.all
+	@baselast			= Base.last
 	@title = 'All Elements'
 	erb :home  # template: home page 
 end  
@@ -95,7 +95,6 @@ end
 get '/test/:id' do  # load testing page
 	@orbitals			= Orbital.all
 	@origin = Orbital.get params[:id]
-#	@note = Note.get params[:id]  
 	@title = "Orbital ##{params[:id]}"
 	erb :test # template: test
 end
