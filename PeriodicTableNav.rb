@@ -84,13 +84,13 @@ get '/' do  # load home page
 	#@elementlast		= Element.last
 	#@elementp1			= @elements.select{|element| element.period == 1}
 	@title = 'All Elements'
-	erb :home  # template: home page 
+	erb :home 
 end
 
 get '/element/:atomic_num' do  # load element page
 	@origin = Element.get params[:atomic_num]
 	@title = "Element ##{params[:atomic_num]}"
-	erb :element # template: element
+	erb :element
 end
 
 get '/period/:period' do  # load period page
@@ -98,15 +98,13 @@ get '/period/:period' do  # load period page
 	redirect '/' if @period > @@max_period	
 	
 	@title = "Period ##{params[:period]}"
-	erb :period # template: period
+	erb :period
 end
 
-get '/test/:id' do  # load testing page
-	@orbitals			= Orbital.all
-	@origin = Orbital.get params[:id]
-	@title = "Orbital ##{params[:id]}"
-	erb :test # template: test
+get '/group/:group' do  # load period page
+	@group = params[:group].to_i
+	redirect '/' if @group > @@max_group	
+	
+	@title = "Group ##{params[:group]}"
+	erb :group
 end
-
-
-
