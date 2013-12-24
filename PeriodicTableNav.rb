@@ -45,20 +45,25 @@ end
 
 DataMapper.finalize.auto_upgrade!
 
-get '/' do  # load home page
-
-	@elements			= Element.all :order => :atomic_num.asc
+@@elements			= Element.all :order => :atomic_num.asc
 	# Element.all means SELECT * (in SQL)
-	@max_period			= Element.last.period
-	#max_group_element = Element.all(:order => [ :group.desc ], :limit => 1)
-	#max_group_element {|element| @max_group = element.group}
-
-	
-	@ebyp = Array.new(@max_period) # array to temporarily hold elements (will convert to hash later)
-	@ebyp.each_index do |period| # build a 2D array: by period, then by element
-		@ebyp[period] = @elements.select{|element| element.period == period+1}
+@@max_period			= Element.last.period
+@@max_group_element = Element.all(:order => [ :group.desc ], :limit => 1)
+	@@max_group_element.each do |element|
+		@@max_group = element.group
 	end
 
+	@@ebyp = Array.new(@@max_period) # array to hold elements
+	@@ebyp.each_index do |period| # build a 2D array: by period, then by element
+		@@ebyp[period] = @@elements.select{|element| element.period == period+1}
+	end
+@@elements			= Element.all :order => :atomic_num.asc
+
+@@bases				= Base.all
+
+get '/' do  # load home page
+
+=begin
 	@ebypHash = Hash.new()
     for period in 1..(@ebyp.size)
     @ebypHash[period]=Array.new()
@@ -74,18 +79,13 @@ get '/' do  # load home page
               # number elements by group, e.g. pd2 => 1, 2, 13, 14, 15,...18
         end
     end
-    
-#	Try this (ActiveRecord syntax--adapt for DataMapper)
-#	@elementp1 = Element.where{period: 1}
-#	SELECT * WHERE period=1
+=end
 	
-	@elementlast		= Element.last
-	@elementp1			= @elements.select{|element| element.period == 1}
-	@bases				= Base.all
-	@baselast			= Base.last
+	#@elementlast		= Element.last
+	#@elementp1			= @elements.select{|element| element.period == 1}
 	@title = 'All Elements'
 	erb :home  # template: home page 
-end  
+end
 
 get '/element/:atomic_num' do  # load element page
 	@origin = Element.get params[:atomic_num]
@@ -93,22 +93,10 @@ get '/element/:atomic_num' do  # load element page
 	erb :element # template: element
 end
 
-get '/period/:period' do  # load element page
-	@elements			= Element.all :order => :atomic_num.asc
-	# Element.all means SELECT * (in SQL)
-	@max_period			= Element.last.period
-	#max_group_element = Element.all(:order => [ :group.desc ], :limit => 1)
-	#max_group_element {|element| @max_group = element.group}
+get '/period/:period' do  # load period page
 	@period = params[:period].to_i
-
-	if @period > @max_period
-		redirect '/'
-	else
-		@ebyp = Array.new(@max_period) # array to temporarily hold elements (will convert to hash later)
-		@ebyp.each_index do |period| # build a 2D array: by period, then by element
-			@ebyp[period] = @elements.select{|element| element.period == period+1}
-		end
-	end
+	redirect '/' if @period > @@max_period	
+	
 	@title = "Period ##{params[:period]}"
 	erb :period # template: period
 end
