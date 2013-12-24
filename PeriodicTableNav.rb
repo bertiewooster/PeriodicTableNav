@@ -95,16 +95,14 @@ end
 
 get '/period/:period' do  # load period page
 	@period = params[:period].to_i
-	redirect '/' if @period > @@max_period	
-	
+	redirect '/' if @period > @@max_period	# redirect to home page if user tries to compose a URL to a non-existent period
 	@title = "Period ##{params[:period]}"
 	erb :period
 end
 
 get '/group/:group' do  # load period page
 	@group = params[:group].to_i
-	redirect '/' if @group > @@max_group	
-	
+	redirect '/' if @group > @@max_group	# redirect to home page if user tries to compose a URL to a non-existent group
 	@title = "Group ##{params[:group]}"
 	erb :group
 end
