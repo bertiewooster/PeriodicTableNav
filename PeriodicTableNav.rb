@@ -45,9 +45,14 @@ end
 
 DataMapper.finalize.auto_upgrade!
 
+MY_TITLE = "Hi there"
+
 @@elements			= Element.all :order => :atomic_num.asc
 	# Element.all means SELECT * (in SQL)
 @@max_period			= Element.last.period
+
+MAX_P = @@max_period # Change these objects used on multiple pages (ebyp, max_period, max_group) to CONSTANTS?
+
 @@max_group_element = Element.all(:order => [ :group.desc ], :limit => 1)
 	@@max_group_element.each do |element|
 		@@max_group = element.group
