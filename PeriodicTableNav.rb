@@ -108,6 +108,7 @@ end
 get '/group/:group' do  # load period page
 	@group = params[:group].to_i
 	redirect '/' if @group > @@max_group	# redirect to home page if user tries to compose a URL to a non-existent group
+	@group_elements = Element.all(:group => @group, :order => [ :group.asc ])
 	@title = "Group ##{params[:group]}"
 	erb :group
 end

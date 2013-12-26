@@ -1,3 +1,8 @@
+
+
+
+
+
 <!--		<% @ebyp[@period].each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
 			<% while blanks > 0 %>

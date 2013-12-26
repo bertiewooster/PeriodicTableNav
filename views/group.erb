@@ -1,4 +1,60 @@
-<p>@group: <%= @group %> </p>
+<!--%= @group_elements.inspect %-->
+<% period_header = 0 # labels for periods %>
 
-<h2><%= MY_TITLE %></h2>
-<h2>MAX_P: *<%= MAX_P %>*</h2>
+<!--p>Start of by-group elements listing</p-->
+
+<table>
+	<tr>
+		<th>Group</th>
+			<th>
+				<%= @group %></a>
+			</th>
+	</tr>
+
+<% @group_elements.each do |element| %>
+	<% period_header += 1 #increment the period number in preparation for next period %>
+	
+	<% while element.period > period_header %>
+		<tr>	
+			<th class="period_header">
+				<% if period_header == 1 %> Period<br> <% end %>
+				<a href="/period/<%=period_header %>""><%= period_header %></a>	
+				<% period_header += 1 %>
+			</th>
+			<td></td>
+		</tr>
+	<% end %>
+
+	<tr>
+		<th class="period_header">
+			<% if period_header == 1 %> Period<br> <% end %>
+			<a href="/period/<%=period_header %>""><%= period_header %></a>	
+				<% @Base_entity = Base.all(:id => period_header) %>
+				<% @Base_entity.each {|base| @Base = base.base} %>
+		</th>
+			<td class="inPTable">
+				<a href="/element/<%=element.atomic_num %>">
+					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
+					<span class="pt_symbol"><%= element.symbol %></span><br>
+					<span class="pt_name"><%= element.name %></span><br>
+					<span class="pt_e_config_valence"><%= element.e_config_valence %></span>
+					<!--span class="pt_atomic_weight"> 
+						<% if element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
+							[<%= element.atomic_weight.round %>]
+						<% else %>
+							<%= element.atomic_weight %>
+						<% end %>
+					</span><br-->
+					<!--span><%= element.e_config_valence %></span-->  
+					<span><%= @Base %></span>
+					<!--span><%= element.period %></span>  
+					<span><%= element.group %></span>
+					-->
+					<% lastGroup = element.group %>
+				</a>
+			</td>
+ 	 </tr>
+<% end %> 
+
+</table>
+<!--p>End of by-period elements listing</p-->

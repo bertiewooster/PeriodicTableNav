@@ -49,8 +49,8 @@
 	<% lastGroup = 0 %>
 	<tr>
 		<th class="period_header">
-			<% if period_header == 1 %> Period <% end %>
-			<a href="period/<%=period_header %>""><%= period_header %></a>	
+			<% if period_header == 1 %> Period<br> <% end %>
+			<a href="/period/<%=period_header %>""><%= period_header %></a>	
 				<% @Base_entity = Base.all(:id => period_header) %>
 				<% @Base_entity.each {|base| @Base = base.base} %>
 		</th>
