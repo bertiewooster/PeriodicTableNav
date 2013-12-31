@@ -92,22 +92,22 @@ get '/' do  # load home page
 	erb :home 
 end
 
-get '/element/:atomic_num' do  # load element page
-	@origin = Element.get params[:atomic_num]
+get '/element/:atomic_num' do | atomic_num | # load element page
+	@origin = Element.get(atomic_num)
 	@title = "Element ##{params[:atomic_num]}"
 	erb :element
 end
 
-get '/period/:period' do  # load period page
-	@period = params[:period].to_i
-	redirect '/' if @period > @@max_period	# redirect to home page if user tries to compose a URL to a non-existent period
-	@title = "Period ##{params[:period]}"
+get '/period/:period' do |period| # load period page
+	@period = period.to_i
+	redirect('/') if @period > @@max_period	# redirect to home page if user tries to compose a URL to a non-existent period
+	@title = "Period ##{period}"
 	erb :period
 end
 
-get '/group/:group' do  # load period page
-	@group = params[:group].to_i
-	redirect '/' if @group > @@max_group	# redirect to home page if user tries to compose a URL to a non-existent group
+get '/group/:group' do |group|  # load period page
+	@group = group.to_i
+	redirect('/') if @group > @@max_group	# redirect to home page if user tries to compose a URL to a non-existent group
 	@group_elements = Element.all(:group => @group, :order => [ :group.asc ])
 	@title = "Group ##{params[:group]}"
 	erb :group
