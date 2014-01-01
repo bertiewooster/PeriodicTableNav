@@ -3,6 +3,14 @@
 <% @right = Element.all(:period => @origin.period, :group.gt => @origin.group, :order => [ :group.asc ], :limit => 1) %>
 <% @below = Element.all(:period => @origin.period+1, :group => @origin.group) %>
 
+<% begin %>
+	<% trythis = @above[0].symbol %>
+<% rescue %>
+	<% trythis = "no element above the origin" %>
+<% end %>
+
+trythis: <%= trythis %>
+
 <table>
 	<tr><!-- Row for group headers -->
 		<th>Group</th>
@@ -115,7 +123,13 @@
 					 K		
 				</span><br>				
 				<!--span class="pt_boil_is_estimated">boil_is_estimated: <%= element.boil_is_estimated %></span><br-->
-				<span class="pt_electronegativity">Electronegativity: <%= element.electronegativity %></span><br>
+				<span class="pt_electronegativity">Electronegativity (Pauling): 
+					<% if element.electronegativity.nil? %>
+						unknown
+					<% else %>
+						<%= element.electronegativity %>
+					<% end %>									
+				</span><br>
 				<span class="pt_abundance_mg_per_kg">Abundance: 
 					<% if element.abundance_is_upper_limit == 1 %>
 						<
