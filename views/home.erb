@@ -1,5 +1,4 @@
 <!--
-<p>@@max_group_element: <%= @@max_group_element.inspect %> </p>
 <p>@@max_group: <%= @@max_group %> </p>
 <p>Array @@ebyp[0][0]: <%= @@ebyp[0][0].inspect %> </p>
 
@@ -51,8 +50,7 @@
 		<th class="period_header">
 			<% if period_header == 1 %> Period<br> <% end %>
 			<a href="/period/<%=period_header %>""><%= period_header %></a>	
-				<% @Base_entity = Base.all(:id => period_header) %>
-				<% @Base_entity.each {|base| @Base = base.base} %>
+				<% @base = Base.all(:id => period_header)[0].base %>
 		</th>
 		<% period.each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
@@ -74,7 +72,7 @@
 						<% end %>
 					</span><br-->
 					<!--span><%= element.e_config_valence %></span-->  
-					<span><%= @Base %></span>
+					<span><%= @base %></span>
 					<!--span><%= element.period %></span>  
 					<span><%= element.group %></span>
 					-->
@@ -86,6 +84,3 @@
 <% end %> 
 </table>
 <!--p>End of by-period elements listing</p-->
-
-<h1><a href="/"><%= SITE_TITLE %></a></h1>  
-<h2><%= SITE_DESCRIPTION %></h2>  

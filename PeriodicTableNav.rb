@@ -53,10 +53,7 @@ MY_TITLE = "Hi there"
 
 MAX_P = @@max_period # Change these objects used on multiple pages (ebyp, max_period, max_group) to CONSTANTS?
 
-@@max_group_element = Element.all(:order => [ :group.desc ], :limit => 1)
-	@@max_group_element.each do |element|
-		@@max_group = element.group
-	end
+@@max_group = Element.all(:order => [ :group.desc ], :limit => 1)[0].group
 
 	@@ebyp = Array.new(@@max_period) # array to hold elements
 	@@ebyp.each_index do |period| # build a 2D array: by period, then by element
@@ -93,20 +90,23 @@ get '/' do  # load home page
 end
 
 get '/element/:atomic_num' do | atomic_num | # load element page
+	atomic_num = atomic_num.to_i
 	@origin = Element.get(atomic_num)
 	@title = "Element ##{params[:atomic_num]}"
 	erb :element
 end
 
 get '/period/:period' do |period| # load period page
-	@period = period.to_i
+	period = period.to_i
+	@period = period
 	redirect('/') if @period > @@max_period	# redirect to home page if user tries to compose a URL to a non-existent period
 	@title = "Period ##{period}"
 	erb :period
 end
 
 get '/group/:group' do |group|  # load period page
-	@group = group.to_i
+	group = group.to_i
+	@group = group
 	redirect('/') if @group > @@max_group	# redirect to home page if user tries to compose a URL to a non-existent group
 	@group_elements = Element.all(:group => @group, :order => [ :group.asc ])
 	@title = "Group ##{params[:group]}"

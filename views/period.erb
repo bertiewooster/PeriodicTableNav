@@ -17,8 +17,7 @@
 		<th class="period_header">
 			Period
 			<%= @period %>	
-				<% @Base_entity = Base.all(:id => @period) %>
-				<% @Base_entity.each {|base| @Base = base.base} %>
+				<% @base = Base.all(:id => period_header)[0].base %>
 		</th>
 		<% @ethisp.each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
@@ -40,7 +39,7 @@
 						<% end %>
 					</span><br-->
 					<!--span><%= element.e_config_valence %></span-->  
-					<span><%= @Base %></span>
+					<span><%= @base %></span>
 					<!--span><%= element.period %></span>  
 					<span><%= element.group %></span>
 					-->
