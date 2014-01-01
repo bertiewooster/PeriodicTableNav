@@ -1,5 +1,20 @@
 <% @ethisp = @@ebyp[@period-1] %>
 
+<!-- Database queries to find adjacent periods (above and below). If one doesn't exist, flagged as such to remove navigation arrows. -->
+<% begin %>
+	<% @above = Element.all(:period => @period-1)[0] %>
+	<% above_exists = true if @above.atomic_num # OK if there is a group to the right; will go to rescue if not %>
+<% rescue %>
+	<% above_exists = false %>
+<% end %>
+
+<% begin %>
+	<% @below = Element.all(:period => @period+1)[0] %>
+	<% below_exists = true if @below.atomic_num # OK if there is a group to the below; will go to rescue if not %>
+<% rescue %>
+	<% below_exists = false %>
+<% end %>
+
 <!--p>Start of table of elements for selected period </p-->
 <table>
 	<tr>
@@ -16,7 +31,13 @@
 	<tr>
 		<th class="period_header">
 			Period
-			<%= @period %>	
+			<% if above_exists %>
+				<a href="/period/<%= @period-1 %>"> ^ </a><br>
+			<% end %>
+			<%= @period %>
+			<% if below_exists %>
+				<br><a href="/period/<%= @period+1 %>"> &or; </a><br><!-- &or; is downward arrow, the opposite of ^ -->
+			<% end %>
 				<% @base = Base.all(:id => period_header)[0].base %>
 		</th>
 		<% @ethisp.each do |element| %>
