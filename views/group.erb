@@ -3,11 +3,34 @@
 
 <!--p>Start of by-group elements listing</p-->
 
+<!-- Database queries to find adjacent groups (left and right). If one doesn't exist, flagged as such to remove navigation arrows. -->
+<% begin %>
+	<% @left = Element.all(:group => @group-1)[0] %>
+	<% left_exists = true if @left.atomic_num # OK if there is a group to the right; will go to rescue if not %>
+<% rescue %>
+	<% left_exists = false %>
+<% end %>
+<p>	left_exists: <%= left_exists %></p>
+
+<% begin %>
+	<% @right = Element.all(:group => @group+1)[0] %>
+	<% right_exists = true if @right.atomic_num # OK if there is a group to the right; will go to rescue if not %>
+<% rescue %>
+	<% right_exists = false %>
+<% end %>
+<p>	right_exists: <%= right_exists %></p>
+
 <table>
 	<tr>
 		<th>Group</th>
 			<th>
-				<%= @group %></a>
+				<% if left_exists %>
+					<a href="/group/<%= @group-1 %>"> < </a>
+				<% end %>
+				<%= @group %>
+				<% if right_exists %>
+					<a href="/group/<%= @group+1 %>"> > </a>
+				<% end %>
 			</th>
 	</tr>
 
@@ -18,7 +41,7 @@
 		<tr>	
 			<th class="period_header">
 				<% if period_header == 1 %> Period<br> <% end %>
-				<a href="/period/<%=period_header %>""><%= period_header %></a>	
+				<a href="/period/<%=period_header %>"><%= period_header %></a>	
 				<% period_header += 1 %>
 			</th>
 			<td></td>
@@ -28,7 +51,7 @@
 	<tr>
 		<th class="period_header">
 			<% if period_header == 1 %> Period<br> <% end %>
-			<a href="/period/<%=period_header %>""><%= period_header %></a>	
+			<a href="/period/<%=period_header %>"><%= period_header %></a>	
 				<% @base = Base.all(:id => period_header)[0].base %>
 		</th>
 			<td class="inPTable">

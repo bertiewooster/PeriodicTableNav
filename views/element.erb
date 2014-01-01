@@ -1,27 +1,28 @@
+<!-- Database queries to find four adjacent elements. If one doesn't exist, flagged as such to modify table structure. -->
 <% begin %>
 	<% @above = Element.all(:period => @origin.period-1, :group => @origin.group)[0] %>
-	<% above_exists = true if @above.atomic_num # OK if there is an above element; will go to rescue if not %>
+	<% above_exists = true if @above.atomic_num # OK if there is an element above origin; will go to rescue if not %>
 <% rescue %>
 	<% above_exists = false %>
 <% end %>
 
 <% begin %>
 	<% @left = Element.all(:period => @origin.period, :group.lt => @origin.group, :order => [ :group.desc ], :limit => 1)[0] %>
-	<% left_exists = true if @left.atomic_num # OK if there is an above element; will go to rescue if not %>
+	<% left_exists = true if @left.atomic_num # OK if there is an element left of origin; will go to rescue if not %>
 <% rescue %>
 	<% left_exists = false %>
 <% end %>
 
 <% begin %>
 	<% @right = Element.all(:period => @origin.period, :group.gt => @origin.group, :order => [ :group.asc ], :limit => 1)[0] %>
-	<% right_exists = true if @right.atomic_num # OK if there is an above element; will go to rescue if not %>
+	<% right_exists = true if @right.atomic_num # OK if there is an element right of origin; will go to rescue if not %>
 <% rescue %>
 	<% right_exists = false %>
 <% end %>
 
 <% begin %>
 	<% @below = Element.all(:period => @origin.period+1, :group => @origin.group)[0] %>
-	<% below_exists = true if @below.atomic_num # OK if there is an above element; will go to rescue if not %>
+	<% below_exists = true if @below.atomic_num # OK if there is an element below origin; will go to rescue if not %>
 <% rescue %>
 	<% below_exists = false %>
 <% end %>
