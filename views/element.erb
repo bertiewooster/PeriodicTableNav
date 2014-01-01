@@ -1,44 +1,30 @@
-<p>Using begin..rescue..end:</p>
-
 <% begin %>
 	<% @above = Element.all(:period => @origin.period-1, :group => @origin.group)[0] %>
 	<% above_exists = true if @above.atomic_num # OK if there is an above element; will go to rescue if not %>
-	<p>Row for element above origin with lots of stuff</p>
 <% rescue %>
-	<p>No element above the origin</p>
 	<% above_exists = false %>
 <% end %>
-<p>	above_exists: <%= above_exists %></p>
 
 <% begin %>
 	<% @left = Element.all(:period => @origin.period, :group.lt => @origin.group, :order => [ :group.desc ], :limit => 1)[0] %>
 	<% left_exists = true if @left.atomic_num # OK if there is an above element; will go to rescue if not %>
-	<p>Row for element left of origin with lots of stuff</p>
 <% rescue %>
-	<p>No element left of the origin</p>
 	<% left_exists = false %>
 <% end %>
-<p>	left_exists: <%= left_exists %></p>
 
 <% begin %>
 	<% @right = Element.all(:period => @origin.period, :group.gt => @origin.group, :order => [ :group.asc ], :limit => 1)[0] %>
 	<% right_exists = true if @right.atomic_num # OK if there is an above element; will go to rescue if not %>
-	<p>Placeholder for element right of origin with lots of stuff</p>
 <% rescue %>
-	<p>No element right of the origin</p>
 	<% right_exists = false %>
 <% end %>
-<p>	right_exists: <%= right_exists %></p>
 
 <% begin %>
 	<% @below = Element.all(:period => @origin.period+1, :group => @origin.group)[0] %>
 	<% below_exists = true if @below.atomic_num # OK if there is an above element; will go to rescue if not %>
-	<p>Placeholder for element below origin with lots of stuff</p>
 <% rescue %>
-	<p>No element below origin</p>
 	<% below_exists = false %>
 <% end %>
-<p>	below_exists: <%= below_exists %></p>
 
 <table>
         <tr><!-- Row for group headers -->
