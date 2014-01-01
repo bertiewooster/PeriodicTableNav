@@ -2,31 +2,26 @@
 <% @left = Element.all(:period => @origin.period, :group.lt => @origin.group, :order => [ :group.desc ], :limit => 1) %>
 <% @right = Element.all(:period => @origin.period, :group.gt => @origin.group, :order => [ :group.asc ], :limit => 1) %>
 <% @below = Element.all(:period => @origin.period+1, :group => @origin.group) %>
-<% period_header = @origin.period-1 %>
 
 <table>
 	<tr><!-- Row for group headers -->
 		<th>Group</th>
-		<% for group_header in @origin.group-1..@origin.group+1 do %>
-			<th>
-				<% # if group_header == @origin.group-1 %> Group <% # end %>
-				<a href="/group/<%=group_header %>""><%= group_header %></a>
-				<!-- adjust if no above element -->
-			</th>
-		<% end %>
+			<% if @left.size > 0 %>
+				<th><a href="/group/<%=@origin.group-1 %>""><%= @origin.group-1 %></a></th>
+			<% end %>
+			<th><a href="/group/<%=@origin.group %>""><%= @origin.group %></a></th>
+			<% if @right.size > 0 %>
+				<th><a href="/group/<%=@origin.group+1 %>""><%= @origin.group+1 %></a></th>
+			<% end %>
 	</tr>
+	<tr>
+		<th class="period_header">
+			Period<br>
 
 	<!-- For element above origin element -->
-	<% if @above.size > 0 %>
-		<tr>
-		
-		<th class="period_header">
-			<% if period_header == @origin.period-1 %> Period<br> <% end %>
-			<a href="/period/<%=period_header %>""><%= period_header %></a>
-			<% period_header += 1 %>
+			<% if @above.size > 0 %>
+				<a href="/period/<%=@origin.period-1 %>""><%= @origin.period-1 %></a>
 		</th>
-		<!-- adjust if no above element -->
-		<!-- make sub-template so don't repeat for each row? -->
 
 		
 		<!-- Row for element above origin-->
@@ -50,15 +45,12 @@
 				<td></td>
 			<% end %>
 		</tr>
-	<% end %>
-	<tr><!-- Row for left, origin, right elements-->
-	
-		<th class="period_header">
-			<% if period_header == @origin.period-1 %> Period<br> <% end %>
-			<a href="/period/<%=period_header %>""><%= period_header %></a>
-			<% period_header += 1 %>
-		</th>
-
+		<tr>
+			<th class="period_header">
+			<% end %>
+		<!-- Row for left, origin, right elements-->
+				<a href="/period/<%=@origin.period %>""><%= @origin.period %></a>
+			</th>
 	
 		<% if @left.size > 0 %>
 			<td class="inPTable">
@@ -149,11 +141,8 @@
 		<tr><!-- Row for element below origin-->
 		
 			<th class="period_header">
-				<% if period_header == @origin.period-1 %> Period<br> <% end %>
-				<a href="/period/<%=period_header %>""><%= period_header %></a>
+				<a href="/period/<%=@origin.period+1 %>""><%= @origin.period+1 %></a>
 			</th>
-			<!-- adjust if no below element -->
-			<!-- make sub-template so don't repeat for each row? -->
 
 			<% if @left.size > 0 %>
 				<td></td>
