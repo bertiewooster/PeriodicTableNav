@@ -1,3 +1,30 @@
+<% aexists = true %>
+<% begin %>
+	<% @above2 = Element.all(:period => @origin.period-1, :group => @origin.group)[0] %>
+<% rescue %>
+	<% aexists = false %>
+<% end %>
+
+<p>aexists: <%= aexists %></p>
+
+<p>Using aexists:
+<% if aexists %>
+	There is an element above the origin
+<% else %>
+	No element above the origin
+<% end %>
+</p>
+
+------------------
+
+<% @left_exists = true <%>
+<% begin %>
+	<% @left_object = @left[0] %>
+<% rescue %>
+	<% @left_exists = false <%>
+<% end %>
+
+@left_exists: <%= @left_exists %>
 
 
 
