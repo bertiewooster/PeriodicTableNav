@@ -10,7 +10,6 @@
 <% rescue %>
 	<% left_exists = false %>
 <% end %>
-<p>	left_exists: <%= left_exists %></p>
 
 <% begin %>
 	<% @right = Element.all(:group => @group+1)[0] %>
@@ -18,7 +17,6 @@
 <% rescue %>
 	<% right_exists = false %>
 <% end %>
-<p>	right_exists: <%= right_exists %></p>
 
 <table>
 	<tr>
