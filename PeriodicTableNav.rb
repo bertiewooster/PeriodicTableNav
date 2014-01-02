@@ -112,3 +112,7 @@ get '/group/:group' do |group|  # load period page
 	@title = "Group ##{params[:group]}"
 	erb :group
 end
+
+get '/import' do # load test page
+	erb :import
+end

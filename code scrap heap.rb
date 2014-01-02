@@ -1,3 +1,5 @@
+<%= input[element][orbital] %>
+------------------
 <% aexists = true %>
 <% begin %>
 	<% @above2 = Element.all(:period => @origin.period-1, :group => @origin.group)[0] %>
