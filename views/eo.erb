@@ -1,0 +1,12 @@
+<p>Hello world!</p>
+<p>@eo (size = <%= @eo.size %>):</p>
+	<% for eo in 0..@eo.size-1 %>
+		 <!--p><%= @eo[eo].element_id %></p-->
+	<% end %>
+<!--p>@e (size = <%= @e.size %>): <%= @e.inspect %></p-->
+
+<p>Gallium's orbitals:</p>
+<% @gallium = Orb.all(:element_id => 31) %>
+	<% for eo in 0..@gallium.size-1 %>
+		 <p><%= [@gallium[eo].element_id, @gallium[eo].orbital_id, @gallium[eo].count] %></p>
+	<% end %>

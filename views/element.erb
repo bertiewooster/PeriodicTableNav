@@ -98,6 +98,7 @@
 				<span class="pt_name"><%= element.name %></span><br>
 				<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
 				<!--span><%= element.e_config_valence %></span><br-->
+				<% # @above = Element.all(:period => @origin.period-1, :group => @origin.group)[0] %>
 				<span class="pt_name_origin">Name origin: <%= element.name_origin %></span><br>
 				<!--span class="pt_group">group: <%= element.group %></span><br>
 				<span class="pt_period">period: <%= element.period %></span><br-->
