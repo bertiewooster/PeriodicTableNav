@@ -37,10 +37,18 @@ class Base
 	property :base, Text
 end
 
+class Orb
+	include DataMapper::Resource
+	property :element_id, Integer, :key => true
+	property :orbital_id, Integer, :key => true
+	property :count, Integer
+end
+
 class Orbital
 	include DataMapper::Resource
 	property :id, Integer, :key => true
-	property :orbital, Text
+	property :n, Integer
+	property :l, Text
 end
 
 DataMapper.finalize.auto_upgrade!
@@ -113,6 +121,14 @@ get '/group/:group' do |group|  # load period page
 	erb :group
 end
 
+get '/eo' do # load elements_orbitals test page
+	@eo = Orb.all
+	@e = Element.all
+	erb :eo
+end
+
+=begin
 get '/import' do # load test page
 	erb :import
 end
+=end

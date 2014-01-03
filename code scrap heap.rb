@@ -1,3 +1,21 @@
+							@orbital.n: <%= @orbital.n %><br>
+							@orbital.l: <%= @orbital.l %><br>
+-----------------
+							<% orbital = Orbital.get(@orbitals[eo]) %><br>
+							eo: <%=eo %><br>
+							@orbitals[eo].id: <%=@orbitals[eo].id%><br>
+							orbital.inspect: <%= orbital.inspect %><br>
+----------------
+							<%= orbital.id %>
+							<% orbital = Orbital.get(@orbitals[eo])[0] %>
+------------
+		 					<%=@orbitals[eo].orbital_id%><sup><%=@orbitals[eo].count%></sup><br>
+----------------
+					<% @orbitals = Orb.all(:element_id => element.atomic_num) %>
+					<% for eo in 0..@orbitals.size-1 %>
+		 				<%= @orbitals[eo].orbital_id %> <sup> <%= @orbitals[eo].count] %> </sup>
+					<% end %>
+-------------------
 <%= input[element][orbital] %>
 ------------------
 <% aexists = true %>
