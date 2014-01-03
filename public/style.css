@@ -3,7 +3,11 @@
         margin-left: 10px;
         /*width: 640px;  */
     }  
-      
+
+	sup {
+		vertical-align:25%;
+	}
+ 
     header {  
         text-align: center;  
         margin: 0 0 20px;  
@@ -136,7 +140,7 @@
 	}
 
 	span.pt_e_config {
-		font-size: 75%;
+		/*font-size: 75%;*/
 	}
 
     p {  
