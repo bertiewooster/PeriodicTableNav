@@ -38,7 +38,7 @@
 			<% if below_exists %>
 				<br><a href="/period/<%= @period+1 %>"> &or; </a><br><!-- &or; is downward arrow, the opposite of ^ -->
 			<% end %>
-				<% @base = Base.all(:id => period_header)[0].base %>
+				<% #@base = Base.all(:id => period_header)[0].base %>
 		</th>
 		<% @ethisp.each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
@@ -51,7 +51,16 @@
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
-					<span class="pt_e_config_valence"><%= element.e_config_valence %></span>
+					<span class="pt_e_config">
+						<% @base = Base.all(:id => element.period)[0].base %>
+						<%= @base %>
+						<% @orbs = Orb.all(:element_id => element.atomic_num) %>
+						<% for eo in 0..@orbs.size-1 %>
+							<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
+							<%=@orbital.n %><%= @orbital.l %>
+							<sup><%=@orbs[eo].count%></sup>
+						<% end %>
+					</span>
 					<!--span class="pt_atomic_weight"> 
 						<% if element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
 							[<%= element.atomic_weight.round %>]
@@ -60,7 +69,6 @@
 						<% end %>
 					</span><br-->
 					<!--span><%= element.e_config_valence %></span-->  
-					<span><%= @base %></span>
 					<!--span><%= element.period %></span>  
 					<span><%= element.group %></span>
 					-->

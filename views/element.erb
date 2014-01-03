@@ -1,15 +1,3 @@
-<% orbitalid = 5 %>
-<p><% @orbital5 = Orbital.all(:id => orbitalid)[0] %>
-<%=[@orbital5.id,@orbital5.n,@orbital5.l] %></p>
-
-<% @orbitals = Orbital.all %>
-<% for i in 0..@orbitals.size-1 %>
-	<!-- %=[@orbitals[i].id,@orbitals[i].n,@orbitals[i].l] %> 
-	<br-->
-<% end %>
-
-
-
 <!-- Database queries to find four adjacent elements. If one doesn't exist, flagged as such to modify table structure. -->
 <% begin %>
 	<% @above = Element.all(:period => @origin.period-1, :group => @origin.group)[0] %>
@@ -65,15 +53,23 @@
                                 <td></td>
                         <% end %>
                         <td class="inPTable">
-                                <% element = @above %>
-                                <a href="/element/<%=element.atomic_num %>">
-                                        <span class="pt_atomic_num"><%= element.atomic_num %></span><br>
-                                        <span class="pt_symbol"><%= element.symbol %></span><br>
-                                        <span class="pt_name"><%= element.name %></span><br>
-                                        <span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
-                                        <!--span><%= element.e_config_valence %></span>
-                                        <span><%= element.period %></span>
-                                        <span><%= element.group %></span-->
+							<% element = @above %>
+							<a href="/element/<%=element.atomic_num %>">
+								<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
+								<span class="pt_symbol"><%= element.symbol %></span><br>
+								<span class="pt_name"><%= element.name %></span><br>
+								<span class="pt_e_config">
+									<% @base = Base.all(:id => element.period)[0].base %>
+									<%= @base %>
+									<% @orbs = Orb.all(:element_id => element.atomic_num) %>
+									<% for eo in 0..@orbs.size-1 %>
+										<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
+										<%=@orbital.n %><%= @orbital.l %>
+										<sup><%=@orbs[eo].count%></sup>
+									<% end %>
+								</span>
+								<!--span><%= element.period %></span>
+								<span><%= element.group %></span-->
                                 </a>
                         </td>
                         <% if right_exists %>
@@ -95,7 +91,16 @@
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
-					<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
+					<span class="pt_e_config">
+						<% @base = Base.all(:id => element.period)[0].base %>
+						<%= @base %>
+						<% @orbs = Orb.all(:element_id => element.atomic_num) %>
+						<% for eo in 0..@orbs.size-1 %>
+							<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
+							<%=@orbital.n %><%= @orbital.l %>
+				 			<sup><%=@orbs[eo].count%></sup>
+						<% end %>
+					</span>
 					<!--span><%= element.e_config_valence %></span>  
 					<span><%= element.period %></span>  
 					<span><%= element.group %></span-->
@@ -110,17 +115,18 @@
 				<span class="pt_name"><%= element.name %></span><br>
 				<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
 				<!--span><%= element.e_config_valence %></span><br-->
-				<% @base = Base.all(:id => element.period)[0].base %>
-				<span><%= @base %>
-						<% @orbs = Orb.all(:element_id => element.atomic_num) %>
-						<% for eo in 0..@orbs.size-1 %>
-							<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
-							<%=@orbital.n %><%= @orbital.l %>
-			 				<sup><%=@orbs[eo].count%></sup>
+				<span class="pt_e_config">
+					<% @base = Base.all(:id => element.period)[0].base %>
+					<%= @base %>
+					<% @orbs = Orb.all(:element_id => element.atomic_num) %>
+					<% for eo in 0..@orbs.size-1 %>
+						<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
+						<%=@orbital.n %><%= @orbital.l %>
+		 				<sup><%=@orbs[eo].count%></sup>
 					<% end %>
 					<br>
-			 				<% st = "[Ne] 3s 2 3p 5" %>
-			 				st.gsub: <%=st.gsub(/\s+/, "") %><br>
+	 				<% st = "[Ne] 3s 2 3p 5" %>
+	 				st.gsub: <%=st.gsub(/\s+/, "") %><br>
 				</span>
 				<span class="pt_name_origin">Name origin: <%= element.name_origin %></span><br>
 				<!--span class="pt_group">group: <%= element.group %></span><br>
@@ -186,9 +192,17 @@
 					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 					<span class="pt_symbol"><%= element.symbol %></span><br>
 					<span class="pt_name"><%= element.name %></span><br>
-					<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
-					<!--span><%= element.e_config_valence %></span>  
-					<span><%= element.period %></span>  
+					<span class="pt_e_config">
+						<% @base = Base.all(:id => element.period)[0].base %>
+						<%= @base %>
+						<% @orbs = Orb.all(:element_id => element.atomic_num) %>
+						<% for eo in 0..@orbs.size-1 %>
+							<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
+							<%=@orbital.n %><%= @orbital.l %>
+							<sup><%=@orbs[eo].count%></sup>
+						<% end %>
+					</span>
+					<!--span><%= element.period %></span>  
 					<span><%= element.group %></span-->
 				</a>
 			</td>
@@ -211,9 +225,17 @@
 						<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
 						<span class="pt_symbol"><%= element.symbol %></span><br>
 						<span class="pt_name"><%= element.name %></span><br>
-						<span class="pt_e_config_valence"><%= element.e_config_valence %></span><br>
-						<!--span><%= element.e_config_valence %></span>  
-						<span><%= element.period %></span>  
+						<span class="pt_e_config">
+							<% @base = Base.all(:id => element.period)[0].base %>
+							<%= @base %>
+							<% @orbs = Orb.all(:element_id => element.atomic_num) %>
+							<% for eo in 0..@orbs.size-1 %>
+								<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
+								<%=@orbital.n %><%= @orbital.l %>
+								<sup><%=@orbs[eo].count%></sup>
+							<% end %>
+						</span>
+						<!--span><%= element.period %></span>  
 						<span><%= element.group %></span-->
 					</a>
 			</td>
