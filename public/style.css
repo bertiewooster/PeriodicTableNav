@@ -149,7 +149,8 @@
 	}
 
 	.diff_n {
-		background-color: yellow;
+		/*background-color: yellow;*/
+		border: 1px solid green;
 	}
 
 	.diff_count {
