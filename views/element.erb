@@ -14,13 +14,17 @@
 					console.log("Adj term: " + term);
 					n_value  = term.charAt(0); // extract n quantum number (1, 2, 3,...) from term
 					l_letter = term.charAt(1); // extract l letter (s, p, d, or f) from term
+					
+					// If origin doesn't contain term with this l, highlight whole term in adjacent element
 					origin_ec_text = $('#origin .terms').text().replace(/\s/g, '');
 					//console.log("Origin terms: " + origin_ec_text);
 					contains = origin_ec_text.indexOf(l_letter) != -1
 					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in adjacent element
 						$(this).addClass('new_orbital');
+						return true; // skip rest of highlighting rules: whole term is highlighted because new
 					}
-					
+
+					// If n value (for same l term) is different (adj vs. origin), highlight n values
 					selector = 'span[class^="ec_"][class$="' + l_letter + '"]';
 					console.log("selector: " + selector);
 					$terms = $origin.find('.terms');
@@ -29,7 +33,9 @@
 					console.log("$same_l_in_origin term: " + same_l);
 					if(n_value != same_l.charAt(0)) { // if n value (for same l term) is different (adj vs. origin), highlight n values
 						$same_l_in_origin.children('span[class$="n"]').addClass('diff_n');
+						$(this).children('span[class$="n"]').addClass('diff_n');
 					}
+					
 				})
 				$origin.find('.terms').children().each(function(j) { // for each orbital term in origin element
 					term = $(this).text().replace(/\s/g, '');
