@@ -3,83 +3,39 @@
 <script>
 	$(document).ready(function() {
 		console.log("Running jQuery"); // debugging
-		$above_origin = $('#above span[class^="ec_"][class$="n"], #origin span[class^="ec_"][class$="n"]');
-/*		$('#above').hover(
+
+		// When user hovers mouse over an adjacent element, highlight the electron terms compared to the origin element
+		$('#above, #left, #right, #below').hover(
 			function() {
-				$above_origin.
-				addClass('highlighted');
-			}, function() {
-				$above_origin.
-				removeClass('highlighted');
-			}
-		);
-		$('#left').hover(
-			function() {
-				$('#left .ec_base, #origin .ec_base').
-				addClass('highlighted');
-			}, function() {
-				$('#left .ec_base, #origin .ec_base').
-				removeClass('highlighted');
-			}
-		);
-		below_ec_text = $('#below .terms').text().replace(/\s/g, '');
-		console.log(below_ec_text);
-		contains = below_ec_text.indexOf("f") != -1
-		console.log(contains);
-*/
-		$('#below').hover(
-			function() {
-				$('#below .terms').children().each(function(j) {
+				$adj = $(this)
+				$adj.find('.terms').children().each(function(j) { // for each orbital term in adjacent element
 					term = $(this).text().replace(/\s/g, '');
+					console.log("Adj term: " + term);
 					l = term.charAt(1);
 					origin_ec_text = $('#origin .terms').text().replace(/\s/g, '');
+					console.log("Origin terms: " + origin_ec_text);
 					contains = origin_ec_text.indexOf(l) != -1
-					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in below
+					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in adjacent element
 						$(this).addClass('highlighted');
 					}
 				})
-				$('#origin .terms').children().each(function(j) {
+				$('#origin .terms').children().each(function(j) { // for each orbital term in origin element
 					term = $(this).text().replace(/\s/g, '');
+					console.log("Origin term: " + term);
 					l = term.charAt(1);
-					origin_ec_text = $('#below .terms').text().replace(/\s/g, '');
-					contains = origin_ec_text.indexOf(l) != -1
-					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in below
+					adj_ec_text = $adj.find('.terms').text().replace(/\s/g, '');
+					console.log("Adjacent terms: " + adj_ec_text);
+					contains = adj_ec_text.indexOf(l) != -1
+					if (!contains) { // if adj element doesn't contain term with this l, highlight whole term in origin
 						$(this).addClass('highlighted');
 					}
 				})
 			}, function() {
-				$('#below  .terms').find('span').removeClass('highlighted');
+				$adj.find('.terms').find('span').removeClass('highlighted');
 				$('#origin .terms').find('span').removeClass('highlighted');
 			}
 		);
 
-		$('#left').hover(
-			function() {
-				$('#left .terms').children().each(function(j) {
-					term = $(this).text().replace(/\s/g, '');
-					l = term.charAt(1);
-					origin_ec_text = $('#origin .terms').text().replace(/\s/g, '');
-					contains = origin_ec_text.indexOf(l) != -1
-					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in left
-						$(this).addClass('highlighted');
-					}
-				})
-				$('#origin .terms').children().each(function(j) {
-					term = $(this).text().replace(/\s/g, '');
-					l = term.charAt(1);
-					origin_ec_text = $('#left .terms').text().replace(/\s/g, '');
-					contains = origin_ec_text.indexOf(l) != -1
-					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in left
-						$(this).addClass('highlighted');
-					}
-				})
-			}, function() {
-				$('#left  .terms').find('span').removeClass('highlighted');
-				$('#origin .terms').find('span').removeClass('highlighted');
-			}
-		);
-
-		console.log("end of terms");
 	}); // end ready
 </script>
 
