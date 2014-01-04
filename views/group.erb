@@ -23,11 +23,11 @@
 		<th>Group</th>
 			<th>
 				<% if left_exists %>
-					<a href="/group/<%= @group-1 %>"> < </a>
+					<a href="/group/<%= @group-1 %>" title="Group <%= @group-1 %>"> < </a>
 				<% end %>
 				<%= @group %>
 				<% if right_exists %>
-					<a href="/group/<%= @group+1 %>"> > </a>
+					<a href="/group/<%= @group+1 %>" title="Group <%= @group+1 %>"> > </a>
 				<% end %>
 			</th>
 	</tr>

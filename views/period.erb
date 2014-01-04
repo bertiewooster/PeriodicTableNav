@@ -32,11 +32,11 @@
 		<th class="period_header">
 			Period
 			<% if above_exists %>
-				<a href="/period/<%= @period-1 %>"> ^ </a><br>
+				<a href="/period/<%= @period-1 %>" title="Period <%= @period-1 %>"> ^ </a><br>
 			<% end %>
 			<%= @period %>
 			<% if below_exists %>
-				<br><a href="/period/<%= @period+1 %>"> &or; </a><br><!-- &or; is downward arrow, the opposite of ^ -->
+				<br><a href="/period/<%= @period+1 %>" title="Period <%= @period+1 %>"> &or; </a><br><!-- &or; is downward arrow, the opposite of ^ -->
 			<% end %>
 				<% #@base = Base.all(:id => period_header)[0].base %>
 		</th>

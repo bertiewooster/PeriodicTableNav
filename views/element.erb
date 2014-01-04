@@ -1,19 +1,8 @@
 <script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
 
 <script>
-		//alert('running javascript');
-/*window.onload = function() {
-    if (window.jQuery) {  
-        // jQuery is loaded  
-        alert("Yeah!");
-    } else {
-        // jQuery is not loaded
-        alert("Doesn't Work");
-    }*/
 	$(document).ready(function() {
 		console.log("Running jQuery"); // debugging
-		//$('table').hide();
-		//$('th').addClass('highlighted');
 		$above_origin = $('#above span[class^="ec_"][class$="n"], #origin span[class^="ec_"][class$="n"]');
 		$('#above').hover(
 			function() {
@@ -246,8 +235,8 @@
 						<% @orbs = Orb.all(:element_id => element.atomic_num) %>
 						<% for eo in 0..@orbs.size-1 %>
 							<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
-							<%=@orbital.n %><%= @orbital.l %>
-							<sup><%=@orbs[eo].count%></sup>
+							<%=@orbital.n %><%= @orbital.l %>O
+							<sup><%=@orbs[eo].count%></sup>C
 						<% end %>
 					</span>
 					<!--span><%= element.period %></span>  
