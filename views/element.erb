@@ -4,7 +4,7 @@
 	$(document).ready(function() {
 		console.log("Running jQuery"); // debugging
 		$above_origin = $('#above span[class^="ec_"][class$="n"], #origin span[class^="ec_"][class$="n"]');
-		$('#above').hover(
+/*		$('#above').hover(
 			function() {
 				$above_origin.
 				addClass('highlighted');
@@ -26,29 +26,58 @@
 		console.log(below_ec_text);
 		contains = below_ec_text.indexOf("f") != -1
 		console.log(contains);
-
-		$('#below').mouseover(
+*/
+		$('#below').hover(
 			function() {
 				$('#below .terms').children().each(function(j) {
-					console.log("For term #" + j + ":");
 					term = $(this).text().replace(/\s/g, '');
-					//console.log(term);
 					l = term.charAt(1);
-					//console.log(l);
 					origin_ec_text = $('#origin .terms').text().replace(/\s/g, '');
-					console.log("Origin terms:" + origin_ec_text);
 					contains = origin_ec_text.indexOf(l) != -1
-					console.log("Does origin contain a term of l = " + l + "?" + contains);
 					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in below
 						$(this).addClass('highlighted');
 					}
 				})
-			});
-			
-		$('#below').mouseout(
+				$('#origin .terms').children().each(function(j) {
+					term = $(this).text().replace(/\s/g, '');
+					l = term.charAt(1);
+					origin_ec_text = $('#below .terms').text().replace(/\s/g, '');
+					contains = origin_ec_text.indexOf(l) != -1
+					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in below
+						$(this).addClass('highlighted');
+					}
+				})
+			}, function() {
+				$('#below  .terms').find('span').removeClass('highlighted');
+				$('#origin .terms').find('span').removeClass('highlighted');
+			}
+		);
+
+		$('#left').hover(
 			function() {
-				$('#below .terms').find('span').removeClass('highlighted');
-			});
+				$('#left .terms').children().each(function(j) {
+					term = $(this).text().replace(/\s/g, '');
+					l = term.charAt(1);
+					origin_ec_text = $('#origin .terms').text().replace(/\s/g, '');
+					contains = origin_ec_text.indexOf(l) != -1
+					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in left
+						$(this).addClass('highlighted');
+					}
+				})
+				$('#origin .terms').children().each(function(j) {
+					term = $(this).text().replace(/\s/g, '');
+					l = term.charAt(1);
+					origin_ec_text = $('#left .terms').text().replace(/\s/g, '');
+					contains = origin_ec_text.indexOf(l) != -1
+					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in left
+						$(this).addClass('highlighted');
+					}
+				})
+			}, function() {
+				$('#left  .terms').find('span').removeClass('highlighted');
+				$('#origin .terms').find('span').removeClass('highlighted');
+			}
+		);
 
 		console.log("end of terms");
 	}); // end ready
