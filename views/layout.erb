@@ -1,25 +1,29 @@
-    <!doctype html>  
-    <html lang="en">  
-    <head>  
-      <meta charset="utf8">  
-      <title><%= "#{@title} | #{SITE_TITLE}" %></title>    
-      <link href="/reset.css" rel="stylesheet">  
-      <link href="/style.css" rel="stylesheet">  
-      <link href="/rss.xml" rel="alternate" type="application/rss+xml">  
-    </head>  
-    <body>  
-      <header>  
-        <hgroup>  
-    		<h1><a href="/"><%= SITE_TITLE %></a></h1>  
-   			<h2><%= SITE_DESCRIPTION %></h2>  
-        </hgroup>  
-      </header>  
+<!doctype html>  
+<html lang="en">  
+<head>  
+	<meta charset="utf8">  
+	<title><%= "#{@title} | #{SITE_TITLE}" %></title>    
+	<link href="/reset.css" rel="stylesheet">  
+	<link href="/style.css" rel="stylesheet">  
+	<link href="/rss.xml" rel="alternate" type="application/rss+xml">  
+
+	<!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script-->
+	<!--script type="text/javascript" src="jquery-1.10.2.min.js"></script-->
+
+</head>  
+<body>  
+	<header>  
+		<hgroup>  
+			<h1><a href="/"><%= SITE_TITLE %></a></h1>  
+			<h2><%= SITE_DESCRIPTION %></h2>  
+		</hgroup>  
+	</header>  
       
-      <div id="main">  
-        <%= yield %>  
-      </div>  
+	<div id="main">  
+		<%= yield %>  
+	</div>  
       
-      <footer>  
-      </footer>  
-    </body>  
-    </html>  
+	<footer>  
+	</footer>  
+</body>  
+</html>  

@@ -1,3 +1,10 @@
+	<script type="text/javascript">
+		alert('running javascript');
+		$(document).ready(function() {
+			$('.period_header').addClass('highlighted');
+		}
+	</script>
+------------------
 							@orbital.n: <%= @orbital.n %><br>
 							@orbital.l: <%= @orbital.l %><br>
 -----------------

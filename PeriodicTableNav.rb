@@ -2,6 +2,9 @@ require 'rubygems'
 require 'sinatra'  
 require 'data_mapper'
 
+# Serve static files from public
+#set :public, "../public"
+
 SITE_TITLE = "Periodic Table Navigator"  
 SITE_DESCRIPTION = "See how the elements are related to each other" 
 
@@ -52,8 +55,6 @@ class Orbital
 end
 
 DataMapper.finalize.auto_upgrade!
-
-MY_TITLE = "Hi there"
 
 @@elements			= Element.all :order => :atomic_num.asc
 	# Element.all means SELECT * (in SQL)

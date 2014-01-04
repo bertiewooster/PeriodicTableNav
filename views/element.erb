@@ -1,3 +1,42 @@
+<script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
+
+<script>
+		//alert('running javascript');
+/*window.onload = function() {
+    if (window.jQuery) {  
+        // jQuery is loaded  
+        alert("Yeah!");
+    } else {
+        // jQuery is not loaded
+        alert("Doesn't Work");
+    }*/
+	$(document).ready(function() {
+		console.log("Running jQuery"); // debugging
+		//$('table').hide();
+		//$('th').addClass('highlighted');
+		$above_origin = $('#above span[class^="ec_"][class$="n"], #origin span[class^="ec_"][class$="n"]');
+		$('#above').hover(
+			function() {
+				$above_origin.
+				addClass('highlighted');
+			}, function() {
+				$above_origin.
+				removeClass('highlighted');
+			}
+		);
+		$('#left').hover(
+			function() {
+				$('#left .ec_base, #origin .ec_base').
+				addClass('highlighted');
+			}, function() {
+				$('#left .ec_base, #origin .ec_base').
+				removeClass('highlighted');
+			}
+		);
+
+	}); // end ready
+</script>
+
 <!-- Database queries to find four adjacent elements. If one doesn't exist, flagged as such to modify table structure. -->
 <% begin %>
 	<% @above = Element.all(:period => @origin.period-1, :group => @origin.group)[0] %>
@@ -52,7 +91,7 @@
                         <% if left_exists %>
                                 <td></td>
                         <% end %>
-                        <td class="inPTable">
+                        <td id="above" class="inPTable">
 							<% element = @above %>
 							<a href="/element/<%=element.atomic_num %>">
 								<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
@@ -64,8 +103,11 @@
 									<% @orbs = Orb.all(:element_id => element.atomic_num) %>
 									<% for eo in 0..@orbs.size-1 %>
 										<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
-										<span class="ec_<%=@orbital.n.to_s+@orbital.l%>"><%=@orbital.n %><%= @orbital.l %></span>
-										<sup><%=@orbs[eo].count%></sup>
+							<span class="ec_<%=@orbital.n.to_s+@orbital.l%>">
+								<span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span>
+								<span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span>
+								<span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup><%=@orbs[eo].count%></sup></span>
+							</span>
 									<% end %>
 								</span>
 								<!--span><%= element.period %></span>
@@ -84,7 +126,7 @@
 			</th>
 	
 		<% if left_exists %>
-			<td class="inPTable">
+			<td id="left" class="inPTable">
 				<!-- For element to the left of origin element -->
 				<% element = @left %>
 				<a href="/element/<%=element.atomic_num %>">
@@ -110,7 +152,7 @@
 				</a>
 			</td>
 		<% end %>
-		<td class="inPTable origin">
+		<td id="origin" class="inPTable origin">
 			<!-- For origin element -->
 			<% element = @origin %>
 				<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
@@ -191,7 +233,7 @@
 				<!--span class="pt_"e_config_valence">e_config_valence: <%= element.e_config_valence %></span><br-->
 		</td>
 		<% if right_exists %>
-			<td class="inPTable">
+			<td id="right" class="inPTable">
 				<!-- For element to the right of origin element -->
 				<% element = @right %>
 				<a href="/element/<%=element.atomic_num %>">
@@ -224,7 +266,7 @@
 			<% if left_exists %>
 				<td></td>
 			<% end %>
-			<td class="inPTable">
+			<td id="below" class="inPTable">
 				<!-- For element below origin element -->
 					<% element = @below %>
 					<a href="/element/<%=element.atomic_num %>">

@@ -1,3 +1,22 @@
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+
+<script>
+		//alert('running javascript');
+/*window.onload = function() {
+    if (window.jQuery) {  
+        // jQuery is loaded  
+        alert("Yeah!");
+    } else {
+        // jQuery is not loaded
+        alert("Doesn't Work");
+    }*/
+	$(document).ready(function() {
+		console.log("Running jQuery"); // debugging
+		//$('table').hide();
+		$('p').addClass('highlighted');
+	}); // end ready
+</script>
+
 <p>Hello world!</p>
 <p>@eo (size = <%= @eo.size %>):</p>
 	<% for eo in 0..@eo.size-1 %>
@@ -10,3 +29,11 @@
 	<% for eo in 0..@gallium.size-1 %>
 		 <p><%= [@gallium[eo].element_id, @gallium[eo].orbital_id, @gallium[eo].count] %></p>
 	<% end %>
+
+<table>
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+</table>
