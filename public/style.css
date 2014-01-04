@@ -140,7 +140,25 @@
 	}
 
 	span.pt_e_config {
-		/*font-size: 75%;*/
+		font-size: 150%;
+		font-weight: bold;
+	}
+
+	span.ec_base {
+		color: red;
+	}
+
+	span.ec_6sn {
+		color: gray;
+		background-color:yellow;
+	}
+
+	span.ec_6sl {
+		color: green;
+	}
+
+	span.ec_6sc {
+		color: blue;
 	}
 
     p {  
