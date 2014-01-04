@@ -148,17 +148,16 @@
 		color: red;
 	}
 
-	span.ec_6sn {
-		color: gray;
-		background-color:yellow;
+	.diff_n {
+		background-color: yellow;
 	}
 
-	span.ec_6sl {
-		color: green;
+	.diff_count {
+		background-color: green;
 	}
 
-	span.ec_6sc {
-		color: blue;
+	.new_orbital {
+		background-color: orange;
 	}
 
 	.highlighted {
