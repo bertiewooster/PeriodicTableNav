@@ -12,7 +12,6 @@
     }*/
 	$(document).ready(function() {
 		console.log("Running jQuery"); // debugging
-		//$('table').hide();
 		$('p').addClass('highlighted');
 	}); // end ready
 </script>
@@ -32,8 +31,13 @@
 
 <table>
 	<tr>
-		<td>1</td>
+		<td class="inPTable">
+			<% @element = Element.get(6) %>
+			<%= erb :pt_element %>
+		</td>
 		<td>2</td>
 		<td>3</td>
 	</tr>
 </table>
+
+

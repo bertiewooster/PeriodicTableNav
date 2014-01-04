@@ -1,0 +1,17 @@
+<a href="/element/<%=@element.atomic_num %>">
+	<span class="pt_atomic_num"><%= @element.atomic_num %></span><br>
+	<span class="pt_symbol"><%= @element.symbol %></span><br>
+	<span class="pt_name"><%= @element.name %></span><br>
+	<span class="pt_e_config">
+		<% @base = Base.all(:id => @element.period)[0].base %>
+		<%= @base %>
+		<% @orbs = Orb.all(:element_id => @element.atomic_num) %>
+		<% for eo in 0..@orbs.size-1 %>
+			<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
+			<%=@orbital.n %><%= @orbital.l %>O
+			<sup><%=@orbs[eo].count%></sup>C
+		<% end %>
+	</span>
+	<!--span><%= @element.period %></span>  
+	<span><%= @element.group %></span-->
+</a>
