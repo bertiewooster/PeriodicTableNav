@@ -1,4 +1,6 @@
 <!--%= @group_elements.inspect %-->
+<% @ec_class = "pt_e_config_big" #in pt_element.erb, specify electron config style: big text so can see what's highlighted %>
+
 <% period_header = 0 # labels for periods %>
 
 <!--p>Start of by-group elements listing</p-->
@@ -52,33 +54,9 @@
 			<a href="/period/<%=period_header %>"><%= period_header %></a>	
 		</th>
 			<td class="inPTable">
-				<a href="/element/<%=element.atomic_num %>">
-					<span class="pt_atomic_num"><%= element.atomic_num %></span><br>
-					<span class="pt_symbol"><%= element.symbol %></span><br>
-					<span class="pt_name"><%= element.name %></span><br>
-								<span class="pt_e_config">
-									<% @base = Base.all(:id => element.period)[0].base %>
-									<%= @base %>
-									<% @orbs = Orb.all(:element_id => element.atomic_num) %>
-									<% for eo in 0..@orbs.size-1 %>
-										<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
-										<%=@orbital.n %><%= @orbital.l %>
-										<sup><%=@orbs[eo].count%></sup>
-									<% end %>
-								</span>
-					<!--span class="pt_atomic_weight"> 
-						<% if element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
-							[<%= element.atomic_weight.round %>]
-						<% else %>
-							<%= element.atomic_weight %>
-						<% end %>
-					</span><br-->
-					<!--span><%= element.e_config_valence %></span-->  
-					<!--span><%= element.period %></span>  
-					<span><%= element.group %></span>
-					-->
-					<% lastGroup = element.group %>
-				</a>
+				<% @element = element %>
+				<%= erb :pt_element %>
+				<% lastGroup = element.group %>
 			</td>
  	 </tr>
 <% end %> 

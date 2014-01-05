@@ -4,17 +4,29 @@
 	$(document).ready(function() {
 		console.log("Running jQuery"); // debugging
 		$origin = $('#origin'); // Do selection once so not repeated multiple times below
+		$terms = $origin.find('.terms');
 
 		// When user hovers mouse over an adjacent element, highlight the electron terms compared to the origin element
 		$('#above, #left, #right, #below').hover(
 			function() {
 				$adj = $(this)
 				$adj.find('.terms').children().each(function(j) { // for each orbital term in adjacent element
-					term = $(this).text().replace(/\s/g, '');
-					console.log("Adj term: " + term);
+					term = $(this).text().replace(/\s/g, ''); // e.g., 3d10 [nlc where c = electron count]
+					//console.log("Adj term: " + term);
 					n_value  = term.charAt(0); // extract n quantum number (1, 2, 3,...) from term
 					l_letter = term.charAt(1); // extract l letter (s, p, d, or f) from term
-					
+					e_count  = term.substring(2,term.length); // extract electron count (1-14) from term
+					//console.log("e- count: " + e_count);
+					selector = 'span[class^="ec_"][class$="' + l_letter + '"]'; // jQuery selector for term in origin
+					$same_l_in_origin = $origin.find('.terms').children(selector); // term in origin, e.g. 3d9
+					same_l = $same_l_in_origin.text().replace(/\s/g, '');
+					//console.log("selector: " + selector);
+					//console.log("$same_l_in_origin term: " + same_l);
+					origin_n = same_l.charAt(0);
+					origin_e_count  = same_l.substring(2,same_l.length); // extract electron count (1-14) from term					
+					//console.log("origin_e_count: " + origin_e_count);
+
+
 					// If origin doesn't contain term with this l, highlight whole term in adjacent element
 					origin_ec_text = $('#origin .terms').text().replace(/\s/g, '');
 					//console.log("Origin terms: " + origin_ec_text);
@@ -25,16 +37,17 @@
 					}
 
 					// If n value (for same l term) is different (adj vs. origin), highlight n values
-					selector = 'span[class^="ec_"][class$="' + l_letter + '"]';
-					console.log("selector: " + selector);
-					$terms = $origin.find('.terms');
-					$same_l_in_origin = $origin.find('.terms').children(selector);
-					same_l = $same_l_in_origin.text().replace(/\s/g, '');
-					console.log("$same_l_in_origin term: " + same_l);
-					if(n_value != same_l.charAt(0)) { // if n value (for same l term) is different (adj vs. origin), highlight n values
+					if(n_value != origin_n) {
 						$same_l_in_origin.children('span[class$="n"]').addClass('diff_n');
 						$(this).children('span[class$="n"]').addClass('diff_n');
 					}
+					
+					// If n and l values are same but electron count is different (adj vs. origin), highlight counts
+					if(e_count != origin_e_count) {
+						$same_l_in_origin.children('span[class$="c"]').addClass('diff_count');
+						$(this).children('span[class$="c"]').addClass('diff_count');
+					}
+					
 					
 				})
 				$origin.find('.terms').children().each(function(j) { // for each orbital term in origin element
@@ -60,6 +73,8 @@
 
 	}); // end ready
 </script>
+
+<% @ec_class = "pt_e_config_big" #in pt_element.erb, specify electron config style: big text so can see what's highlighted %>
 
 <!-- Database queries to find four adjacent elements. If one doesn't exist, flagged as such to modify table structure. -->
 <% begin %>

@@ -139,13 +139,18 @@
 		font-size: 80%;
 	}
 
-	span.pt_e_config {
+	span.pt_e_config_small {
+		font-size: 75%; /*150%;*/
+		/*font-weight: bold;*/
+	}
+
+	span.pt_e_config_big {
 		font-size: 150%;
-		font-weight: bold;
+		/*font-weight: bold;*/
 	}
 
 	span.ec_base {
-		color: red;
+		/*color: red;*/
 	}
 
 	.diff_n {
@@ -154,7 +159,7 @@
 	}
 
 	.diff_count {
-		background-color: green;
+		background-color: lightgreen;
 	}
 
 	.new_orbital {

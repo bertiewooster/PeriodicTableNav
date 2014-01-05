@@ -2,7 +2,7 @@
 	<span class="pt_atomic_num"><%= @element.atomic_num %></span><br>
 	<span class="pt_symbol"><%= @element.symbol %></span><br>
 	<span class="pt_name"><%= @element.name %></span><br>
-	<span class="pt_e_config">
+	<span class="<%=@ec_class%>">
 		<% @base = Base.all(:id => @element.period)[0].base %>
 		<span class="ec_base"><%= @base %></span>
 		<span class="terms">
