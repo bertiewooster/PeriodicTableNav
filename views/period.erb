@@ -23,7 +23,7 @@
 		<% for group_header in 1..@@max_group do %>
 			<th>
 				<% # if group_header == 1 %> Group <% # end %>
-				<a href="/group/<%=group_header %>""><%= group_header %></a>
+				<a href="/group/<%=group_header %>" title="Group <%=group_header %>"><%= group_header %></a>
 			</th>
 		<% end %>
 	</tr>

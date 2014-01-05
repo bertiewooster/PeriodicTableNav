@@ -62,13 +62,9 @@
 					}
 				})
 			}, function() { // Remove all highlighting on adjacent and origin elements when mouseout of adjacent element
-				$adj.find('.terms').find('span').removeClass('new_orbital');
-				$origin.find('.terms').find('span').removeClass('new_orbital');
-				$adj.find('.terms').find('span').removeClass('diff_n');
-				$origin.find('.terms').find('span').removeClass('diff_n');
-				$adj.find('.terms').find('span').removeClass('diff_count');
-				$origin.find('.terms').find('span').removeClass('diff_count');
-			}
+				$adj.find('.terms').find('span').removeClass('new_orbital diff_n diff_count');
+				$origin.find('.terms').find('span').removeClass('new_orbital diff_n diff_count');
+ 			}
 		);
 
 	}); // end ready
@@ -109,11 +105,11 @@
         <tr><!-- Row for group headers -->
                 <th>Group</th>
                         <% if left_exists %>
-                                <th><a href="/group/<%=@origin.group-1 %>""><%= @origin.group-1 %></a></th>
+                                <th><a href="/group/<%=@origin.group-1 %>" title="Group <%=@origin.group-1 %>"><%= @origin.group-1 %></a></th>
                         <% end %>
-                        <th><a href="/group/<%=@origin.group %>""><%= @origin.group %></a></th>
+                        <th><a href="/group/<%=@origin.group %>" title="Group <%=@origin.group %>"><%= @origin.group %></a></th>
                         <% if right_exists %>
-                                <th><a href="/group/<%=@origin.group+1 %>""><%= @origin.group+1 %></a></th>
+                                <th><a href="/group/<%=@origin.group+1 %>" title="Group <%=@origin.group+1 %>"><%= @origin.group+1 %></a></th>
                         <% end %>
         </tr>
         <tr>
@@ -122,7 +118,7 @@
 
         <!-- For element above origin element -->
                         <% if above_exists %>
-                                <a href="/period/<%=@origin.period-1 %>""><%= @origin.period-1 %></a>
+                            <a href="/period/<%=@origin.period-1 %>" title="Period <%=@origin.period-1 %>"><%= @origin.period-1 %></a>
                 </th>
 
                 
@@ -142,7 +138,7 @@
                         <th class="period_header">
                         <% end %>
 		<!-- Row for left, origin, right elements-->
-				<a href="/period/<%=@origin.period %>""><%= @origin.period %></a>
+				<a href="/period/<%=@origin.period %>" title="Period <%=@origin.period %>"><%= @origin.period %></a>
 			</th>
 	
 		<% if left_exists %>
@@ -224,7 +220,7 @@
 		<tr><!-- Row for element below origin-->
 		
 			<th class="period_header">
-				<a href="/period/<%=@origin.period+1 %>""><%= @origin.period+1 %></a>
+				<a href="/period/<%=@origin.period+1 %>" title="Period <%=@origin.period+1 %>"><%= @origin.period+1 %></a>
 			</th>
 
 			<% if left_exists %>

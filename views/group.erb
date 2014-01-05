@@ -41,7 +41,7 @@
 		<tr>	
 			<th class="period_header">
 				<% if period_header == 1 %> Period<br> <% end %>
-				<a href="/period/<%=period_header %>"><%= period_header %></a>	
+				<a href="/period/<%=period_header %>" title="Period <%=period_header %>"><%= period_header %></a>	
 				<% period_header += 1 %>
 			</th>
 			<td></td>
@@ -51,7 +51,7 @@
 	<tr>
 		<th class="period_header">
 			<% if period_header == 1 %> Period<br> <% end %>
-			<a href="/period/<%=period_header %>"><%= period_header %></a>	
+			<a href="/period/<%=period_header %>" title="Period <%=period_header %>"><%= period_header %></a>	
 		</th>
 			<td class="inPTable">
 				<% @element = element %>
