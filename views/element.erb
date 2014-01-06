@@ -3,8 +3,9 @@
 <script>
 	$(document).ready(function() {
 		console.log("Running jQuery"); // debugging
-		$origin = $('#origin'); // Do selection once so not repeated multiple times below
-		$terms = $origin.find('.terms');
+//		$origin = $('#origin'); // Do selection once so not repeated multiple times below
+//		$terms = $origin.find('.terms');
+		$terms = $('#origin').find('.terms');
 
 		// When user hovers mouse over an adjacent element, highlight the electron terms compared to the origin element
 		$('#above, #left, #right, #below').hover(
@@ -18,7 +19,8 @@
 					e_count  = term.substring(2,term.length); // extract electron count (1-14) from term
 					//console.log("e- count: " + e_count);
 					selector = 'span[class^="ec_"][class$="' + l_letter + '"]'; // jQuery selector for term in origin
-					$same_l_in_origin = $origin.find('.terms').children(selector); // term in origin, e.g. 3d9
+//					$same_l_in_origin = $origin.find('.terms').children(selector); // term in origin, e.g. 3d9
+					$same_l_in_origin = $terms.children(selector); // term in origin, e.g. 3d9
 					same_l = $same_l_in_origin.text().replace(/\s/g, '');
 					//console.log("selector: " + selector);
 					//console.log("$same_l_in_origin term: " + same_l);
@@ -28,7 +30,7 @@
 
 
 					// If origin doesn't contain term with this l, highlight whole term in adjacent element
-					origin_ec_text = $('#origin .terms').text().replace(/\s/g, '');
+					origin_ec_text = $terms.text().replace(/\s/g, '');
 					//console.log("Origin terms: " + origin_ec_text);
 					contains = origin_ec_text.indexOf(l_letter) != -1
 					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in adjacent element
@@ -50,7 +52,8 @@
 					
 					
 				})
-				$origin.find('.terms').children().each(function(j) { // for each orbital term in origin element
+//				$origin.find('.terms').children().each(function(j) { // for each orbital term in origin element
+				$terms.children().each(function(j) { // for each orbital term in origin element
 					term = $(this).text().replace(/\s/g, '');
 					//console.log("Origin term: " + term);
 					l = term.charAt(1); // extract l letter (s, p, d, or f) from term
@@ -63,7 +66,8 @@
 				})
 			}, function() { // Remove all highlighting on adjacent and origin elements when mouseout of adjacent element
 				$adj.find('.terms').find('span').removeClass('new_orbital diff_n diff_count');
-				$origin.find('.terms').find('span').removeClass('new_orbital diff_n diff_count');
+//				$origin.find('.terms').find('span').removeClass('new_orbital diff_n diff_count');
+				$terms.find('span').removeClass('new_orbital diff_n diff_count');
  			}
 		);
 
