@@ -106,11 +106,11 @@
         <tr><!-- Row for group headers -->
                 <th>Group</th>
                         <% if left_exists %>
-                                <th><a href="/group/<%=@origin.group-1 %>" title="Group <%=@origin.group-1 %>"><%= @origin.group-1 %></a></th>
+                                <th><a href="/group/<%=@left.group %>" title="Group <%=@left.group %>"><%= @left.group %></a></th>
                         <% end %>
                         <th><a href="/group/<%=@origin.group %>" title="Group <%=@origin.group %>"><%= @origin.group %></a></th>
                         <% if right_exists %>
-                                <th><a href="/group/<%=@origin.group+1 %>" title="Group <%=@origin.group+1 %>"><%= @origin.group+1 %></a></th>
+                                <th><a href="/group/<%=@right.group %>" title="Group <%=@right.group %>"><%= @right.group %></a></th>
                         <% end %>
         </tr>
         <tr>
