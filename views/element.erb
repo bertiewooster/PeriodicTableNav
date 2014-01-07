@@ -3,56 +3,55 @@
 <script>
 	$(document).ready(function() {
 		console.log("Running jQuery"); // debugging
-		$terms = $('#origin').find('.terms');
+		$origin_terms = $('#origin').find('.terms'); // get terms (orbitals, e.g. 3s2) in origin element
 
 		// When user hovers mouse over an adjacent element, highlight the electron terms compared to the origin element
 		$('#above, #left, #right, #below').hover(
 			function() {
-				$adj_terms = $(this).find('.terms');
+				$adj_terms = $(this).find('.terms'); // get terms (orbitals, e.g. 3d10) in adjacent element
 				$adj_terms.children().each(function(j) { // for each orbital term in adjacent element
-					term = $(this).text().replace(/\s/g, ''); // e.g., 3d10 [nlc where c = electron count]
+					adj_term = $(this).text().replace(/\s/g, ''); // e.g., 3d10 [format: nlc where c = electron count]
 					//console.log("Adj term: " + term);
-					n_value  = term.charAt(0); // extract n quantum number (1, 2, 3,...) from term
-					l_letter = term.charAt(1); // extract l letter (s, p, d, or f) from term
-					e_count  = term.substring(2,term.length); // extract electron count (1-14) from term
-					//console.log("e- count: " + e_count);
-					selector = 'span[class^="ec_"][class$="' + l_letter + '"]'; // jQuery selector for term in origin
-					$same_l_in_origin = $terms.children(selector); // term in origin, e.g. 3d9
-					same_l = $same_l_in_origin.text().replace(/\s/g, '');
+					adj_n  = adj_term.charAt(0); // extract n quantum number (1, 2, 3,...) from term
+					adj_l = adj_term.charAt(1); // extract l letter (s, p, d, or f) from term
+					adj_count  = adj_term.substring(2,adj_term.length); // extract electron count (1-14) from term
+					//console.log("e- count: " + adj_count);
+					same_l_selector = 'span[class^="ec_"][class$="' + adj_l + '"]'; // jQuery selector for term in origin
+					$same_l_in_origin = $origin_terms.children(same_l_selector); // jQuery object: analogous term in origin, e.g. 3d9 (will test to see if exists below)
+					same_l = $same_l_in_origin.text().replace(/\s/g, ''); // text of analogous term in origin
 					//console.log("selector: " + selector);
 					//console.log("$same_l_in_origin term: " + same_l);
 					origin_n = same_l.charAt(0);
-					origin_e_count  = same_l.substring(2,same_l.length); // extract electron count (1-14) from term					
-					//console.log("origin_e_count: " + origin_e_count);
-
+					origin_count  = same_l.substring(2,same_l.length); // extract electron count (1-14) from term					
+					//console.log("origin_count: " + origin_count);
 
 					// If origin doesn't contain term with this l, highlight whole term in adjacent element
-					origin_ec_text = $terms.text().replace(/\s/g, '');
+					origin_ec_text = $origin_terms.text().replace(/\s/g, '');
 					//console.log("Origin terms: " + origin_ec_text);
-					contains = origin_ec_text.indexOf(l_letter) != -1
+					contains = origin_ec_text.indexOf(adj_l) != -1
 					if (!contains) { // if origin doesn't contain term with this l, highlight whole term in adjacent element
 						$(this).addClass('new_orbital');
 						return true; // skip rest of highlighting rules: whole term is highlighted because new
 					}
 
 					// If n value (for same l term) is different (adj vs. origin), highlight n values
-					if(n_value != origin_n) {
+					if(adj_n != origin_n) {
 						$same_l_in_origin.children('span[class$="n"]').addClass('diff_n');
 						$(this).children('span[class$="n"]').addClass('diff_n');
 					}
 					
 					// If n and l values are same but electron count is different (adj vs. origin), highlight counts
-					if(e_count != origin_e_count) {
+					if(adj_count != origin_count) {
 						$same_l_in_origin.children('span[class$="c"]').addClass('diff_count');
 						$(this).children('span[class$="c"]').addClass('diff_count');
 					}
 					
 					
 				})
-				$terms.children().each(function(j) { // for each orbital term in origin element
-					term = $(this).text().replace(/\s/g, '');
+				$origin_terms.children().each(function(j) { // for each orbital term in origin element
+					origin_term = $(this).text().replace(/\s/g, '');
 					//console.log("Origin term: " + term);
-					l = term.charAt(1); // extract l letter (s, p, d, or f) from term
+					l = origin_term.charAt(1); // extract l letter (s, p, d, or f) from term
 					adj_ec_text = $adj_terms.text().replace(/\s/g, '');
 					//console.log("Adjacent terms: " + adj_ec_text);
 					contains = adj_ec_text.indexOf(l) != -1
@@ -62,7 +61,7 @@
 				})
 			}, function() { // Remove all highlighting on adjacent and origin elements when mouseout of adjacent element
 				$adj_terms.find('span').removeClass('new_orbital diff_n diff_count');
-				$terms.find('span').removeClass('new_orbital diff_n diff_count');
+				$origin_terms.find('span').removeClass('new_orbital diff_n diff_count');
  			}
 		);
 
