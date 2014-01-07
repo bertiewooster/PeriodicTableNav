@@ -38,14 +38,14 @@
 
 					// If n value (for same l term) is different (adj vs. origin), highlight n values
 					if(adj_n != origin_n) {
-						$same_l_in_origin.children('span[class$="n"]').addClass('diff_n');
-						$(this).children('span[class$="n"]').addClass('diff_n');
+						$same_l_in_origin.children('span[class^="ec_"][class$="n"]').addClass('diff_n');
+						$(this).children('span[class^="ec_"][class$="n"]').addClass('diff_n');
 					}
 					
 					// If n and l values are same but electron count is different (adj vs. origin), highlight counts
 					if(adj_count != origin_count) {
-						$same_l_in_origin.children('span[class$="c"]').addClass('diff_count');
-						$(this).children('span[class$="c"]').addClass('diff_count');
+						$same_l_in_origin.children('span[class^="ec_"][class$="c"]').addClass('diff_count');
+						$(this).children('span[class^="ec_"][class$="c"]').addClass('diff_count');
 					}
 					
 					
