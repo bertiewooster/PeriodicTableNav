@@ -46,11 +46,11 @@
 					
 					// If n and l values are same but electron count is different (adj vs. origin), highlight counts in both elements
 					if(adj_count != origin_count) {
-						$same_l_in_origin.children('span[class^="ec_"][class$="c"]').addClass('diff_count');
-						$(this).children('span[class^="ec_"][class$="c"]').addClass('diff_count');
-						$(this).children('span[class^="ec_"]').each(function() {
+						$same_l_in_origin.children('span[class^="ec_"][class$="c"]').children().children().addClass('diff_count');
+						$(this).children('span[class^="ec_"][class$="c"]').children().children().addClass('diff_count');
+						/*$(this).children('span[class^="ec_"]').each(function() {
 							console.log("Class of this term part: " + $(this).attr('class'));
-						})
+						})*/
 					}
 					
 				}) // end $adj_terms.children().each
@@ -67,8 +67,8 @@
 				}) // end $origin_terms.children().each
 			// On mouseout adjacent element,
 			}, function() { // Remove all highlighting of orbital(s) (and parts thereof) on adjacent and origin elements
-				$adj_terms.find('span').removeClass('new_orbital diff_n diff_count');
-				$origin_terms.find('span').removeClass('new_orbital diff_n diff_count');
+				$adj_terms.find('*').removeClass('new_orbital diff_n diff_count');
+				$origin_terms.find('*').removeClass('new_orbital diff_n diff_count');
  			}
 		);
 

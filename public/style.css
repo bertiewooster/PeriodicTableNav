@@ -4,10 +4,10 @@
         /*width: 640px;  */
     }  
 
-    [class*='wide'] sup {
+    .wide sup {
     	font-size: 50%; 
     	top: +0.2em;
-		/*background-color: red; */
+		/*background-color: red;*/
     }
 
     header {  
