@@ -13,6 +13,7 @@
 				$adj_terms.children().each(function() { // for each orbital term in adjacent element
 					adj_term = $(this).text().replace(/\s/g, ''); // e.g., 4f10 [format: nlc where c = electron count]
 					//console.log("Adj term: " + term);
+					console.log("Class of this term: " + $(this).attr('class'));
 					adj_n  = adj_term.charAt(0); // extract n quantum number (1, 2, 3,...) from term
 					adj_l = adj_term.charAt(1); // extract l letter (s, p, d, or f) from term
 					adj_count  = adj_term.substring(2,adj_term.length); // extract electron count (1-14) from term
@@ -47,6 +48,9 @@
 					if(adj_count != origin_count) {
 						$same_l_in_origin.children('span[class^="ec_"][class$="c"]').addClass('diff_count');
 						$(this).children('span[class^="ec_"][class$="c"]').addClass('diff_count');
+						$(this).children('span[class^="ec_"]').each(function() {
+							console.log("Class of this term part: " + $(this).attr('class'));
+						})
 					}
 					
 				}) // end $adj_terms.children().each

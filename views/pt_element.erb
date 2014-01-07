@@ -12,7 +12,12 @@
 				<span class="ec_<%=@orbital.n.to_s+@orbital.l%>">
 					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span>
 					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span>
-					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup><%=@orbs[eo].count%></sup></span>
+					<!--span class="ec_<%=@orbital.n.to_s+@orbital.l%>c <%='wide' if @ec_class == "pt_e_config_big" %>"-->
+					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>c">
+						<%= '<span class="wide">' if @ec_class == "pt_e_config_big" %>
+							<sup><%=@orbs[eo].count%></sup>
+						<%= '</span>' if @ec_class == "pt_e_config_big" %>
+					</span>
 				</span>
 			<% end %>
 		</span>
