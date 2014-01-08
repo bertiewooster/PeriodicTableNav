@@ -1,82 +1,76 @@
-    body {  
-        /*margin: 10px auto;  */
-        margin-left: 10px;
-        /*width: 640px;  */
-    }  
+	body {  
+		/*margin: 10px auto;  */
+		margin-left: 10px;
+		/*width: 640px;  */
+	}  
 
-    .wide sup {
-    	font-size: 50%; 
-    	top: +0.2em;
-		/*background-color: red;*/
-    }
+	header {  
+		text-align: center;  
+		margin: 0 0 20px;  
+	}  
 
-    header {  
-        text-align: center;  
-        margin: 0 0 20px;  
-    }  
-      
-    header h1 {  
-        display: inline;  
-        font-size: 32px;  
-    }  
-      
-    header h1 a:link, header h1 a:visited {  
-        color: #444;  
-        text-decoration: none;  
-    }  
-      
-    header h2 {  
-        font-size: 16px;  
-        font-style: italic;  
-        color: #999;  
-    }  
-      
-    #main {  
-        margin: 0 0 20px;  
-    }  
-      
-    article {  
-        border: 1px solid #eee;  
-        border-top: none;  
-        padding: 15px 10px;  
-    }  
-      
-    table {
+	header h1 {  
+		display: inline;  
+		font-size: 32px;  
+	}  
+	  
+	header h1 a:link, header h1 a:visited {  
+		color: #444;  
+		text-decoration: none;  
+	}  
+	  
+	header h2 {  
+		font-size: 16px;  
+		font-style: italic;  
+		color: #999;  
+	}  
+	  
+	#main {  
+		margin: 0 0 20px;  
+	}  
+	  
+	article {  
+		border: 1px solid #eee;  
+		border-top: none;  
+		padding: 15px 10px;  
+	}  
+	  
+	table {
 		table-layout: fixed;
-        width: 96.9%; /*1170px;*/
-    }
-    
-    th {
+		width: 96.9%; /*1170px;*/
+	}
+	
+	th {
 		font-size: 150%;
 		vertical-align: bottom;
-    }
-    
-    th a {
-        text-decoration: none;
-    }
+	}
+	
+	th a {
+		text-decoration: none;
+	}
 
-    th.period_header {
-    	vertical-align: middle;
-    }
-    
-    td {
-    	width: 5.1%; /* 95% / 19 cols 65px;*/
-    	height: 80px;
-        /*border: 1px solid black;  */
-        text-align: center;
-    }  
+	th.period_header {
+		vertical-align: middle;
+	}
+	
+	td {
+		width: 5.1%; /* 95% / 19 cols 65px;*/
+		height: 80px;
+		/*border: 1px solid black;  */
+		text-align: center;
+	}  
 
-    td.inPTable {    
-        border: 1px solid black;
-    }  
+	td.inPTable {	
+		border: 1px solid black;
+	}  
 
-    td.origin {    
-        border: 5px solid yellow;
-    }  
+	td.origin {	
+		border: 5px solid yellow;
+	}  
 
-    td.inPTable a {    
-        text-decoration: none;
-    }  
+	td.inPTable a {	
+		text-decoration: none;
+	}  
 
 	span.pt_atomic_num {
 		font-size: 100%;
@@ -90,14 +84,23 @@
 		font-size: 80%;
 	}
 
-	span.pt_e_config_small {
+/*	span.pt_e_config_small { */
+	span.narrow { /* for narrow table cells: home and period pages */
 		font-size: 75%; /*150%;*/
 		/*font-weight: bold;*/
 	}
 
-	span.pt_e_config_big {
+/*	span.pt_e_config_big { */
+	span.wide { /* for wide table cells: group and element pages */
 		font-size: 150%;
 		/*font-weight: bold;*/
+	}
+
+/*	.wide sup { */
+	sup.wide { /* for superscripts in wide table cells (group and element), make text bigger so easier to read */
+		font-size: 50%; 
+		top: +0.2em;
+		/*background-color: red;*/
 	}
 
 	span.ec_base {
@@ -121,6 +124,6 @@
 		background-color: orange;
 	}
 
-    p {  
-        margin: 0 0 5px;  
-    }
+	p {  
+		margin: 0 0 5px;  
+	}

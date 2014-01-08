@@ -19,7 +19,7 @@
 					adj_count  = adj_term.substring(2,adj_term.length); // extract electron count (1-14) from term
 					//console.log("e- count: " + adj_count);
 					same_l_selector = 'span[class^="ec_"][class$="' + adj_l + '"]'; // jQuery selector for term in origin
-					$same_l_in_origin = $origin_terms.children(same_l_selector); // jQuery object: analogous term in origin, e.g. 4f9 (will test to see if exists below)
+					$same_l_in_origin = $origin_terms.find(same_l_selector); // jQuery object: analogous term in origin, e.g. 4f9 (will test to see if exists below)
 					same_l = $same_l_in_origin.text().replace(/\s/g, ''); // text of analogous term in origin
 					//console.log("selector: " + selector);
 					//console.log("$same_l_in_origin term: " + same_l);
@@ -40,17 +40,14 @@
 
 					// If n value (for same l term) is different (adj vs. origin), highlight n value in both elements
 					if(adj_n != origin_n) {
-						$same_l_in_origin.children('span[class^="ec_"][class$="n"]').addClass('diff_n');
-						$(this).children('span[class^="ec_"][class$="n"]').addClass('diff_n');
+						$same_l_in_origin.find('span[class^="ec_"][class$="n"]').addClass('diff_n');
+						$(this).find('span[class^="ec_"][class$="n"]').addClass('diff_n');
 					}
 					
 					// If n and l values are same but electron count is different (adj vs. origin), highlight counts in both elements
 					if(adj_count != origin_count) {
-						$same_l_in_origin.children('span[class^="ec_"][class$="c"]').children().children().addClass('diff_count');
-						$(this).children('span[class^="ec_"][class$="c"]').children().children().addClass('diff_count');
-						/*$(this).children('span[class^="ec_"]').each(function() {
-							console.log("Class of this term part: " + $(this).attr('class'));
-						})*/
+						$same_l_in_origin.find('span[class^="ec_"][class$="c"]').find('sup').addClass('diff_count');
+						$(this).find('span[class^="ec_"][class$="c"]').find('sup').addClass('diff_count');
 					}
 					
 				}) // end $adj_terms.children().each
@@ -75,7 +72,7 @@
 	}); // end ready
 </script>
 
-<% @ec_class = "pt_e_config_big" #in pt_element.erb, specify electron config style: big text so can see what's highlighted %>
+<% @ec_class = "wide" #in pt_element.erb, specify electron config style: big text so can see what's highlighted %>
 
 <!-- Database queries to find four adjacent elements. If one doesn't exist, flagged as such to modify table structure. -->
 <% begin %>
