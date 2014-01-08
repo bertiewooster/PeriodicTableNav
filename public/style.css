@@ -60,6 +60,40 @@
 		text-align: center;
 	}  
 
+	table.group {
+		table-layout: auto;
+		width: 25%;
+	}
+
+	table.group th {
+		width: 5%;
+	}
+
+	table.group td {
+		width: 20%;
+	}
+
+	table.element {
+		table-layout: auto;
+		width: 80%;
+	}	
+
+	table.element th {
+		width: 2%;
+	}
+
+	/*table.element td {
+		width: 25%; // actually, leave this width unspecified so web browser will fill remaining space with it (widths for other cols are specified)
+	}	*/
+
+	table.element left_col, table.element right_col {
+		width: 25%;
+	}	
+
+	table.element td.origin_col {
+		/*width: 50%;*/
+	}	
+
 	td.inPTable {	
 		border: 1px solid black;
 	}  
@@ -84,19 +118,16 @@
 		font-size: 80%;
 	}
 
-/*	span.pt_e_config_small { */
 	span.narrow { /* for narrow table cells: home and period pages */
 		font-size: 75%; /*150%;*/
 		/*font-weight: bold;*/
 	}
 
-/*	span.pt_e_config_big { */
 	span.wide { /* for wide table cells: group and element pages */
 		font-size: 150%;
 		/*font-weight: bold;*/
 	}
 
-/*	.wide sup { */
 	sup.wide { /* for superscripts in wide table cells (group and element), make text bigger so easier to read */
 		font-size: 50%; 
 		top: +0.2em;

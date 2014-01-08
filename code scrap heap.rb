@@ -1,3 +1,5 @@
+		background-color: gray;
+------------------
 	<script type="text/javascript">
 		alert('running javascript');
 		$(document).ready(function() {
