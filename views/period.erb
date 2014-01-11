@@ -1,4 +1,4 @@
-<% @ethisp = @@ebyp[@period-1] %>
+<% @ethisp = @ebyp[@period-1] %>
 <% @ec_class = "narrow" #in pt_element.erb, specify electron config style: small text so can fit in table %>
 
 <!-- Database queries to find adjacent periods (above and below). If one doesn't exist, flagged as such to remove navigation arrows. -->
@@ -20,7 +20,7 @@
 <table>
 	<tr>
 		<th>Group</th>
-		<% for group_header in 1..@@max_group do %>
+		<% for group_header in 1..@max_group do %>
 			<th>
 				<% # if group_header == 1 %> Group <% # end %>
 				<a href="/group/<%=group_header %>" title="Group <%=group_header %>"><%= group_header %></a>

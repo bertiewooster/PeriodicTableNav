@@ -56,28 +56,17 @@ end
 
 DataMapper.finalize.auto_upgrade!
 
-@@elements			= Element.all :order => :atomic_num.asc
-	# Element.all means SELECT * (in SQL)
-@@max_period			= Element.last.period
-
-MAX_P = @@max_period # Change these objects used on multiple pages (ebyp, max_period, max_group) to CONSTANTS?
-
-@@max_group = Element.all(:order => [ :group.desc ], :limit => 1)[0].group
-
-	@@ebyp = Array.new(@@max_period) # array to hold elements
-	@@ebyp.each_index do |period| # build a 2D array: by period, then by element
-		@@ebyp[period] = @@elements.select{|element| element.period == period+1}
-	end
-@@elements			= Element.all :order => :atomic_num.asc
-
-@@bases				= Base.all
-
 helpers do
   def load_elements(name)
-    @bar_thing = "#{name}bar"
 	@elements			= Element.all :order => :atomic_num.asc
 	@max_period			= Element.last.period
 	@max_group = Element.all(:order => [ :group.desc ], :limit => 1)[0].group
+	@ebyp = Array.new(@max_period) # array to hold elements
+	@ebyp.each_index do |period| # build a 2D array: by period, then by element
+		@ebyp[period] = @elements.select{|element| element.period == period+1}
+	end
+	@bases				= Base.all
+
   end
 end
 
@@ -93,27 +82,7 @@ get '/eo' do # load elements_orbitals test page
 end
 
 get '/' do  # load home page
-
-=begin
-	@ebypHash = Hash.new()
-    for period in 1..(@ebyp.size)
-    @ebypHash[period]=Array.new()
-        #puts "Working on period #{period}"
-        #puts "period #{period}: #{@ebyp[period-1]}"
-        for element in 1..(@ebyp[period-1].size) # Within a period,
-#            @ebypHash[period][element] = @ebyp[period-1][element-1] # number elements serially, e.g. pd2 => 1, 2, 3,...8
-			@elementToAdd = @ebyp[period-1][element-1] # the element to add next, as an object
-			#@group = @elementToAdd.group
-            @ebypHash[period].push(@elementToAdd)
-#			@group = @ebyp[period-1][element-1].group
-#           @ebypHash[period][@group] = @ebyp[period-1][element-1] 
-              # number elements by group, e.g. pd2 => 1, 2, 13, 14, 15,...18
-        end
-    end
-=end
-	
-	#@elementlast		= Element.last
-	#@elementp1			= @elements.select{|element| element.period == 1}
+	load_elements(params[:name])
 	@title = 'All Elements'
 	erb :home 
 end
@@ -126,17 +95,19 @@ get '/element/:atomic_num' do | atomic_num | # load element page
 end
 
 get '/period/:period' do |period| # load period page
+	load_elements(params[:name])
 	period = period.to_i
 	@period = period
-	redirect('/') if @period > @@max_period	# redirect to home page if user tries to compose a URL to a non-existent period
+	redirect('/') if @period > @max_period	# redirect to home page if user tries to compose a URL to a non-existent period
 	@title = "Period ##{period}"
 	erb :period
 end
 
 get '/group/:group' do |group|  # load period page
+	load_elements(params[:name])
 	group = group.to_i
 	@group = group
-	redirect('/') if @group > @@max_group	# redirect to home page if user tries to compose a URL to a non-existent group
+	redirect('/') if @group > @max_group	# redirect to home page if user tries to compose a URL to a non-existent group
 	@group_elements = Element.all(:group => @group, :order => [ :group.asc ])
 	@title = "Group ##{params[:group]}"
 	erb :group

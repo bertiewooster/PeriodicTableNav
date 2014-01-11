@@ -1,8 +1,7 @@
 <!--
-<p>@@max_group: <%= @@max_group %> </p>
-<p>Array @@ebyp[0][0]: <%= @@ebyp[0][0].inspect %> </p>
+<p>@max_group: <%= @max_group %> </p>
 
-<p>@@max_period: <%= @@max_period %> </p>
+<p>@max_period: <%= @max_period %> </p>
 <p>Element count: <%= Element.count %></p>
 
 <% chosen = 2 %>
@@ -12,10 +11,10 @@
 <p>@Base_entity_test.length: <%= @Base_entity_test.length %></p>
 <p>Base #<%= chosen %>: <%= @Base_test.base %> </p>
 
-<p>Number of bases: <%= @@bases.length %> </p>
+<p>Number of bases: <%= @bases.length %> </p>
 
 <table>
-	<% @@bases.each do |base| %>  
+	<% @bases.each do |base| %>  
 		<td>  
 			<p>  
 				<span><%= base.base %></span>
@@ -24,8 +23,8 @@
 	<% end %>
 </table>
 
-<!--p>Array @@ebyp.size: <%= @@ebyp.size %> </p>
-<p>Array @@ebyp: <%= @@ebyp %> </p>
+<!--p>Array @ebyp.size: <%= @ebyp.size %> </p>
+<p>Array @ebyp: <%= @ebyp %> </p>
 <p>Hash @ebypHash: <%= @ebypHash %> </p>
 <p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p>
 
@@ -37,14 +36,14 @@
 <table>
 	<tr>
 		<th>Group</th>
-		<% for group_header in 1..@@max_group do %>
+		<% for group_header in 1..@max_group do %>
 			<th>
 				<% # if group_header == 1 %> Group <% # end %>
 				<a href="/group/<%=group_header %>" title="Group <%=group_header %>"><%= group_header %></a>
 			</th>
 		<% end %>
 	</tr>
-<% @@ebyp.each do |period| %>
+<% @ebyp.each do |period| %>
 	<% period_header += 1 #increment the period number in preparation for next period %>
 	<% lastGroup = 0 %>
 	<tr>
