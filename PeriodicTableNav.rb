@@ -66,7 +66,29 @@ helpers do
 		@ebyp[period] = @elements.select{|element| element.period == period+1}
 	end
 	@bases				= Base.all
+	
+	# Using group numbering of 1-32 (f-block columns numbered as groups):
+	@main_pauses_group = 2 # where main part of periodic table (non-f block) leaves off
+	@main_resumes_group = 17 # where main part of periodic table (non-f block) picks back up
 
+	#Build array of elements in main groups (non-f block)
+
+	ongroup = 1
+	@main_groups = Array.new
+	while ongroup <= @main_pauses_group do
+		@main_groups << ongroup
+		ongroup += 1
+	end
+
+	ongroup = @main_resumes_group
+	while ongroup <= @max_group do
+		@main_groups << ongroup
+		ongroup += 1
+	end
+	
+	@f_groups = Array ((@main_pauses_group + 1) .. (@main_resumes_group -1))
+	
+	#@main_groups = 1..@main_pauses_group + @main_resumes_group..@max_group
   end
 end
 
