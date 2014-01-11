@@ -114,7 +114,7 @@ get '/group/:group' do |group|  # load period page
 end
 
 =begin
-get '/import' do # load test page
+get '/import' do # load page whose function is to import data
 	erb :import
 end
 =end
