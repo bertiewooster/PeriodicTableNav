@@ -1,45 +1,20 @@
-<!--
-<p>@max_group: <%= @max_group %> </p>
-
-<p>@max_period: <%= @max_period %> </p>
-<p>Element count: <%= Element.count %></p>
-
-<% chosen = 2 %>
-<% @Base_entity_test = Base.all(:id => chosen) %>
-<% @Base_entity_test.each {|base| @Base_test = base} %>
-
-<p>@Base_entity_test.length: <%= @Base_entity_test.length %></p>
-<p>Base #<%= chosen %>: <%= @Base_test.base %> </p>
-
-<p>Number of bases: <%= @bases.length %> </p>
-
-<table>
-	<% @bases.each do |base| %>  
-		<td>  
-			<p>  
-				<span><%= base.base %></span>
-			</p>  
-		</td>
-	<% end %>
-</table>
-
-<!--p>Array @ebyp.size: <%= @ebyp.size %> </p>
-<p>Array @ebyp: <%= @ebyp %> </p>
-<p>Hash @ebypHash: <%= @ebypHash %> </p>
-<p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p>
-
 <% @ec_class = "narrow" #in pt_element.erb, specify electron config style: small text so can fit in table %>
 
-<p>Start of by-period elements listing</p-->
 <% period_header = 0 # labels for periods %>
+<% @link = Hash["type" => 'group'] %>
 
 <table>
 	<tr>
 		<th>Group</th>
-		<% for group_header in 1..@max_group do %>
+		<% #for group_header in 1..@max_group do %>
+		<% @main_groups.each do |group_header| %>
 			<th>
 				<% # if group_header == 1 %> Group <% # end %>
-				<a href="/group/<%=group_header %>" title="Group <%=group_header %>"><%= group_header %></a>
+				
+				<% @link["number"] = group_header > @main_pauses_group ? group_header - 14 : group_header %>
+				<%= erb :link_generator %>
+
+				<!--a href="/group/<%=group_header %>" title="Group <%=group_header %>"><%= group_header %></a-->
 			</th>
 		<% end %>
 	</tr>
@@ -54,6 +29,11 @@
 		</th>
 		<% period.each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
+			<% if not @main_groups.include? element.group %>
+				<% blanks = 0 %>
+				<% lastGroup += 1 %>	
+				<% next %>
+			<% end %>
 			<% while blanks > 0 %>
 				<td></td>
 				<% blanks = blanks - 1 %>
@@ -61,10 +41,13 @@
 			<td class="inPTable">
 				<% @element = element %>
 				<%= erb :pt_element %>
-				<% lastGroup = element.group %>
+				<% if element.group == @main_pauses_group %>
+					<% lastGroup = @main_resumes_group-1 %>
+				<% else %>
+					<% lastGroup = element.group %>
+				<% end %>
 			</td>
 		<% end %>
  	 </tr>
 <% end %> 
 </table>
-<!--p>End of by-period elements listing</p-->

@@ -1,0 +1,9 @@
+<!-- Inputs and output
+@link = Hash["type" => 'period', "number" => 6, "text" => '^'] %>
+where text is optional: if it's not included in the hash, number will be used as the link's text
+result: <a href="/@type/@number" title="@element @number">^</a>
+        <a href="/period/6" title="period 6">^</a>
+-->
+<% text = @link.has_key?('text') ? @link['text'] : @link['number'] %>
+
+<a href="/<%=@link['type']%>/<%=@link['number']%>" title="<%=@link['type']%> <%=@link['number']%>"> <%=text%> </a>
