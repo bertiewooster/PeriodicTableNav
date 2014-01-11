@@ -72,6 +72,26 @@ MAX_P = @@max_period # Change these objects used on multiple pages (ebyp, max_pe
 
 @@bases				= Base.all
 
+helpers do
+  def load_elements(name)
+    @bar_thing = "#{name}bar"
+	@elements			= Element.all :order => :atomic_num.asc
+	@max_period			= Element.last.period
+	@max_group = Element.all(:order => [ :group.desc ], :limit => 1)[0].group
+  end
+end
+
+get '/test/:name' do
+	load_elements(params[:name])
+	erb :test
+end
+
+get '/eo' do # load elements_orbitals test page
+	@eo = Orb.all
+	@e = Element.all
+	erb :eo
+end
+
 get '/' do  # load home page
 
 =begin
@@ -120,12 +140,6 @@ get '/group/:group' do |group|  # load period page
 	@group_elements = Element.all(:group => @group, :order => [ :group.asc ])
 	@title = "Group ##{params[:group]}"
 	erb :group
-end
-
-get '/eo' do # load elements_orbitals test page
-	@eo = Orb.all
-	@e = Element.all
-	erb :eo
 end
 
 =begin

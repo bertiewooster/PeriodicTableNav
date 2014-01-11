@@ -2,6 +2,7 @@
 	<span class="pt_atomic_num"><%= @element.atomic_num %></span><br>
 	<span class="pt_symbol"><%= @element.symbol %></span><br>
 	<span class="pt_name"><%= @element.name %></span><br>
+
 	<span class="<%=@ec_class%>">
 		<% @base = Base.all(:id => @element.period)[0].base %>
 		<span class="ec_base"><%= @base %></span>
@@ -12,7 +13,6 @@
 				<span class="ec_<%=@orbital.n.to_s+@orbital.l%>">
 					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span>
 					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span>
-					<!--span class="ec_<%=@orbital.n.to_s+@orbital.l%>c <%='wide' if @ec_class == "pt_e_config_big" %>"-->
 					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>c">
 						<sup class="<%=@ec_class%>"><%=@orbs[eo].count%></sup>
 					</span>
@@ -20,6 +20,7 @@
 			<% end %>
 		</span>
 	</span>
+
 	<!--span><%= @element.period %></span>  
 	<span><%= @element.group %></span-->
 </a>

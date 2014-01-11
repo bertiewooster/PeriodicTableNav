@@ -82,16 +82,12 @@
 		width: 2%;
 	}
 
-	/*table.element td {
-		width: 25%; // actually, leave this width unspecified so web browser will fill remaining space with it (widths for other cols are specified)
-	}	*/
-
 	table.element left_col, table.element right_col {
 		width: 25%;
 	}	
 
 	table.element td.origin_col {
-		/*width: 50%;*/
+		/*width: 50%;*/ // actually, leave this width unspecified so web browser will fill remaining space with it (widths for other cols are specified)
 	}	
 
 	td.inPTable {	
