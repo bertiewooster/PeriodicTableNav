@@ -24,7 +24,7 @@
 	<tr>
 		<th class="period_header">
 			<% if period_header == 1 %> Period<br> <% end %>
-			<% @link["type"] = 'period' %>                        
+	        <% @link = Hash["type" => 'period'] %>
 			<% @link["number"] = period_header %>
 			<%= erb :link_generator %>			
 				<% @base = Base.all(:id => period_header)[0].base %>

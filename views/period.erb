@@ -34,7 +34,7 @@
 	<tr>
 		<th class="period_header">
 			Period
-			<% @link["type"] = 'period' %>                        
+	        <% @link = Hash["type" => 'period'] %>
 			<% if above_exists %>
 				<% @link["number"] = @period-1 %>
 				<% @link["text"] = '^' %>		

@@ -130,7 +130,7 @@
         <tr>
                 <th class="period_header">
                         Period<br>
-				        <% @link["type"] = 'period' %>                        
+	        <% @link = Hash["type" => 'period'] %>
         <!-- For element above origin element -->
                         <% if above_exists %>
 							<% @link["number"] = @origin.period-1 %>
