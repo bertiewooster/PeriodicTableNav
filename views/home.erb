@@ -10,11 +10,7 @@
 		<% @main_groups.each do |group_header| %>
 			<th>
 				<% # if group_header == 1 %> Group <% # end %>
-				
-				<% @link["number"] = group_header > @main_pauses_group ? group_header - 14 : group_header %>
-				<%= erb :link_generator %>
-
-				<!--a href="/group/<%=group_header %>" title="Group <%=group_header %>"><%= group_header %></a-->
+				<%= erb :group_link_generator, :locals=> {:linear_group => group_header} %>
 			</th>
 		<% end %>
 	</tr>

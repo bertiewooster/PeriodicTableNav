@@ -1,3 +1,5 @@
+
+
 <p>(@main_pauses_group+1)..(@max_group-14): <%= (@main_pauses_group+1)..(@max_group-14) %></p>
 
 <% lin = 30 %>
@@ -6,7 +8,10 @@
 	group num: <%= group_entity["num"] %>,
 	group type: <%= group_entity["type"] %></p>
 
+<%= erb :group_link_generator, :locals=> {:linear_group => lin} %>
+
 <% traditional_group = 'f19' %>
+
 <% group_entity = group_trad_to_lin(traditional_group) %>
 <p>For traditional group <%=traditional_group%>:
 	group num: <%= group_entity["num"] %>,

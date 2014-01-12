@@ -1,3 +1,13 @@
+				<% @link["number"] = group_header > @main_pauses_group ? group_header - 14 : group_header %>
+				<%= erb :link_generator %>
+--------------
+					<!--% group_entity = group_lin_to_trad(@left.group) %>
+					<% if group_entity["type"]=="f" %>
+						<% @link["text"] = group_entity["type"] + group_entity["num"].to_s %>			
+					<% end %>
+					<% @link["number"] = group_entity["num"] %>
+					<%= erb :link_generator %-->
+----------
 <%=group_entity["type"]%>' if group_entity["type"]=="f" %>
 --------------
 		background-color: gray;
