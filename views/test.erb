@@ -1,8 +1,16 @@
+<p>(@main_pauses_group+1)..(@max_group-14): <%= (@main_pauses_group+1)..(@max_group-14) %></p>
+
 <% lin = 30 %>
-<% group_entity = translate_group(lin) %>
-<p>For linear group <%=lin%>:<p>
-<p>group num: <%= group_entity["num"] %></p>
-<p>group type: <%= group_entity["type"] %></p>
+<% group_entity = group_lin_to_trad(lin) %>
+<p>For linear group <%=lin%>:
+	group num: <%= group_entity["num"] %>,
+	group type: <%= group_entity["type"] %></p>
+
+<% traditional_group = 'f19' %>
+<% group_entity = group_trad_to_lin(traditional_group) %>
+<p>For traditional group <%=traditional_group%>:
+	group num: <%= group_entity["num"] %>,
+	group type: <%= group_entity["type"] %></p>
 
 -----------------
 

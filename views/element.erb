@@ -12,26 +12,19 @@
 				$adj_terms = $(this).find('.terms'); // get terms (orbitals, e.g. 4f10) in adjacent element
 				$adj_terms.children().each(function() { // for each orbital term in adjacent element
 					adj_term = $(this).text().replace(/\s/g, ''); // e.g., 4f10 [format: nlc where c = electron count]
-					//console.log("Adj term: " + term);
-					console.log("Class of this term: " + $(this).attr('class'));
 					adj_n  = adj_term.charAt(0); // extract n quantum number (1, 2, 3,...) from term
 					adj_l = adj_term.charAt(1); // extract l letter (s, p, d, or f) from term
 					adj_count  = adj_term.substring(2,adj_term.length); // extract electron count (1-14) from term
-					//console.log("e- count: " + adj_count);
 					same_l_selector = 'span[class^="ec_"][class$="' + adj_l + '"]'; // jQuery selector for term in origin
 					$same_l_in_origin = $origin_terms.find(same_l_selector); // jQuery object: analogous term in origin, e.g. 4f9 (will test to see if exists below)
 					same_l = $same_l_in_origin.text().replace(/\s/g, ''); // text of analogous term in origin
-					//console.log("selector: " + selector);
-					//console.log("$same_l_in_origin term: " + same_l);
 					origin_n = same_l.charAt(0); // origin's principal quantum number, n, for this term
 					origin_count  = same_l.substring(2,same_l.length); // extract electron count (1-14) from term					
-					//console.log("origin_count: " + origin_count);
 
 					// If origin doesn't contain term with this l, highlight whole term in adjacent element
 					origin_terms_text = $origin_terms.text().replace(/\s/g, '');
 					// Mash-together of all terms in origin, e.g. 6s24f9. So can check one string to see if origin has term with same l value as current term of adjacent element.
 
-					//console.log("Origin terms: " + origin_terms_text);
 					origin_has_term = origin_terms_text.indexOf(adj_l) != -1
 					if (!origin_has_term) { // if origin doesn't contain term with this l, highlight whole term in adjacent element
 						$(this).addClass('new_orbital');
@@ -53,10 +46,8 @@
 				}) // end $adj_terms.children().each
 				$origin_terms.children().each(function() { // for each orbital term in origin element
 					origin_term = $(this).text().replace(/\s/g, ''); // get the text of the origin term, e.g. 4f10
-					//console.log("Origin term: " + term);
 					origin_l = origin_term.charAt(1); // extract l letter (s, p, d, or f) from term
 					adj_ec_text = $adj_terms.text().replace(/\s/g, '');
-					//console.log("Adjacent terms: " + adj_ec_text);
 					adj_has_term = adj_ec_text.indexOf(origin_l) != -1
 					if (!adj_has_term) { // if adj element doesn't contain term with this l, highlight whole term in origin element
 						$(this).addClass('new_orbital');
@@ -108,10 +99,8 @@
 	        <% @link = Hash["type" => 'group'] %>
 			<th>Group</th>
 			<% if left_exists %>
-				<th class="left_col">
-					<!--a href="/group/<%=@left.group %>" title="Group <%=@left.group %>"><%= @left.group %></a-->
-					
-					<% group_entity = translate_group(@left.group) %>
+				<th class="left_col">		
+					<% group_entity = group_lin_to_trad(@left.group) %>
 					<% if group_entity["type"]=="f" %>
 						<% @link["text"] = group_entity["type"] + group_entity["num"].to_s %>			
 					<% end %>
@@ -120,7 +109,7 @@
 				</th>
 			<% end %>
 			<th class="origin_col">
-				<% group_entity = translate_group(@origin.group) %>
+				<% group_entity = group_lin_to_trad(@origin.group) %>
 				<% if group_entity["type"]=="f" %>
 					<% @link["text"] = group_entity["type"] + group_entity["num"].to_s %>			
 				<% end %>
@@ -129,7 +118,7 @@
 			</th>
 			<% if right_exists %>
 				<th class="right_col">
-					<% group_entity = translate_group(@right.group) %>
+					<% group_entity = group_lin_to_trad(@right.group) %>
 					<% if group_entity["type"]=="f" %>
 						<% @link["text"] = group_entity["type"] + group_entity["num"].to_s %>			
 					<% end %>

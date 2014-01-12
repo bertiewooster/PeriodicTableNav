@@ -59,34 +59,57 @@ DataMapper.finalize.auto_upgrade!
 helpers do
 
 	def init_constants
-		# Using group numbering of 1-32 (f-block columns numbered as groups):
+		# Using linear group numbering of 1-32 (f-block columns numbered as groups):
 		@main_pauses_group = 2 # where main part of periodic table (non-f block) leaves off
 		@main_resumes_group = 17 # where main part of periodic table (non-f block) picks back up
+		@f_groups = 14 # number of f groups
 	end
 	
-	def translate_group(linear_group)
+	def group_lin_to_trad(linear_group)
 		init_constants
-		#@traditional_group = Array.new
-		#@traditional_group["main_pauses_group"] = @main_pauses_group
-		#@traditional_group[] = linear_group - 14
-		#@traditional_group[1] = "main"
 		
 		case linear_group
 		when 1..@main_pauses_group #linear groups 1-2 = traditional groups 1-2
-			group_num = linear_group
-			group_type = "main"
+			trad_group_num = linear_group
+			trad_group_type = "main"
 		when (@main_pauses_group+1)..(@main_resumes_group-1) #linear groups 3-16 = f groups 1-14
-			group_num = linear_group - 2 # e.g. linear group 3 is f group 1
-			group_type = "f"
+			trad_group_num = linear_group - 2 # e.g. linear group 3 is f group 1
+			trad_group_type = "f"
 		when @main_resumes_group..@max_group #linear groups 17-32 = traditional groups 3-18
-			group_num = linear_group - 14 # e.g. linear group 17 is traditional group 3
-			group_type = "main"
+			trad_group_num = linear_group - @f_groups # e.g. linear group 17 is traditional group 3
+			trad_group_type = "main"
 		else #error
-			group_num = -1
-			group_type = "error"
+			trad_group_num = -1
+			trad_group_type = "error"
 		end
 		
-		@result = Hash["num" => group_num, "type" => group_type]
+		@result = Hash["num" => trad_group_num, "type" => trad_group_type]
+	end
+
+	def group_trad_to_lin(traditional_group)
+		init_constants
+		
+		if traditional_group.is_a?(String) #if is an f group, e.g. f12
+			lin_group_type = traditional_group[0] # f
+			lin_group_num = traditional_group[1..traditional_group.length-1].to_i + 2
+			if lin_group_num > @f_groups
+				lin_group_num = -1
+			end
+		else
+			case traditional_group
+			when 1..@main_pauses_group #traditional groups 1-2 = linear groups 1-2
+				lin_group_num = traditional_group
+				lin_group_type = "main"
+			when (@main_pauses_group+1)..(@max_group-@f_groups) #traditional groups 3-18 = linear groups 17-32
+				lin_group_num = traditional_group + @f_groups # e.g. traditional group 3 is linear group 17
+				lin_group_type = "main"
+			else #error
+				lin_group_num = -1
+				lin_group_type = "error"
+			end
+		end
+		
+		@result = Hash["num" => lin_group_num, "type" => lin_group_type]
 	end
 
   def load_elements(name)
@@ -155,9 +178,12 @@ get '/period/:period' do |period| # load period page
 	erb :period
 end
 
-get '/group/:group' do |group|  # load period page
+get '/group/:group' do |group|  # load group page
 	load_elements(params[:name])
 	group = group.to_i
+	
+	group_lin_to_trad(group)
+	
 	@group = group
 	redirect('/') if @group > @max_group	# redirect to home page if user tries to compose a URL to a non-existent group
 	@group_elements = Element.all(:group => @group, :order => [ :group.asc ])
