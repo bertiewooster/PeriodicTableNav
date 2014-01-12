@@ -21,15 +21,20 @@
 <% end %>
 
 <table class="group">
+	<% @link = Hash["type" => 'group'] %>
 	<tr>
 		<th>Group</th>
 			<th>
 				<% if left_exists %>
-					<a href="/group/<%= @group-1 %>" title="Group <%= @group-1 %>"> < </a>
+					<% @link["number"] = @group-1 %>
+					<% @link["text"] = '<' %>		
+					<%= erb :link_generator %>			
 				<% end %>
 				<%= @group %>
 				<% if right_exists %>
-					<a href="/group/<%= @group+1 %>" title="Group <%= @group+1 %>"> > </a>
+					<% @link["number"] = @group+1 %>
+					<% @link["text"] = '>' %>		
+					<%= erb :link_generator %>			
 				<% end %>
 			</th>
 	</tr>
@@ -37,11 +42,13 @@
 <% @group_elements.each do |element| %>
 	<% period_header += 1 #increment the period number in preparation for next period %>
 	
-	<% while element.period > period_header %>
+	<% @link = Hash["type" => 'period'] %>
+	<% while element.period > period_header # if no element in a period, make blank table cell; continue to next period until there is an element %>
 		<tr>	
 			<th class="period_header">
 				<% if period_header == 1 %> Period<br> <% end %>
-				<a href="/period/<%=period_header %>" title="Period <%=period_header %>"><%= period_header %></a>	
+				<% @link["number"] = period_header %>
+				<%= erb :link_generator %>			
 				<% period_header += 1 %>
 			</th>
 			<td></td>
@@ -51,7 +58,8 @@
 	<tr>
 		<th class="period_header">
 			<% if period_header == 1 %> Period<br> <% end %>
-			<a href="/period/<%=period_header %>" title="Period <%=period_header %>"><%= period_header %></a>	
+			<% @link["number"] = period_header %>
+			<%= erb :link_generator %>			
 		</th>
 			<td class="inPTable">
 				<% @element = element %>

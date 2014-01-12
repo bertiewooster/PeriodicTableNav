@@ -23,7 +23,9 @@
 		<% for group_header in 1..@max_group do %>
 			<th>
 				<% # if group_header == 1 %> Group <% # end %>
-				<a href="/group/<%=group_header %>" title="Group <%=group_header %>"><%= group_header %></a>
+		        <% @link = Hash["type" => 'group'] %>
+				<% @link["number"] = group_header %>
+				<%= erb :link_generator %>			
 			</th>
 		<% end %>
 	</tr>
@@ -32,12 +34,19 @@
 	<tr>
 		<th class="period_header">
 			Period
+			<% @link["type"] = 'period' %>                        
 			<% if above_exists %>
-				<a href="/period/<%= @period-1 %>" title="Period <%= @period-1 %>"> ^ </a><br>
+				<% @link["number"] = @period-1 %>
+				<% @link["text"] = '^' %>		
+				<%= erb :link_generator %>			
+				<br>
 			<% end %>
 			<%= @period %>
 			<% if below_exists %>
-				<br><a href="/period/<%= @period+1 %>" title="Period <%= @period+1 %>"> &or; </a><br><!-- &or; is downward arrow, the opposite of ^ -->
+				<br>
+				<% @link["number"] = @period+1 %>
+				<% @link["text"] = '∨' %>
+				<%= erb :link_generator %>
 			<% end %>
 				<% #@base = Base.all(:id => period_header)[0].base %>
 		</th>

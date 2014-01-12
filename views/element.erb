@@ -109,14 +109,33 @@
 			<th>Group</th>
 			<% if left_exists %>
 				<th class="left_col">
-					<a href="/group/<%=@left.group %>" title="Group <%=@left.group %>"><%= @left.group %></a>
-					<% @link["number"] = @left.group > @main_pauses_group ? @left.group - 14 : @left.group %>
+					<!--a href="/group/<%=@left.group %>" title="Group <%=@left.group %>"><%= @left.group %></a-->
+					
+					<% group_entity = translate_group(@left.group) %>
+					<% if group_entity["type"]=="f" %>
+						<% @link["text"] = group_entity["type"] + group_entity["num"].to_s %>			
+					<% end %>
+					<% @link["number"] = group_entity["num"] %>
 					<%= erb :link_generator %>
 				</th>
 			<% end %>
-			<th class="origin_col"><a href="/group/<%=@origin.group %>" title="Group <%=@origin.group %>"><%= @origin.group %></a></th>
+			<th class="origin_col">
+				<% group_entity = translate_group(@origin.group) %>
+				<% if group_entity["type"]=="f" %>
+					<% @link["text"] = group_entity["type"] + group_entity["num"].to_s %>			
+				<% end %>
+				<% @link["number"] = group_entity["num"] %>
+				<%= erb :link_generator %>
+			</th>
 			<% if right_exists %>
-				<th class="right_col"><a href="/group/<%=@right.group %>" title="Group <%=@right.group %>"><%= @right.group %></a></th>
+				<th class="right_col">
+					<% group_entity = translate_group(@right.group) %>
+					<% if group_entity["type"]=="f" %>
+						<% @link["text"] = group_entity["type"] + group_entity["num"].to_s %>			
+					<% end %>
+					<% @link["number"] = group_entity["num"] %>
+					<%= erb :link_generator %>
+				</th>
 			<% end %>
         </tr>
         <tr>
@@ -128,7 +147,6 @@
 							<% @link["number"] = @origin.period-1 %>
 							<%= erb :link_generator %>
                 </th>
-
                 
                 <!-- Row for element above origin-->
                         <% if left_exists %>
@@ -146,7 +164,8 @@
                         <th class="period_header">
                         <% end %>
 		<!-- Row for left, origin, right elements-->
-				<a href="/period/<%=@origin.period %>" title="Period <%=@origin.period %>"><%= @origin.period %></a>
+				<% @link["number"] = @origin.period %>
+				<%= erb :link_generator %>
 			</th>
 	
 		<% if left_exists %>
@@ -228,7 +247,8 @@
 		<tr><!-- Row for element below origin-->
 		
 			<th class="period_header">
-				<a href="/period/<%=@origin.period+1 %>" title="Period <%=@origin.period+1 %>"><%= @origin.period+1 %></a>
+				<% @link["number"] = @origin.period+1 %>
+				<%= erb :link_generator %>
 			</th>
 
 			<% if left_exists %>

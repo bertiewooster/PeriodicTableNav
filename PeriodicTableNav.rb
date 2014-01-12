@@ -57,17 +57,40 @@ end
 DataMapper.finalize.auto_upgrade!
 
 helpers do
+
+	def init_constants
+		# Using group numbering of 1-32 (f-block columns numbered as groups):
+		@main_pauses_group = 2 # where main part of periodic table (non-f block) leaves off
+		@main_resumes_group = 17 # where main part of periodic table (non-f block) picks back up
+	end
+	
 	def translate_group(linear_group)
+		init_constants
 		#@traditional_group = Array.new
 		#@traditional_group["main_pauses_group"] = @main_pauses_group
 		#@traditional_group[] = linear_group - 14
-		#@traditional_group[1] = "main"	
-		@group_num = linear_group - 14
-		@group_type = "main"
-		@return = [@group_num, @group_type]
+		#@traditional_group[1] = "main"
+		
+		case linear_group
+		when 1..@main_pauses_group #linear groups 1-2 = traditional groups 1-2
+			group_num = linear_group
+			group_type = "main"
+		when (@main_pauses_group+1)..(@main_resumes_group-1) #linear groups 3-16 = f groups 1-14
+			group_num = linear_group - 2 # e.g. linear group 3 is f group 1
+			group_type = "f"
+		when @main_resumes_group..@max_group #linear groups 17-32 = traditional groups 3-18
+			group_num = linear_group - 14 # e.g. linear group 17 is traditional group 3
+			group_type = "main"
+		else #error
+			group_num = -1
+			group_type = "error"
+		end
+		
+		@result = Hash["num" => group_num, "type" => group_type]
 	end
 
   def load_elements(name)
+	init_constants
 	@elements			= Element.all :order => :atomic_num.asc
 	@max_period			= Element.last.period
 	@max_group = Element.all(:order => [ :group.desc ], :limit => 1)[0].group
@@ -77,10 +100,6 @@ helpers do
 	end
 	@bases				= Base.all
 	
-	# Using group numbering of 1-32 (f-block columns numbered as groups):
-	@main_pauses_group = 2 # where main part of periodic table (non-f block) leaves off
-	@main_resumes_group = 17 # where main part of periodic table (non-f block) picks back up
-
 	#Build array of elements in main groups (non-f block)
 
 	ongroup = 1

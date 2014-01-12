@@ -1,3 +1,5 @@
+<%=group_entity["type"]%>' if group_entity["type"]=="f" %>
+--------------
 		background-color: gray;
 ------------------
 	<script type="text/javascript">
