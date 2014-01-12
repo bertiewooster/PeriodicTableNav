@@ -57,6 +57,16 @@ end
 DataMapper.finalize.auto_upgrade!
 
 helpers do
+	def translate_group(linear_group)
+		#@traditional_group = Array.new
+		#@traditional_group["main_pauses_group"] = @main_pauses_group
+		#@traditional_group[] = linear_group - 14
+		#@traditional_group[1] = "main"	
+		@group_num = linear_group - 14
+		@group_type = "main"
+		@return = [@group_num, @group_type]
+	end
+
   def load_elements(name)
 	@elements			= Element.all :order => :atomic_num.asc
 	@max_period			= Element.last.period
@@ -110,6 +120,7 @@ get '/' do  # load home page
 end
 
 get '/element/:atomic_num' do | atomic_num | # load element page
+	load_elements(params[:name])
 	atomic_num = atomic_num.to_i
 	@origin = Element.get(atomic_num)
 	@title = "Element ##{params[:atomic_num]}"

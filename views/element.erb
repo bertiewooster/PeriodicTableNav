@@ -105,22 +105,28 @@
 
 <table class="element">
         <tr><!-- Row for group headers -->
-                <th>Group</th>
-                        <% if left_exists %>
-                                <th class="left_col"><a href="/group/<%=@left.group %>" title="Group <%=@left.group %>"><%= @left.group %></a></th>
-                        <% end %>
-                        <th class="origin_col"><a href="/group/<%=@origin.group %>" title="Group <%=@origin.group %>"><%= @origin.group %></a></th>
-                        <% if right_exists %>
-                                <th class="right_col"><a href="/group/<%=@right.group %>" title="Group <%=@right.group %>"><%= @right.group %></a></th>
-                        <% end %>
+	        <% @link = Hash["type" => 'group'] %>
+			<th>Group</th>
+			<% if left_exists %>
+				<th class="left_col">
+					<a href="/group/<%=@left.group %>" title="Group <%=@left.group %>"><%= @left.group %></a>
+					<% @link["number"] = @left.group > @main_pauses_group ? @left.group - 14 : @left.group %>
+					<%= erb :link_generator %>
+				</th>
+			<% end %>
+			<th class="origin_col"><a href="/group/<%=@origin.group %>" title="Group <%=@origin.group %>"><%= @origin.group %></a></th>
+			<% if right_exists %>
+				<th class="right_col"><a href="/group/<%=@right.group %>" title="Group <%=@right.group %>"><%= @right.group %></a></th>
+			<% end %>
         </tr>
         <tr>
                 <th class="period_header">
                         Period<br>
-
+				        <% @link["type"] = 'period' %>                        
         <!-- For element above origin element -->
                         <% if above_exists %>
-                            <a href="/period/<%=@origin.period-1 %>" title="Period <%=@origin.period-1 %>"><%= @origin.period-1 %></a>
+							<% @link["number"] = @origin.period-1 %>
+							<%= erb :link_generator %>
                 </th>
 
                 

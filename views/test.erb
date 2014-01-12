@@ -1,3 +1,9 @@
+<% group_entity = translate_group(17) %>
+<p>group 17 num: <%= group_entity[0] %></p>
+<p>group 17 type: <%= group_entity[1] %></p>
+
+-----------------
+
 <% @link = Hash["type" => 'period', "number" => 6, "text" => '^'] %>
 <p><%= erb :link_generator %></p>
 
