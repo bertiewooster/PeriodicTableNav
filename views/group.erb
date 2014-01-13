@@ -24,18 +24,11 @@
 	<tr>
 		<th>Group</th>
 			<th>
-				<% if left_exists %>
-					<%# @link["number"] = @group-1 %>
-					<%# @link["text"] = '<' %>		
-					<%#= erb :link_generator %>		
-						
+				<% if left_exists %>				
 					<%= erb :group_link_generator, :locals=> {:linear_group => @group-1, :link => Hash['text'=>'<']} %>
 				<% end %>
 				<%= @group %>
 				<% if right_exists %>
-					<%# @link["number"] = @group+1 %>
-					<%# @link["text"] = '>' %>		
-					<%#= erb :link_generator %>			
 					<%= erb :group_link_generator, :locals=> {:linear_group => @group+1, :link => Hash['text'=>'>']} %>
 				<% end %>
 			</th>
@@ -60,8 +53,6 @@
 	<tr>
 		<th class="period_header">
 			<% if period_header == 1 %> Period<br> <% end %>
-			<%# @link["number"] = period_header %>
-			<%#= erb :link_generator %>			
 			<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
 		</th>
 			<td class="inPTable">
