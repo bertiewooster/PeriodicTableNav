@@ -10,7 +10,9 @@ result: <a href="/@type/@number" title="@element @number">^</a>
 <% link["type"] = 'group' %>
 <% group_entity = group_lin_to_trad(linear_group) %>
 <% if group_entity["type"]=="f" %>
-	<% @link["text"] = group_entity["type"] + group_entity["num"].to_s %>			
+	<% link["number"] = group_entity["type"] + group_entity["num"].to_s %>			
+	<%# link["text"] = group_entity["type"] + group_entity["num"].to_s %>			
+<% else %>
+	<% link["number"] = group_entity["num"] %>
 <% end %>
-<% link["number"] = group_entity["num"] %>
 <%= erb :link_generator, :locals=> {:link => link} %>
