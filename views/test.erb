@@ -1,14 +1,20 @@
+<% lin = 32 %>
+<!--% group_entity = group_lin_to_trad(lin) %-->
+<p>For linear group <%=lin%>:
 
+<%= erb :group_link_generator, :locals=> {:linear_group => lin, :link => Hash['text'=>'^']} %>
+<p>----------------</p>
+
+<%= erb :link_generator, :locals=> {:link => Hash["type" => 'group','number'=>2]} %>
+
+<p>----------------</p>
+
+<% link = Hash["type" => 'period', "number" => 6, "text" => '^'] %>
+<% # = erb :link_generator, :locals=> {:jer => 666} %>
+
+<p>----------------</p>
 
 <p>(@main_pauses_group+1)..(@max_group-14): <%= (@main_pauses_group+1)..(@max_group-14) %></p>
-
-<% lin = 30 %>
-<% group_entity = group_lin_to_trad(lin) %>
-<p>For linear group <%=lin%>:
-	group num: <%= group_entity["num"] %>,
-	group type: <%= group_entity["type"] %></p>
-
-<%= erb :group_link_generator, :locals=> {:linear_group => lin} %>
 
 <% traditional_group = 'f19' %>
 
@@ -17,13 +23,9 @@
 	group num: <%= group_entity["num"] %>,
 	group type: <%= group_entity["type"] %></p>
 
------------------
 
-<% @link = Hash["type" => 'period', "number" => 6, "text" => '^'] %>
-<p><%= erb :link_generator %></p>
 
 <% @link = Hash["type" => 'group', "number" => 2] %>
-<p><%= erb :link_generator %></p>
 
 <p>@main_groups: <%= @main_groups %></p>
 <p>@f_groups: <%= @f_groups %></p>

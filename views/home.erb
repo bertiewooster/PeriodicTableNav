@@ -20,9 +20,7 @@
 	<tr>
 		<th class="period_header">
 			<% if period_header == 1 %> Period<br> <% end %>
-	        <% @link = Hash["type" => 'period'] %>
-			<% @link["number"] = period_header %>
-			<%= erb :link_generator %>			
+			<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>			
 				<% @base = Base.all(:id => period_header)[0].base %>
 		</th>
 		<% period.each do |element| %>

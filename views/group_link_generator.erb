@@ -4,10 +4,13 @@ where text is optional: if it's not included in the hash, number will be used as
 result: <a href="/@type/@number" title="@element @number">^</a>
         <a href="/period/6" title="period 6">^</a>
 -->
-<% @link = Hash["type" => 'group'] %>
+<% if not defined? link %>
+	<% link = Hash.new %>
+<% end %>
+<% link["type"] = 'group' %>
 <% group_entity = group_lin_to_trad(linear_group) %>
 <% if group_entity["type"]=="f" %>
 	<% @link["text"] = group_entity["type"] + group_entity["num"].to_s %>			
 <% end %>
-<% @link["number"] = group_entity["num"] %>
-<%= erb :link_generator %>
+<% link["number"] = group_entity["num"] %>
+<%= erb :link_generator, :locals=> {:link => link} %>

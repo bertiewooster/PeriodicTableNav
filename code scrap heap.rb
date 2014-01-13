@@ -1,3 +1,6 @@
+<!--% text = link.has_key?('text') ? link['text'] : link['number'] %-->
+<!--a href="/<%=link['type']%>/<%=link['number']%>" title="<%=link['type']%> <%=link['number']%>"> <%="text"%> </a-->
+--------------
 				<% @link["number"] = group_header > @main_pauses_group ? group_header - 14 : group_header %>
 				<%= erb :link_generator %>
 --------------

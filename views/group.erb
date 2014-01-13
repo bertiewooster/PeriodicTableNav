@@ -28,7 +28,9 @@
 				<% if left_exists %>
 					<% @link["number"] = @group-1 %>
 					<% @link["text"] = '<' %>		
-					<%= erb :link_generator %>			
+					<%= erb :link_generator %>		
+						
+					<%= erb :group_link_generator, :locals=> {:linear_group => @origin.group} %>
 				<% end %>
 				<%= @group %>
 				<% if right_exists %>
