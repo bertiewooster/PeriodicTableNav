@@ -23,9 +23,6 @@
 		<% for group_header in 1..@max_group do %>
 			<th>
 				<% # if group_header == 1 %> Group <% # end %>
-		        <%# @link = Hash["type" => 'group'] %>
-				<%# @link["number"] = group_header %>
-				<%#= erb :link_generator %>			
 				<%= erb :group_link_generator, :locals=> {:linear_group => group_header} %>
 			</th>
 		<% end %>
@@ -37,18 +34,12 @@
 			Period
 	        <% @link = Hash["type" => 'period'] %>
 			<% if above_exists %>
-				<%# @link["number"] = @period-1 %>
-				<%# @link["text"] = '^' %>		
-				<%#= erb :link_generator %>			
 				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@period-1, "text" => '^']} %>
 				<br>
 			<% end %>
 			<%= @period %>
 			<% if below_exists %>
 				<br>
-				<%# @link["number"] = @period+1 %>
-				<%# @link["text"] = '∨' %>
-				<%#= erb :link_generator %>
 				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@period+1, "text" => '∨']} %>
 			<% end %>
 				<% #@base = Base.all(:id => period_header)[0].base %>

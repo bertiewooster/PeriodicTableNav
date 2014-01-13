@@ -98,8 +98,9 @@
         <tr><!-- Row for group headers -->
 			<th>Group</th>
 			<% if left_exists %>
-				<th class="left_col">		
+				<th class="left_col">
 					<%= erb :group_link_generator, :locals=> {:linear_group => @left.group} %>
+					<% @traditional_group %>
 				</th>
 			<% end %>
 			<th class="origin_col">
