@@ -92,7 +92,7 @@ helpers do
 		if traditional_group.is_a?(String) #if is an f group, e.g. f12
 			lin_group_type = traditional_group[0] # f
 			lin_group_num = traditional_group[1..traditional_group.length-1].to_i + @main_pauses_group
-			if lin_group_num > @f_groups
+			if lin_group_num > @f_groups + @main_pauses_group
 				lin_group_num = -1
 			end
 		else
@@ -178,13 +178,14 @@ get '/period/:period' do |period| # load period page
 	erb :period
 end
 
-get '/group/:traditional_group' do |traditional_group|  # load group page
+get '/group/:group' do |traditional_group|  # load group page
 	load_elements(params[:name])
 	#group = group.to_i
 	@traditional_group = traditional_group
-	group_entity = group_trad_to_lin(traditional_group)
-	@linear_group = group_entity["num"]
-	redirect('/') if @group > @max_group	# redirect to home page if user tries to compose a URL to a non-existent group
+#	group_entity = group_trad_to_lin(traditional_group)
+#	@linear_group = group_entity["num"]
+	@linear_group = group_trad_to_lin(traditional_group)["num"]
+	redirect('/') if @linear_group > @max_group	# redirect to home page if user tries to compose a URL to a non-existent group
 	@group_elements = Element.all(:group => @linear_group, :order => [ :group.asc ])
 	@title = "Group ##{traditional_group}"
 	erb :group

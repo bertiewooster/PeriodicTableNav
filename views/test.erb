@@ -1,7 +1,13 @@
-<% lin = 32 %>
-<!--% group_entity = group_lin_to_trad(lin) %-->
-<p>For linear group <%=lin%>:
+<% for trad in [1,2,3,4,5,6,7,8,9,10,11,12,"13",14,15,16,17,18,"f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12","f13","f14"] do %>
+	<%# group_entity = group_trad_to_lin(trad) %>
+	<p>For traditional group <%=trad%>, linear group is <%=group_trad_to_lin(trad)["num"]%></p>
+<% end %>
 
+	<p>@main_pauses_group: <%=@main_pauses_group%></p>
+	<p>@main_resumes_group: <%=@main_resumes_group%></p>
+	<p>@f_groups: <%=@f_groups%></p>
+
+<% lin = 32 %>
 <%= erb :group_link_generator, :locals=> {:linear_group => lin, :link => Hash['text'=>'^']} %>
 <p>----------------</p>
 
