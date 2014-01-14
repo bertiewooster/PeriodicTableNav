@@ -1,4 +1,3 @@
-<!--%= @group_elements.inspect %-->
 <% @ec_class = "wide" #in pt_element.erb, specify electron config style: big text so can see what's highlighted %>
 
 <% period_header = 0 # labels for periods %>
@@ -7,14 +6,14 @@
 
 <!-- Database queries to find adjacent groups (left and right). If one doesn't exist, flagged as such to remove navigation arrows. -->
 <% begin %>
-	<% @left = Element.all(:group => @group-1)[0] %>
+	<% @left = Element.all(:group => @linear_group-1)[0] %>
 	<% left_exists = true if @left.atomic_num # OK if there is a group to the right; will go to rescue if not %>
 <% rescue %>
 	<% left_exists = false %>
 <% end %>
 
 <% begin %>
-	<% @right = Element.all(:group => @group+1)[0] %>
+	<% @right = Element.all(:group => @linear_group+1)[0] %>
 	<% right_exists = true if @right.atomic_num # OK if there is a group to the right; will go to rescue if not %>
 <% rescue %>
 	<% right_exists = false %>
@@ -25,11 +24,11 @@
 		<th>Group</th>
 			<th>
 				<% if left_exists %>				
-					<%= erb :group_link_generator, :locals=> {:linear_group => @group-1, :link => Hash['text'=>'<']} %>
+					<%= erb :group_link_generator, :locals=> {:linear_group => @linear_group-1, :link => Hash['text'=>'<']} %>
 				<% end %>
 				<%= @group %>
 				<% if right_exists %>
-					<%= erb :group_link_generator, :locals=> {:linear_group => @group+1, :link => Hash['text'=>'>']} %>
+					<%= erb :group_link_generator, :locals=> {:linear_group => @linear_group+1, :link => Hash['text'=>'>']} %>
 				<% end %>
 			</th>
 	</tr>

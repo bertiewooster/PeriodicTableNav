@@ -91,7 +91,7 @@ helpers do
 		
 		if traditional_group.is_a?(String) #if is an f group, e.g. f12
 			lin_group_type = traditional_group[0] # f
-			lin_group_num = traditional_group[1..traditional_group.length-1].to_i + 2
+			lin_group_num = traditional_group[1..traditional_group.length-1].to_i + @main_pauses_group
 			if lin_group_num > @f_groups
 				lin_group_num = -1
 			end
@@ -165,7 +165,7 @@ get '/element/:atomic_num' do | atomic_num | # load element page
 	load_elements(params[:name])
 	atomic_num = atomic_num.to_i
 	@origin = Element.get(atomic_num)
-	@title = "Element ##{params[:atomic_num]}"
+	@title = "Element ##{atomic_num}"
 	erb :element
 end
 
@@ -178,16 +178,15 @@ get '/period/:period' do |period| # load period page
 	erb :period
 end
 
-get '/group/:group' do |group|  # load group page
+get '/group/:traditional_group' do |traditional_group|  # load group page
 	load_elements(params[:name])
-	group = group.to_i
-	
-	group_lin_to_trad(group)
-	
-	@group = group
+	#group = group.to_i
+	@traditional_group = traditional_group
+	group_entity = group_trad_to_lin(traditional_group)
+	@linear_group = group_entity["num"]
 	redirect('/') if @group > @max_group	# redirect to home page if user tries to compose a URL to a non-existent group
-	@group_elements = Element.all(:group => @group, :order => [ :group.asc ])
-	@title = "Group ##{params[:group]}"
+	@group_elements = Element.all(:group => @linear_group, :order => [ :group.asc ])
+	@title = "Group ##{traditional_group}"
 	erb :group
 end
 
