@@ -115,11 +115,8 @@
         <tr>
                 <th class="period_header">
                         Period<br>
-	        <% @link = Hash["type" => 'period'] %>
         <!-- For element above origin element -->
                         <% if above_exists %>
-							<%# @link["number"] = @origin.period-1 %>
-							<%#= erb :link_generator %>
 							<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@origin.period-1]} %>
                 </th>
                 
@@ -139,8 +136,6 @@
                         <th class="period_header">
                         <% end %>
 		<!-- Row for left, origin, right elements-->
-				<%# @link["number"] = @origin.period %>
-				<%#= erb :link_generator %>
 				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@origin.period]} %>
 			</th>
 	
@@ -223,8 +218,6 @@
 		<tr><!-- Row for element below origin-->
 		
 			<th class="period_header">
-				<%# @link["number"] = @origin.period+1 %>
-				<%#= erb :link_generator %>
 				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@origin.period+1]} %>
 			</th>
 

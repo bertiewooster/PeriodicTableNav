@@ -37,14 +37,12 @@
 <% @group_elements.each do |element| %>
 	<% period_header += 1 #increment the period number in preparation for next period %>
 	
-	<% @link = Hash["type" => 'period'] %>
 	<% while element.period > period_header # if no element in a period, make blank table cell; continue to next period until there is an element %>
 		<tr>	
 			<th class="period_header">
 				<% if period_header == 1 %> Period<br> <% end %>
-				<% @link["number"] = period_header %>
-				<%= erb :link_generator %>			
-				<% period_header += 1 %>
+				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
+                <% period_header += 1 %>
 			</th>
 			<td></td>
 		</tr>
