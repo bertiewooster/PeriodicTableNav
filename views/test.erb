@@ -1,6 +1,8 @@
-<% for trad in [1,2,3,4,5,6,7,8,9,10,11,12,"13",14,15,16,17,18,"f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12","f13","f14"] do %>
+<% for trad in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,"g1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12","f13","f14"] do %>
 	<%# group_entity = group_trad_to_lin(trad) %>
-	<p>For traditional group <%=trad%>, linear group is <%=group_trad_to_lin(trad)["num"]%></p>
+	<%# tradtype = trad.respond_to?('to_i') ? "integer" : "string" %>
+	<% tradtype = trad.to_s[0].match(/^[[:alpha:]]$/) ? "string" : "integer" %>
+	<p>For traditional group <%=trad%> (<%=tradtype%>: <%=trad.to_i%>), linear group is <%=group_trad_to_lin(trad)["num"]%></p>
 <% end %>
 
 	<p>@main_pauses_group: <%=@main_pauses_group%></p>

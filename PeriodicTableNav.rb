@@ -88,14 +88,22 @@ helpers do
 
 	def group_trad_to_lin(traditional_group)
 		init_constants
-		
-		if traditional_group.is_a?(String) #if is an f group, e.g. f12
-			lin_group_type = traditional_group[0] # f
-			lin_group_num = traditional_group[1..traditional_group.length-1].to_i + @main_pauses_group
-			if lin_group_num > @f_groups + @main_pauses_group
-				lin_group_num = -1
+		#traditional_type = @traditional_group.to_s[0].match(/^[[:alpha:]]$/) ? "f" : "main" %>
+
+		if traditional_group.to_s[0].match(/^[[:alpha:]]$/)  #if group starts with a letter
+			if traditional_group.to_s[0].match(/^[[f]]$/)  #if is an f group, e.g. f12 (starts with a letter)
+				lin_group_type = traditional_group[0] # f
+				lin_group_num = traditional_group[1..traditional_group.length-1].to_i + @main_pauses_group
+				if lin_group_num > @f_groups + @main_pauses_group
+					lin_group_num = -1
+				lin_group_type = "error"
+				end
+			else
+				lin_group_num = -3 # error: group starts with a letter other than f
+				lin_group_type = "error"
 			end
 		else
+			traditional_group = traditional_group.to_i
 			case traditional_group
 			when 1..@main_pauses_group #traditional groups 1-2 = linear groups 1-2
 				lin_group_num = traditional_group
@@ -104,7 +112,7 @@ helpers do
 				lin_group_num = traditional_group + @f_groups # e.g. traditional group 3 is linear group 17
 				lin_group_type = "main"
 			else #error
-				lin_group_num = -1
+				lin_group_num = -2
 				lin_group_type = "error"
 			end
 		end
@@ -185,7 +193,9 @@ get '/group/:group' do |traditional_group|  # load group page
 #	group_entity = group_trad_to_lin(traditional_group)
 #	@linear_group = group_entity["num"]
 	@linear_group = group_trad_to_lin(traditional_group)["num"]
-	redirect('/') if @linear_group > @max_group	# redirect to home page if user tries to compose a URL to a non-existent group
+	if (@linear_group > @max_group) or (@linear_group < 0)
+		redirect('/') 	# redirect to home page if user tries to compose a URL to a non-existent group
+	end
 	@group_elements = Element.all(:group => @linear_group, :order => [ :group.asc ])
 	@title = "Group ##{traditional_group}"
 	erb :group
