@@ -90,15 +90,16 @@ helpers do
 		init_constants
 		#traditional_type = @traditional_group.to_s[0].match(/^[[:alpha:]]$/) ? "f" : "main" %>
 
-		if traditional_group.to_s[0].match(/^[[:alpha:]]$/)  and (traditional_group.to_s[1].match(/^[[:digit:]]$/)) 
+		if traditional_group.to_s[0].match(/^[[:alpha:]]$/) && (traditional_group.to_s[1].match(/^[[:digit:]]$/)) 
 		#if group starts with a letter and second character is a number, e.g. f5
-			#if is an f group and second digit is a number, e.g. f12 (starts with a letter)
+			#if is an f group, e.g. f12 (starts with a letter)
 			if (traditional_group.to_s[0].match(/^[[f]]$/))
 				lin_group_type = traditional_group[0] # f
 				lin_group_num = traditional_group[1..traditional_group.length-1].to_i + @main_pauses_group
-				if lin_group_num > @f_groups + @main_pauses_group
+				if (lin_group_num > @f_groups + @main_pauses_group) || (lin_group_num <= @main_pauses_group)
+				#if the linear group number is outside the bounds (3-16) for an f group (corresponding to f1-f14)
 					lin_group_num = -1
-				lin_group_type = "error"
+					lin_group_type = "error"
 				end
 			else
 				lin_group_num = -3 # error: group starts with a letter other than f
