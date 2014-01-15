@@ -90,8 +90,10 @@ helpers do
 		init_constants
 		#traditional_type = @traditional_group.to_s[0].match(/^[[:alpha:]]$/) ? "f" : "main" %>
 
-		if traditional_group.to_s[0].match(/^[[:alpha:]]$/)  #if group starts with a letter
-			if traditional_group.to_s[0].match(/^[[f]]$/)  #if is an f group, e.g. f12 (starts with a letter)
+		if traditional_group.to_s[0].match(/^[[:alpha:]]$/)  and (traditional_group.to_s[1].match(/^[[:digit:]]$/)) 
+		#if group starts with a letter and second character is a number, e.g. f5
+			#if is an f group and second digit is a number, e.g. f12 (starts with a letter)
+			if (traditional_group.to_s[0].match(/^[[f]]$/))
 				lin_group_type = traditional_group[0] # f
 				lin_group_num = traditional_group[1..traditional_group.length-1].to_i + @main_pauses_group
 				if lin_group_num > @f_groups + @main_pauses_group
@@ -193,7 +195,7 @@ get '/group/:group' do |traditional_group|  # load group page
 #	group_entity = group_trad_to_lin(traditional_group)
 #	@linear_group = group_entity["num"]
 	@linear_group = group_trad_to_lin(traditional_group)["num"]
-	if (@linear_group > @max_group) or (@linear_group < 0)
+	if (@linear_group > @max_group) or (@linear_group <= 0)
 		redirect('/') 	# redirect to home page if user tries to compose a URL to a non-existent group
 	end
 	@group_elements = Element.all(:group => @linear_group, :order => [ :group.asc ])
