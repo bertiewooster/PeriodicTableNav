@@ -1,6 +1,7 @@
+<!--
 <p>@traditional_group: <%= @traditional_group %></p>
 <p>@linear_group: <%= @linear_group %></p>
-
+-->
 
 <% @ec_class = "wide" #in pt_element.erb, specify electron config style: big text so can see what's highlighted %>
 
@@ -28,11 +29,12 @@
 		<th>Group</th>
 			<th>
 				<% if left_exists %>				
-					<%= erb :link_generator, :locals=> {:linear_group => @linear_group-1, :link => Hash['text'=>'<']} %>
+					<%= erb :group_link_generator, :locals=> {:linear_group => @linear_group-1, :link => Hash["type" => 'group', 'text'=>'<']} %>
 				<% end %>
 				<%= @traditional_group %>
 				<% if right_exists %>
-					<%= erb :link_generator, :locals=> {:linear_group => @linear_group+1, :link => Hash['text'=>'>']} %>
+					<%#= erb :link_generator, :locals=> {:linear_group => @linear_group+1, :link => Hash['text'=>'>']} %>
+					<%= erb :group_link_generator, :locals=> {:linear_group => @linear_group+1, :link => Hash["type" => 'group', 'text'=>'>']} %>
 				<% end %>
 			</th>
 	</tr>
