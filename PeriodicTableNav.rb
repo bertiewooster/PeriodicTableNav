@@ -62,7 +62,7 @@ helpers do
 		# Using linear group numbering of 1-32 (f-block columns numbered as groups):
 		@main_pauses_group = 2 # where main part of periodic table (non-f block) leaves off
 		@main_resumes_group = 17 # where main part of periodic table (non-f block) picks back up
-		@f_groups = 14 # number of f groups
+		@num_f_groups = 14 # number of f groups
 	end
 	
 	def group_lin_to_trad(linear_group)
@@ -76,7 +76,7 @@ helpers do
 			trad_group_num = linear_group - 2 # e.g. linear group 3 is f group 1
 			trad_group_type = "f"
 		when @main_resumes_group..@max_group #linear groups 17-32 = traditional groups 3-18
-			trad_group_num = linear_group - @f_groups # e.g. linear group 17 is traditional group 3
+			trad_group_num = linear_group - @num_f_groups # e.g. linear group 17 is traditional group 3
 			trad_group_type = "main"
 		else #error
 			trad_group_num = -1
@@ -96,7 +96,7 @@ helpers do
 			if (traditional_group.to_s[0].match(/^[[f]]$/))
 				lin_group_type = traditional_group[0] # f
 				lin_group_num = traditional_group[1..traditional_group.length-1].to_i + @main_pauses_group
-				if (lin_group_num > @f_groups + @main_pauses_group) || (lin_group_num <= @main_pauses_group)
+				if (lin_group_num > @num_f_groups + @main_pauses_group) || (lin_group_num <= @main_pauses_group)
 				#if the linear group number is outside the bounds (3-16) for an f group (corresponding to f1-f14)
 					lin_group_num = -1
 					lin_group_type = "error"
@@ -111,8 +111,8 @@ helpers do
 			when 1..@main_pauses_group #traditional groups 1-2 = linear groups 1-2
 				lin_group_num = traditional_group
 				lin_group_type = "main"
-			when (@main_pauses_group+1)..(@max_group-@f_groups) #traditional groups 3-18 = linear groups 17-32
-				lin_group_num = traditional_group + @f_groups # e.g. traditional group 3 is linear group 17
+			when (@main_pauses_group+1)..(@max_group-@num_f_groups) #traditional groups 3-18 = linear groups 17-32
+				lin_group_num = traditional_group + @num_f_groups # e.g. traditional group 3 is linear group 17
 				lin_group_type = "main"
 			else #error
 				lin_group_num = -2
