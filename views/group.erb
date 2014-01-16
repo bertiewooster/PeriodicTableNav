@@ -28,43 +28,48 @@
 	<tr>
 		<th>Group</th>
 			<th>
-				<% if left_exists %>				
+				<% if left_exists %>
+					<% if @linear_group == @main_resumes_group # if is linear group 17 = traditional group 3, provide link to traditional group 2 (skipping f groups) %>
+						<%= erb :group_link_generator, :locals=> {:linear_group => @main_pauses_group, :link => Hash["type" => 'group', 'text'=>'<<&nbsp;']} %>
+					<% end %>				
 					<%= erb :group_link_generator, :locals=> {:linear_group => @linear_group-1, :link => Hash["type" => 'group', 'text'=>'<']} %>
 				<% end %>
 				<%= @traditional_group %>
 				<% if right_exists %>
-					<%#= erb :link_generator, :locals=> {:linear_group => @linear_group+1, :link => Hash['text'=>'>']} %>
 					<%= erb :group_link_generator, :locals=> {:linear_group => @linear_group+1, :link => Hash["type" => 'group', 'text'=>'>']} %>
+					<% if @linear_group == @main_pauses_group # if is linear group 2 = traditional group 2, provide link to traditional group 3 (skipping f groups) %>
+						<%= erb :group_link_generator, :locals=> {:linear_group => @main_resumes_group, :link => Hash["type" => 'group', 'text'=>'&nbsp;>>']} %>
+					<% end %>				
 				<% end %>
 			</th>
 	</tr>
 
-<% @group_elements.each do |element| %>
-	<% period_header += 1 #increment the period number in preparation for next period %>
+	<% @group_elements.each do |element| %>
+		<% period_header += 1 #increment the period number in preparation for next period %>
 	
-	<% while element.period > period_header # if no element in a period, make blank table cell; continue to next period until there is an element %>
-		<tr>	
+		<% while element.period > period_header # if no element in a period, make blank table cell; continue to next period until there is an element %>
+			<tr>	
+				<th class="period_header">
+					<% if period_header == 1 %> Period<br> <% end %>
+					<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
+	                <% period_header += 1 %>
+				</th>
+				<td></td>
+			</tr>
+		<% end %>
+
+		<tr>
 			<th class="period_header">
 				<% if period_header == 1 %> Period<br> <% end %>
 				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
-                <% period_header += 1 %>
 			</th>
-			<td></td>
+				<td class="inPTable">
+					<% @element = element %>
+					<%= erb :pt_element %>
+					<% lastGroup = element.group %>
+				</td>
 		</tr>
-	<% end %>
-
-	<tr>
-		<th class="period_header">
-			<% if period_header == 1 %> Period<br> <% end %>
-			<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
-		</th>
-			<td class="inPTable">
-				<% @element = element %>
-				<%= erb :pt_element %>
-				<% lastGroup = element.group %>
-			</td>
- 	 </tr>
-<% end %> 
+	<% end %> 
 
 </table>
 <!--p>End of by-period elements listing</p-->
