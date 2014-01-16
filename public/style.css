@@ -60,6 +60,31 @@
 		text-align: center;
 	}  
 
+	table.home {
+		table-layout: fixed;
+		/*width: 1170px; /*96.9%;*/
+	}
+	
+	table.home th {
+		font-size: 150%;
+		vertical-align: bottom;
+	}
+	
+	table.home a {
+		text-decoration: none;
+	}
+
+	table.home th.period_header {
+		vertical-align: middle;
+	}
+	
+	table.home td, table.home th {
+		width: 65px;
+		height: 80px;
+		/* border: 5px dashed green;  */
+		text-align: center;
+   	}  
+
 	table.group {
 		table-layout: auto;
 		width: 25%;
