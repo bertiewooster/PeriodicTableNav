@@ -43,6 +43,7 @@
 	th {
 		font-size: 150%;
 		vertical-align: bottom;
+		/*border: 1px solid green;*/
 	}
 	
 	th a {
@@ -56,9 +57,19 @@
 	td {
 		width: 5.1%; /* 95% / 19 cols 65px;*/
 		height: 80px;
-		/*border: 1px solid black;  */
+		/*border: 1px solid red;*/
 		text-align: center;
 	}  
+
+	th.home_element {
+		/*border: 3px solid black;*/
+		width: 65px; /*5.1%;*/
+	}
+
+	th.col1 {
+		/*border: 3px solid pink;*/
+		width: 68px;
+	}
 
 	table.home {
 		table-layout: fixed;
@@ -70,7 +81,7 @@
 		vertical-align: bottom;
 	}
 	
-	table.home a {
+	table.home th a {
 		text-decoration: none;
 	}
 
@@ -78,7 +89,7 @@
 		vertical-align: middle;
 	}
 	
-	table.home td, table.home th {
+	table.home td {
 		width: 65px;
 		height: 80px;
 		/* border: 5px dashed green;  */

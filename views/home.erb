@@ -4,10 +4,9 @@
 <% period_header = 0 # labels for periods %>
 <table class="home">
 	<tr>
-		<th>Group</th>
-		<% #for group_header in 1..@max_group do %>
+		<th class="col1" id="main_col1">Group</th>
 		<% @main_groups.each do |group_header| %>
-			<th>
+			<th class="home_element">
 				<% # if group_header == 1 %> Group <% # end %>
 				<%= erb :group_link_generator, :locals=> {:linear_group => group_header} %>
 			</th>
@@ -52,9 +51,11 @@
 <% period_plotted = false #keep track of whether a period has been plotted yet %>
 <table class="home">
 	<tr>
-		<th>Group</th>
+		<th class="col1" id="f_col1">Group</th>
+		<td class="spacer"></td>
+		<td class="spacer"></td>
 		<% @f_groups.each do |group_header| %>
-			<th>
+			<th class="home_element">
 				<% # if group_header == 1 %> Group <% # end %>
 				<%= erb :group_link_generator, :locals=> {:linear_group => group_header} %>
 			</th>
@@ -71,6 +72,8 @@
 				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>			
 					<% @base = Base.all(:id => period_header)[0].base %>
 			</th>
+		<td class="spacer"></td>
+		<td class="spacer"></td>
 			<% period.each do |element| %>
 				<% blanks = element.group - lastGroup - 1 %>
 				<% if not @f_groups.include? element.group %>
@@ -79,7 +82,7 @@
 					<% next %>
 				<% end %>
 				<% while blanks > 0 %>
-					<td></td>
+					<td class="blanks"></td>
 					<% blanks = blanks - 1 %>
 				<% end %>
 				<td class="inPTable">
@@ -92,6 +95,8 @@
 					<%# end %>
 				</td>
 			<% end %>
+		<td class="spacer"></td>
+		<td class="spacer"></td>
  		 </tr>
 	<% end %>
 <% end %> 
