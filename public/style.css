@@ -75,6 +75,11 @@
 		table-layout: fixed;
 		/*width: 1170px; /*96.9%;*/
 	}
+
+	table.home .marker {
+		text-align: right;
+		font-size: 150%;
+	}
 	
 	table.home th {
 		font-size: 150%;
@@ -162,8 +167,13 @@
 
 	sup.wide { /* for superscripts in wide table cells (group and element), make text bigger so easier to read */
 		font-size: 50%; 
-		top: +0.2em;
+		top: +0.5em;
 		/*background-color: red;*/
+	}
+
+	sup.pointer { /* for 5-pointed star superscripts on Ba and Ra, pointing to lanthanides and actinides respectively */
+		font-size: 65%; 
+		top: +0.2em;
 	}
 
 	span.ec_base {

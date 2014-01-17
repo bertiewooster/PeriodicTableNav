@@ -1,3 +1,6 @@
+				<%="&#9733;" if period_header == 6 #one 5-pointed star for lanthanides %>
+				<%="&#9733;&#9733;" if period_header == 7 #two 5-pointed stars for actinides %>
+-----------------
 <!--% text = link.has_key?('text') ? link['text'] : link['number'] %-->
 <!--a href="/<%=link['type']%>/<%=link['number']%>" title="<%=link['type']%> <%=link['number']%>"> <%="text"%> </a-->
 --------------
