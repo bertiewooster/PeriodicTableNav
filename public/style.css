@@ -79,6 +79,7 @@
 	table.home .marker {
 		text-align: right;
 		font-size: 150%;
+		/*color: #607890;*/
 	}
 	
 	table.home th {
