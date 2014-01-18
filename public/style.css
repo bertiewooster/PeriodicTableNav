@@ -6,12 +6,16 @@
 
 	header {  
 		text-align: center;  
-		margin: 0 0 20px;  
+		/*margin: 0 0 20px;*/
+		margin-left: 0px;
+		margin-right: 0px;
+		margin-top: 0px;
+		margin-bottom: 5px;
 	}  
 
 	header h1 {  
 		display: inline;  
-		font-size: 32px;  
+		font-size: 32px;
 	}  
 	  
 	header h1 a:link, header h1 a:visited {  
@@ -161,10 +165,13 @@
 
 	span.pt_symbol {
 		font-size: 200%;
+		line-height:80%;
+		/*border: 1px dashed red;*/
 	}
 
 	span.pt_name {
 		font-size: 80%;
+		margin-top: -10px;
 	}
 
 	span.narrow { /* for narrow table cells: home and period pages */
