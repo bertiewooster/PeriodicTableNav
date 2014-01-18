@@ -1,12 +1,19 @@
+<% begin %>
+	<% show_markers = true if markers %>
+<% rescue %>
+	<% show_markers = false %>
+<% end %>
 <a href="/element/<%=@element.atomic_num %>" title="element <%=@element.atomic_num%>">
 	<span class="pt_atomic_num"><%= @element.atomic_num %></span><br>
 	<span class="pt_symbol">
 		<%= @element.symbol %>
-		<% if @element.atomic_num == 56 %>
-			<sup class="pointer">&#9733;</sup>
-		<% end %>
-		<% if @element.atomic_num == 88 %>
-			<sup class="pointer">&#9733;&#9733;</sup>
+		<% if show_markers %>
+			<% if @element.atomic_num == 56 %>
+				<sup class="pointer">&#9733;</sup>
+			<% end %>
+			<% if @element.atomic_num == 88 %>
+				<sup class="pointer">&#9733;&#9733;</sup>
+			<% end %>
 		<% end %>
 	</span><br>
 	<span class="pt_name"><%= @element.name %></span><br>

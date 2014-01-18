@@ -34,7 +34,7 @@
 			<% end %>
 			<td class="inPTable">
 				<% @element = element %>
-				<%= erb :pt_element %>
+				<%= erb :pt_element, :locals=> {:markers => true} %>
 				<% if element.group == @main_pauses_group %>
 					<% lastGroup = @main_resumes_group-1 %>
 				<% else %>
