@@ -16,15 +16,30 @@
 	<% below_exists = false %>
 <% end %>
 
+<!-- Database query to determine if there are f-block elements in this period. If no, flagged as such so will skip columns for f groups. -->
+
+<% begin %>
+	<% f_this_period = Element.all(:period=>@period, :group => @f_groups)[0] %>
+	<% f_exists = true if f_this_period.atomic_num # OK if there is an f element in this period; will go to rescue if not %>
+<% rescue %>
+	<% f_exists = false %>
+<% end %>
+
+<!--p>f_exists: <%=f_exists%></p-->
+	
 <!--p>Start of table of elements for selected period </p-->
 <table>
 	<tr>
 		<th>Group</th>
 		<% for group_header in 1..@max_group do %>
-			<th>
-				<% # if group_header == 1 %> Group <% # end %>
-				<%= erb :group_link_generator, :locals=> {:linear_group => group_header} %>
-			</th>
+			<% if (!f_exists) && (@f_groups.include? group_header) # if no f groups in this period and current group is an f group %>
+				<% next # skip this group, go to next group %>
+			<% else # plot this group %>
+				<th>
+					<% # if group_header == 1 %> Group <% # end %>
+					<%= erb :group_link_generator, :locals=> {:linear_group => group_header} %>
+				</th>
+			<% end %>
 		<% end %>
 	</tr>
 	<% period_header = @period #go to the period of this page %>
@@ -44,7 +59,11 @@
 				<% #@base = Base.all(:id => period_header)[0].base %>
 		</th>
 		<% @ethisp.each do |element| %>
-			<% blanks = element.group - lastGroup - 1 %>
+			<% if (element.group == @main_resumes_group) && (!f_exists) # if this is traditional group 3 and there are no f elements in this period %>
+				<% blanks = element.group - lastGroup -  - 1 %>
+			<% else %>
+				<% blanks = element.group - lastGroup - 1 %>
+			<% end %>
 			<% while blanks > 0 %>
 				<td></td>
 				<% blanks = blanks - 1 %>

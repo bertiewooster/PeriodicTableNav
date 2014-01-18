@@ -151,7 +151,6 @@ helpers do
 	
 	@f_groups = Array ((@main_pauses_group + 1) .. (@main_resumes_group -1))
 	
-	#@main_groups = 1..@main_pauses_group + @main_resumes_group..@max_group
   end
 end
 

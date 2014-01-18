@@ -80,7 +80,7 @@
 			</td>
 			<% period.each do |element| %>
 				<% blanks = element.group - lastGroup - 1 %>
-				<% if not @f_groups.include? element.group %>
+				<% if not @f_groups.include? element.group # if element group isn't an f group, skip element %>
 					<% blanks = 0 %>
 					<% lastGroup += 1 %>	
 					<% next %>
