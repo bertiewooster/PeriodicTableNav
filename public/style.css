@@ -44,6 +44,7 @@
 		font-size: 150%;
 		vertical-align: bottom;
 		/*border: 1px solid green;*/
+		width: 65px; /*5.1%;*/
 	}
 	
 	th a {
@@ -52,6 +53,8 @@
 
 	th.period_header {
 		vertical-align: middle;
+		width: 60px;
+		/*border: 1px dashed red;*/
 	}
 	
 	td {
@@ -64,6 +67,14 @@
 	th.home_element {
 		/*border: 3px solid black;*/
 		width: 65px; /*5.1%;*/
+	}
+
+	table.f_period {
+		width: 150%; /*1170px;*/
+	}
+	
+	table.f_period th {
+		width: 65px;
 	}
 
 	th.col1 {

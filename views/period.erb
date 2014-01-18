@@ -28,7 +28,7 @@
 <!--p>f_exists: <%=f_exists%></p-->
 	
 <!--p>Start of table of elements for selected period </p-->
-<table>
+<table <%="class='f_period'" if f_exists %>
 	<tr>
 		<th>Group</th>
 		<% for group_header in 1..@max_group do %>
@@ -48,6 +48,7 @@
 		<th class="period_header">
 			Period
 			<% if above_exists %>
+				<br>
 				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@period-1, "text" => '^']} %>
 				<br>
 			<% end %>
