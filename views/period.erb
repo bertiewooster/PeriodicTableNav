@@ -58,9 +58,11 @@
 			<% end %>
 				<% #@base = Base.all(:id => period_header)[0].base %>
 		</th>
+		<% f_skip_done = false %>
 		<% @ethisp.each do |element| %>
-			<% if (element.group == @main_resumes_group) && (!f_exists) # if this is traditional group 3 and there are no f elements in this period %>
-				<% blanks = element.group - lastGroup -  - 1 %>
+			<% if (!f_skip_done) && (element.group >= @main_resumes_group) && (!f_exists) # if this is traditional group 3 and there are no f elements in this period %>
+				<% f_skip_done = true %>
+				<% blanks = element.group - lastGroup - @num_f_groups - 1 %>
 			<% else %>
 				<% blanks = element.group - lastGroup - 1 %>
 			<% end %>

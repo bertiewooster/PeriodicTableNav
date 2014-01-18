@@ -62,7 +62,6 @@ helpers do
 		# Using linear group numbering of 1-32 (f-block columns numbered as groups):
 		@main_pauses_group = 2 # where main part of periodic table (non-f block) leaves off
 		@main_resumes_group = 17 # where main part of periodic table (non-f block) picks back up
-		@num_f_groups = 14 # number of f groups
 	end
 	
 	def group_lin_to_trad(linear_group)
@@ -134,7 +133,7 @@ helpers do
 	end
 	@bases				= Base.all
 	
-	#Build array of elements in main groups (non-f block)
+	#Build array of groups in main groups (non-f block)
 
 	ongroup = 1
 	@main_groups = Array.new
@@ -149,8 +148,10 @@ helpers do
 		ongroup += 1
 	end
 	
+	#Build array of f groups
 	@f_groups = Array ((@main_pauses_group + 1) .. (@main_resumes_group -1))
-	
+	@num_f_groups = @f_groups.size #14 # number of f groups
+
   end
 end
 
