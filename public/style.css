@@ -72,6 +72,10 @@
 		/*border: 3px solid black;*/
 		width: 65px; /*5.1%;*/
 	}
+	
+	table#f_block { /* f-block table on home page (groups f1-f14, periods 6-7) */
+		margin-top: 20px;
+	}
 
 	table.f_period {
 		width: 150%; /*1170px;*/
@@ -100,6 +104,7 @@
 	table.home th {
 		font-size: 150%;
 		vertical-align: bottom;
+		height: 25px;
 	}
 	
 	table.home th a {

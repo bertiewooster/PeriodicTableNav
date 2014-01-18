@@ -49,11 +49,11 @@
 <!-- f groups table -->
 <% period_header = 0 # labels for periods %>
 <% period_plotted = false #keep track of whether a period has been plotted yet %>
-<table class="home">
+<table class="home" id="f_block">
 	<tr>
 		<th class="col1" id="f_col1">Group</th>
-		<td class="spacer"></td>
-		<td class="spacer"></td>
+		<th class="spacer"></th>
+		<th class="spacer"></th>
 		<% @f_groups.each do |group_header| %>
 			<th class="home_element">
 				<% # if group_header == 1 %> Group <% # end %>
