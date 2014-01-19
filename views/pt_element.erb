@@ -1,5 +1,5 @@
 <!-- Inputs (optional ones)
-ec_class, (markers), (no_link)
+ec_class, (properties[Hash]), (markers), (no_link)
 -->
 
 <% # Show 5-pointed star on Ba (*) and Ra (**) if markers is true; used for home page (to point to lanthanides & actinides, respectively) %>
@@ -37,21 +37,26 @@ ec_class, (markers), (no_link)
 
 	<div class="<%=ec_class%>">
 		<% @base = Base.all(:id => element.period)[0].base %>
-		<span class="ec_base"><%= @base %></span>
+		<% @orbs = Orb.all(:element_id => element.atomic_num) %>
+		<% # Following line squishes together all electron config terms so they won't have spaces between them (2s22p1 rather than 2s2 2p1) %>
+		<!--span class="ec_base"><%= @base %></span-->
 		<span class="terms">
-			<% @orbs = Orb.all(:element_id => element.atomic_num) %>
 			<% for eo in 0..@orbs.size-1 %>
 				<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
 				<span class="ec_<%=@orbital.n.to_s+@orbital.l%>">
-					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span>
-					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span>
-					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>c">
-						<sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup>
-					</span>
+					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span>
 				</span>
 			<% end %>
 		</span>
 	</div>
+
+	<!--div class="pt_atomic_weight"> 
+		<% if element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
+			[<%= element.atomic_weight.round %>]
+		<% else %>
+			<%= element.atomic_weight %>
+		<% end %>
+	</div-->
 
 	<!--div><%= element.period %></div>  
 	<div><%= element.group %></div-->

@@ -155,6 +155,8 @@ helpers do
   end
 end
 
+#set :erb, :trim => '-'
+ 
 get '/test/:name' do
 	load_elements(params[:name])
 	erb :test

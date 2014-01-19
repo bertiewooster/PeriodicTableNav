@@ -1,12 +1,27 @@
-<% @ec_class = "wide" %>
+<span class="ec_base">[He]</span><span class="ec_2s"><span class="ec_2sn">2</span
+><span class="ec_2sl">s</span
+><span class="ec_2sc"
+><sup class="wide">2</sup
+></span></span></span>
+<br>
+
+<span class="ec_base">[He]</span>
+<span class="ec_2s">
+<span class="ec_2sn">2</span>
+<span class="ec_2sl">s</span>
+<span class="ec_2sc"><sup class="wide">2</sup>
+</span>
+</span>
+</span>
+
 <% @origin = @ebyp[1][1] %>
+<% @element = @origin %>
 <table class="element">
                 <tr>
 		<!-- Row for left, origin, right elements-->
 		<td id="origin" class="inPTable origin origin_col">
 			<!-- For origin element -->
-				<% @element = @origin %>
-				<%= erb :pt_element %><!--br-->
+				<%= erb :pt_element, :locals=> {:element => @origin, :markers => true, :ec_class => "wide"} %><!--br-->
 				<div class="pt_name_origin">Name origin: <%= @element.name_origin %></div><!--br-->
 				<!--div class="pt_group">group: <%= @element.group %></div><!--br-->
 				<div class="pt_period">period: <%= @element.period %></div><br-->

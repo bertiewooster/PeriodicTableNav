@@ -124,6 +124,7 @@
 		height: 80px;
 		/* border: 5px dashed green;  */
 		text-align: center;
+		word-wrap: break-word;
    	}  
 
 	table.group {
@@ -179,12 +180,12 @@
 	}
 
 	div.pt_name {
-		font-size: 80%;
+		font-size: 77%;
 		/*margin-top: 0 px;*/
 	}
 
 	div.narrow { /* for narrow table cells: home and period pages */
-		font-size: 75%; /*150%;*/
+		font-size: 100%; /*150%;*/
 		/*font-weight: bold;*/
 	}
 
