@@ -3,8 +3,6 @@
 <p>@linear_group: <%= @linear_group %></p>
 -->
 
-<% @ec_class = "wide" #in pt_element.erb, specify electron config style: big text so can see what's highlighted %>
-
 <% period_header = 0 # labels for periods %>
 
 <!--p>Start of by-group elements listing</p-->
@@ -64,8 +62,7 @@
 				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
 			</th>
 				<td class="inPTable">
-					<% @element = element %>
-					<%= erb :pt_element %>
+					<%= erb :pt_element, :locals=> {:element => element, :ec_class => "wide"} %>
 					<% lastGroup = element.group %>
 				</td>
 		</tr>

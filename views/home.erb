@@ -1,5 +1,3 @@
-<% @ec_class = "narrow" #in pt_element.erb, specify electron config style: small text so can fit in table %>
-
 <!-- Main groups table -->
 <% period_header = 0 # labels for periods %>
 <table class="home">
@@ -33,8 +31,7 @@
 				<% blanks = blanks - 1 %>
 			<% end %>
 			<td class="inPTable">
-				<% @element = element %>
-				<%= erb :pt_element, :locals=> {:markers => true} %>
+				<%= erb :pt_element, :locals=> {:element => element, :markers => true, :ec_class => "narrow"} %>
 				<% if element.group == @main_pauses_group %>
 					<% lastGroup = @main_resumes_group-1 %>
 				<% else %>
@@ -90,8 +87,7 @@
 					<% blanks = blanks - 1 %>
 				<% end %>
 				<td class="inPTable">
-					<% @element = element %>
-					<%= erb :pt_element %>
+					<%= erb :pt_element, :locals=> {:element => element, :ec_class => "narrow"} %>
 					<%# if element.group == @main_pauses_group %>
 						<%# lastGroup = @main_resumes_group-1 %>
 					<%# else %>

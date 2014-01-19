@@ -63,8 +63,6 @@
 	}); // end ready
 </script>
 
-<% @ec_class = "wide" #in pt_element.erb, specify electron config style: big text so can see what's highlighted %>
-
 <!-- Database queries to find four adjacent elements. If one doesn't exist, flagged as such to modify table structure. -->
 <% begin %>
 	<% @above = Element.all(:period => @origin.period-1, :group => @origin.group)[0] %>
@@ -125,8 +123,7 @@
                                 <td class="left_col"></td>
                         <% end %>
                         <td id="above" class="inPTable origin_col">
-							<% @element = @above %>
-							<%= erb :pt_element %>
+							<%= erb :pt_element, :locals=> {:element => @above, :ec_class => "wide"} %>
                         </td>
                         <% if right_exists %>
                                 <td class="right_col"></td>
@@ -142,75 +139,72 @@
 		<% if left_exists %>
 			<td id="left" class="inPTable left_col">
 				<!-- For element to the left of origin element -->
-				<% @element = @left %>
-				<%= erb :pt_element %>
+				<%= erb :pt_element, :locals=> {:element => @left, :ec_class => "wide"} %>
 			</td>
 		<% end %>
 		<td id="origin" class="inPTable origin origin_col">
 			<!-- For origin element -->
-				<% @element = @origin %>
-				<%= erb :pt_element %>
-				<span class="pt_name_origin">Name origin: <%= @element.name_origin %></span><br>
-				<!--span class="pt_group">group: <%= @element.group %></span><br>
-				<span class="pt_period">period: <%= @element.period %></span><br-->
+				<%= erb :pt_element, :locals=> {:element => @origin, :ec_class => "wide", :no_link => true} %>
+				<span class="pt_name_origin">Name origin: <%= @origin.name_origin %></span><br>
+				<!--span class="pt_group">group: <%= @origin.group %></span><br>
+				<span class="pt_period">period: <%= @origin.period %></span><br-->
 				<span class="pt_atomic_weight">Atomic weight: 
-					<% if @element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
-						[<%= @element.atomic_weight.round %>]
+					<% if @origin.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
+						[<%= @origin.atomic_weight.round %>]
 					<% else %>
-						<%= @element.atomic_weight %>
+						<%= @origin.atomic_weight %>
 					<% end %>
 				</span><br>
-				<!--span class="pt_atomic_wt_is_mass_number_of_longest_lived_isotope">atomic_wt_is_mass_number_of_longest_lived_isotope: <%= @element.atomic_wt_is_mass_number_of_longest_lived_isotope %></span><br-->
-				<span class="pt_specific_heat_capacity_J_per_gK">Specific heat capacity: <%= @element.specific_heat_capacity_j_per_gk %> J/gK</span><br>
+				<!--span class="pt_atomic_wt_is_mass_number_of_longest_lived_isotope">atomic_wt_is_mass_number_of_longest_lived_isotope: <%= @origin.atomic_wt_is_mass_number_of_longest_lived_isotope %></span><br-->
+				<span class="pt_specific_heat_capacity_J_per_gK">Specific heat capacity: <%= @origin.specific_heat_capacity_j_per_gk %> J/gK</span><br>
 				<span class="pt_density_g_per_cm3">Density: 
-					<% if @element.density_is_estimated == 1 %>
-						(<%= @element.density_g_per_cm3.round %>)
+					<% if @origin.density_is_estimated == 1 %>
+						(<%= @origin.density_g_per_cm3.round %>)
 					<% else %>
-						<%= @element.density_g_per_cm3 %>
+						<%= @origin.density_g_per_cm3 %>
 					<% end %>
 					g/cm<sup>3</sup>
 				</span><br>
-				<!--span class="pt_density_is_estimated">density_is_estimated: <%= @element.density_is_estimated %></span><br-->
+				<!--span class="pt_density_is_estimated">density_is_estimated: <%= @origin.density_is_estimated %></span><br-->
 				<span class="pt_melting_point_k">Melting point: 
-					<% if @element.melt_is_estimated == 1 %>
-						(<%= @element.melting_point_k.round %>)
+					<% if @origin.melt_is_estimated == 1 %>
+						(<%= @origin.melting_point_k.round %>)
 					<% else %>
-						<%= @element.melting_point_k %>
+						<%= @origin.melting_point_k %>
 					<% end %>
 					 K		
 				</span><br>
-				<!--span class="pt_melt_is_estimated">melt_is_estimated: <%= @element.melt_is_estimated %></span><br-->
+				<!--span class="pt_melt_is_estimated">melt_is_estimated: <%= @origin.melt_is_estimated %></span><br-->
 				<span class="pt_boiling_point_k">Boiling point: 
-					<% if @element.boil_is_estimated == 1 %>
-						(<%= @element.boiling_point_k.round %>)
+					<% if @origin.boil_is_estimated == 1 %>
+						(<%= @origin.boiling_point_k.round %>)
 					<% else %>
-						<%= @element.boiling_point_k %>
+						<%= @origin.boiling_point_k %>
 					<% end %>			
 					 K		
 				</span><br>				
-				<!--span class="pt_boil_is_estimated">boil_is_estimated: <%= @element.boil_is_estimated %></span><br-->
+				<!--span class="pt_boil_is_estimated">boil_is_estimated: <%= @origin.boil_is_estimated %></span><br-->
 				<span class="pt_electronegativity">Electronegativity (Pauling): 
-					<% if @element.electronegativity.nil? %>
+					<% if @origin.electronegativity.nil? %>
 						unknown
 					<% else %>
-						<%= @element.electronegativity %>
+						<%= @origin.electronegativity %>
 					<% end %>									
 				</span><br>
 				<span class="pt_abundance_mg_per_kg">Abundance: 
-					<% if @element.abundance_is_upper_limit == 1 %>
+					<% if @origin.abundance_is_upper_limit == 1 %>
 						<
 					<% end %>
-					<%= @element.abundance_mg_per_kg %>
+					<%= @origin.abundance_mg_per_kg %>
 					 mg/kg
 				</span><br>
-				<!--span class="pt_"abundance_is_upper_limit">abundance_is_upper_limit: <%= @element.abundance_is_upper_limit %></span><br-->
-				<!--span class="pt_"e_config_valence">e_config_valence: <%= @element.e_config_valence %></span><br-->
+				<!--span class="pt_"abundance_is_upper_limit">abundance_is_upper_limit: <%= @origin.abundance_is_upper_limit %></span><br-->
+				<!--span class="pt_"e_config_valence">e_config_valence: <%= @origin.e_config_valence %></span><br-->
 		</td>
 		<% if right_exists %>
 			<td id="right" class="inPTable right_col">
 				<!-- For element to the right of origin element -->
-				<% @element = @right %>
-				<%= erb :pt_element %>
+				<%= erb :pt_element, :locals=> {:element => @right, :ec_class => "wide"} %>
 			</td>
 		<% end %>
 	</tr>
@@ -226,8 +220,7 @@
 			<% end %>
 			<td id="below" class="inPTable origin_col">
 				<!-- For element below origin element -->
-				<% @element = @below %>
-				<%= erb :pt_element %>
+				<%= erb :pt_element, :locals=> {:element => @below, :ec_class => "wide"} %>
 			</td>
 			<% if right_exists %>
 				<td class="right_col"></td>

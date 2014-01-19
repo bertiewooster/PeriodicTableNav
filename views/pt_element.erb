@@ -1,41 +1,60 @@
+<!-- Inputs (optional ones)
+ec_class, (markers), (no_link)
+-->
+
+<% # Show 5-pointed star on Ba (*) and Ra (**) if markers is true; used for home page (to point to lanthanides & actinides, respectively) %>
 <% begin %>
 	<% show_markers = true if markers %>
 <% rescue %>
 	<% show_markers = false %>
 <% end %>
-<a href="/element/<%=@element.atomic_num %>" title="element <%=@element.atomic_num%>">
-	<div class="pt_atomic_num"><%= @element.atomic_num %></div><!--br-->
+
+<% # Create a link to element's page unless no_link is true; if no_link isn't included in locals passed to this .erb, create a link %>
+<% begin %>
+	<% create_link = false if no_link %>
+<% rescue %>
+	<% create_link = true %>
+<% end %>
+
+<% if create_link %>
+	<a href="/element/<%=element.atomic_num %>" title="element <%=element.atomic_num%>">
+<% end %>
+
+<!--a href="/element/<%=element.atomic_num %>" title="element <%=element.atomic_num%>"-->
+	<div class="pt_atomic_num"><%= element.atomic_num %></div><!--br-->
 	<div class="pt_symbol">
-		<%= @element.symbol %>
+		<%= element.symbol %>
 		<% if show_markers %>
-			<% if @element.atomic_num == 56 %>
+			<% if element.atomic_num == 56 %>
 				<sup class="pointer">&#9733;</sup>
 			<% end %>
-			<% if @element.atomic_num == 88 %>
+			<% if element.atomic_num == 88 %>
 				<sup class="pointer">&#9733;&#9733;</sup>
 			<% end %>
 		<% end %>
 	</div><!--br-->
-	<div class="pt_name"><%= @element.name %></div><!--br-->
+	<div class="pt_name"><%= element.name %></div><!--br-->
 
-	<div class="<%=@ec_class%>">
-		<% @base = Base.all(:id => @element.period)[0].base %>
+	<div class="<%=ec_class%>">
+		<% @base = Base.all(:id => element.period)[0].base %>
 		<span class="ec_base"><%= @base %></span>
 		<span class="terms">
-			<% @orbs = Orb.all(:element_id => @element.atomic_num) %>
+			<% @orbs = Orb.all(:element_id => element.atomic_num) %>
 			<% for eo in 0..@orbs.size-1 %>
 				<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
 				<span class="ec_<%=@orbital.n.to_s+@orbital.l%>">
 					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span>
 					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span>
 					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>c">
-						<sup class="<%=@ec_class%>"><%=@orbs[eo].count%></sup>
+						<sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup>
 					</span>
 				</span>
 			<% end %>
 		</span>
 	</div>
 
-	<!--span><%= @element.period %></div>  
-	<div><%= @element.group %></div-->
-</a>
+	<!--div><%= element.period %></div>  
+	<div><%= element.group %></div-->
+<% if create_link %>
+	</a>
+<% end %>

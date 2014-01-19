@@ -1,17 +1,13 @@
-	.pt_density_g_per_cm3 {
-		margin-top: 10px;
-	}
-
-	div {
-	    /*display:inline;*/
-	}
-	
 	body {  
 		/*margin: 10px auto;  */
 		margin-left: 10px;
 		/*width: 640px;  */
 	}  
 
+	p {  
+		margin: 0 0 5px;  
+	}
+	
 	header {  
 		text-align: center;  
 		/*margin: 0 0 20px;*/
@@ -187,21 +183,7 @@
 		/*margin-top: 0 px;*/
 	}
 
-	span.pt_atomic_num {
-		font-size: 100%;
-	}
-
-	span.pt_symbol {
-		font-size: 200%;
-		line-height:85%;
-		/*border: 1px dashed red;*/
-	}
-
-	span.pt_name {
-		font-size: 80%;
-	}
-
-	span.narrow { /* for narrow table cells: home and period pages */
+	div.narrow { /* for narrow table cells: home and period pages */
 		font-size: 75%; /*150%;*/
 		/*font-weight: bold;*/
 	}
@@ -212,7 +194,7 @@
 		/*background-color: red;*/
 	}
 
-	span.wide { /* for wide table cells: group and element pages */
+	div.wide { /* for wide table cells: group and element pages */
 		font-size: 150%;
 		/*font-weight: bold;*/
 	}
@@ -232,6 +214,7 @@
 		/*color: red;*/
 	}
 
+	/* Highlighting for similar but differing electron configuration terms between elements */ 
 	.diff_n {
 		background-color: yellow;
 		/*border: 1px solid green;*/
@@ -245,10 +228,7 @@
 		background-color: orange;
 	}
 
+	/* Debugging */
 	.highlighted {
 		background-color: orange;
-	}
-
-	p {  
-		margin: 0 0 5px;  
 	}
