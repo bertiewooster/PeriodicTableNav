@@ -170,18 +170,23 @@
 
 	span.pt_symbol {
 		font-size: 200%;
-		line-height:80%;
+		line-height:85%;
 		/*border: 1px dashed red;*/
 	}
 
 	span.pt_name {
 		font-size: 80%;
-		margin-top: -10px;
 	}
 
 	span.narrow { /* for narrow table cells: home and period pages */
 		font-size: 75%; /*150%;*/
 		/*font-weight: bold;*/
+	}
+
+	sup.narrow { /* for superscripts in narrow table cells (home and period) */
+		/*font-size: 50%; */
+		top: +0.0em;
+		/*background-color: red;*/
 	}
 
 	span.wide { /* for wide table cells: group and element pages */
@@ -190,8 +195,8 @@
 	}
 
 	sup.wide { /* for superscripts in wide table cells (group and element), make text bigger so easier to read */
-		font-size: 50%; 
-		top: +0.5em;
+		/*font-size: 50%; */
+		top: +0.0em;
 		/*background-color: red;*/
 	}
 
