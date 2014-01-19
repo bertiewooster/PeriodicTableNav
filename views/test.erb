@@ -1,3 +1,71 @@
+<% @ec_class = "wide" %>
+<% @origin = @ebyp[1][1] %>
+<table class="element">
+                <tr>
+		<!-- Row for left, origin, right elements-->
+		<td id="origin" class="inPTable origin origin_col">
+			<!-- For origin element -->
+				<% @element = @origin %>
+				<%= erb :pt_element %><!--br-->
+				<div class="pt_name_origin">Name origin: <%= @element.name_origin %></div><!--br-->
+				<!--div class="pt_group">group: <%= @element.group %></div><!--br-->
+				<div class="pt_period">period: <%= @element.period %></div><br-->
+				<div class="pt_atomic_weight">Atomic weight: 
+					<% if @element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
+						[<%= @element.atomic_weight.round %>]
+					<% else %>
+						<%= @element.atomic_weight %>
+					<% end %>
+				</div><!--br-->
+				<!--div class="pt_atomic_wt_is_mass_number_of_longest_lived_isotope">atomic_wt_is_mass_number_of_longest_lived_isotope: <%= @element.atomic_wt_is_mass_number_of_longest_lived_isotope %></div><br-->
+				<div class="pt_specific_heat_capacity_J_per_gK">Specific heat capacity: <%= @element.specific_heat_capacity_j_per_gk %> J/gK</div><!--br-->
+				<div class="pt_density_g_per_cm3">Density: 
+					<% if @element.density_is_estimated == 1 %>
+						(<%= @element.density_g_per_cm3.round %>)
+					<% else %>
+						<%= @element.density_g_per_cm3 %>
+					<% end %>
+					g/cm<sup>3</sup>
+				</div><!--br-->
+				<!--div class="pt_density_is_estimated">density_is_estimated: <%= @element.density_is_estimated %></div><br-->
+				<div class="pt_melting_point_k">Melting point: 
+					<% if @element.melt_is_estimated == 1 %>
+						(<%= @element.melting_point_k.round %>)
+					<% else %>
+						<%= @element.melting_point_k %>
+					<% end %>
+					 K		
+				</div><!--br-->
+				<!--div class="pt_melt_is_estimated">melt_is_estimated: <%= @element.melt_is_estimated %></div><br-->
+				<div class="pt_boiling_point_k">Boiling point: 
+					<% if @element.boil_is_estimated == 1 %>
+						(<%= @element.boiling_point_k.round %>)
+					<% else %>
+						<%= @element.boiling_point_k %>
+					<% end %>			
+					 K		
+				</div><!--br-->				
+				<!--div class="pt_boil_is_estimated">boil_is_estimated: <%= @element.boil_is_estimated %></div><br-->
+				<div class="pt_electronegativity">Electronegativity (Pauling): 
+					<% if @element.electronegativity.nil? %>
+						unknown
+					<% else %>
+						<%= @element.electronegativity %>
+					<% end %>									
+				</div><!--br-->
+				<div class="pt_abundance_mg_per_kg">Abundance: 
+					<% if @element.abundance_is_upper_limit == 1 %>
+						<
+					<% end %>
+					<%= @element.abundance_mg_per_kg %>
+					 mg/kg
+				</div><!--br-->
+				<!--div class="pt_"abundance_is_upper_limit">abundance_is_upper_limit: <%= @element.abundance_is_upper_limit %></div><br-->
+				<!--div class="pt_"e_config_valence">e_config_valence: <%= @element.e_config_valence %></div><br-->
+		</td>
+	</tr>
+</table>
+
 <p>@num_f_groups: <%= @num_f_groups %></p>
 
 <% for trad in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,"g1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12","f13","f14"] do %>

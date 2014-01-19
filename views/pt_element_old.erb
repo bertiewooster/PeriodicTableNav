@@ -4,8 +4,8 @@
 	<% show_markers = false %>
 <% end %>
 <a href="/element/<%=@element.atomic_num %>" title="element <%=@element.atomic_num%>">
-	<div class="pt_atomic_num"><%= @element.atomic_num %></div><!--br-->
-	<div class="pt_symbol">
+	<span class="pt_atomic_num"><%= @element.atomic_num %></span><br>
+	<span class="pt_symbol">
 		<%= @element.symbol %>
 		<% if show_markers %>
 			<% if @element.atomic_num == 56 %>
@@ -15,10 +15,10 @@
 				<sup class="pointer">&#9733;&#9733;</sup>
 			<% end %>
 		<% end %>
-	</div><!--br-->
-	<div class="pt_name"><%= @element.name %></div><!--br-->
+	</span><br>
+	<span class="pt_name"><%= @element.name %></span><br>
 
-	<div class="<%=@ec_class%>">
+	<span class="<%=@ec_class%>">
 		<% @base = Base.all(:id => @element.period)[0].base %>
 		<span class="ec_base"><%= @base %></span>
 		<span class="terms">
@@ -34,8 +34,8 @@
 				</span>
 			<% end %>
 		</span>
-	</div>
+	</span>
 
-	<!--span><%= @element.period %></div>  
-	<div><%= @element.group %></div-->
+	<!--span><%= @element.period %></span>  
+	<span><%= @element.group %></span-->
 </a>

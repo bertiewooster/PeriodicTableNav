@@ -1,3 +1,11 @@
+	.pt_density_g_per_cm3 {
+		margin-top: 10px;
+	}
+
+	div {
+	    /*display:inline;*/
+	}
+	
 	body {  
 		/*margin: 10px auto;  */
 		margin-left: 10px;
@@ -164,6 +172,21 @@
 		text-decoration: none;
 	}  
 
+	div.pt_atomic_num {
+		font-size: 100%;
+	}
+
+	div.pt_symbol {
+		font-size: 200%;
+		line-height:85%;
+		/*border: 1px dashed red;*/
+	}
+
+	div.pt_name {
+		font-size: 80%;
+		/*margin-top: 0 px;*/
+	}
+
 	span.pt_atomic_num {
 		font-size: 100%;
 	}
@@ -195,8 +218,8 @@
 	}
 
 	sup.wide { /* for superscripts in wide table cells (group and element), make text bigger so easier to read */
-		/*font-size: 50%; */
-		top: +0.0em;
+		font-size: 65%;
+		top: +0.2em;
 		/*background-color: red;*/
 	}
 
