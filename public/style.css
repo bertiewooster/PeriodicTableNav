@@ -184,6 +184,9 @@
 		/*margin-top: 0 px;*/
 	}
 
+	.pt_density_g_per_cm3 sup { /* for superscript 3 in g/cm3 */
+		top: +0.2em;
+	}
 	div.narrow { /* for narrow table cells: home and period pages */
 		font-size: 100%; /*150%;*/
 		/*font-weight: bold;*/

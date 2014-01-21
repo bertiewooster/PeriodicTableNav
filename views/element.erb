@@ -144,60 +144,74 @@
 		<% end %>
 		<td id="origin" class="inPTable origin origin_col">
 			<!-- For origin element -->
-				<%= erb :pt_element, :locals=> {:element => @origin, :ec_class => "wide", :no_link => true} %>
-				<span class="pt_name_origin">Name origin: <%= @origin.name_origin %></span><br>
+				<% origin_properties = 		
+				{"atomic_num"=>nil,
+				"symbol"=>nil,
+				"name"=>nil,
+				"e_config" => {"base" => true, "space_terms" => true},
+				"name_origin" => {"label" => true},
+				"atomic_weight" => {"label" => true},
+				"specific_heat_capacity_j_per_gk" => {"label" => true},
+				"density_g_per_cm3" => {"label" => true},
+				"melting_point_k" => {"label" => true},
+				"boiling_point_k" => {"label" => true},
+				"electronegativity" => {"label" => true},
+				"abundance_mg_per_kg" => {"label" => true}} %>
+
+				<%= erb :pt_element, :locals=> {:element => @origin, :properties=>origin_properties, :ec_class => "wide", :no_link => true} %>
+				<!--span class="pt_name_origin">Name origin: <%= @origin.name_origin %></span><br-->
 				<!--span class="pt_group">group: <%= @origin.group %></span><br>
 				<span class="pt_period">period: <%= @origin.period %></span><br-->
-				<span class="pt_atomic_weight">Atomic weight: 
+				<!--span class="pt_atomic_weight">Atomic weight: 
 					<% if @origin.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
 						[<%= @origin.atomic_weight.round %>]
 					<% else %>
 						<%= @origin.atomic_weight %>
 					<% end %>
-				</span><br>
+				</span><br-->
 				<!--span class="pt_atomic_wt_is_mass_number_of_longest_lived_isotope">atomic_wt_is_mass_number_of_longest_lived_isotope: <%= @origin.atomic_wt_is_mass_number_of_longest_lived_isotope %></span><br-->
-				<span class="pt_specific_heat_capacity_J_per_gK">Specific heat capacity: <%= @origin.specific_heat_capacity_j_per_gk %> J/gK</span><br>
-				<span class="pt_density_g_per_cm3">Density: 
+				<!--span class="pt_specific_heat_capacity_J_per_gK">Specific heat capacity: <%= @origin.specific_heat_capacity_j_per_gk %> J/gK</span><br-->
+				<!--span class="pt_density_g_per_cm3">Density: 
 					<% if @origin.density_is_estimated == 1 %>
 						(<%= @origin.density_g_per_cm3.round %>)
 					<% else %>
 						<%= @origin.density_g_per_cm3 %>
 					<% end %>
 					g/cm<sup>3</sup>
-				</span><br>
+				</span><br-->
 				<!--span class="pt_density_is_estimated">density_is_estimated: <%= @origin.density_is_estimated %></span><br-->
-				<span class="pt_melting_point_k">Melting point: 
+				<!--span class="pt_melting_point_k">Melting point: 
 					<% if @origin.melt_is_estimated == 1 %>
 						(<%= @origin.melting_point_k.round %>)
 					<% else %>
 						<%= @origin.melting_point_k %>
 					<% end %>
 					 K		
-				</span><br>
+				</span><br-->
 				<!--span class="pt_melt_is_estimated">melt_is_estimated: <%= @origin.melt_is_estimated %></span><br-->
-				<span class="pt_boiling_point_k">Boiling point: 
+				<!--span class="pt_boiling_point_k">Boiling point: 
 					<% if @origin.boil_is_estimated == 1 %>
 						(<%= @origin.boiling_point_k.round %>)
 					<% else %>
 						<%= @origin.boiling_point_k %>
 					<% end %>			
 					 K		
-				</span><br>				
+				</span><br-->				
 				<!--span class="pt_boil_is_estimated">boil_is_estimated: <%= @origin.boil_is_estimated %></span><br-->
-				<span class="pt_electronegativity">Electronegativity (Pauling): 
+				<!--span class="pt_electronegativity">Electronegativity (Pauling): 
 					<% if @origin.electronegativity.nil? %>
 						unknown
 					<% else %>
 						<%= @origin.electronegativity %>
 					<% end %>									
-				</span><br>
-				<span class="pt_abundance_mg_per_kg">Abundance: 
+				</span><br-->
+				<!--span class="pt_abundance_mg_per_kg">Abundance: 
 					<% if @origin.abundance_is_upper_limit == 1 %>
 						<
 					<% end %>
 					<%= @origin.abundance_mg_per_kg %>
 					 mg/kg
-				</span><br>
+				</span><br-->
 				<!--span class="pt_"abundance_is_upper_limit">abundance_is_upper_limit: <%= @origin.abundance_is_upper_limit %></span><br-->
 				<!--span class="pt_"e_config_valence">e_config_valence: <%= @origin.e_config_valence %></span><br-->
 		</td>
