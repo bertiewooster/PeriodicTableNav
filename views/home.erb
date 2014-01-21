@@ -1,3 +1,9 @@
+<% properties = 
+	{"atomic_num"=>nil,
+	"symbol"=>nil,
+	"name"=>nil,
+	"e_config" => {"base" => false, "space_terms" => true}} %>
+
 <!-- Main groups table -->
 <% period_header = 0 # labels for periods %>
 <table class="home">
@@ -31,7 +37,7 @@
 				<% blanks = blanks - 1 %>
 			<% end %>
 			<td class="inPTable">
-				<%= erb :pt_element, :locals=> {:element => element, :markers => true, :ec_class => "narrow"} %>
+				<%= erb :pt_element, :locals=> {:element => element, :markers => true, :properties => properties, :ec_class => "narrow"} %>
 				<% if element.group == @main_pauses_group %>
 					<% lastGroup = @main_resumes_group-1 %>
 				<% else %>
@@ -87,12 +93,8 @@
 					<% blanks = blanks - 1 %>
 				<% end %>
 				<td class="inPTable">
-					<%= erb :pt_element, :locals=> {:element => element, :ec_class => "narrow"} %>
-					<%# if element.group == @main_pauses_group %>
-						<%# lastGroup = @main_resumes_group-1 %>
-					<%# else %>
-						<% lastGroup = element.group %>
-					<%# end %>
+					<%= erb :pt_element, :locals=> {:element => element, :ec_class => "narrow", :properties => properties} %>
+					<% lastGroup = element.group %>
 				</td>
 			<% end %>
 			<td class="spacer"></td>

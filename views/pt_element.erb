@@ -204,18 +204,21 @@ where options for symbol =
 		</div>
 	<% when 'e_config' %>
 		<div class="<%=ec_class%>">
-			<%= 'Electron configuration: ' if options["label"] == true %>
 			<% @base = Base.all(:id => element.period)[0].base %>
 			<% @orbs = Orb.all(:element_id => element.atomic_num) %>
-			<% # Following line squishes together all electron config terms so they won't have spaces between them (2s22p1 rather than 2s2 2p1) %>
-			<!--span class="ec_base"><%= @base %></span-->
-			<span class="terms">
-				<% for eo in 0..@orbs.size-1 %>
-					<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
-					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>">
-						<span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span>
-					</span>
-				<% end %>
+			<% spacer = options["space_terms"] == true ? " " : "" %>
+			<%= 'Electron configuration: ' if options["label"] == true %>
+			<% # Following lines offer possibility to squish together all electron config terms so they won't have spaces between them ([He]2s22p1 rather than [He] 2s2 2p1) %>
+			<% if options["base"] == true 
+				%><span class="ec_base"><%= @base %></span
+			><% end 
+			%><span class="terms"
+				><% for eo in 0..@orbs.size-1 
+					%><% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] 
+					%><%=spacer%><span class="ec_<%=@orbital.n.to_s+@orbital.l%>"
+						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
+					></span
+				><% end %>
 			</span>
 		</div>
 	<% else %>
