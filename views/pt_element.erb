@@ -1,5 +1,5 @@
 <!-- Inputs (optional ones in parentheses)
-element, (ec_class), (properties[Hash]), (no_link)
+element, (ec_class), (properties[Hash]), (markers), (no_link)
 properties = Hash["property_1" => (options[Hash]), "property_2" => (options[Hash])]
 where the properties will be displayed in the order of the hash
 where property_n = 
@@ -89,13 +89,13 @@ where options for symbol =
 	<% when 'symbol' %>
 		<div class='pt_symbol'>
  		<%= 'Symbol: ' if options["label"] == true %>
-			<%= element.symbol %>
-			<% if show_markers %>
-				<% if element.atomic_num == 56 %>
-					<sup class="pointer">&#9733;</sup>
-				<% end %>
-				<% if element.atomic_num == 88 %>
-					<sup class="pointer">&#9733;&#9733;</sup>
+			<%= element.symbol 
+			%><% if show_markers 
+				%><% if element.atomic_num == 56 
+					%><sup class="pointer">&#9733;</sup>
+				<% end 
+				%><% if element.atomic_num == 88 
+					%><sup class="pointer">&#9733;&#9733;</sup>
 				<% end %>
 			<% end %>
 		</div>
