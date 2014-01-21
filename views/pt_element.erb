@@ -1,8 +1,56 @@
-<!-- Inputs (optional ones)
-ec_class, (properties[Hash]), (markers), (no_link)
+<!-- Inputs (optional ones in parentheses)
+element, (ec_class), (properties[Hash]), (no_link)
+properties = Hash["property_1" => (options[Hash]), "property_2" => (options[Hash])]
+where the properties will be displayed in the order of the hash
+where property_n = 
+  atomic_num
+  symbol
+  name
+  name_origin
+  group
+  period
+  atomic_weight
+  atomic_wt_is_mass_number_of_longest_lived_isotope
+  specific_heat_capacity_j_per_gk
+  density_g_per_cm3
+  density_is_estimated
+  melting_point_k
+  melt_is_estimated
+  boiling_point_k
+  boil_is_estimated
+  electronegativity
+  abundance_mg_per_kg
+  abundance_is_upper_limit
+  e_config
+where options for e_config =
+  include_base
+    = true (default): includes base (filled shell), e.g. [He]
+    = false: does not
+  space_terms
+    = true (default): puts spaces between terms, e.g. [He] 2s2 2p1
+    = false: does not, e.g. [He]2s22p1
+where options for symbol =
+  markers
+    = true: includes five-pointed stars to point to lanthanides and actindes on Ba and Ra respectively
+    = false (default): does not
 -->
 
+<% # If no ec_class (wide or narrow) was passed in, use narrow %>
+<% begin %>
+	<% ec_class %>
+<% rescue %>
+	<% ec_class = "narrow" %>
+<% end %>
+
+<% # If no properties hash was passed in, use default hash %>
+<% begin %>
+	<% properties %>
+<% rescue %>
+	<% properties = {"atomic_num"=>nil, "symbol"=>nil, "name"=>nil, "e_config" => {"include_base" => true, "space_terms" => true}} %>
+<% end %>
+
 <% # Show 5-pointed star on Ba (*) and Ra (**) if markers is true; used for home page (to point to lanthanides & actinides, respectively) %>
+<% # If markers is false or unspecified, don't show markers %>
 <% begin %>
 	<% show_markers = true if markers %>
 <% rescue %>
@@ -20,46 +68,80 @@ ec_class, (properties[Hash]), (markers), (no_link)
 	<a href="/element/<%=element.atomic_num %>" title="element <%=element.atomic_num%>">
 <% end %>
 
-<!--a href="/element/<%=element.atomic_num %>" title="element <%=element.atomic_num%>"-->
-	<div class="pt_atomic_num"><%= element.atomic_num %></div><!--br-->
-	<div class="pt_symbol">
-		<%= element.symbol %>
-		<% if show_markers %>
-			<% if element.atomic_num == 56 %>
-				<sup class="pointer">&#9733;</sup>
+<% properties.each do |property, options| %>
+	<!--p><%=property%>: <%=options%></p-->
+	<% case property; when "atomic_num" %>
+ 		<div class='pt_""atomic_num'><%= element.atomic_num %></div>
+	<% when 'symbol' %>
+		<div class='pt_symbol'>
+			<%= element.symbol %>
+			<% if show_markers %>
+				<% if element.atomic_num == 56 %>
+					<sup class="pointer">&#9733;</sup>
+				<% end %>
+				<% if element.atomic_num == 88 %>
+					<sup class="pointer">&#9733;&#9733;</sup>
+				<% end %>
 			<% end %>
-			<% if element.atomic_num == 88 %>
-				<sup class="pointer">&#9733;&#9733;</sup>
+		</div>
+	<% when 'name' %>
+		<div class='pt_name'><%= element.name %></div>
+	<% when 'name_origin' %>
+		<div class='pt_name_origin'><%= element.name_origin %></div>
+	<% when 'group' %>
+		<div class='pt_group'><%= element.group %></div>
+	<% when 'period' %>
+		<div class='pt_period'><%= element.period %></div>
+	<% when 'atomic_weight' %>
+		<div class='pt_atomic_weight'>
+			<% if element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
+				[<%= element.atomic_weight.round %>]
+			<% else %>
+				<%= element.atomic_weight %>
 			<% end %>
-		<% end %>
-	</div><!--br-->
-	<div class="pt_name"><%= element.name %></div><!--br-->
+		</div>
+	<% when 'atomic_wt_is_mass_number_of_longest_lived_isotope' %>
+		<div class='pt_atomic_wt_is_mass_number_of_longest_lived_isotope'><%= element.atomic_wt_is_mass_number_of_longest_lived_isotope %></div>
+	<% when 'specific_heat_capacity_J_per_gK' %>
+		<div class='pt_specific_heat_capacity_J_per_gK'><%= element.specific_heat_capacity_J_per_gK %></div>
+	<% when 'density_g_per_cm3' %>
+		<div class='pt_density_g_per_cm3'><%= element.density_g_per_cm3 %></div>
+	<% when 'density_is_estimated' %>
+		<div class='pt_density_is_estimated'><%= element.density_is_estimated %></div>
+	<% when 'melting_point_k' %>
+		<div class='pt_melting_point_k'><%= element.melting_point_k %></div>
+	<% when 'melt_is_estimated' %>
+		<div class='pt_melt_is_estimated'><%= element.melt_is_estimated %></div>
+	<% when 'boiling_point_k' %>
+		<div class='pt_boiling_point_k'><%= element.boiling_point_k %></div>
+	<% when 'boil_is_estimated' %>
+		<div class='pt_boil_is_estimated'><%= element.boil_is_estimated %></div>
+	<% when 'electronegativity' %>
+		<div class='pt_electronegativity'><%= element.electronegativity %></div>
+	<% when 'abundance_mg_per_kg' %>
+		<div class='pt_abundance_mg_per_kg'><%= element.abundance_mg_per_kg %></div>
+	<% when 'abundance_is_upper_limit' %>
+		<div class='pt_abundance_is_upper_limit'><%= element.abundance_is_upper_limit %></div>
+	<% when 'e_config' %>
+		<div class="<%=ec_class%>">
+			<% @base = Base.all(:id => element.period)[0].base %>
+			<% @orbs = Orb.all(:element_id => element.atomic_num) %>
+			<% # Following line squishes together all electron config terms so they won't have spaces between them (2s22p1 rather than 2s2 2p1) %>
+			<!--span class="ec_base"><%= @base %></span-->
+			<span class="terms">
+				<% for eo in 0..@orbs.size-1 %>
+					<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
+					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>">
+						<span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span>
+					</span>
+				<% end %>
+			</span>
+		</div>
+	<% else %>
+		<div>Error: unknown property requested</div> 
+	<% end %>
+<% end %>
 
-	<div class="<%=ec_class%>">
-		<% @base = Base.all(:id => element.period)[0].base %>
-		<% @orbs = Orb.all(:element_id => element.atomic_num) %>
-		<% # Following line squishes together all electron config terms so they won't have spaces between them (2s22p1 rather than 2s2 2p1) %>
-		<!--span class="ec_base"><%= @base %></span-->
-		<span class="terms">
-			<% for eo in 0..@orbs.size-1 %>
-				<% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] %>
-				<span class="ec_<%=@orbital.n.to_s+@orbital.l%>">
-					<span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span>
-				</span>
-			<% end %>
-		</span>
-	</div>
-
-	<!--div class="pt_atomic_weight"> 
-		<% if element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
-			[<%= element.atomic_weight.round %>]
-		<% else %>
-			<%= element.atomic_weight %>
-		<% end %>
-	</div-->
-
-	<!--div><%= element.period %></div>  
-	<div><%= element.group %></div-->
 <% if create_link %>
 	</a>
 <% end %>

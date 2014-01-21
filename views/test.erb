@@ -1,3 +1,10 @@
+<% #properties = Hash.new %>
+<% #properties["atomic_num"]=nil %>
+<% properties = {"atomic_num" => nil, "symbol" => nil} %>
+<% properties.each do |key, value| %>
+	<p><%=key%>: <%=value%></p>
+<% end %>
+<p>----------</P>
 <span class="ec_base">[He]</span><span class="ec_2s"><span class="ec_2sn">2</span
 ><span class="ec_2sl">s</span
 ><span class="ec_2sc"
