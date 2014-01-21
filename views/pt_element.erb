@@ -37,14 +37,14 @@ where options for symbol =
 
 <% # If no ec_class (wide or narrow) was passed in, use narrow %>
 <% begin %>
-	<% ec_class %>
+	<% ec_class # if ec_class was passed in, use it; if not, go to rescue %>
 <% rescue %>
 	<% ec_class = "narrow" %>
 <% end %>
 
 <% # If no properties hash was passed in, use default hash %>
 <% begin %>
-	<% properties %>
+	<% properties # if properties was passed in, use it; if not, go to rescue %>
 <% rescue %>
 	<% properties = {"atomic_num"=>nil, "symbol"=>nil, "name"=>nil, "e_config" => {"include_base" => true, "space_terms" => true}} %>
 <% end %>
@@ -52,9 +52,9 @@ where options for symbol =
 <% # Show 5-pointed star on Ba (*) and Ra (**) if markers is true; used for home page (to point to lanthanides & actinides, respectively) %>
 <% # If markers is false or unspecified, don't show markers %>
 <% begin %>
-	<% show_markers = true if markers %>
+	<% show_markers = true if markers # if markers was passed in and is true, show markers; otherwise, %>
 <% rescue %>
-	<% show_markers = false %>
+	<% show_markers = false # don't show markers %>
 <% end %>
 
 <% # Create a link to element's page unless no_link is true; if no_link isn't included in locals passed to this .erb, create a link %>
@@ -68,6 +68,7 @@ where options for symbol =
 	<a href="/element/<%=element.atomic_num %>" title="element <%=element.atomic_num%>">
 <% end %>
 
+<% # Loop to output properties (atomic_num, symbol, etc.) in order given in hash %>
 <% properties.each do |property, options| %>
 	<!--p><%=property%>: <%=options%></p-->
 	<% case property; when "atomic_num" %>
