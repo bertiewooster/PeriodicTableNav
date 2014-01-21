@@ -23,7 +23,7 @@ where property_n =
   abundance_is_upper_limit
   e_config
 where options for all properties =
-  show_label
+  label
     = true: show label, e.g. "Name origin"
     = false (default): do not
 where options for e_config =
@@ -79,16 +79,16 @@ where options for symbol =
 <% # Loop to output properties (atomic_num, symbol, etc.) in order given in hash %>
 <% properties.each do |property, options| %>
 	<% options = Hash.new() if options == nil # create (empty) options hash if doesn't exist %>
-	<% options["show_label"] = true if !options.has_key?("show_label") %>
+	<% options["label"] = true if !options.has_key?("label") %>
 	<!--p><%=property%> options: <%=options%></p-->
 	<% case property; 
 	   when "atomic_num" %>
  		<div class='pt_atomic_num'>
- 		<%= 'Atomic number: ' if options["show_label"] == true %>
+ 		<%= 'Atomic number: ' if options["label"] == true %>
  		<%= element.atomic_num %></div>
 	<% when 'symbol' %>
 		<div class='pt_symbol'>
- 		<%= 'Symbol: ' if options["show_label"] == true %>
+ 		<%= 'Symbol: ' if options["label"] == true %>
 			<%= element.symbol %>
 			<% if show_markers %>
 				<% if element.atomic_num == 56 %>
@@ -101,27 +101,27 @@ where options for symbol =
 		</div>
 	<% when 'name' %>
 		<div class='pt_name'>
-			<%= 'Name: ' if options["show_label"] == true %>
+			<%= 'Name: ' if options["label"] == true %>
 			<%= element.name %>
 		</div>
 	<% when 'name_origin' %>
 		<div class='pt_name_origin'>
-			<%= 'Name origin: ' if options["show_label"] == true %>
+			<%= 'Name origin: ' if options["label"] == true %>
 			<%= element.name_origin %>
 		</div>
 	<% when 'group' %>
 		<div class='pt_group'>
-			<%= 'Group: ' if options["show_label"] == true %>
+			<%= 'Group: ' if options["label"] == true %>
 			<%= element.group %>
 		</div>
 	<% when 'period' %>
 		<div class='pt_period'>
-			<%= 'Period: ' if options["show_label"] == true %>
+			<%= 'Period: ' if options["label"] == true %>
 			<%= element.period %>
 		</div>
 	<% when 'atomic_weight' %>
 		<div class='pt_atomic_weight'>
-			<%= 'Atomic weight (amu): ' if options["show_label"] == true %>
+			<%= 'Atomic weight (amu): ' if options["label"] == true %>
 			<% if element.atomic_wt_is_mass_number_of_longest_lived_isotope == 1 %>
 				[<%= element.atomic_weight.round %>]
 			<% else %>
@@ -130,62 +130,62 @@ where options for symbol =
 		</div>
 	<% when 'atomic_wt_is_mass_number_of_longest_lived_isotope' %>
 		<div class='pt_atomic_wt_is_mass_number_of_longest_lived_isotope'>
-			<%= 'Atomic weight is mass number of longest lived isotope: ' if options["show_label"] == true %>
+			<%= 'Atomic weight is mass number of longest lived isotope: ' if options["label"] == true %>
 			<%= element.atomic_wt_is_mass_number_of_longest_lived_isotope %>
 		</div>
 	<% when 'specific_heat_capacity_j_per_gk' %>
 		<div class='pt_specific_heat_capacity_j_per_gk'>
-			<%= 'Specific heat capacity (J/gK): ' if options["show_label"] == true %>
+			<%= 'Specific heat capacity (J/gK): ' if options["label"] == true %>
 			<%= element.specific_heat_capacity_j_per_gk %>
 		</div> "
 	<% when 'density_g_per_cm3' %>
 		<div class='pt_density_g_per_cm3'>
-			<%= 'Density (g/cm<sup>3</sup>): ' if options["show_label"] == true %>
+			<%= 'Density (g/cm<sup>3</sup>): ' if options["label"] == true %>
 			<%= element.density_g_per_cm3 %>
 		</div>
 	<% when 'density_is_estimated' %>
 		<div class='pt_density_is_estimated'>
-			<%= 'Density is estimated: ' if options["show_label"] == true %>
+			<%= 'Density is estimated: ' if options["label"] == true %>
 			<%= element.density_is_estimated %>
 		</div>
 	<% when 'melting_point_k' %>
 		<div class='pt_melting_point_k'>
-			<%= 'Melting point (K): ' if options["show_label"] == true %>
+			<%= 'Melting point (K): ' if options["label"] == true %>
 			<%= element.melting_point_k %>
 		</div>
 	<% when 'melt_is_estimated' %>
 		<div class='pt_melt_is_estimated'>
-			<%= 'Melting point is estimated: ' if options["show_label"] == true %>
+			<%= 'Melting point is estimated: ' if options["label"] == true %>
 		<%= element.melt_is_estimated %>
 		</div>
 	<% when 'boiling_point_k' %>
 		<div class='pt_boiling_point_k'>
-			<%= 'Boiling point (K): ' if options["show_label"] == true %>
+			<%= 'Boiling point (K): ' if options["label"] == true %>
 			<%= element.boiling_point_k %>
 		</div>
 	<% when 'boil_is_estimated' %>
 		<div class='pt_boil_is_estimated'>
-			<%= 'Boiling point is estimated: ' if options["show_label"] == true %>
+			<%= 'Boiling point is estimated: ' if options["label"] == true %>
 			<%= element.boil_is_estimated %>
 		</div>
 	<% when 'electronegativity' %>
 		<div class='pt_electronegativity'>
-			<%= 'Electronegativity (Pauling): ' if options["show_label"] == true %>
+			<%= 'Electronegativity (Pauling): ' if options["label"] == true %>
 			<%= element.electronegativity %>
 		</div>
 	<% when 'abundance_mg_per_kg' %>
 		<div class='pt_abundance_mg_per_kg'>
-			<%= 'Abundance (mg/kg): ' if options["show_label"] == true %>
+			<%= 'Abundance (mg/kg): ' if options["label"] == true %>
 			<%= element.abundance_mg_per_kg %>
 		</div>
 	<% when 'abundance_is_upper_limit' %>
 		<div class='pt_abundance_is_upper_limit'>
-			<%= 'Abundance is upper limit: ' if options["show_label"] == true %>
+			<%= 'Abundance is upper limit: ' if options["label"] == true %>
 			<%= element.abundance_is_upper_limit %>
 		</div>
 	<% when 'e_config' %>
 		<div class="<%=ec_class%>">
-			<%= 'property: ' if options["show_label"] == true %>
+			<%= 'property: ' if options["label"] == true %>
 			<% @base = Base.all(:id => element.period)[0].base %>
 			<% @orbs = Orb.all(:element_id => element.atomic_num) %>
 			<% # Following line squishes together all electron config terms so they won't have spaces between them (2s22p1 rather than 2s2 2p1) %>
