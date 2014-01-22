@@ -57,7 +57,7 @@ where options for symbol =
 		"e_config" => {"base" => true, "space_terms" => true}} %>
 <% end %>
 
-<% # Show 5-pointed star on Ba (*) and Ra (**) if markers is true; used for home page (to point to lanthanides & actinides, respectively) %>
+<% # Show 5-pointed star(s) on Ba (*) and Ra (**) if markers is true; used for home page (to point to lanthanides & actinides, respectively) %>
 <% # If markers is false or unspecified, don't show markers %>
 <% begin %>
 	<% show_markers = true if markers # if markers was passed in and is true, show markers; otherwise, %>
@@ -216,7 +216,9 @@ where options for symbol =
 				><% for eo in 0..@orbs.size-1 
 					%><% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] 
 					%><%=spacer%><span class="ec_<%=@orbital.n.to_s+@orbital.l%>"
-						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
+						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span
+						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span
+						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
 					></span
 				><% end %>
 			</span>
