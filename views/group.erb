@@ -1,13 +1,8 @@
-<!--
-<p>@traditional_group: <%= @traditional_group %></p>
-<p>@linear_group: <%= @linear_group %></p>
--->
-
 <% period_header = 0 # labels for periods %>
 
 <!--p>Start of by-group elements listing</p-->
 
-<!-- Database queries to find adjacent groups (left and right). If one doesn't exist, flagged as such to remove navigation arrows. -->
+<% # Database queries to find adjacent groups (left and right). If one doesn't exist, flagged as such to remove navigation arrows. %>
 <% begin %>
 	<% @left = Element.all(:group => @linear_group-1)[0] %>
 	<% left_exists = true if @left.atomic_num # OK if there is a group to the right; will go to rescue if not %>
