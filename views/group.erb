@@ -34,6 +34,8 @@
 						<%= erb :group_link_generator, :locals=> {:linear_group => @main_pauses_group, :link => Hash["type" => 'group', 'text'=>'<<&nbsp;']} %>
 					<% end %>				
 					<%= erb :group_link_generator, :locals=> {:linear_group => @linear_group-1, :link => Hash["type" => 'group', 'text'=>'<']} %>
+				<% else %>
+					&nbsp; &nbsp;
 				<% end %>
 				<%= @traditional_group %>
 				<% if right_exists %>
@@ -41,6 +43,8 @@
 					<% if @linear_group == @main_pauses_group # if is linear group 2 = traditional group 2, provide link to traditional group 3 (skipping f groups) %>
 						<%= erb :group_link_generator, :locals=> {:linear_group => @main_resumes_group, :link => Hash["type" => 'group', 'text'=>'&nbsp;>>']} %>
 					<% end %>				
+				<% else %>
+					&nbsp; &nbsp;
 				<% end %>
 				<% if @linear_group == @main_resumes_group # put in spacer to keep group number centered on column %>
 					&nbsp; &nbsp; &nbsp;
