@@ -155,18 +155,20 @@ helpers do
   end
 end
 
-#set :erb, :trim => '-'
- 
+=begin
 get '/test/:name' do
 	load_elements(params[:name])
 	erb :test
 end
+=end
 
+=begin
 get '/eo' do # load elements_orbitals test page
 	@eo = Orb.all
 	@e = Element.all
 	erb :eo
 end
+=end
 
 get '/' do  # load home page
 	load_elements(params[:name])

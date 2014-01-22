@@ -97,16 +97,16 @@
 			<th>Group</th>
 			<% if left_exists %>
 				<th class="left_col">
-					<%= erb :group_link_generator, :locals=> {:linear_group => @left.group} %>
+					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @left.group} %>
 					<% @traditional_group %>
 				</th>
 			<% end %>
 			<th class="origin_col">
-				<%= erb :group_link_generator, :locals=> {:linear_group => @origin.group} %>
+				<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @origin.group} %>
 			</th>
 			<% if right_exists %>
 				<th class="right_col">
-					<%= erb :group_link_generator, :locals=> {:linear_group => @right.group} %>
+					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @right.group} %>
 				</th>
 			<% end %>
         </tr>
@@ -115,7 +115,7 @@
                         Period<br>
         <!-- For element above origin element -->
                         <% if above_exists %>
-							<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@origin.period-1]} %>
+							<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@origin.period-1]} %>
                 </th>
                 
                 <!-- Row for element above origin-->
@@ -123,7 +123,7 @@
                                 <td class="left_col"></td>
                         <% end %>
                         <td id="above" class="inPTable origin_col">
-							<%= erb :pt_element, :locals=> {:element => @above, :ec_class => "wide"} %>
+							<%= erb :'partials/pt_element', :locals=> {:element => @above, :ec_class => "wide"} %>
                         </td>
                         <% if right_exists %>
                                 <td class="right_col"></td>
@@ -133,13 +133,13 @@
                         <th class="period_header">
                         <% end %>
 		<!-- Row for left, origin, right elements-->
-				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@origin.period]} %>
+				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@origin.period]} %>
 			</th>
 	
 		<% if left_exists %>
 			<td id="left" class="inPTable left_col">
 				<!-- For element to the left of origin element -->
-				<%= erb :pt_element, :locals=> {:element => @left, :ec_class => "wide"} %>
+				<%= erb :'partials/pt_element', :locals=> {:element => @left, :ec_class => "wide"} %>
 			</td>
 		<% end %>
 		<td id="origin" class="inPTable origin origin_col">
@@ -158,7 +158,7 @@
 				"electronegativity" => {"label" => true},
 				"abundance_mg_per_kg" => {"label" => true}} %>
 
-				<%= erb :pt_element, :locals=> {:element => @origin, :properties=>origin_properties, :ec_class => "wide", :no_link => true} %>
+				<%= erb :'partials/pt_element', :locals=> {:element => @origin, :properties=>origin_properties, :ec_class => "wide", :no_link => true} %>
 				<!--span class="pt_name_origin">Name origin: <%= @origin.name_origin %></span><br-->
 				<!--span class="pt_group">group: <%= @origin.group %></span><br>
 				<span class="pt_period">period: <%= @origin.period %></span><br-->
@@ -218,7 +218,7 @@
 		<% if right_exists %>
 			<td id="right" class="inPTable right_col">
 				<!-- For element to the right of origin element -->
-				<%= erb :pt_element, :locals=> {:element => @right, :ec_class => "wide"} %>
+				<%= erb :'partials/pt_element', :locals=> {:element => @right, :ec_class => "wide"} %>
 			</td>
 		<% end %>
 	</tr>
@@ -226,7 +226,7 @@
 		<tr><!-- Row for element below origin-->
 		
 			<th class="period_header">
-				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@origin.period+1]} %>
+				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@origin.period+1]} %>
 			</th>
 
 			<% if left_exists %>
@@ -234,7 +234,7 @@
 			<% end %>
 			<td id="below" class="inPTable origin_col">
 				<!-- For element below origin element -->
-				<%= erb :pt_element, :locals=> {:element => @below, :ec_class => "wide"} %>
+				<%= erb :'partials/pt_element', :locals=> {:element => @below, :ec_class => "wide"} %>
 			</td>
 			<% if right_exists %>
 				<td class="right_col"></td>

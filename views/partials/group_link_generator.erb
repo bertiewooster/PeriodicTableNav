@@ -1,0 +1,17 @@
+<% # Inputs (optional ones) and output %>
+<% # linear_group, link = Hash["type" => 'period', "number" => 6, ("text" => '^')] %>
+<% # where text is optional: if it's not included in the hash, number will be used as the link's text %>
+<% # result: <a href="/@type/@number" title="@element @number">^</a> %>
+<% #         <a href="/period/6" title="period 6">^</a> %>
+
+<% if not defined? link %>
+	<% link = Hash.new %>
+<% end %>
+<% link["type"] = 'group' %>
+<% group_entity = group_lin_to_trad(linear_group) %>
+<% if group_entity["type"]=="f" %>
+	<% link["number"] = group_entity["type"] + group_entity["num"].to_s %>			
+<% else %>
+	<% link["number"] = group_entity["num"] %>
+<% end %>
+<%= erb :'partials/link_generator', :locals=> {:link => link} %>

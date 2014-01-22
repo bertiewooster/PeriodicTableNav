@@ -1,0 +1,29 @@
+<p>Hello world</p>
+
+<% input = CSV.read("elements_orbitals_input.csv", headers: false) %>
+<p><%= input.inspect %></p>
+<p>input.size: <%= input.size %></p>
+
+<p>input[0]: <%= input[0] %></p>
+<p>input[0].size: <%= input[0].size %></p>
+
+<% output = Array.new %>
+
+<% for element in 1..input.size-1 %>
+	<% for orbital in 1..input[0].size-1 %>
+		<!--p>Element: <%= element %>, orbital: <%= orbital %> = <%= input[element][orbital] %></p-->
+		<% if !input[element][orbital].nil? %>
+			<p>Element: <%= element %>, orbital: <%= orbital %> = <%= input[element][orbital] %></p>
+			<% output << [element,orbital,input[element][orbital].to_i] %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<p><%= output.inspect %></p>
+
+<% CSV.open("elements_orbitals.csv", "wb") do |csv| %>
+	<% csv << ["element_id","orbital_id","count"] %>
+	<% for row in 0..output.size-1 %>
+		<% csv << output[row] %>
+	<% end %>
+<% end %>

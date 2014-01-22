@@ -31,17 +31,17 @@
 				<% end %>				
 				<% if left_exists %>
 					<% if @linear_group == @main_resumes_group # if is linear group 17 = traditional group 3, provide link to traditional group 2 (skipping f groups) %>
-						<%= erb :group_link_generator, :locals=> {:linear_group => @main_pauses_group, :link => Hash["type" => 'group', 'text'=>'<<&nbsp;']} %>
+						<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @main_pauses_group, :link => Hash["type" => 'group', 'text'=>'<<&nbsp;']} %>
 					<% end %>				
-					<%= erb :group_link_generator, :locals=> {:linear_group => @linear_group-1, :link => Hash["type" => 'group', 'text'=>'<']} %>
+					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @linear_group-1, :link => Hash["type" => 'group', 'text'=>'<']} %>
 				<% else %>
 					&nbsp; &nbsp;
 				<% end %>
 				<%= @traditional_group %>
 				<% if right_exists %>
-					<%= erb :group_link_generator, :locals=> {:linear_group => @linear_group+1, :link => Hash["type" => 'group', 'text'=>'>']} %>
+					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @linear_group+1, :link => Hash["type" => 'group', 'text'=>'>']} %>
 					<% if @linear_group == @main_pauses_group # if is linear group 2 = traditional group 2, provide link to traditional group 3 (skipping f groups) %>
-						<%= erb :group_link_generator, :locals=> {:linear_group => @main_resumes_group, :link => Hash["type" => 'group', 'text'=>'&nbsp;>>']} %>
+						<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @main_resumes_group, :link => Hash["type" => 'group', 'text'=>'&nbsp;>>']} %>
 					<% end %>				
 				<% else %>
 					&nbsp; &nbsp;
@@ -59,7 +59,7 @@
 			<tr>	
 				<th class="period_header">
 					<% if period_header == 1 %> Period<br> <% end %>
-					<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
+					<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
 	                <% period_header += 1 %>
 				</th>
 				<td></td>
@@ -69,10 +69,10 @@
 		<tr>
 			<th class="period_header">
 				<% if period_header == 1 %> Period<br> <% end %>
-				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
+				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
 			</th>
 				<td class="inPTable">
-					<%= erb :pt_element, :locals=> {:element => element, :ec_class => "wide"} %>
+					<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "wide"} %>
 					<% lastGroup = element.group %>
 				</td>
 		</tr>

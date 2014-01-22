@@ -36,7 +36,7 @@
 			<% else # plot this group %>
 				<th>
 					<% # if group_header == 1 %> Group <% # end %>
-					<%= erb :group_link_generator, :locals=> {:linear_group => group_header} %>
+					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => group_header} %>
 				</th>
 			<% end %>
 		<% end %>
@@ -48,13 +48,13 @@
 			Period
 			<% if above_exists %>
 				<br>
-				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@period-1, "text" => '^']} %>
+				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period-1, "text" => '^']} %>
 				<br>
 			<% end %>
 			<%= @period %>
 			<% if below_exists %>
 				<br>
-				<%= erb :link_generator, :locals=> {:link => Hash["type" => 'period','number'=>@period+1, "text" => '∨']} %>
+				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period+1, "text" => '∨']} %>
 			<% end %>
 				<% #@base = Base.all(:id => period_header)[0].base %>
 		</th>
@@ -71,7 +71,7 @@
 				<% blanks = blanks - 1 %>
 			<% end %>
 			<td class="inPTable">
-				<%= erb :pt_element, :locals=> {:element => element, :ec_class => "narrow"} %>
+				<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "narrow"} %>
 				<% lastGroup = element.group %>
 			</td>
 		<% end %>
