@@ -51,7 +51,6 @@
 					<% lastGroup = element.group %>
 				<% end %>
 				<% pt_time = Time.new - before_partial %>
-				pt: <%='%.6f' % pt_time%>
 				<% pt_element_accumulator += pt_time %>
 			</td>
 		<% end %>
@@ -108,7 +107,6 @@
 					<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "narrow", :properties => properties} %>
 					<% lastGroup = element.group %>
 					<% pt_time = Time.new - before_partial %>
-					pt: <%=pt_time%>
 					<% pt_element_accumulator += pt_time %>
 				</td>
 			<% end %>
