@@ -204,28 +204,33 @@ Setup pt_element: <%= Time.now - start_pt_element %>
 			<%= element.abundance_is_upper_limit %>
 		</div>
 	<% when 'e_config' %>
+		<% before_e_config = Time.now %>
 		<div class="<%=ec_class%>">
-			<% before_db = Time.new %>
-			<% @base = Base.all(:id => element.period)[0].base %>
-			<p>Base.all: <%=Time.new-before_db%><p>
-			<% @orbs = Orb.all(:element_id => element.atomic_num) %>
+			<% @orbs = Orb.all(:element_id => element.atomic_num) # get orbitals for this element %>
 			<% spacer = options["space_terms"] == true ? " " : "" %>
 			<%= 'Electron configuration: ' if options["label"] == true %>
 			<% # Following lines offer possibility to squish together all electron config terms so they won't have spaces between them ([He]2s22p1 rather than [He] 2s2 2p1) %>
-			<% if options["base"] == true 
-				%><span class="ec_base"><%= @base %></span
+			<% if options["base"] == true
+				%><% before_base = Time.new %>
+				<% @base = Base.all(:id => element.period)[0].base
+				%><p>Base.all: <%=Time.new-before_base%></p>
+				<span class="ec_base"><%= @base %></span
 			><% end 
-			%><span class="terms"
+			%><% before_terms = Time.new %><span class="terms"
 				><% for eo in 0..@orbs.size-1 
-					%><% before_term = Time.new %><% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] 
-					%><%=spacer%><span class="ec_<%=@orbital.n.to_s+@orbital.l%>"
+					%><% before_orbital = Time.new %><% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] # for each orbital id (e.g. 11), get its term (e.g. 5p)
+					%><% time_orbital = Time.new-before_orbital %><p>orbital db: <%= '%.6f' % time_orbital %><% @time_orbitals += time_orbital
+					%></p><%=spacer%><span class="ec_<%=@orbital.n.to_s+@orbital.l%>"
 						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span
 						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span
 						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
 					></span
-				><p>Term: <%=Time.new-before_term%> s<% end %>
-			</span>
+				><% end %>
+			<p>Terms: <%= '%.6f' % (Time.new-before_terms)%></span>
 		</div>
+		<% @time_in_e_config += Time.now - before_e_config %>
+		<% time_in_e_config = Time.now - before_e_config %>
+		<p>ec: <%= '%.6f' % time_in_e_config %></p>
 	<% else %>
 		<div>Error: unknown property requested</div> 
 	<% end %>

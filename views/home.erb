@@ -1,3 +1,5 @@
+<% @time_orbitals = 0 %>
+<% @time_in_e_config = 0 %>
 <% pt_element_accumulator = 0 %>
 <% start_time = Time.new %>
 <% properties = 
@@ -48,7 +50,7 @@
 					<% lastGroup = element.group %>
 				<% end %>
 				<% pt_time = Time.new - before_partial %>
-				pt: <%=pt_time%>
+				pt: <%='%.6f' % pt_time%>
 				<% pt_element_accumulator += pt_time %>
 			</td>
 		<% end %>
@@ -116,5 +118,6 @@
 <% end %>
 
 </table>
+<p>Total @time_orbitals: <%= @time_orbitals %></p>
 <p>Total pt_element_accumulator: <%= pt_element_accumulator %></p>
 <p>Total time: <%= Time.new-start_time %></p>
