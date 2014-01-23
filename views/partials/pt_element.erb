@@ -1,3 +1,4 @@
+<% start_pt_element = Time.now %>
 <% # Inputs (optional ones in parentheses) %>
 <% # element, (ec_class), (properties[Hash]), (markers), (no_link) %>
 <% # properties = Hash["property_1" => (options[Hash]), "property_2" => (options[Hash])] %>
@@ -70,6 +71,8 @@
 <% rescue %>
 	<% create_link = true %>
 <% end %>
+
+Setup pt_element: <%= Time.now - start_pt_element %>
 
 <% if create_link %>
 	<a href="/element/<%=element.atomic_num %>" title="element <%=element.atomic_num%>">
@@ -202,7 +205,9 @@
 		</div>
 	<% when 'e_config' %>
 		<div class="<%=ec_class%>">
+			<% before_db = Time.new %>
 			<% @base = Base.all(:id => element.period)[0].base %>
+			<p>Base.all: <%=Time.new-before_db%><p>
 			<% @orbs = Orb.all(:element_id => element.atomic_num) %>
 			<% spacer = options["space_terms"] == true ? " " : "" %>
 			<%= 'Electron configuration: ' if options["label"] == true %>
@@ -212,13 +217,13 @@
 			><% end 
 			%><span class="terms"
 				><% for eo in 0..@orbs.size-1 
-					%><% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] 
+					%><% before_term = Time.new %><% @orbital = Orbital.all(:id => @orbs[eo].orbital_id)[0] 
 					%><%=spacer%><span class="ec_<%=@orbital.n.to_s+@orbital.l%>"
 						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span
 						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span
 						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
 					></span
-				><% end %>
+				><p>Term: <%=Time.new-before_term%> s<% end %>
 			</span>
 		</div>
 	<% else %>
