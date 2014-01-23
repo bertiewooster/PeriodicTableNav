@@ -1,0 +1,5 @@
+					%></p><% before_terms = Time.new %><%=spacer%><span class="ec_<%=@orbital.n.to_s+@orbital.l%>"
+						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span
+						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span
+						><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
+					></span><%= @terms += (Time.new-before_terms)
