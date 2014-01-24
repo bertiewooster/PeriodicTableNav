@@ -19,7 +19,7 @@
 				<% # if group_header == 1 %> Group <% # end %>
 				<%= erb :'partials/group_link_generator', :locals=> {:linear_group => group_header} %>
 			</th>
-		<% end %>
+		<% end %>  
 	</tr>
 <% @ebyp.each do |period| %>
 	<% period_header += 1 #increment the period number in preparation for next period %>
@@ -28,7 +28,6 @@
 		<th class="period_header">
 			<% if period_header == 1 %> Period<br> <% end %>
 			<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>			
-				<% @base = Base.all(:id => period_header)[0].base %>
 		</th>
 		<% period.each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
@@ -83,7 +82,6 @@
 				<% if period_plotted == false %><!--Period--><br> <% end %>
 				<% period_plotted = true #keep track of whether a period has been plotted yet %>
 				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>			
-					<% @base = Base.all(:id => period_header)[0].base %>
 			</th>
 			<td class="spacer"></td>
 			<td class="spacer marker">

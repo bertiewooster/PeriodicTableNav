@@ -54,7 +54,6 @@
 				<br>
 				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period+1, "text" => '∨']} %>
 			<% end %>
-				<% #@base = Base.all(:id => period_header)[0].base %>
 		</th>
 		<% f_skip_done = false %>
 		<% @ethisp.each do |element| %>
