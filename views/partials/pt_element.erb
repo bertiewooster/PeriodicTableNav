@@ -33,6 +33,10 @@
 <% #   space_terms %>
 <% #     = true (default): puts spaces between terms, e.g. [He] 2s2 2p1 %>
 <% #     = false: does not, e.g. [He]2s22p1 %>
+<% #   spans %>
+<% #     = true (default): include spans (with classes) used for jQuery selection of (sub-)terms to highlight differences between adjacent elements, %>
+<% #         e.g. <2s><2sn>2</2sn><2sl>s</2sl><2sc>1</2sc></2s> (where <name> is short for <span class="name">) %>
+<% #     = false: do not include any spans %>
 <% # where options for symbol = %>
 <% #   markers %>
 <% #     = true: includes five-pointed stars to point to lanthanides and actindes on Ba and Ra respectively %>
@@ -53,7 +57,7 @@
 		{"atomic_num"=>nil,
 		"symbol"=>nil,
 		"name"=>nil,
-		"e_config" => {"base" => true, "space_terms" => true}} %>
+		"e_config" => {"base" => true, "space_terms" => true, "term_spans" => true}} %>
 <% end %>
 
 <% # Show 5-pointed star(s) on Ba (*) and Ra (**) if markers is true; used for home page (to point to lanthanides & actinides, respectively) %>
@@ -62,6 +66,13 @@
 	<% show_markers = true if markers # if markers was passed in and is true, show markers; otherwise, %>
 <% rescue %>
 	<% show_markers = false # don't show markers %>
+<% end %>
+
+<% # If no spans (true or false) was passed in, use true %>
+<% begin %>
+	<% properties["term_spans"] # if spans was passed in, use it; if not, go to rescue %>
+<% rescue %>
+	<% properties["e_config"]["term_spans"] = true %>
 <% end %>
 
 <% # Create a link to element's page unless no_link is true; if no_link isn't included in locals passed to this .erb, create a link %>
@@ -217,12 +228,16 @@
 					%><% before_orbital = Time.new 
 					%><% @orbital = Orbital.get(@orbs[eo].orbital_id) # for each orbital id (e.g. 11), get its term (e.g. 5p)
 					%><% time_orbital = Time.new-before_orbital %><% @time_orbitals += time_orbital
-					%><% before_terms = Time.new %><%=spacer%><% class_nl = '"ec_<%=@orbital.n.to_s+@orbital.l' 
-					%><%=spacer%><span class=<%=class_nl%>"
-						><span class=<%=class_nl%>n"><%=@orbital.n %></span
-						><span class=<%=class_nl%>l"><%= @orbital.l %></span
-						><span class=<%=class_nl%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
-					></span><% @terms += (Time.new-before_terms)
+					%><% before_terms = Time.new %><%=spacer%><%=spacer%><% if properties["e_config"]["term_spans"] 
+						%><span class="ec_<%=@orbital.n.to_s+@orbital.l%>"
+							><span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span
+							><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span
+							><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
+						></span
+					><% else 
+						%><%=@orbital.n %><%= @orbital.l %><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup
+					><% end 
+					%><% @terms += (Time.new-before_terms)
 				%><% end %>
 			</span>
 		</div>
