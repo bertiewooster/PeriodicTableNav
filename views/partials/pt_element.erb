@@ -226,7 +226,7 @@
 			%><% if properties["e_config"]["term_spans"] %><span class="terms"><% end 
 				%><% for eo in 0..@orbs.size-1 
 					%><% before_orbital = Time.new 
-					%><% @orbital = Orbital.get(@orbs[eo].orbital_id) # for each orbital id (e.g. 11), get its term (e.g. 5p)
+					%><% #@orbital = Orbital.get(@orbs[eo].orbital_id) # for each orbital id (e.g. 11), get its term (e.g. 5p)
 					%><% @time_orbitals += Time.new - before_orbital
 					%><% before_terms = Time.new %><%=spacer%><%=spacer
 					%><% if properties["e_config"]["term_spans"] 
@@ -236,8 +236,11 @@
 							><span class="ec_<%=@orbital.n.to_s+@orbital.l%>c"><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
 						></span
 					><% else 
-						%><%=@orbital.n %><%= @orbital.l %><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup
-					><% end 
+						%><% orb_id = @orbs[eo].orbital_id
+						%><%= @orbital_hash[orb_id]["n"]
+						%><%= @orbital_hash[orb_id]["l"] 
+						%><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup
+					%><% end 
 					%><% @terms += (Time.new-before_terms)
 				%><% end %>
 			<% if properties["e_config"]["term_spans"] %></span><% end %>

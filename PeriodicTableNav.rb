@@ -193,6 +193,7 @@ end
 
 get '/' do  # load home page
 	load_elements(params[:name])
+	load_orbitals("")
 	@title = 'All Elements'
 	erb :home 
 end

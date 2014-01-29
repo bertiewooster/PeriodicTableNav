@@ -1,3 +1,5 @@
+						%><%#=@orbital_hash[@orbs[eo].orbital_id][n] %><%= @orbital_hash[@orbs[eo].orbital_id][l] %><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup
+-----------
 				<%="&#9733;" if period_header == 6 #one 5-pointed star for lanthanides %>
 				<%="&#9733;&#9733;" if period_header == 7 #two 5-pointed stars for actinides %>
 -----------------
