@@ -153,14 +153,35 @@ helpers do
 	@num_f_groups = @f_groups.size #14 # number of f groups
 
   end
-end
+  
+  def load_orbitals(name)
+	@orbitals			= Orbital.all :order => :id.asc
+	
+	#Build hash of orbitals (e.g. id 11 = 5p)
+	@orbital_hash = Hash.new
+	orbital_id = 1
+	@orbitals.each do |orbital|
+		@orbital_hash[orbital_id] = Hash.new
+		@orbital_hash[orbital_id]["n"] = orbital.n
+		@orbital_hash[orbital_id]["l"] = orbital.l
+		orbital_id += 1
+	end
+  end
 
-=begin
+end # helpers
+
+before do
+	@terms = 0
+	@time_orbitals = 0
+	@time_in_e_config = 0
+	@start_time = Time.new
+end
+#=begin
 get '/test/:name' do
 	load_elements(params[:name])
-	erb :test
+	erb :'inactive/test'
 end
-=end
+#=end
 
 =begin
 get '/eo' do # load elements_orbitals test page

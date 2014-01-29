@@ -1,3 +1,8 @@
+<% load_orbitals("hi") %>
+<% @orbital_hash.each do |key, value| %>
+	<p><%=key%>: <%=value%></p>
+<% end %>
+
 <% #properties = Hash.new %>
 <% #properties["atomic_num"]=nil %>
 <% properties = {"atomic_num" => nil, "symbol" => nil} %>
@@ -102,10 +107,10 @@
 	<p>@f_groups: <%=@f_groups%></p>
 
 <% lin = 32 %>
-<%= erb :group_link_generator, :locals=> {:linear_group => lin, :link => Hash['text'=>'^']} %>
+<%= erb :'partials/group_link_generator', :locals=> {:linear_group => lin, :link => Hash['text'=>'^']} %>
 <p>----------------</p>
 
-<%= erb :link_generator, :locals=> {:link => Hash["type" => 'group','number'=>2]} %>
+<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'group','number'=>2]} %>
 
 <p>----------------</p>
 
@@ -135,27 +140,3 @@
 
 <p>@max_period: <%= @max_period %> </p>
 <p>Element count: <%= Element.count %></p>
-
-<% chosen = 2 %>
-<% @Base_entity_test = Base.get(chosen) %>
-<% @Base_entity_test.each {|base| @Base_test = base} %>
-
-<p>@Base_entity_test.length: <%= @Base_entity_test.length %></p>
-<p>Base #<%= chosen %>: <%= @Base_test.base %> </p>
-
-<p>Number of bases: <%= @bases.length %> </p>
-
-<table>
-	<% @bases.each do |base| %>  
-		<td>  
-			<p>  
-				<span><%= base.base %></span>
-			</p>  
-		</td>
-	<% end %>
-</table>
-
-<!--p>Array @ebyp.size: <%= @ebyp.size %> </p>
-<p>Array @ebyp: <%= @ebyp %> </p>
-<p>Hash @ebypHash: <%= @ebypHash %> </p>
-<p>Array @ebypHashKeys: <%= @ebypHashKeys %> </p>

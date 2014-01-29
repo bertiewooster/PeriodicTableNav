@@ -223,12 +223,13 @@
 				<% @base = Base.get(element.period).base
 				%><span class="ec_base"><%= @base %></span
 			><% end 
-			%><span class="terms"
-				><% for eo in 0..@orbs.size-1 
+			%><% if properties["e_config"]["term_spans"] %><span class="terms"><% end 
+				%><% for eo in 0..@orbs.size-1 
 					%><% before_orbital = Time.new 
 					%><% @orbital = Orbital.get(@orbs[eo].orbital_id) # for each orbital id (e.g. 11), get its term (e.g. 5p)
-					%><% time_orbital = Time.new-before_orbital %><% @time_orbitals += time_orbital
-					%><% before_terms = Time.new %><%=spacer%><%=spacer%><% if properties["e_config"]["term_spans"] 
+					%><% @time_orbitals += Time.new - before_orbital
+					%><% before_terms = Time.new %><%=spacer%><%=spacer
+					%><% if properties["e_config"]["term_spans"] 
 						%><span class="ec_<%=@orbital.n.to_s+@orbital.l%>"
 							><span class="ec_<%=@orbital.n.to_s+@orbital.l%>n"><%=@orbital.n %></span
 							><span class="ec_<%=@orbital.n.to_s+@orbital.l%>l"><%= @orbital.l %></span
@@ -239,7 +240,7 @@
 					><% end 
 					%><% @terms += (Time.new-before_terms)
 				%><% end %>
-			</span>
+			<% if properties["e_config"]["term_spans"] %></span><% end %>
 		</div>
 		<% @time_in_e_config += Time.now - before_e_config %>
 	<% else %>

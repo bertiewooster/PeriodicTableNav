@@ -1,13 +1,8 @@
-<% @terms = 0 %>
-<% @time_orbitals = 0 %>
-<% @time_in_e_config = 0 %>
-<% pt_element_accumulator = 0 %>
-<% start_time = Time.new %>
 <% properties = 
 	{"atomic_num"=>nil,
 	"symbol"=>nil,
 	"name"=>nil,
-	"e_config" => {"base" => false, "space_terms" => true, "term_spans"=>true}} %>
+	"e_config" => {"base" => false, "space_terms" => true, "term_spans"=>false}} %>
 
 <!-- Main groups table -->
 <% period_header = 0 # labels for periods %>
@@ -41,7 +36,7 @@
 				<% blanks = blanks - 1 %>
 			<% end %>
 			<td class="inPTable">
-				<%#=Time.new - start_time %>
+				<%#=Time.new - @start_time %>
 				<% before_partial = Time.new %>
 				<%= erb :'partials/pt_element', :locals=> {:element => element, :markers => true, :properties => properties, :ec_class => "narrow"} %>
 				<%#= erb :'partials/pt_element_home', :locals=> {:element => element} %>
@@ -51,7 +46,6 @@
 					<% lastGroup = element.group %>
 				<% end %>
 				<% pt_time = Time.new - before_partial %>
-				<% pt_element_accumulator += pt_time %>
 			</td>
 		<% end %>
  	 </tr>
@@ -101,13 +95,12 @@
 					<% blanks = blanks - 1 %>
 				<% end %>
 				<td class="inPTable">
-					<%#=Time.new - start_time %>
+					<%#=Time.new - @start_time %>
 					<% before_partial = Time.new %>
 					<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "narrow", :properties => properties} %>
 					<%#= erb :'partials/pt_element_home', :locals=> {:element => element} %>
 					<% lastGroup = element.group %>
 					<% pt_time = Time.new - before_partial %>
-					<% pt_element_accumulator += pt_time %>
 				</td>
 			<% end %>
 			<td class="spacer"></td>
@@ -120,5 +113,4 @@
 <p>Total time querying orbitals table: <%= @time_orbitals %></p>
 <p>Total time composing terms: <%= @terms %></p>
 <p>Total time in e config: <%= @time_in_e_config %></p>
-<p>Total pt_element_accumulator: <%= pt_element_accumulator %></p>
-<p>Total time: <%= Time.new-start_time %></p>
+<p>Total time: <%= Time.new-@start_time %></p>
