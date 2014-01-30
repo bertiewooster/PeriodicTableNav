@@ -31,7 +31,6 @@ class Element # Describes how to map from database
 	property :electronegativity, Float
 	property :abundance_mg_per_kg, Float
 	property :abundance_is_upper_limit, Integer # should be Boolean
-	property :e_config_valence, Text
 end
 
 class Base
@@ -175,6 +174,7 @@ before do
 	@time_orbitals = 0
 	@time_in_e_config = 0
 	@start_time = Time.new
+	@timing = {"pt_init" =>0, "pt_atomic_num" => 0, "pt_symbol" => 0, "pt_symbol_opendiv"=>0, "pt_symbol_label"=>0, "pt_symbol_symbol"=>0,"pt_symbol_stars"=>0, "pt_name" => 0, "pt_econfig" => 0, "total" => 0, "start_time" => Time.new}
 end
 #=begin
 get '/test/:name' do

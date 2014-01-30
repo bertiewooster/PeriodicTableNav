@@ -39,7 +39,6 @@
 				<%#=Time.new - @start_time %>
 				<% before_partial = Time.new %>
 				<%= erb :'partials/pt_element', :locals=> {:element => element, :markers => true, :properties => properties, :ec_class => "narrow"} %>
-				<%#= erb :'partials/pt_element_home', :locals=> {:element => element} %>
 				<% if element.group == @main_pauses_group %>
 					<% lastGroup = @main_resumes_group-1 %>
 				<% else %>
@@ -110,7 +109,12 @@
 <% end %>
 
 </table>
+
+<% @timing["total"] = Time.new-@timing["start_time"] %>
+<% @timing.each do |step, time| %>
+	<p><%=step%>: <%=time%></p>
+<% end %>
+sum of pt_ steps: <%= (@timing["pt_init"]+@timing["pt_atomic_num"]+@timing["pt_symbol"]+@timing["pt_name"]+@timing["pt_econfig"]) %>
+<p>----------</p>
 <p>Total time querying orbitals table: <%= @time_orbitals %></p>
 <p>Total time composing terms: <%= @terms %></p>
-<p>Total time in e config: <%= @time_in_e_config %></p>
-<p>Total time: <%= Time.new-@start_time %></p>

@@ -1,3 +1,4 @@
+<% last_stamp = Time.new %>
 <% # Inputs (optional ones in parentheses) %>
 <% # element, (ec_class), (properties[Hash]), (markers), (no_link) %>
 <% # properties = Hash["property_1" => (options[Hash]), "property_2" => (options[Hash])] %>
@@ -86,6 +87,10 @@
 	<a href="/element/<%=element.atomic_num %>" title="element <%=element.atomic_num%>">
 <% end %>
 
+<% this_stamp = Time.new %>
+<% @timing["pt_init"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
+
 <% # Loop to output properties (atomic_num, symbol, etc.) in order given in hash %>
 <% properties.each do |property, options| %>
 	<% options = Hash.new() if options == nil # create (empty) options hash if doesn't exist %>
@@ -93,13 +98,20 @@
 	<% case property; 
 	   when "atomic_num" %>
  		<div class='pt_atomic_num'>
- 		<%= 'Atomic number: ' if options["label"] == true %>
- 		<%= element.atomic_num %></div>
+ 			<%= 'Atomic number: ' if options["label"] == true %>
+ 			<%= element.atomic_num %>
+ 		</div>
+<% this_stamp = Time.new %>
+<% @timing["pt_atomic_num"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
 	<% when 'symbol' %>
 		<div class='pt_symbol'>
  		<%= 'Symbol: ' if options["label"] == true %>
-			<%= element.symbol 
-			%><% if show_markers 
+			<%= element.symbol %>
+<% this_stamp = Time.new %>
+<% @timing["pt_symbol"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
+			<% if show_markers 
 				%><% if element.atomic_num == 56 
 					%><sup class="pointer">&#9733;</sup>
 				<% end 
@@ -113,6 +125,9 @@
 			<%= 'Name: ' if options["label"] == true %>
 			<%= element.name %>
 		</div>
+<% this_stamp = Time.new %>
+<% @timing["pt_name"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
 	<% when 'name_origin' %>
 		<div class='pt_name_origin'>
 			<%= 'Name origin: ' if options["label"] == true %>
@@ -246,6 +261,9 @@
 			<% if properties["e_config"]["term_spans"] %></span><% end %>
 		</div>
 		<% @time_in_e_config += Time.now - before_e_config %>
+<% this_stamp = Time.new %>
+<% @timing["pt_econfig"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
 	<% else %>
 		<div>Error: unknown property requested</div> 
 	<% end %>

@@ -1,3 +1,7 @@
+<% element.each do |property, value| %>
+	<p><%=property%>: <%=value%></p>
+<% end %>
+-----------
 						%><%#=@orbital_hash[@orbs[eo].orbital_id][n] %><%= @orbital_hash[@orbs[eo].orbital_id][l] %><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup
 -----------
 				<%="&#9733;" if period_header == 6 #one 5-pointed star for lanthanides %>
