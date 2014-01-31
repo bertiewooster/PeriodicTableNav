@@ -1,3 +1,4 @@
+-----------
 <% element.each do |property, value| %>
 	<p><%=property%>: <%=value%></p>
 <% end %>

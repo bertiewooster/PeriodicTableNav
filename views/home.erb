@@ -36,15 +36,12 @@
 				<% blanks = blanks - 1 %>
 			<% end %>
 			<td class="inPTable">
-				<%#=Time.new - @start_time %>
-				<% before_partial = Time.new %>
 				<%= erb :'partials/pt_element', :locals=> {:element => element, :markers => true, :properties => properties, :ec_class => "narrow"} %>
 				<% if element.group == @main_pauses_group %>
 					<% lastGroup = @main_resumes_group-1 %>
 				<% else %>
 					<% lastGroup = element.group %>
 				<% end %>
-				<% pt_time = Time.new - before_partial %>
 			</td>
 		<% end %>
  	 </tr>
@@ -95,11 +92,8 @@
 				<% end %>
 				<td class="inPTable">
 					<%#=Time.new - @start_time %>
-					<% before_partial = Time.new %>
 					<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "narrow", :properties => properties} %>
-					<%#= erb :'partials/pt_element_home', :locals=> {:element => element} %>
 					<% lastGroup = element.group %>
-					<% pt_time = Time.new - before_partial %>
 				</td>
 			<% end %>
 			<td class="spacer"></td>

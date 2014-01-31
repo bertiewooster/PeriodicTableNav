@@ -170,11 +170,26 @@ helpers do
 end # helpers
 
 before do
+	load_orbitals("")
 	@terms = 0
 	@time_orbitals = 0
 	@time_in_e_config = 0
 	@start_time = Time.new
-	@timing = {"pt_init" =>0, "pt_atomic_num" => 0, "pt_symbol" => 0, "pt_symbol_opendiv"=>0, "pt_symbol_label"=>0, "pt_symbol_symbol"=>0,"pt_symbol_stars"=>0, "pt_name" => 0, "pt_econfig" => 0, "total" => 0, "start_time" => Time.new}
+	@timing = {"element_symbol"=>0, 
+				"pt_init" =>0, 
+				"pt_atomic_num" => 0, 
+				"pt_symbol" => 0, 
+				"pt_symbol_opendiv"=>0, 
+				"pt_symbol_label"=>0, 
+				"pt_symbol_symbol"=>0,
+				"pt_symbol_stars"=>0, 
+				"pt_name" => 0, 
+				"pt_econfig_Orb.all"=>0, 
+				"pt_econfig_pre_terms"=>0,
+				"pt_econfig_rest"=>0, 
+				"pt_econfig" => 0, 
+				"total" => 0, 
+				"start_time" => Time.new}
 end
 #=begin
 get '/test/:name' do
@@ -193,7 +208,6 @@ end
 
 get '/' do  # load home page
 	load_elements(params[:name])
-	load_orbitals("")
 	@title = 'All Elements'
 	erb :home 
 end
