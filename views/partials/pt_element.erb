@@ -234,6 +234,13 @@
 <% this_stamp = Time.new %>
 <% @timing["pt_econfig_Orb.all"] += this_stamp - last_stamp %>
 <% last_stamp = this_stamp %>
+
+			<% last_orb = @orbs.length-1 %>
+
+<% this_stamp = Time.new %>
+<% @timing["pt_econfig_last_orb"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
+
 			<% spacer = options["space_terms"] == true ? " " : "" %>
 			<%= 'Electron configuration: ' if options["label"] == true %>
 			<% # Following lines offer possibility to squish together all electron config terms so they won't have spaces between them ([He]2s22p1 rather than [He] 2s2 2p1) %>
@@ -247,20 +254,43 @@
 <% @timing["pt_econfig_pre_terms"] += this_stamp - last_stamp %>
 <% last_stamp = this_stamp %>
 			<% if properties["e_config"]["term_spans"] %><span class="terms"><% end 
-				%><% for eo in 0..@orbs.size-1 
-					%><% orb_id = @orbs[eo].orbital_id
-					%><% if properties["e_config"]["term_spans"] 
-						%><span class='ec_<%=@orbital_hash[orb_id]["n"].to_s+@orbital_hash[orb_id]["l"]%>'
-							><span class='ec_<%=@orbital_hash[orb_id]["n"].to_s+@orbital_hash[orb_id]["l"]%>n'><%=@orbital_hash[orb_id]["n"] %></span
-							><span class='ec_<%=@orbital_hash[orb_id]["n"].to_s+@orbital_hash[orb_id]["l"]%>l'><%= @orbital_hash[orb_id]["l"] %></span
-							><span class='ec_<%=@orbital_hash[orb_id]["n"].to_s+@orbital_hash[orb_id]["l"]%>c'><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
-						></span
-					><% else 
-						%><%= @orbital_hash[orb_id]["n"]
-						%><%= @orbital_hash[orb_id]["l"]
-						%><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup
-					%><% end 
-					%><% end %>
+				%>
+
+<% this_stamp = Time.new %>
+<% @timing["pt_econfig_if_term_spans"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
+
+			<% for eo in 0..last_orb 
+					%>
+<% this_stamp = Time.new %>
+<% @timing["pt_econfig_for"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
+<% this_orbital = @orbital_hash[@orbs[eo].orbital_id]
+					%>
+<% this_stamp = Time.new %>
+<% @timing["pt_econfig_this_orbital"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
+					
+				<% if properties["e_config"]["term_spans"] 
+					%><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>'
+						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>n'><%=this_orbital["n"] %></span
+						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>l'><%= this_orbital["l"] %></span
+						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>c'><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
+					></span
+				><% else 
+					%>
+					<%= this_orbital["n"]
+					%>
+<% this_stamp = Time.new %>
+<% @timing["pt_econfig_orbital_hash_n"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
+					<%= this_orbital["l"] %>
+<% this_stamp = Time.new %>
+<% @timing["pt_econfig_orbital_hash_l"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
+					<sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup
+				%><% end 
+			%><% end %>
 			<% if properties["e_config"]["term_spans"] %></span><% end %>
 		</div>
 <% this_stamp = Time.new %>
