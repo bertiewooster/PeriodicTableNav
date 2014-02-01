@@ -106,13 +106,13 @@
 
 <% @timing["total"] = Time.new-@timing["start_time"] %>
 <% @timing.each do |step, time| %>
-	<% if time.to_f > 1e-8 %>
-		<p><%='%.06f' % time%> <%=step%></p>
+	<% if (time.to_f > 1e-8) && (step != "start_time") %>
+		<%=step%><br>
 	<% end %>
 <% end %>
-sum of pt_ steps: <%= (@timing["pt_init"]+@timing["pt_atomic_num"]+@timing["pt_symbol"]+@timing["pt_name"]+@timing["pt_econfig"]) %>
-<p>----------</p>
-<p>Total time querying orbitals table: <%= @time_orbitals %></p>
-<p>Total time composing terms: <%= @terms %></p>
-<p>----------</p>
-<p>@orbital_hash: <%= @orbital_hash.inspect %>
+
+<% @timing.each do |step, time| %>
+	<% if (time.to_f > 1e-8) && (step != "start_time") %>
+		<%='%.06f' % time%><br>
+	<% end %>
+<% end %>
