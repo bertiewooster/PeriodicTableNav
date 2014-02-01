@@ -188,10 +188,16 @@ get '/eo' do # load elements_orbitals test page
 end
 =end
 
+=begin
+get '/' do  # load home page
+	erb :home_static
+end
+=end
+
 get '/' do  # load home page
 	load_elements(params[:name])
 	@title = 'All Elements'
-	erb :home 
+	erb :home
 end
 
 get '/element/:atomic_num' do | atomic_num | # load element page
