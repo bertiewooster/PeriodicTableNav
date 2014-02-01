@@ -61,6 +61,7 @@ helpers do
 		# Using linear group numbering of 1-32 (f-block columns numbered as groups):
 		@main_pauses_group = 2 # where main part of periodic table (non-f block) leaves off
 		@main_resumes_group = 17 # where main part of periodic table (non-f block) picks back up
+		@star = "&#9733;" # HTML code for a 5-pointed star, ★
 	end
 	
 	def group_lin_to_trad(linear_group)

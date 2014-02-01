@@ -1,3 +1,4 @@
+<% start_time = Time.new %>
 <% properties = 
 	{"atomic_num"=>nil,
 	"symbol"=>nil,
@@ -34,9 +35,9 @@
 			<td class="inPTable">
 				<%= erb :'partials/pt_element', :locals=> {:element => element, :markers => true, :properties => properties, :ec_class => "narrow"} %>
 				<% if element.group != @main_pauses_group %>
-					<% lastGroup = element.group %>
+					<% lastGroup = element.group #record the group number of this element %>
 				<% else %>
-					<% lastGroup = @main_resumes_group-1 %>
+					<% lastGroup = @main_resumes_group-1 #if this is traditional group 2, set lastGroup so won't be blanks between this element and next element (traditional group 3) %>
 				<% end %>
 			</td>
 		<% end %>
@@ -60,41 +61,31 @@
 		<% end %>
 	</tr>
 	
-<% @ebyp.each do |period| %>
-	<% period_header += 1 #increment the period number in preparation for next period %>
-	<% lastGroup = 0 %>
-	<% if Element.all(:period => period_header, :group => @main_pauses_group+1).size > 0 # if there are f group elements in this period, plot them; if not, skip period %>
-		<tr>
-			<th class="period_header">
-				<% if period_plotted == false %><!--Period--><br> <% end %>
-				<% period_plotted = true #keep track of whether a period has been plotted yet %>
-				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>			
-			</th>
-			<td class="spacer"></td>
-			<td class="spacer marker">
-				<% if period_header == 6 %>&#9733;<% end %>
-				<% if period_header == 7 %>&#9733;&#9733;<% end %>
-			</td>
-			<% period.each do |element| %>
-				<% blanks = element.group - lastGroup - 1 %>
-				<% if not @f_groups.include? element.group # if element group isn't an f group, skip element %>
-					<% blanks = 0 %>
-					<% lastGroup += 1 %>	
-					<% next %>
-				<% end %>
-				<% while blanks > 0 %>
-					<td class="blanks"></td>
-					<% blanks -= 1 %>
-				<% end %>
-				<td class="inPTable">
-					<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "narrow", :properties => properties} %>
-					<% lastGroup = element.group %>
+	<% @ebyp.each do |period| %>
+		<% period_header += 1 #increment the period number in preparation for next period %>
+		<% lastGroup = 0 %>
+		<% if Element.all(:period => period_header, :group => @main_pauses_group+1).size > 0 # if there are f group elements in this period, plot them; if not, skip period %>
+			<tr>
+				<th class="period_header">
+					<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>			
+				</th>
+				<td class="spacer"></td>
+				<td class="spacer marker">
+					<% if period_header == 6 %><%=@star%><% end %>
+					<% if period_header == 7 %><%=@star%><%=@star%><% end %>
 				</td>
-			<% end %>
-			<td class="spacer"></td>
-			<td class="spacer"></td>
- 		</tr>
+				<% period.each do |element| %>
+					<% next if not @f_groups.include? element.group # if element group isn't an f group, skip element %>
+					<td class="inPTable">
+						<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "narrow", :properties => properties} %>
+						<% lastGroup = element.group %>
+					</td>
+				<% end %>
+				<td class="spacer"></td>
+				<td class="spacer"></td>
+ 			</tr>
+		<% end %>
 	<% end %>
-<% end %>
-
 </table>
+
+home.erb time: <%=Time.new-start_time%>

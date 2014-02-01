@@ -104,10 +104,10 @@
 			<%= element.symbol
 			%><% if show_markers 
 				%><% if element.atomic_num == 56 
-					%><sup class="pointer">&#9733;</sup
+					%><sup class="pointer"><%=@star%></sup
 				><% end 
 				%><% if element.atomic_num == 88 
-					%><sup class="pointer">&#9733;&#9733;</sup
+					%><sup class="pointer"><%=@star%><%=@star%></sup
 				><% end %>
 			<% end %>
 		</div>
