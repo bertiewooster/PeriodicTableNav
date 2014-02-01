@@ -1,4 +1,5 @@
 <% last_stamp = Time.new %>
+<% pt_start = Time.new %>
 <% # Inputs (optional ones in parentheses) %>
 <% # element, (ec_class), (properties[Hash]), (markers), (no_link) %>
 <% # properties = Hash["property_1" => (options[Hash]), "property_2" => (options[Hash])] %>
@@ -88,11 +89,17 @@
 <% end %>
 
 <% this_stamp = Time.new %>
-<%# @timing["pt_init"] += this_stamp - last_stamp %>
+<% @timing["pt_init"] += this_stamp - last_stamp %>
 <% last_stamp = this_stamp %>
 
 <% # Loop to output properties (atomic_num, symbol, etc.) in order given in hash %>
-<% properties.each do |property, options| %>
+<%# properties.each do |property, options| %>
+<% for id in  properties.each do |property, options| %>
+
+<% this_stamp = Time.new %>
+<% @timing["pt_main_loop_start"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
+
 	<% options = Hash.new() if options == nil # create (empty) options hash if doesn't exist %>
 	<% options["label"] = false if !options.has_key?("label") %>
 	<% case property; 
@@ -298,3 +305,5 @@
 <% if create_link %>
 	</a>
 <% end %>
+
+<% @timing["pt_total"] += Time.new - pt_start %>

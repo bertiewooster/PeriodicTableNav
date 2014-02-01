@@ -178,6 +178,7 @@ before do
 	@timing = {"pre_pt"=>0,
 				"lastGroup" =>0,
 				"pt_init" =>0, 
+				"pt_main_loop_start"=>0,
 				"pt_atomic_num" => 0, 
 				"pt_symbol" => 0, 
 				"pt_symbol_opendiv"=>0, 
@@ -195,6 +196,7 @@ before do
 				"pt_econfig_orbital_hash_l"=>0,
 				"pt_econfig_rest"=>0, 
 				"pt_econfig" => 0, 
+				"pt_total"=>0,
 				"total" => 0, 
 				"start_time" => Time.new}
 end
