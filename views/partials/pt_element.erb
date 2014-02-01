@@ -60,6 +60,8 @@
 		"e_config" => {"base" => true, "space_terms" => true, "term_spans" => true}} %>
 <% end %>
 
+<%# properties["e_config"]["space_terms"] = false %>
+
 <% # Show 5-pointed star(s) on Ba (*) and Ra (**) if markers is true; used for home page (to point to lanthanides & actinides, respectively) %>
 <% # If markers is false or unspecified, don't show markers %>
 <% begin %>
@@ -99,14 +101,14 @@
 	<% when 'symbol' %>
 		<div class='pt_symbol'>
  			<%= 'Symbol: ' if options["label"] == true %>
-			<%= element.symbol %>
-			<% if show_markers 
+			<%= element.symbol
+			%><% if show_markers 
 				%><% if element.atomic_num == 56 
-					%><sup class="pointer">&#9733;</sup>
-				<% end 
+					%><sup class="pointer">&#9733;</sup
+				><% end 
 				%><% if element.atomic_num == 88 
-					%><sup class="pointer">&#9733;&#9733;</sup>
-				<% end %>
+					%><sup class="pointer">&#9733;&#9733;</sup
+				><% end %>
 			<% end %>
 		</div>
 	<% when 'name' %>
@@ -219,28 +221,22 @@
 			<%= 'Electron configuration: ' if options["label"] == true %>
 			<% # Following lines offer possibility to squish together all electron config terms so they won't have spaces between them ([He]2s22p1 rather than [He] 2s2 2p1) %>
 			<% if options["base"] == true
-				<% @base = Base.get(element.period).base
-				%><span class="ec_base"><%= @base %></span
-			><% end 
-			%>
-			<% if properties["e_config"]["term_spans"] %><span class="terms"><% end 
-				%>
-			<% for eo in 0..(@orbs.length-1) 
-					%>
-<% this_orbital = @orbital_hash[@orbs[eo].orbital_id]
-					%>
-				<% if properties["e_config"]["term_spans"] 
+				%><% @base = Base.get(element.period).base
+				%><span class="ec_base"><%= @base %></span><%=spacer
+			%><% end 
+			%><% if properties["e_config"]["term_spans"] %><span class="terms"><% end 
+			%><% for eo in 0..(@orbs.length-1) 
+				%><% this_orbital = @orbital_hash[@orbs[eo].orbital_id]
+				%><% if properties["e_config"]["term_spans"] 
 					%><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>'
 						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>n'><%=this_orbital["n"] %></span
 						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>l'><%= this_orbital["l"] %></span
-						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>c'><sup>"><%=@orbs[eo].count%></sup></span
-					></span
-				><% else 
-					%>
-					<%= this_orbital["n"]
-					%>
-					<%= this_orbital["l"] %>
-					<sup><%=@orbs[eo].count%></sup
+						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>c'><sup><%=@orbs[eo].count%></sup></span
+					></span><%=spacer
+				%><% else 
+					%><%= this_orbital["n"]
+					%><%= this_orbital["l"] 
+					%><sup><%=@orbs[eo].count%></sup><%=spacer
 				%><% end 
 			%><% end %>
 			<% if properties["e_config"]["term_spans"] %></span><% end %>
