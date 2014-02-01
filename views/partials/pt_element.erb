@@ -1,5 +1,3 @@
-<% last_stamp = Time.new %>
-<% pt_start = Time.new %>
 <% # Inputs (optional ones in parentheses) %>
 <% # element, (ec_class), (properties[Hash]), (markers), (no_link) %>
 <% # properties = Hash["property_1" => (options[Hash]), "property_2" => (options[Hash])] %>
@@ -88,18 +86,8 @@
 	<a href="/element/<%=element.atomic_num %>" title="element <%=element.atomic_num%>">
 <% end %>
 
-<% this_stamp = Time.new %>
-<% @timing["pt_init"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-
 <% # Loop to output properties (atomic_num, symbol, etc.) in order given in hash %>
-<%# properties.each do |property, options| %>
-<% for id in  properties.each do |property, options| %>
-
-<% this_stamp = Time.new %>
-<% @timing["pt_main_loop_start"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-
+<% properties.each do |property, options| %>
 	<% options = Hash.new() if options == nil # create (empty) options hash if doesn't exist %>
 	<% options["label"] = false if !options.has_key?("label") %>
 	<% case property; 
@@ -108,16 +96,10 @@
  			<%= 'Atomic number: ' if options["label"] == true %>
  			<%= element.atomic_num %>
  		</div>
-<% this_stamp = Time.new %>
-<% @timing["pt_atomic_num"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
 	<% when 'symbol' %>
 		<div class='pt_symbol'>
  			<%= 'Symbol: ' if options["label"] == true %>
 			<%= element.symbol %>
-<% this_stamp = Time.new %>
-<% @timing["pt_symbol"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
 			<% if show_markers 
 				%><% if element.atomic_num == 56 
 					%><sup class="pointer">&#9733;</sup>
@@ -132,9 +114,6 @@
 			<%= 'Name: ' if options["label"] == true %>
 			<%= element.name %>
 		</div>
-<% this_stamp = Time.new %>
-<% @timing["pt_name"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
 	<% when 'name_origin' %>
 		<div class='pt_name_origin'>
 			<%= 'Name origin: ' if options["label"] == true %>
@@ -234,44 +213,22 @@
 			<%= element.abundance_is_upper_limit %>
 		</div>
 	<% when 'e_config' %>
-		<% before_e_config = Time.now %>
 		<div class="<%=ec_class%>">
-<% last_stamp = Time.new %>
 			<% @orbs = Orb.all(:element_id => element.atomic_num) # get orbitals for this element %>
-<% this_stamp = Time.new %>
-<% @timing["pt_econfig_Orb.all"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-
 			<% spacer = options["space_terms"] == true ? " " : "" %>
 			<%= 'Electron configuration: ' if options["label"] == true %>
 			<% # Following lines offer possibility to squish together all electron config terms so they won't have spaces between them ([He]2s22p1 rather than [He] 2s2 2p1) %>
 			<% if options["base"] == true
-				%><% before_base = Time.new %>
 				<% @base = Base.get(element.period).base
 				%><span class="ec_base"><%= @base %></span
 			><% end 
 			%>
-<% this_stamp = Time.new %>
-<% @timing["pt_econfig_pre_terms"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
 			<% if properties["e_config"]["term_spans"] %><span class="terms"><% end 
 				%>
-
-<% this_stamp = Time.new %>
-<% @timing["pt_econfig_if_term_spans"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-
 			<% for eo in 0..(@orbs.length-1) 
 					%>
-<% this_stamp = Time.new %>
-<% @timing["pt_econfig_for"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
 <% this_orbital = @orbital_hash[@orbs[eo].orbital_id]
 					%>
-<% this_stamp = Time.new %>
-<% @timing["pt_econfig_this_orbital"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-					
 				<% if properties["e_config"]["term_spans"] 
 					%><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>'
 						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>n'><%=this_orbital["n"] %></span
@@ -282,21 +239,12 @@
 					%>
 					<%= this_orbital["n"]
 					%>
-<% this_stamp = Time.new %>
-<% @timing["pt_econfig_orbital_hash_n"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
 					<%= this_orbital["l"] %>
-<% this_stamp = Time.new %>
-<% @timing["pt_econfig_orbital_hash_l"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
 					<sup><%=@orbs[eo].count%></sup
 				%><% end 
 			%><% end %>
 			<% if properties["e_config"]["term_spans"] %></span><% end %>
 		</div>
-<% this_stamp = Time.new %>
-<% @timing["pt_econfig_rest"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
 	<% else %>
 		<div>Error: unknown property requested</div> 
 	<% end %>
@@ -305,5 +253,3 @@
 <% if create_link %>
 	</a>
 <% end %>
-
-<% @timing["pt_total"] += Time.new - pt_start %>

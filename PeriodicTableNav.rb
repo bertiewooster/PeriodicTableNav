@@ -171,34 +171,6 @@ end # helpers
 
 before do
 	load_orbitals("")
-	@terms = 0
-	@time_orbitals = 0
-	@time_in_e_config = 0
-	@start_time = Time.new
-	@timing = {"pre_pt"=>0,
-				"lastGroup" =>0,
-				"pt_init" =>0, 
-				"pt_main_loop_start"=>0,
-				"pt_atomic_num" => 0, 
-				"pt_symbol" => 0, 
-				"pt_symbol_opendiv"=>0, 
-				"pt_symbol_label"=>0, 
-				"pt_symbol_symbol"=>0,
-				"pt_symbol_stars"=>0, 
-				"pt_name" => 0, 
-				"pt_econfig_Orb.all"=>0, 
-				"pt_econfig_pre_terms"=>0,
-				"pt_econfig_last_orb"=>0,
-				"pt_econfig_for"=>0,
-				"pt_econfig_if_term_spans"=>0,
-				"pt_econfig_this_orbital"=>0,
-				"pt_econfig_orbital_hash_n"=>0,
-				"pt_econfig_orbital_hash_l"=>0,
-				"pt_econfig_rest"=>0, 
-				"pt_econfig" => 0, 
-				"pt_total"=>0,
-				"total" => 0, 
-				"start_time" => Time.new}
 end
 #=begin
 get '/test/:name' do
