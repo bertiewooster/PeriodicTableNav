@@ -1,3 +1,8 @@
+				<% if element.group == @main_pauses_group %>
+					<% lastGroup = @main_resumes_group-1 %>
+				<% else %>
+					<% lastGroup = element.group %>
+				<% end %>
 -----------
 <% element.each do |property, value| %>
 	<p><%=property%>: <%=value%></p>

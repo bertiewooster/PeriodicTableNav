@@ -176,6 +176,7 @@ before do
 	@time_in_e_config = 0
 	@start_time = Time.new
 	@timing = {"element_symbol"=>0, 
+				"lastGroup" =>0,
 				"pt_init" =>0, 
 				"pt_atomic_num" => 0, 
 				"pt_symbol" => 0, 

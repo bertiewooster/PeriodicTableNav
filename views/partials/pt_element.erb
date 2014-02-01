@@ -235,12 +235,6 @@
 <% @timing["pt_econfig_Orb.all"] += this_stamp - last_stamp %>
 <% last_stamp = this_stamp %>
 
-			<% last_orb = @orbs.length-1 %>
-
-<% this_stamp = Time.new %>
-<% @timing["pt_econfig_last_orb"] += this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-
 			<% spacer = options["space_terms"] == true ? " " : "" %>
 			<%= 'Electron configuration: ' if options["label"] == true %>
 			<% # Following lines offer possibility to squish together all electron config terms so they won't have spaces between them ([He]2s22p1 rather than [He] 2s2 2p1) %>
@@ -260,7 +254,7 @@
 <% @timing["pt_econfig_if_term_spans"] += this_stamp - last_stamp %>
 <% last_stamp = this_stamp %>
 
-			<% for eo in 0..last_orb 
+			<% for eo in 0..(@orbs.length-1) 
 					%>
 <% this_stamp = Time.new %>
 <% @timing["pt_econfig_for"] += this_stamp - last_stamp %>

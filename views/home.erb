@@ -26,7 +26,7 @@
 		</th>
 		<% period.each do |element| %>
 			<% blanks = element.group - lastGroup - 1 %>
-			<% if not @main_groups.include? element.group %>
+			<% if not @main_groups.include? element.group # for non-main group (e.g., f-block) elements, skip %>
 				<% blanks = 0 %>
 				<% lastGroup += 1 %>	
 				<% next %>
@@ -37,11 +37,15 @@
 			<% end %>
 			<td class="inPTable">
 				<%= erb :'partials/pt_element', :locals=> {:element => element, :markers => true, :properties => properties, :ec_class => "narrow"} %>
-				<% if element.group == @main_pauses_group %>
-					<% lastGroup = @main_resumes_group-1 %>
-				<% else %>
+<% last_stamp = Time.new %>
+				<% if element.group != @main_pauses_group %>
 					<% lastGroup = element.group %>
+				<% else %>
+					<% lastGroup = @main_resumes_group-1 %>
 				<% end %>
+<% this_stamp = Time.new %>
+<% @timing["lastGroup"] += this_stamp - last_stamp %>
+<% last_stamp = this_stamp %>
 			</td>
 		<% end %>
  	 </tr>
@@ -91,7 +95,6 @@
 					<% blanks = blanks - 1 %>
 				<% end %>
 				<td class="inPTable">
-					<%#=Time.new - @start_time %>
 					<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "narrow", :properties => properties} %>
 					<% lastGroup = element.group %>
 				</td>
