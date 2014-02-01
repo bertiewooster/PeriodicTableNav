@@ -175,7 +175,7 @@ before do
 	@time_orbitals = 0
 	@time_in_e_config = 0
 	@start_time = Time.new
-	@timing = {"element_symbol"=>0, 
+	@timing = {"pre_pt"=>0,
 				"lastGroup" =>0,
 				"pt_init" =>0, 
 				"pt_atomic_num" => 0, 

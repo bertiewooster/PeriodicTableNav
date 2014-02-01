@@ -192,10 +192,10 @@
 		/*font-weight: bold;*/
 	}
 
-	sup.narrow { /* for superscripts in narrow table cells (home and period) */
+	div.narrow sup { /* for superscripts in narrow table cells (home and period) */
 		/*font-size: 50%; */
 		top: +0.0em;
-		/*background-color: red;*/
+		background-color: red;
 	}
 
 	div.wide { /* for wide table cells: group and element pages */
@@ -203,10 +203,10 @@
 		/*font-weight: bold;*/
 	}
 
-	sup.wide { /* for superscripts in wide table cells (group and element), make text bigger so easier to read */
+	div.wide sup { /* for superscripts in wide table cells (group and element), make text bigger so easier to read */
 		font-size: 65%;
 		top: +0.2em;
-		/*background-color: red;*/
+		background-color: green;
 	}
 
 	sup.pointer { /* for 5-pointed star superscripts on Ba and Ra, pointing to lanthanides and actinides respectively */

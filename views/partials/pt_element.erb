@@ -88,7 +88,7 @@
 <% end %>
 
 <% this_stamp = Time.new %>
-<% @timing["pt_init"] += this_stamp - last_stamp %>
+<%# @timing["pt_init"] += this_stamp - last_stamp %>
 <% last_stamp = this_stamp %>
 
 <% # Loop to output properties (atomic_num, symbol, etc.) in order given in hash %>
@@ -269,7 +269,7 @@
 					%><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>'
 						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>n'><%=this_orbital["n"] %></span
 						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>l'><%= this_orbital["l"] %></span
-						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>c'><sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup></span
+						><span class='ec_<%=this_orbital["n"].to_s+this_orbital["l"]%>c'><sup>"><%=@orbs[eo].count%></sup></span
 					></span
 				><% else 
 					%>
@@ -282,7 +282,7 @@
 <% this_stamp = Time.new %>
 <% @timing["pt_econfig_orbital_hash_l"] += this_stamp - last_stamp %>
 <% last_stamp = this_stamp %>
-					<sup class="<%=ec_class%>"><%=@orbs[eo].count%></sup
+					<sup><%=@orbs[eo].count%></sup
 				%><% end 
 			%><% end %>
 			<% if properties["e_config"]["term_spans"] %></span><% end %>
