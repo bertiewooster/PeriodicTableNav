@@ -2,8 +2,11 @@ require 'rubygems'
 require 'sinatra'  
 require 'data_mapper'
 
+#erb = ERB.new(template_file, 0, '>')
+#set :erb, :trim_mode => '>'
+
 # Serve static files from public
-#set :public, "../public"
+set :public, "../public"
 
 SITE_TITLE = "Periodic Table Navigator"  
 SITE_DESCRIPTION = "See how the elements are related to each other" 
@@ -173,10 +176,12 @@ end # helpers
 before do
 	load_orbitals("")
 end
+
 #=begin
 get '/test/:name' do
 	load_elements(params[:name])
-	erb :'inactive/test'
+	ERB.new(File.read('views/inactive/test.erb'), nil, '<>').result
+	#erb :'inactive/test'
 end
 #=end
 
@@ -197,10 +202,11 @@ end
 get '/' do  # load home page
 	load_elements(params[:name])
 	@title = 'All Elements'
+	#ERB.new(File.read('views/home'), nil, '<>').result
 	erb :home
 end
 
-get '/element/:atomic_num' do | atomic_num | # load element page
+get '/element/:atomic_num' do |atomic_num| # load element page
 	load_elements(params[:name])
 	atomic_num = atomic_num.to_i
 	@origin = Element.get(atomic_num)

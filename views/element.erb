@@ -1,68 +1,3 @@
-<script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
-
-<script>
-	$(document).ready(function() {
-		console.log("Running jQuery"); // debugging
-		$origin_terms = $('#origin').find('.terms'); // get terms (orbitals, e.g. 3s2) in origin element
-
-		// When user hovers mouse over an adjacent element, highlight the electron terms compared to the origin element
-		$('#above, #left, #right, #below').hover(
-			// On mouseover adjacent element
-			function() {
-				$adj_terms = $(this).find('.terms'); // get terms (orbitals, e.g. 4f10) in adjacent element
-				$adj_terms.children().each(function() { // for each orbital term in adjacent element
-					adj_term = $(this).text().replace(/\s/g, ''); // e.g., 4f10 [format: nlc where c = electron count]
-					adj_n  = adj_term.charAt(0); // extract n quantum number (1, 2, 3,...) from term
-					adj_l = adj_term.charAt(1); // extract l letter (s, p, d, or f) from term
-					adj_count  = adj_term.substring(2,adj_term.length); // extract electron count (1-14) from term
-					same_l_selector = 'span[class^="ec_"][class$="' + adj_l + '"]'; // jQuery selector for term in origin
-					$same_l_in_origin = $origin_terms.find(same_l_selector); // jQuery object: analogous term in origin, e.g. 4f9 (will test to see if exists below)
-					same_l = $same_l_in_origin.text().replace(/\s/g, ''); // text of analogous term in origin
-					origin_n = same_l.charAt(0); // origin's principal quantum number, n, for this term
-					origin_count  = same_l.substring(2,same_l.length); // extract electron count (1-14) from term					
-
-					// If origin doesn't contain term with this l, highlight whole term in adjacent element
-					origin_terms_text = $origin_terms.text().replace(/\s/g, '');
-					// Mash-together of all terms in origin, e.g. 6s24f9. So can check one string to see if origin has term with same l value as current term of adjacent element.
-
-					origin_has_term = origin_terms_text.indexOf(adj_l) != -1
-					if (!origin_has_term) { // if origin doesn't contain term with this l, highlight whole term in adjacent element
-						$(this).addClass('new_orbital');
-						return true; // skip rest of highlighting rules for this term: whole term is highlighted because new
-					}
-
-					// If n value (for same l term) is different (adj vs. origin), highlight n value in both elements
-					if(adj_n != origin_n) {
-						$same_l_in_origin.find('span[class^="ec_"][class$="n"]').addClass('diff_n');
-						$(this).find('span[class^="ec_"][class$="n"]').addClass('diff_n');
-					}
-					
-					// If n and l values are same but electron count is different (adj vs. origin), highlight counts in both elements
-					if(adj_count != origin_count) {
-						$same_l_in_origin.find('span[class^="ec_"][class$="c"]').find('sup').addClass('diff_count');
-						$(this).find('span[class^="ec_"][class$="c"]').find('sup').addClass('diff_count');
-					}
-					
-				}) // end $adj_terms.children().each
-				$origin_terms.children().each(function() { // for each orbital term in origin element
-					origin_term = $(this).text().replace(/\s/g, ''); // get the text of the origin term, e.g. 4f10
-					origin_l = origin_term.charAt(1); // extract l letter (s, p, d, or f) from term
-					adj_ec_text = $adj_terms.text().replace(/\s/g, '');
-					adj_has_term = adj_ec_text.indexOf(origin_l) != -1
-					if (!adj_has_term) { // if adj element doesn't contain term with this l, highlight whole term in origin element
-						$(this).addClass('new_orbital');
-					}
-				}) // end $origin_terms.children().each
-			// On mouseout adjacent element,
-			}, function() { // Remove all highlighting of orbital(s) (and parts thereof) on adjacent and origin elements
-				$adj_terms.find('*').removeClass('new_orbital diff_n diff_count');
-				$origin_terms.find('*').removeClass('new_orbital diff_n diff_count');
- 			}
-		);
-
-	}); // end ready
-</script>
-
 <!-- Database queries to find four adjacent elements. If one doesn't exist, flagged as such to modify table structure. -->
 <% begin %>
 	<% @above = Element.all(:period => @origin.period-1, :group => @origin.group)[0] %>
@@ -187,3 +122,68 @@
 		</tr>
 	<% end %>
 </table>
+
+<script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		console.log("Running jQuery"); // debugging
+		$origin_terms = $('#origin').find('.terms'); // get terms (orbitals, e.g. 3s2) in origin element
+
+		// When user hovers mouse over an adjacent element, highlight the electron terms compared to the origin element
+		$('#above, #left, #right, #below').hover(
+			// On mouseover adjacent element
+			function() {
+				$adj_terms = $(this).find('.terms'); // get terms (orbitals, e.g. 4f10) in adjacent element
+				$adj_terms.children().each(function() { // for each orbital term in adjacent element
+					adj_term = $(this).text().replace(/\s/g, ''); // e.g., 4f10 [format: nlc where c = electron count]
+					adj_n  = adj_term.charAt(0); // extract n quantum number (1, 2, 3,...) from term
+					adj_l = adj_term.charAt(1); // extract l letter (s, p, d, or f) from term
+					adj_count  = adj_term.substring(2,adj_term.length); // extract electron count (1-14) from term
+					same_l_selector = 'span[class^="ec_"][class$="' + adj_l + '"]'; // jQuery selector for term in origin
+					$same_l_in_origin = $origin_terms.find(same_l_selector); // jQuery object: analogous term in origin, e.g. 4f9 (will test to see if exists below)
+					same_l = $same_l_in_origin.text().replace(/\s/g, ''); // text of analogous term in origin
+					origin_n = same_l.charAt(0); // origin's principal quantum number, n, for this term
+					origin_count  = same_l.substring(2,same_l.length); // extract electron count (1-14) from term					
+
+					// If origin doesn't contain term with this l, highlight whole term in adjacent element
+					origin_terms_text = $origin_terms.text().replace(/\s/g, '');
+					// Mash-together of all terms in origin, e.g. 6s24f9. So can check one string to see if origin has term with same l value as current term of adjacent element.
+
+					origin_has_term = origin_terms_text.indexOf(adj_l) != -1
+					if (!origin_has_term) { // if origin doesn't contain term with this l, highlight whole term in adjacent element
+						$(this).addClass('new_orbital');
+						return true; // skip rest of highlighting rules for this term: whole term is highlighted because new
+					}
+
+					// If n value (for same l term) is different (adj vs. origin), highlight n value in both elements
+					if(adj_n != origin_n) {
+						$same_l_in_origin.find('span[class^="ec_"][class$="n"]').addClass('diff_n');
+						$(this).find('span[class^="ec_"][class$="n"]').addClass('diff_n');
+					}
+					
+					// If n and l values are same but electron count is different (adj vs. origin), highlight counts in both elements
+					if(adj_count != origin_count) {
+						$same_l_in_origin.find('span[class^="ec_"][class$="c"]').find('sup').addClass('diff_count');
+						$(this).find('span[class^="ec_"][class$="c"]').find('sup').addClass('diff_count');
+					}
+					
+				}) // end $adj_terms.children().each
+				$origin_terms.children().each(function() { // for each orbital term in origin element
+					origin_term = $(this).text().replace(/\s/g, ''); // get the text of the origin term, e.g. 4f10
+					origin_l = origin_term.charAt(1); // extract l letter (s, p, d, or f) from term
+					adj_ec_text = $adj_terms.text().replace(/\s/g, '');
+					adj_has_term = adj_ec_text.indexOf(origin_l) != -1
+					if (!adj_has_term) { // if adj element doesn't contain term with this l, highlight whole term in origin element
+						$(this).addClass('new_orbital');
+					}
+				}) // end $origin_terms.children().each
+			// On mouseout adjacent element,
+			}, function() { // Remove all highlighting of orbital(s) (and parts thereof) on adjacent and origin elements
+				$adj_terms.find('*').removeClass('new_orbital diff_n diff_count');
+				$origin_terms.find('*').removeClass('new_orbital diff_n diff_count');
+ 			}
+		);
+
+	}); // end ready
+</script>
