@@ -29,16 +29,17 @@ end
 class Orbital < ActiveRecord::Base
 end
 
-get "/" do
-  @element = Element.find(2)
-  @elements = Element.order("atomic_num ASC")
-  erb :index
+get "/index" do
+	load_elements(params[:name])
+	@element = Element.find(2)
+	@elements = Element.order("atomic_num ASC")
+	erb :index
 end
 
-get "/home" do
-  @element = Element.find(2)
-  @elements = Element.order("atomic_num ASC")
-  erb :home
+get "/" do
+	load_elements(params[:name])
+	@title = 'All Elements'
+	erb :home
 end
 
 get '/test/:name' do
@@ -115,9 +116,12 @@ helpers do
 
   def load_elements(name)
 	init_constants
-	@elements			= Element.all :order => :atomic_num.asc
-	@max_period			= Element.last.period
-	@max_group = Element.all(:order => [ :group.desc ], :limit => 1)[0].group
+##	@elements			= Element.all :order => :atomic_num.asc
+	@elements = Element.order("atomic_num ASC")
+##	@max_period			= Element.last.period
+	@max_period			= Element.last(1)[0].period
+##	@max_group = Element.all(:order => [ :group.desc ], :limit => 1)[0].group
+	@max_group = Element.order(group: :desc)[0].group
 	@ebyp = Array.new(@max_period) # array to hold elements
 	@ebyp.each_index do |period| # build a 2D array: by period, then by element
 		@ebyp[period] = @elements.select{|element| element.period == period+1}
@@ -146,7 +150,7 @@ helpers do
   end
   
   def load_orbitals(name)
-	#@orbitals			= Orbital.all :order => :id.asc
+##	@orbitals			= Orbital.all :order => :id.asc
 	@orbitals			= Orbital.order("id ASC")
 	#Build hash of orbitals (e.g. id 11 = 5p)
 	@orbital_hash = Hash.new

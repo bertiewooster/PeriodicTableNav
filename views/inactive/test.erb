@@ -15,14 +15,3 @@
 	<% @elementAR2 = Element.find(2) %>
 <p><%= @elementAR2.symbol %></p>
 <p><%= @elementAR2.name %></p>
-
-<h1>Elements</h1>
-<ul>
-<% @elements.each do |element| %>
-  <li>
-    <h2><a href="/element/<%= element.atomic_num %>"><%= element.name %></a></h2>
-    <p><%= element.symbol %></p>
-    <p><%= element.atomic_weight %></p>
-  </li>
-<% end %>
-</ul>
