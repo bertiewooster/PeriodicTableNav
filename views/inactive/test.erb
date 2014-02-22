@@ -1,111 +1,28 @@
-<% element = @ebyp[1][1] %>
-<% last_stamp = Time.new %>
+<% element_num = 5 %>
+<h1>Data Mapper</h1>
+<%# element = Element.get(element_num) %>
 
+<p><%#= element.symbol %></p>
+<p><%#= element.name %></p>
 
+<h1>ActiveRecord from .rb</h1>
 
+<p><%#= @elementAR.symbol %></p>
+<p><%#= @elementAR.name %></p>
 
-<p>atomic_num: <%= element.atomic_num %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>name: <%= element.name %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>symbol: <%= element.symbol %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>name_origin: <%= element.name_origin %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>group: <%= element.group %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>period: <%= element.period %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>atomic_weight: <%= element.atomic_weight %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>atomic_wt_is_mass_number_of_longest_lived_isotope: <%= element.atomic_wt_is_mass_number_of_longest_lived_isotope %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>specific_heat_capacity_j_per_gk: <%= element.specific_heat_capacity_j_per_gk %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>density_g_per_cm3: <%= element.density_g_per_cm3 %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>density_is_estimated: <%= element.density_is_estimated %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>melting_point_k: <%= element.melting_point_k %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>melt_is_estimated: <%= element.melt_is_estimated %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>boiling_point_k: <%= element.boiling_point_k %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>boil_is_estimated: <%= element.boil_is_estimated %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>electronegativity: <%= element.electronegativity %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>abundance_mg_per_kg: <%= element.abundance_mg_per_kg %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
-<p>abundance_is_upper_limit: <%= element.abundance_is_upper_limit %>
-  <% this_stamp = Time.new %>
-time: <%= this_stamp - last_stamp %>
-<% last_stamp = this_stamp %>
-</p>
+<h1>ActiveRecord from .erb</h1>
 
----
-<p><%= element.symbol %></p>
+	<% @elementAR2 = Element.find(2) %>
+<p><%= @elementAR2.symbol %></p>
+<p><%= @elementAR2.name %></p>
 
-<% load_orbitals("") %>
-
-<% for orbital in 1..(@orbital_hash.size) %>
-	<p>@orbital_hash[<%=orbital%>]: n = <%=@orbital_hash[orbital]["n"] %>, l = <%=@orbital_hash[orbital]["l"] %></p>
+<h1>Elements</h1>
+<ul>
+<% @elements.each do |element| %>
+  <li>
+    <h2><a href="/element/<%= element.atomic_num %>"><%= element.name %></a></h2>
+    <p><%= element.symbol %></p>
+    <p><%= element.atomic_weight %></p>
+  </li>
 <% end %>
-
-------------------
-
-<% @orbital_hash.each do |key, value| %>
-	<p><%=key%>: <%=value%></p>
-<% end %>
+</ul>
