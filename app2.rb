@@ -69,7 +69,7 @@ get '/group/:group' do |traditional_group|  # load group page
 	if (@linear_group > @max_group) or (@linear_group <= 0)
 		redirect('/') 	# redirect to home page if user tries to compose a URL to a non-existent group
 	end
-	@group_elements = Element.where(:group => @linear_group).order(group: :asc)
+	@group_elements = Element.where(:group => @linear_group).order(period: :asc)
 	@title = "Group ##{traditional_group}"
 	erb :group
 end

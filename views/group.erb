@@ -12,7 +12,8 @@
 <% end %>
 
 <% begin %>
-	<% @right = Element.all(:group => @linear_group+1)[0] %>
+	<%# @right = Element.all(:group => @linear_group+1)[0] %>
+	<% @right = Element.where(:group => @linear_group+1)[0] %>
 	<% right_exists = true if @right.atomic_num # OK if there is a group to the right; will go to rescue if not %>
 <% rescue %>
 	<% right_exists = false %>
