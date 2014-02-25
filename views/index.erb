@@ -1,5 +1,65 @@
+<% @period = 5 %>
+<p>@period: <%=@period%></p>
+<% @above_period = Element.where(:period => @period-1) %>
+<p>@above_period (period <%=@period-1%>): value = <%=@above_period%>, size = <%=@above_period.size%>, type = <%=@above_period.class%></p>
+<ul>
+<% @above_period.each do |element| %>
+  <li>
+    <h2><%= element.symbol %></h2>
+  </li>
+<% end %>
+</ul>
+
+<% @linear_group = 2 %>
+<%# @group_elements = Element.where(:group => @linear_group).order("group ASC") %>
+<%# @group_elements = Element.where(:group => @linear_group) %>
+<%# @group_elements = Element.where(:group => @linear_group).order(:group) %>
+<% @group_elements = Element.where(:group => @linear_group).order(group: :asc) %>
+<p>@group_elements (linear group <%=@linear_group%>): value = <%=@group_elements%>, size = <%=@group_elements.size%>, type = <%=@group_elements.class%></p>
+<ul>
+<% @group_elements.each do |element| %>
+  <li>
+    <h2><%= element.symbol %></h2>
+  </li>
+<% end %>
+</ul>
+
+
+
+
 <% element_num = 5 %>
 <%  element = Element.find(element_num) %>
+<%  @origin = Element.find(element_num) %>
+
+
+<% @above = Element.where(:period => @period-1)[0] %>
+<p>@above: <%=@above.name%></p>
+
+
+	<%# Element.where(group = @linear_group).order("group ASC").find_each do |element| %>
+	<%# Element.where(group = @linear_group).find_each {|t| t } %>
+		<%#=element.name %>
+	<%# end %>
+
+	<% @linear_group = 27 %>
+	<% @group_elements = Element.where(:group => @linear_group).order("group ASC") %>
+
+<%# @origin = element %>
+<% @left = Element.where(period: @origin.period, group: @origin.group)[0] # = ? AND group = ?", , @origin.group) %>
+<%# @leftb = Element.first("period = ? AND group = ?", @origin.period, @origin.group) # = ? AND group = ?", , @origin.group) %>
+<%# @leftc = Element.first("period = ?", @origin.period) # = ? AND group = ?", , @origin.group) %>
+<%# @leftb = Element.where("period = @origin.period").where("group = @origin.group") # AND )[0] # = ? AND group = ?", , @origin.group) %>
+
+<%#.order(group: :desc)[0] %>
+<p>@left: <%=@left.name%>.
+@left.size: <%#=@left.size%></p>
+<p>@leftb: <%#=@leftb.name%>;
+@leftb.size: <%#=@leftb%></p>
+
+<p>@origin: <%=@origin.name%></p>
+
+<p>@f_groups.min: <%=@f_groups.min%></p>
+<p>@f_groups.max: <%=@f_groups.max%></p>
 
 <% period_header = 5 %>
 <p>@main_pauses_group+1: <%=@main_pauses_group+1%></p>
@@ -21,6 +81,7 @@
 
 
 <% @orbs = Orb.where("element_id = ?", element.atomic_num) %>
+<p>@orbs: type = <%=@orbs.class%> </p>
 
 <h1>Orbitals for element #<%=element_num%></h1>
 <ul>

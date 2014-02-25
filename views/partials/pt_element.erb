@@ -222,7 +222,7 @@
 			<%= 'Electron configuration: ' if options["label"] == true %>
 			<% # Following lines offer possibility to squish together all electron config terms so they won't have spaces between them ([He]2s22p1 rather than [He] 2s2 2p1) %>
 			<% if options["base"] == true
-				%><% @base = Base.get(element.period).base
+				%><% @base = Base.find(element.period).base
 				%><span class="ec_base"><%= @base %></span><%=spacer
 			%><% end 
 			%><% if properties["e_config"]["term_spans"] %><span class="terms"><% end 

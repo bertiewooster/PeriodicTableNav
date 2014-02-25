@@ -42,6 +42,37 @@ get "/" do
 	erb :home
 end
 
+get '/element/:atomic_num' do |atomic_num| # load element page
+	load_elements(params[:name])
+	atomic_num = atomic_num.to_i
+	@origin = Element.find(atomic_num)
+	@title = "Element ##{atomic_num}"
+	erb :element
+end
+
+get '/period/:period' do |period| # load period page
+	load_elements(params[:name])
+	period = period.to_i
+	@period = period
+	redirect('/') if @period > @max_period	# redirect to home page if user tries to compose a URL to a non-existent period
+	@title = "Period ##{period}"
+	erb :period
+end
+
+get '/group/:group' do |traditional_group|  # load group page
+	load_elements(params[:name])
+	#group = group.to_i
+	@traditional_group = traditional_group
+#	group_entity = group_trad_to_lin(traditional_group)
+#	@linear_group = group_entity["num"]
+	@linear_group = group_trad_to_lin(traditional_group)["num"]
+	if (@linear_group > @max_group) or (@linear_group <= 0)
+		redirect('/') 	# redirect to home page if user tries to compose a URL to a non-existent group
+	end
+	@group_elements = Element.where(:group => @linear_group).order(group: :asc)
+	@title = "Group ##{traditional_group}"
+	erb :group
+end
 get '/test/:name' do
 	@elementAR = Element.find(2)
 	erb :'inactive/test'
@@ -198,39 +229,5 @@ get '/' do  # load home page
 	@title = 'All Elements'
 	#ERB.new(File.read('views/home'), nil, '<>').result
 	erb :home
-end
-=end
-
-=begin
-get '/element/:atomic_num' do |atomic_num| # load element page
-	load_elements(params[:name])
-	atomic_num = atomic_num.to_i
-	@origin = Element.get(atomic_num)
-	@title = "Element ##{atomic_num}"
-	erb :element
-end
-
-get '/period/:period' do |period| # load period page
-	load_elements(params[:name])
-	period = period.to_i
-	@period = period
-	redirect('/') if @period > @max_period	# redirect to home page if user tries to compose a URL to a non-existent period
-	@title = "Period ##{period}"
-	erb :period
-end
-
-get '/group/:group' do |traditional_group|  # load group page
-	load_elements(params[:name])
-	#group = group.to_i
-	@traditional_group = traditional_group
-#	group_entity = group_trad_to_lin(traditional_group)
-#	@linear_group = group_entity["num"]
-	@linear_group = group_trad_to_lin(traditional_group)["num"]
-	if (@linear_group > @max_group) or (@linear_group <= 0)
-		redirect('/') 	# redirect to home page if user tries to compose a URL to a non-existent group
-	end
-	@group_elements = Element.all(:group => @linear_group, :order => [ :group.asc ])
-	@title = "Group ##{traditional_group}"
-	erb :group
 end
 =end

@@ -2,14 +2,14 @@
 
 <!-- Database queries to find adjacent periods (above and below). If one doesn't exist, flagged as such to remove navigation arrows. -->
 <% begin %>
-	<% @above = Element.all(:period => @period-1)[0] %>
+	<% @above = Element.where(:period => @period-1)[0] %>
 	<% above_exists = true if @above.atomic_num # OK if there is a group to the right; will go to rescue if not %>
 <% rescue %>
 	<% above_exists = false %>
 <% end %>
 
 <% begin %>
-	<% @below = Element.all(:period => @period+1)[0] %>
+	<% @below = Element.where(:period => @period+1)[0] %>
 	<% below_exists = true if @below.atomic_num # OK if there is a group to the below; will go to rescue if not %>
 <% rescue %>
 	<% below_exists = false %>
@@ -18,7 +18,7 @@
 <!-- Database query to determine if there are f-block elements in this period. If no, flagged as such so will skip columns for f groups. -->
 
 <% begin %>
-	<% f_this_period = Element.all(:period=>@period, :group => @f_groups)[0] %>
+	<% f_this_period = Element.where(:period=>@period, :group => @f_groups)[0] %>
 	<% f_exists = true if f_this_period.atomic_num # OK if there is an f element in this period; will go to rescue if not %>
 <% rescue %>
 	<% f_exists = false %>
