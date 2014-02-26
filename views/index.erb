@@ -1,3 +1,64 @@
+<% element_by_period = Element.where("period = ?", 1).to_a %>
+<% element_by_group  = Element.where("group = 1") %>
+<% element_by_atomic_num = Element.where("atomic_num > ?", 115) %>
+<% element_by_bp  = Element.where("boiling_point_k < ?", 100) %>
+
+<p>element_by_period[0]: <%= element_by_period[0].symbol%>, type = <%= element_by_period[0].class%>, name = <%= element_by_period[0].name%></p>
+	--<% element_by_period.each do |element| %>
+		<%=element.name%>, 
+	<% end %>
+<p>element_by_group: <%#= element_by_group.symbol%>, type = <%= element_by_group.class%>, name = <%= element_by_group.name%></p>
+	--<%# element_by_group.each do |element| %>
+		<%#=element.name%>
+	<%# end %>
+<p>element_by_atomic_num[0]: <%= element_by_atomic_num[0].symbol%>, type = <%= element_by_atomic_num[0].class%>, name = <%= element_by_atomic_num[0].name%></p>
+	--<% element_by_atomic_num.each do |element| %>
+		<%=element.name%>, 
+	<% end %>
+<p>element_by_bp[0]: <%= element_by_bp[0].symbol%>, type = <%= element_by_bp[0].class%>, name = <%= element_by_bp[0].name%></p>
+	--<% element_by_bp.each do |element| %>
+		<%=element.name%>, 
+	<% end %>
+
+
+
+<% element_num = 5 %>
+<%  element = Element.find(element_num) %>
+<% element_by_wheres = Element.where("atomic_num > ?", 80).where("period = ?", 7).order(atomic_num: :asc).all[0] %>
+<p>element_by_wheres: <%= element_by_wheres.symbol%>, size = <%#= element_by_wheres.size%>, type = <%=element_by_wheres.class%>, name = <%= element_by_wheres.name%></p>
+
+<% element_by_AND = Element.where("atomic_num > ? AND period = ?", 80, 7).order(atomic_num: :asc).all[0] %>
+<p>element_by_AND: <%= element_by_AND.symbol%>, size = <%#= element_by_AND.size%>, type = <%=element_by_AND.class%>, name = <%= element_by_AND.name%></p>
+
+<%  @origin = Element.find(element_num) %>
+	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group).order(group: :desc).all[0] %>
+	<%# @left = Element.where("period = ?", @origin.period).where("group = ?", 2).order(atomic_num: :asc).all[0] %>
+	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group).order(group: :desc).all[0] %>
+	<p>@left: size = <%#= @left.size%>, type = <%#= @left.class%>, name = <%#= @left.name%></p>
+
+<p>element by find: size = <%#= element.size%>, type = <%=element.class%>, name = <%= element.name%></p>
+	<% element.attributes.each do |attr_name, attr_value| %>
+		<!--<%=attr_name%>: <%=attr_value%><br>-->
+	<% end %>
+
+	<%# element_by_wheres = Element.where(:period => @origin.period)%>
+	<%# element_by_wheres = Element.where(:period => @origin.period).where("group < ?", @origin.group).all[0]%>
+	<%# element_by_wheres = Element.where(:period => @origin.period).where(:group => @origin.group)%>
+
+	
+	<%# element_by_wheres.attributes.each do |attr_name, attr_value| %>
+		<%#=attr_name%>: <%#=attr_value%><br>
+	<%# end %>
+
+	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group).order(group: :desc)[0] %>
+	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group) %>
+	<% @left = Element.where("period = ?", @origin.period) %>
+	<%# @left_single = @left.where("group = ?", @origin.group) %>
+	<% @left_single = Element.where("period = ?", @origin.period).where("group = ?", @origin.group) %>
+	<p>@left.size: <%= @left.size%></p>
+	<p>@left_single: <%#= @left_single.size%></p>
+	<%# left_exists = true if @left.atomic_num # OK if there is an element left of origin; will go to rescue if not %>
+
 <% @period = 5 %>
 <p>@period: <%=@period%></p>
 <% @above_period = Element.where(:period => @period-1) %>
@@ -26,10 +87,6 @@
 
 
 
-
-<% element_num = 5 %>
-<%  element = Element.find(element_num) %>
-<%  @origin = Element.find(element_num) %>
 
 
 <% @above = Element.where(:period => @period-1)[0] %>

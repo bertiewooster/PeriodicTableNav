@@ -9,7 +9,8 @@
 
 <% begin %>
 	<%# @left = Element.all(:period => @origin.period, :group.lt => @origin.group, :order => [ :group.desc ], :limit => 1)[0] %>
-	<% @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group).order(group: :desc)[0] %>
+	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group).order(group: :desc).all[0] %>
+	<% @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group).order(group: :desc).all[0] %>
 	<% left_exists = true if @left.atomic_num # OK if there is an element left of origin; will go to rescue if not %>
 <% rescue %>
 	<% left_exists = false %>
