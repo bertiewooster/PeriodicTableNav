@@ -1,5 +1,7 @@
+require 'rubygems'
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'data_mapper' # remove when migrate to ActiveRecord
 
 db = URI.parse('postgres://jemonat@localhost/elements')
 
@@ -12,12 +14,10 @@ ActiveRecord::Base.establish_connection(
   :encoding => 'utf8'
 )
 
-SITE_TITLE = "Periodic Table Navigator"  
-SITE_DESCRIPTION = "See how the elements are related to each other" 
-
 class Element < ActiveRecord::Base
 end
 
+=begin
 class Base < ActiveRecord::Base
 end
 
@@ -26,52 +26,74 @@ end
 
 class Orbital < ActiveRecord::Base
 end
+=end
 
-get "/index" do
-	load_elements(params[:name])
-	@element = Element.find(2)
-	@elements = Element.order("atomic_num ASC")
-	erb :index
-end
+#erb = ERB.new(template_file, 0, '>')
+#set :erb, :trim_mode => '>'
+
+# Serve static files from public
+#set :public, "../public"
+
+SITE_TITLE = "Periodic Table Navigator"  
+SITE_DESCRIPTION = "See how the elements are related to each other" 
 
 get "/" do
-	load_elements(params[:name])
-	@title = 'All Elements'
-	erb :home
+  @element = Element.find(2)
+  #@elements = Element.order("atomic_num ASC")
+  erb :'inactive/test'
 end
 
-get '/element/:atomic_num' do |atomic_num| # load element page
-	load_elements(params[:name])
-	atomic_num = atomic_num.to_i
-	@origin = Element.find(atomic_num)
-	@title = "Element ##{atomic_num}"
-	erb :element
-end
-
-get '/period/:period' do |period| # load period page
-	load_elements(params[:name])
-	period = period.to_i
-	@period = period
-	redirect('/') if @period > @max_period	# redirect to home page if user tries to compose a URL to a non-existent period
-	@title = "Period ##{period}"
-	erb :period
-end
-
-get '/group/:group' do |traditional_group|  # load group page
-	load_elements(params[:name])
-	@traditional_group = traditional_group
-	@linear_group = group_trad_to_lin(traditional_group)["num"]
-	if (@linear_group > @max_group) or (@linear_group <= 0)
-		redirect('/') 	# redirect to home page if user tries to compose a URL to a non-existent group
-	end
-	@group_elements = Element.where(:grouplin => @linear_group).order(period: :asc)
-	@title = "Group ##{traditional_group}"
-	erb :group
-end
 get '/test/:name' do
 	@elementAR = Element.find(2)
 	erb :'inactive/test'
 end
+
+DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/Elements.sqlite")  
+DataMapper::Property::Boolean.allow_nil(false)
+
+class Element # Describes how to map from database 
+	include DataMapper::Resource  
+	property :atomic_num, Serial, :key => true
+	property :symbol, Text
+	property :name, Text
+	property :name_origin, Text
+	property :group, Integer
+	property :period, Integer
+	property :atomic_weight, Float
+	property :atomic_wt_is_mass_number_of_longest_lived_isotope, Integer # should be Boolean
+	property :specific_heat_capacity_j_per_gk, Float
+	property :density_g_per_cm3, Float
+	property :density_is_estimated, Integer # should be Boolean
+	property :melting_point_k, Float
+	property :melt_is_estimated, Integer # should be Boolean
+	property :boiling_point_k, Float
+	property :boil_is_estimated, Integer # should be Boolean
+	property :electronegativity, Float
+	property :abundance_mg_per_kg, Float
+	property :abundance_is_upper_limit, Integer # should be Boolean
+end
+
+class Base
+	include DataMapper::Resource
+	property :id, Serial, :key => true
+	property :base, Text
+end
+
+class Orb
+	include DataMapper::Resource
+	property :element_id, Integer, :key => true
+	property :orbital_id, Integer, :key => true
+	property :count, Integer
+end
+
+class Orbital
+	include DataMapper::Resource
+	property :id, Integer, :key => true
+	property :n, Integer
+	property :l, Text
+end
+
+DataMapper.finalize.auto_upgrade!
 
 helpers do
 
@@ -105,6 +127,7 @@ helpers do
 
 	def group_trad_to_lin(traditional_group)
 		init_constants
+		#traditional_type = @traditional_group.to_s[0].match(/^[[:alpha:]]$/) ? "f" : "main" %>
 
 		if traditional_group.to_s[0].match(/^[[:alpha:]]$/) && (traditional_group.to_s[1].match(/^[[:digit:]]$/)) 
 		#if group starts with a letter and second character is a number, e.g. f5
@@ -141,9 +164,9 @@ helpers do
 
   def load_elements(name)
 	init_constants
-	@elements = Element.order("atomic_num ASC")
-	@max_period			= Element.last(1)[0].period
-	@max_group = Element.order(grouplin: :desc)[0].grouplin
+	@elements			= Element.all :order => :atomic_num.asc
+	@max_period			= Element.last.period
+	@max_group = Element.all(:order => [ :group.desc ], :limit => 1)[0].group
 	@ebyp = Array.new(@max_period) # array to hold elements
 	@ebyp.each_index do |period| # build a 2D array: by period, then by element
 		@ebyp[period] = @elements.select{|element| element.period == period+1}
@@ -172,7 +195,8 @@ helpers do
   end
   
   def load_orbitals(name)
-	@orbitals			= Orbital.order("id ASC")
+	@orbitals			= Orbital.all :order => :id.asc
+	
 	#Build hash of orbitals (e.g. id 11 = 5p)
 	@orbital_hash = Hash.new
 	orbital_id = 1
@@ -190,7 +214,7 @@ before do
 	load_orbitals("")
 end
 
-=begin
+#=begin
 get '/test/:name' do
 	load_elements(params[:name])
 	ERB.new(File.read('views/inactive/test.erb'), nil, '<>').result
@@ -219,5 +243,43 @@ get '/' do  # load home page
 	@title = 'All Elements'
 	#ERB.new(File.read('views/home'), nil, '<>').result
 	erb :home
+end
+=end
+
+get '/element/:atomic_num' do |atomic_num| # load element page
+	load_elements(params[:name])
+	atomic_num = atomic_num.to_i
+	@origin = Element.get(atomic_num)
+	@title = "Element ##{atomic_num}"
+	erb :element
+end
+
+get '/period/:period' do |period| # load period page
+	load_elements(params[:name])
+	period = period.to_i
+	@period = period
+	redirect('/') if @period > @max_period	# redirect to home page if user tries to compose a URL to a non-existent period
+	@title = "Period ##{period}"
+	erb :period
+end
+
+get '/group/:group' do |traditional_group|  # load group page
+	load_elements(params[:name])
+	#group = group.to_i
+	@traditional_group = traditional_group
+#	group_entity = group_trad_to_lin(traditional_group)
+#	@linear_group = group_entity["num"]
+	@linear_group = group_trad_to_lin(traditional_group)["num"]
+	if (@linear_group > @max_group) or (@linear_group <= 0)
+		redirect('/') 	# redirect to home page if user tries to compose a URL to a non-existent group
+	end
+	@group_elements = Element.all(:group => @linear_group, :order => [ :group.asc ])
+	@title = "Group ##{traditional_group}"
+	erb :group
+end
+
+=begin
+get '/import' do # load page whose function is to import data
+	erb :import
 end
 =end
