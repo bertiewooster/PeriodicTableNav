@@ -1,5 +1,5 @@
 <% element_by_period = Element.where("period = ?", 1).to_a %>
-<% element_by_group  = Element.where("group = 1") %>
+<% element_by_group  = Element.where("grouplin = ?", 1).all[0] %>
 <% element_by_atomic_num = Element.where("atomic_num > ?", 115) %>
 <% element_by_bp  = Element.where("boiling_point_k < ?", 100) %>
 
@@ -31,9 +31,9 @@
 <p>element_by_AND: <%= element_by_AND.symbol%>, size = <%#= element_by_AND.size%>, type = <%=element_by_AND.class%>, name = <%= element_by_AND.name%></p>
 
 <%  @origin = Element.find(element_num) %>
-	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group).order(group: :desc).all[0] %>
+	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.grouplin).order(group: :desc).all[0] %>
 	<%# @left = Element.where("period = ?", @origin.period).where("group = ?", 2).order(atomic_num: :asc).all[0] %>
-	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group).order(group: :desc).all[0] %>
+	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.grouplin).order(group: :desc).all[0] %>
 	<p>@left: size = <%#= @left.size%>, type = <%#= @left.class%>, name = <%#= @left.name%></p>
 
 <p>element by find: size = <%#= element.size%>, type = <%=element.class%>, name = <%= element.name%></p>
@@ -42,19 +42,19 @@
 	<% end %>
 
 	<%# element_by_wheres = Element.where(:period => @origin.period)%>
-	<%# element_by_wheres = Element.where(:period => @origin.period).where("group < ?", @origin.group).all[0]%>
-	<%# element_by_wheres = Element.where(:period => @origin.period).where(:group => @origin.group)%>
+	<%# element_by_wheres = Element.where(:period => @origin.period).where("group < ?", @origin.grouplin).all[0]%>
+	<%# element_by_wheres = Element.where(:period => @origin.period).where(:group => @origin.grouplin)%>
 
 	
 	<%# element_by_wheres.attributes.each do |attr_name, attr_value| %>
 		<%#=attr_name%>: <%#=attr_value%><br>
 	<%# end %>
 
-	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group).order(group: :desc)[0] %>
-	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.group) %>
+	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.grouplin).order(group: :desc)[0] %>
+	<%# @left = Element.where("period = ? AND group < ?", @origin.period, @origin.grouplin) %>
 	<% @left = Element.where("period = ?", @origin.period) %>
-	<%# @left_single = @left.where("group = ?", @origin.group) %>
-	<% @left_single = Element.where("period = ?", @origin.period).where("group = ?", @origin.group) %>
+	<%# @left_single = @left.where("group = ?", @origin.grouplin) %>
+	<% @left_single = Element.where("period = ?", @origin.period).where("group = ?", @origin.grouplin) %>
 	<p>@left.size: <%= @left.size%></p>
 	<p>@left_single: <%#= @left_single.size%></p>
 	<%# left_exists = true if @left.atomic_num # OK if there is an element left of origin; will go to rescue if not %>
@@ -75,137 +75,12 @@
 <%# @group_elements = Element.where(:group => @linear_group).order("group ASC") %>
 <%# @group_elements = Element.where(:group => @linear_group) %>
 <%# @group_elements = Element.where(:group => @linear_group).order(:group) %>
-<% @group_elements = Element.where(:group => @linear_group).order(group: :asc) %>
+<% @group_elements = Element.where(:grouplin => @linear_group).order(grouplin: :asc) %>
 <p>@group_elements (linear group <%=@linear_group%>): value = <%=@group_elements%>, size = <%=@group_elements.size%>, type = <%=@group_elements.class%></p>
 <ul>
 <% @group_elements.each do |element| %>
   <li>
     <h2><%= element.symbol %></h2>
-  </li>
-<% end %>
-</ul>
-
-
-
-
-
-<% @above = Element.where(:period => @period-1)[0] %>
-<p>@above: <%=@above.name%></p>
-
-
-	<%# Element.where(group = @linear_group).order("group ASC").find_each do |element| %>
-	<%# Element.where(group = @linear_group).find_each {|t| t } %>
-		<%#=element.name %>
-	<%# end %>
-
-	<% @linear_group = 27 %>
-	<% @group_elements = Element.where(:group => @linear_group).order("group ASC") %>
-
-<%# @origin = element %>
-<% @left = Element.where(period: @origin.period, group: @origin.group)[0] # = ? AND group = ?", , @origin.group) %>
-<%# @leftb = Element.first("period = ? AND group = ?", @origin.period, @origin.group) # = ? AND group = ?", , @origin.group) %>
-<%# @leftc = Element.first("period = ?", @origin.period) # = ? AND group = ?", , @origin.group) %>
-<%# @leftb = Element.where("period = @origin.period").where("group = @origin.group") # AND )[0] # = ? AND group = ?", , @origin.group) %>
-
-<%#.order(group: :desc)[0] %>
-<p>@left: <%=@left.name%>.
-@left.size: <%#=@left.size%></p>
-<p>@leftb: <%#=@leftb.name%>;
-@leftb.size: <%#=@leftb%></p>
-
-<p>@origin: <%=@origin.name%></p>
-
-<p>@f_groups.min: <%=@f_groups.min%></p>
-<p>@f_groups.max: <%=@f_groups.max%></p>
-
-<% period_header = 5 %>
-<p>@main_pauses_group+1: <%=@main_pauses_group+1%></p>
-
-<%# Element.where("period = ? AND group = ?", period_header, @main_pauses_group+1).size %>
-<%# element_selected = Element.where("period = ? AND group = ?", 1, 1)[0] %>
-<%# element_selected = Element.where(:period => 3, :group => 2)[0] %>
-<% element_selected = Element.where(:period => period_header, :group => @main_pauses_group+1)[0] %>
-<% size_selected = Element.where(:period => period_header, :group => @main_pauses_group+1).size %>
-<p>size_selected: <%=size_selected%></p>
-
-<h1>Element selected</h1>
-<ul>
-    <h2><%#= element_selected.name %></a></h2>
-    <p><%#= element_selected.symbol %></p>
-    <p><%#= element_selected.atomic_weight %></p>
-  </li>
-</ul>
-
-
-<% @orbs = Orb.where("element_id = ?", element.atomic_num) %>
-<p>@orbs: type = <%=@orbs.class%> </p>
-
-<h1>Orbitals for element #<%=element_num%></h1>
-<ul>
-<% @orbs.each do |orb| %>
-  <li>
-    <h2><%= orb.element_id %></h2>
-    <p><%= orb.orbital_id %></p>
-    <p><%= orb.count %></p>
-  </li>
-<% end %>
-</ul>
-
-<% @elements = Element.order("atomic_num ASC") %>
-<% @max_period			= Element.last(1)[0].period %>
-<p>@max_period: <%=@max_period%></p>
-
-<% @max_group = Element.order(group: :desc)[0].group %>
-<p>@max_group: <%=@max_group%></p>
-
-<%	@ebyp = Array.new(@max_period) # array to hold elements %>
-<%	@ebyp.each_index do |period| # build a 2D array: by period, then by element %>
-	<%	@ebyp[period] = @elements.select{|element| element.period == period+1} %>
-<%	end %>
-
-<%	@bases				= Base.all %>
-
-<% @orbitals			= Orbital.order("id ASC") %>
-
-<h1>Orbitals from @orbitals</h1>
-<ul>
-<% @orbitals.each do |orbital| %>
-  <li>
-    <h2><%= orbital.id %></h2>
-    <p><%= orbital.n %></p>
-    <p><%= orbital.l %></p>
-  </li>
-<% end %>
-</ul>
-
-<h1>Bases from @bases</h1>
-<ul>
-<% @bases.each do |base| %>
-  <li>
-    <h2><%= base.id %></h2>
-    <p><%= base.base %></p>
-  </li>
-<% end %>
-</ul>
-
-<h1>Elements from @ebyp</h1>
-<ul>
-<% @elements.each do |element| %>
-  <li>
-    <h2><a href="/element/<%= element.atomic_num %>"><%= element.name %></a></h2>
-    <p><%= element.symbol %></p>
-    <p><%= element.atomic_weight %></p>
-  </li>
-<% end %>
-</ul>
-
-<h1>Elements from @elements.each</h1>
-<ul>
-<% @elements.each do |element| %>
-  <li>
-    <h2><a href="/element/<%= element.atomic_num %>"><%= element.name %></a></h2>
-    <p><%= element.symbol %></p>
-    <p><%= element.atomic_weight %></p>
   </li>
 <% end %>
 </ul>

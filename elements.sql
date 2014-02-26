@@ -9,7 +9,7 @@ INSERT INTO "bases" VALUES(6,'[Xe]');
 INSERT INTO "bases" VALUES(7,'[Rn]');
 INSERT INTO "bases" VALUES(8,'[Uuo]');
 DROP TABLE IF EXISTS "elements";
-CREATE TABLE "elements" ("atomic_num" INTEGER PRIMARY KEY  NOT NULL ,"symbol" TEXT,"name" TEXT,"name_origin" TEXT,"period" INTEGER,"atomic_weight" NUMERIC,"atomic_wt_is_mass_number_of_longest_lived_isotope" BOOL,"specific_heat_capacity_j_per_gk" NUMERIC,"density_g_per_cm3" NUMERIC,"density_is_estimated" BOOL,"melting_point_k" NUMERIC,"melt_is_estimated" BOOL,"boiling_point_k" NUMERIC,"boil_is_estimated" BOOL,"electronegativity" NUMERIC,"abundance_mg_per_kg" NUMERIC,"abundance_is_upper_limit" BOOL,"group" INTEGER DEFAULT (null));
+CREATE TABLE "elements" ("atomic_num" INTEGER PRIMARY KEY  NOT NULL ,"symbol" TEXT,"name" TEXT,"name_origin" TEXT,"period" INTEGER,"atomic_weight" NUMERIC,"atomic_wt_is_mass_number_of_longest_lived_isotope" BOOL,"specific_heat_capacity_j_per_gk" NUMERIC,"density_g_per_cm3" NUMERIC,"density_is_estimated" BOOL,"melting_point_k" NUMERIC,"melt_is_estimated" BOOL,"boiling_point_k" NUMERIC,"boil_is_estimated" BOOL,"electronegativity" NUMERIC,"abundance_mg_per_kg" NUMERIC,"abundance_is_upper_limit" BOOL,"grouplin" INTEGER DEFAULT (null));
 INSERT INTO "elements" VALUES(1,'H','Hydrogen','the Greek ''hydro'' and ''genes'' meaning water-forming',1,1.008,FALSE,14.304,0.00008988,FALSE,14.01,FALSE,20.28,FALSE,2.2,1400,FALSE,1);
 INSERT INTO "elements" VALUES(2,'He','Helium','the Greek ''helios'' meaning sun',1,4.002602,FALSE,5.193,0.0001785,FALSE,0.956,FALSE,4.22,FALSE,NULL,0.008,FALSE,2);
 INSERT INTO "elements" VALUES(3,'Li','Lithium','the Greek ''lithos'' meaning stone',2,6.942,FALSE,3.582,0.534,FALSE,453.69,FALSE,1560,FALSE,0.98,20,FALSE,1);

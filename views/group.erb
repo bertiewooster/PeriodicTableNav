@@ -4,16 +4,14 @@
 
 <% # Database queries to find adjacent groups (left and right). If one doesn't exist, flagged as such to remove navigation arrows. %>
 <% begin %>
-	<%# @left = Element.all(:group => @linear_group-1)[0] %>
-	<% @left = Element.where(:group => @linear_group-1)[0] #would .first work instead? #combine with next line: no need for @left to exist, just left_exists%>
+	<% @left = Element.where(:grouplin => @linear_group-1)[0] #would .first work instead? #combine with next line: no need for @left to exist, just left_exists%>
 	<% left_exists = true if @left.atomic_num # OK if there is a group to the left; will go to rescue if not %>
 <% rescue %>
 	<% left_exists = false %>
 <% end %>
 
 <% begin %>
-	<%# @right = Element.all(:group => @linear_group+1)[0] %>
-	<% @right = Element.where(:group => @linear_group+1)[0] %>
+	<% @right = Element.where(:grouplin => @linear_group+1)[0] %>
 	<% right_exists = true if @right.atomic_num # OK if there is a group to the right; will go to rescue if not %>
 <% rescue %>
 	<% right_exists = false %>
@@ -70,7 +68,7 @@
 			</th>
 				<td class="inPTable">
 					<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "wide"} %>
-					<% lastGroup = element.group %>
+					<% lastGroup = element.grouplin %>
 				</td>
 		</tr>
 	<% end %> 

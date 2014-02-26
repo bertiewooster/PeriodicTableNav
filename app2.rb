@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 
-#db = URI.parse('postgres://jemonat@localhost/jemonat')
 db = URI.parse('postgres://jemonat@localhost/elements')
 
 ActiveRecord::Base.establish_connection(
@@ -16,7 +15,6 @@ ActiveRecord::Base.establish_connection(
 SITE_TITLE = "Periodic Table Navigator"  
 SITE_DESCRIPTION = "See how the elements are related to each other" 
 
-#class Note < ActiveRecord::Base
 class Element < ActiveRecord::Base
 end
 
@@ -61,15 +59,12 @@ end
 
 get '/group/:group' do |traditional_group|  # load group page
 	load_elements(params[:name])
-	#group = group.to_i
 	@traditional_group = traditional_group
-#	group_entity = group_trad_to_lin(traditional_group)
-#	@linear_group = group_entity["num"]
 	@linear_group = group_trad_to_lin(traditional_group)["num"]
 	if (@linear_group > @max_group) or (@linear_group <= 0)
 		redirect('/') 	# redirect to home page if user tries to compose a URL to a non-existent group
 	end
-	@group_elements = Element.where(:group => @linear_group).order(period: :asc)
+	@group_elements = Element.where(:grouplin => @linear_group).order(period: :asc)
 	@title = "Group ##{traditional_group}"
 	erb :group
 end
@@ -110,7 +105,6 @@ helpers do
 
 	def group_trad_to_lin(traditional_group)
 		init_constants
-		#traditional_type = @traditional_group.to_s[0].match(/^[[:alpha:]]$/) ? "f" : "main" %>
 
 		if traditional_group.to_s[0].match(/^[[:alpha:]]$/) && (traditional_group.to_s[1].match(/^[[:digit:]]$/)) 
 		#if group starts with a letter and second character is a number, e.g. f5
@@ -147,12 +141,9 @@ helpers do
 
   def load_elements(name)
 	init_constants
-##	@elements			= Element.all :order => :atomic_num.asc
 	@elements = Element.order("atomic_num ASC")
-##	@max_period			= Element.last.period
 	@max_period			= Element.last(1)[0].period
-##	@max_group = Element.all(:order => [ :group.desc ], :limit => 1)[0].group
-	@max_group = Element.order(group: :desc)[0].group
+	@max_group = Element.order(grouplin: :desc)[0].grouplin
 	@ebyp = Array.new(@max_period) # array to hold elements
 	@ebyp.each_index do |period| # build a 2D array: by period, then by element
 		@ebyp[period] = @elements.select{|element| element.period == period+1}
@@ -181,7 +172,6 @@ helpers do
   end
   
   def load_orbitals(name)
-##	@orbitals			= Orbital.all :order => :id.asc
 	@orbitals			= Orbital.order("id ASC")
 	#Build hash of orbitals (e.g. id 11 = 5p)
 	@orbital_hash = Hash.new

@@ -18,7 +18,7 @@
 <!-- Database query to determine if there are f-block elements in this period. If no, flagged as such so will skip columns for f groups. -->
 
 <% begin %>
-	<% f_this_period = Element.where(:period=>@period, :group => @f_groups)[0] %>
+	<% f_this_period = Element.where(:period=>@period, :grouplin => @f_groups)[0] %>
 	<% f_exists = true if f_this_period.atomic_num # OK if there is an f element in this period; will go to rescue if not %>
 <% rescue %>
 	<% f_exists = false %>
@@ -57,11 +57,11 @@
 		</th>
 		<% f_skip_done = false %>
 		<% @ethisp.each do |element| %>
-			<% if (!f_skip_done) && (element.group >= @main_resumes_group) && (!f_exists) # if this is traditional group 3 and there are no f elements in this period %>
+			<% if (!f_skip_done) && (element.grouplin >= @main_resumes_group) && (!f_exists) # if this is traditional group 3 and there are no f elements in this period %>
 				<% f_skip_done = true %>
-				<% blanks = element.group - lastGroup - @num_f_groups - 1 %>
+				<% blanks = element.grouplin - lastGroup - @num_f_groups - 1 %>
 			<% else %>
-				<% blanks = element.group - lastGroup - 1 %>
+				<% blanks = element.grouplin - lastGroup - 1 %>
 			<% end %>
 			<% while blanks > 0 %>
 				<td></td>
@@ -69,7 +69,7 @@
 			<% end %>
 			<td class="inPTable">
 				<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "narrow"} %>
-				<% lastGroup = element.group %>
+				<% lastGroup = element.grouplin %>
 			</td>
 		<% end %>
  	 </tr>

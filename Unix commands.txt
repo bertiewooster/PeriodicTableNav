@@ -1,0 +1,2 @@
+Converting elements.sql to a postgres database called elements
+/Applications/Postgres93.app/Contents/MacOS/bin/psql -d elements -U jemonat -W < /Users/jemonat/Documents/Projects/Sinatra/PeriodicTableNav/elements.sql
