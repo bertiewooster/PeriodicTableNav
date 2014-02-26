@@ -216,7 +216,6 @@
 		</div>
 	<% when 'e_config' %>
 		<div class="<%=ec_class%>">
-			<%# @orbs = Orb.all(:element_id => element.atomic_num) # get orbitals for this element %>
 			<% @orbs = Orb.where("element_id = ?", element.atomic_num) # get orbitals for this element %>
 			<% spacer = options["space_terms"] == true ? " " : "" %>
 			<%= 'Electron configuration: ' if options["label"] == true %>

@@ -7,14 +7,14 @@
 <% end %>
 
 <% begin %>
-	<% @left = Element.where("period = ? AND grouplin < ?", @origin.period, @origin.grouplin).order(grouplin: :desc).all[0] %>
+	<% @left = Element.where("period = ? AND grouplin < ?", @origin.period, @origin.grouplin).order(grouplin: :desc)[0] %>
 	<% left_exists = true if @left.atomic_num # OK if there is an element left of origin; will go to rescue if not %>
 <% rescue %>
 	<% left_exists = false %>
 <% end %>
 
 <% begin %>
-	<% @right = Element.where("period = ? AND grouplin > ?", @origin.period, @origin.grouplin).order(grouplin: :asc).all[0] %>
+	<% @right = Element.where("period = ? AND grouplin > ?", @origin.period, @origin.grouplin).order(grouplin: :asc)[0] %>
 	<% right_exists = true if @right.atomic_num # OK if there is an element right of origin; will go to rescue if not %>
 <% rescue %>
 	<% right_exists = false %>
