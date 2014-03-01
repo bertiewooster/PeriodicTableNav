@@ -1,4 +1,4 @@
-require 'sinatra'
+require 'sinatra' #meaningless comment
 require 'sinatra/activerecord'
 require 'active_record'
 
