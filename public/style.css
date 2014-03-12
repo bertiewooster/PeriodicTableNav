@@ -220,7 +220,7 @@
 	}
 
 	sup.pointer { /* for 5-pointed star superscripts on Ba and Ra, pointing to lanthanides and actinides respectively */
-		font-size: 65%; 
+		font-size: small; /*65%; */
 		top: +0.2em;
 	}
 
