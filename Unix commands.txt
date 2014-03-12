@@ -4,6 +4,13 @@ Converting elements.sql to a postgres database called elements
 Location of elements.dump (postgres database)
 http://www.whitegloveapps.com/periodictablenav/elements.dump
 
+Git push
+—to heroku
+git push herokuptn
+
+-to Github
+git push PeriodicTableNav
+
 Adding postgres
 heroku addons:add heroku-postgresql:dev --app periodictablenav
 heroku pg:promote HEROKU_POSTGRESQL_SILVER_URL --app periodictablenav
