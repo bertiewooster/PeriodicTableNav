@@ -5,11 +5,14 @@ Location of elements.dump (postgres database)
 http://www.whitegloveapps.com/periodictablenav/elements.dump
 
 Git push
+-to Github
+git push PeriodicTableNav
+
 —to heroku
 git push herokuptn
 
--to Github
-git push PeriodicTableNav
+-to both Github and heroku
+git push PeriodicTableNav ; git push herokuptn
 
 Adding postgres
 heroku addons:add heroku-postgresql:dev --app periodictablenav
