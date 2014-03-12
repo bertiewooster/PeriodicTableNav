@@ -1,7 +1,9 @@
 require 'sinatra' #meaningless comment
 require 'sinatra/activerecord'
 require 'active_record'
+require './environments'
 
+=begin
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/elements')
 
 db = URI.parse('postgres://jemonat@localhost/elements')
@@ -14,6 +16,7 @@ ActiveRecord::Base.establish_connection(
   :database => db.path[1..-1],
   :encoding => 'utf8'
 )
+=end
 
 SITE_TITLE = "Periodic Table Navigator"  
 SITE_DESCRIPTION = "See how the elements are related to each other" 

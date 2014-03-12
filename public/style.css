@@ -140,6 +140,16 @@
 		width: 20%;
 	}
 
+	/*table.f_period tr th:last-child {
+		border-right: 50px dashed green;
+		padding-right: 50px;
+	}
+
+	/*table.f_period {
+		border: 5px solid red;
+		margin-bottom: 50px;
+	}*/
+
 	table.element {
 		table-layout: auto;
 		width: 80%;

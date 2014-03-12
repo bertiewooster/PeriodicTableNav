@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222011659) do
+ActiveRecord::Schema.define(version: 20140309184131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140222011659) do
     t.decimal "electronegativity"
     t.decimal "abundance_mg_per_kg"
     t.boolean "abundance_is_upper_limit"
-    t.integer "group"
+    t.integer "grouplin"
   end
 
   create_table "orbitals", id: false, force: true do |t|
