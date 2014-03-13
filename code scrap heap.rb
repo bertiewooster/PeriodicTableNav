@@ -1,3 +1,5 @@
+<% class_html = link.has_key?('class') ? "class = '<%=link["class"]%>'" : "" %>
+--------------
 &#10096; &#10094; &#8678;
 --------------
 				<% if element.group == @main_pauses_group %>

@@ -77,6 +77,12 @@
 		width: 65px; /*5.1%;*/
 	}
 	
+	a.nav { /* for navigation arrows adjacent to group or period numbers */
+		/*border: 1px solid blue;*/
+		font-size:200%;
+		vertical-align: middle;
+	}
+	
 	table#f_block { /* f-block table on home page (groups f1-f14, periods 6-7) */
 		margin-top: 20px;
 	}

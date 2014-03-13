@@ -46,13 +46,13 @@
 			Period
 			<% if above_exists %>
 				<br>
-				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period-1, "text" => '^']} %>
+				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period-1, "text" => @up_arrow, "nav"=>true]} %>
 				<br>
 			<% end %>
 			<%= @period %>
 			<% if below_exists %>
 				<br>
-				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period+1, "text" => '∨']} %>
+				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period+1, "text" => @down_arrow, "nav"=>true]} %>
 			<% end %>
 		</th>
 		<% f_skip_done = false %>
