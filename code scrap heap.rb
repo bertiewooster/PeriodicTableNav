@@ -1,3 +1,5 @@
+&#10096; &#10094; &#8678;
+--------------
 				<% if element.group == @main_pauses_group %>
 					<% lastGroup = @main_resumes_group-1 %>
 				<% else %>

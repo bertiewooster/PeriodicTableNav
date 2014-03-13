@@ -5,4 +5,4 @@
 <% #         <a href="/period/6" title="period 6">^</a> %>
 
 <% text = link.has_key?('text') ? link['text'] : link['number'] # if link text specified, use it; otherwise use number (of period, element, or group) %>
-<a href="/<%=link['type']%>/<%=link['number']%>" title="<%=link['type']%> <%=link['number']%>"> <%=text%> </a>
+<a style="font-size:200%; vertical-align:middle;" href="/<%=link['type']%>/<%=link['number']%>" title="<%=link['type']%> <%=link['number']%>"> <%=text%> </a>
