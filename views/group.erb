@@ -28,13 +28,13 @@
 					<% if @linear_group == @main_resumes_group # if is linear group 17 = traditional group 3, provide link to traditional group 2 (skipping f groups) %>
 						<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @main_pauses_group, :link => Hash["type" => 'group', 'text'=>'<<&nbsp;']} %>
 					<% end %>				
-					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @linear_group-1, :link => Hash["type" => 'group', 'text'=>'<']} %>
+					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @linear_group-1, :link => Hash["type" => 'group', 'text'=>'&#8678;']} %>
 				<% else %>
 					&nbsp; &nbsp;
 				<% end %>
 				<%= @traditional_group %>
 				<% if right_exists %>
-					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @linear_group+1, :link => Hash["type" => 'group', 'text'=>'>']} %>
+					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @linear_group+1, :link => Hash["type" => 'group', 'text'=>'&#8594;']} %>
 					<% if @linear_group == @main_pauses_group # if is linear group 2 = traditional group 2, provide link to traditional group 3 (skipping f groups) %>
 						<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @main_resumes_group, :link => Hash["type" => 'group', 'text'=>'&nbsp;>>']} %>
 					<% end %>				
