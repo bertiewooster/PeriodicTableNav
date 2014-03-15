@@ -66,6 +66,7 @@
 	}
 	
 	.rotate { /* text rotated 90 degrees counterclockwise; using for "Period" at left of tables */
+		float:left;
 		/*border: 1px solid red; */ 
 		/* Safari */
 		-webkit-transform: rotate(-90deg);
@@ -94,10 +95,17 @@
 	}
 	
 	.period_labels_col { /* column for period labels: make narrower */
-		 width: 25px;
-		 /*border: 1px solid red;*/
+		/*text-align: right;*/
+		/*width: 25px;*/
+		/*border: 1px solid blue;*/
 	}
 	
+	th.period_labels_col { /* column for period labels: make narrower */
+		text-align: right;
+		/*width: 25px;*/
+		border: 1px solid red;
+	}
+
 	td {
 		width: 5.1%; /* 95% / 19 cols 65px;*/
 		height: 80px;
