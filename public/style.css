@@ -23,7 +23,7 @@
 	}  
 	  
 	header h1 a:link, header h1 a:visited {  
-		color: #444;  
+		color: #444444;  
 		text-decoration: none;  
 	}  
 	  
@@ -65,6 +65,39 @@
 		/*border: 1px dashed red;*/
 	}
 	
+	.rotate { /* text rotated 90 degrees counterclockwise; using for "Period" at left of tables */
+		/*border: 1px solid red; */ 
+		/* Safari */
+		-webkit-transform: rotate(-90deg);
+
+		/* Firefox */
+		-moz-transform: rotate(-90deg);
+
+		/* IE */
+		-ms-transform: rotate(-90deg);
+
+		/* Opera */
+		-o-transform: rotate(-90deg);
+
+		/* Internet Explorer */
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	}
+
+	.like_th { /* making "Period" like a th */
+		font-size: 150%;
+		font-weight: bold;
+		color: #444;  
+		/*vertical-align: middle;*/
+		margin-top: 105px;
+		float: left;
+		width: 10px;
+	}
+	
+	.period_labels_col { /* column for period labels: make narrower */
+		 width: 25px;
+		 /*border: 1px solid red;*/
+	}
+	
 	td {
 		width: 5.1%; /* 95% / 19 cols 65px;*/
 		height: 80px;
@@ -102,6 +135,7 @@
 
 	table.home {
 		table-layout: fixed;
+		margin-left: -20px;
 		/*width: 1170px; /*96.9%;*/
 	}
 

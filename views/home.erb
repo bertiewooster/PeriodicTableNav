@@ -5,11 +5,18 @@
 	"name"=>nil,
 	"e_config" => {"base" => false, "space_terms" => true, "term_spans"=>false}} %>
 
+<div class="rotate like_th">Period</div>
+
 <!-- Main groups table -->
 <% period_header = 0 # labels for periods %>
 <table class="home">
+	<col span="1" class="period_labels_col">
 	<tr>
+		<th></th>
 		<th class="col1" id="main_col1">Group</th>
+	</tr>
+	<tr>
+		<th></th>
 		<% @main_groups.each do |group_header| %>
 			<th class="home_element">
 				<% # if group_header == 1 %> Group <% # end %>
@@ -22,7 +29,7 @@
 	<% lastGroup = 0 %>
 	<tr>
 		<th class="period_header">
-			<% if period_header == 1 %> Period<br> <% end %>
+			<% if period_header == 1 %> <% end %>
 			<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>			
 		</th>
 		<% period.each do |element| %>
@@ -45,9 +52,11 @@
 <% end %> 
 </table>
 
+<div class="rotate like_th"></div><%# placeholder to push f-block table to right the same distance as main groups table %>
 <!-- f groups table -->
 <% period_header = 0 # labels for periods %>
 <table class="home" id="f_block">
+	<col span="1" class="period_labels_col">
 	<tr>
 		<th class="col1" id="f_col1"><!--Group--></th>
 		<th class="spacer"></th>
