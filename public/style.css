@@ -45,7 +45,7 @@
 	  
 	table {
 		table-layout: fixed;
-		/*width: 96.9%; /*1170px;*/
+		width: 100%; /*1170px;*/
 	}
 	
 	th {
@@ -108,8 +108,8 @@
 	}
 
 	td {
-		/*width: 5.1%; /* 95% / 19 cols 65px;*/
-		height: 80px;
+		width: 5.1%; /* 95% / 19 cols 65px;*/
+		height: 82px;
 		/*border: 1px solid red;*/
 		text-align: center;
 	}  
@@ -144,7 +144,7 @@
 
 	table.home {
 		table-layout: fixed;
-		margin-left: -20px;
+		margin-left: -15px;
 		/*width: 1170px; /*96.9%;*/
 	}
 
@@ -170,7 +170,7 @@
 	
 	table.home td {
 		/*width: 65px;*/
-		height: 80px;
+		/*height: 80px;*/
 		/* border: 5px dashed green;  */
 		text-align: center;
 		word-wrap: break-word;
