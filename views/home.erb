@@ -10,7 +10,6 @@
 <!-- Main groups table -->
 <% period_header = 0 # labels for periods %>
 <table class="home">
-	<col span="1" class="period_labels_col">
 	<tr>
 		<th></th>
 		<th class="col1" id="main_col1">Group</th>
@@ -56,7 +55,6 @@
 <!-- f groups table -->
 <% period_header = 0 # labels for periods %>
 <table class="home" id="f_block">
-	<col span="1" class="period_labels_col">
 	<tr>
 		<th class="col1" id="f_col1"><!--Group--></th>
 		<th class="spacer"></th>
@@ -73,7 +71,7 @@
 		<% lastGroup = 0 %>
 		<% if Element.where(:period => period_header, :grouplin => @f_groups.min).size > 0 # if there are f group elements in this period, plot them; if not, skip period %>
 			<tr>
-				<th class="period_header">
+				<th class="period_header period_labels_col">
 					<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>			
 				</th>
 				<td class="spacer"></td>
