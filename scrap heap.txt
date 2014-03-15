@@ -1,8 +1,0 @@
-<ul>
-<% @group_elements.each do |element| %>
-  <li>
-    <h2><%= element.symbol %></h2>
-    <p><%= element.name %></p>
-  </li>
-<% end %>
-</ul>
