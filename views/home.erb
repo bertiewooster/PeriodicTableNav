@@ -29,8 +29,8 @@
 	<% lastGroup = 0 %>
 	<tr>
 		<th class="period_header period_labels_col">
-			<% if period_header == 4 %><div class="rotate"><p>Period</p></div><br> <% end %>
-			<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>			
+			<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
+			<% if period_header == 4 %><div class="rotate period_word">Period</div> <% end %>
 		</th>
 		<% period.each do |element| %>
 			<% next if not @main_groups.include? element.grouplin # skip non-main group (e.g., f-block) elements %>
