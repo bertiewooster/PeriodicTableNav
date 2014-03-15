@@ -88,7 +88,7 @@
 		font-weight: bold;
 		color: #444;  
 		/*vertical-align: middle;*/
-		margin-top: 105px;
+		margin-top: 350px;
 		float: left;
 		width: 10px;
 	}
@@ -135,7 +135,7 @@
 
 	table.home {
 		table-layout: fixed;
-		margin-left: -20px;
+		/*margin-left: -20px;*/
 		/*width: 1170px; /*96.9%;*/
 	}
 
