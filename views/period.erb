@@ -27,7 +27,11 @@
 <!--p>Start of table of elements for selected period </p-->
 <table <%="class='f_period'" if f_exists %>
 	<tr>
+		<th></th>
 		<th>Group</th>
+	</tr>
+	<tr>
+		<th></th>
 		<% for group_header in 1..@max_group do %>
 			<% if (!f_exists) && (@f_groups.include? group_header) # if no f groups in this period and current group is an f group %>
 				<% next # skip this group, go to next group %>
@@ -42,17 +46,15 @@
 	<% period_header = @period #go to the period of this page %>
 	<% lastGroup = 0 %>
 	<tr>
-		<th class="period_header">
-			Period
+		<th class="period_header_period period_labels_col">
 			<% if above_exists %>
-				<br>
-				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period-1, "text" => @up_arrow, "nav"=>true]} %>
+				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period-1, "text" => @up_arrow, "nav_period"=>true]} %>
 				<br>
 			<% end %>
 			<%= @period %>
+			<div class="rotate period_word">Period</div>
 			<% if below_exists %>
-				<br>
-				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period+1, "text" => @down_arrow, "nav"=>true]} %>
+				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period+1, "text" => @down_arrow, "nav_period"=>true]} %>
 			<% end %>
 		</th>
 		<% f_skip_done = false %>

@@ -1,5 +1,5 @@
 <% #  Inputs (optional ones) and output %>
-<% # link = Hash["type" => 'period', "number" => 6, ("text" => '^'), ("nav" => true)] %>
+<% # link = Hash["type" => 'period', "number" => 6, ("text" => '^'), ("nav" => true), ("nav_period")=>true] %>
 <% # where text is optional: if it's not included in the hash, number will be used as the link's text %>
 <% # result: <a href="/type/number" title="period number">^</a> %>
 <% #         <a href="/period/6" title="period 6">^</a> %>
@@ -7,10 +7,12 @@
 <% text = link.has_key?('text') ? link['text'] : link['number'] # if link text specified, use it; otherwise use number (of period, element, or group) %>
 <%# class_html = link.has_key?('class') ? "class='nav'" : "" %>
 <%# class_html = link.has_key?('class') ? "class='nav'" : "" %>
-<% if !link['nav'] %>
-	<% class_html = "" %>
-<% else %>
+<% if link['nav_period'] %>
+	<% class_html = "class='nav_period'" %>
+<% elsif link['nav'] %>
 	<% class_html = "class='nav'" %>
+<% else %>
+	<% class_html = "" %>
 <% end %>
 
 <a <%=class_html%> href="/<%=link['type']%>/<%=link['number']%>" title="<%=link['type']%> <%=link['number']%>"> <%=text%> </a>

@@ -5,14 +5,12 @@
 	"name"=>nil,
 	"e_config" => {"base" => false, "space_terms" => true, "term_spans"=>false}} %>
 
-<%#<div class="rotate like_th">Period</div>%>
-
 <!-- Main groups table -->
 <% period_header = 0 # labels for periods %>
 <table class="home">
 	<tr>
 		<th></th>
-		<th class="col1" id="main_col1">Group</th>
+		<th>Group</th>
 	</tr>
 	<tr>
 		<th></th>
@@ -56,7 +54,7 @@
 <% period_header = 0 # labels for periods %>
 <table class="home" id="f_block">
 	<tr>
-		<th class="col1" id="f_col1"><!--Group--></th>
+		<th><!--Group--></th>
 		<th class="spacer"></th>
 		<th class="spacer"></th>
 		<% @f_groups.each do |group_header| %>

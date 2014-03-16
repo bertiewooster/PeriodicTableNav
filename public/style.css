@@ -46,6 +46,7 @@
 	table {
 		table-layout: fixed;
 		width: 100%; /*1170px;*/
+		margin-left: -15px;
 	}
 	
 	th {
@@ -64,6 +65,11 @@
 		padding-right: 5px;
 		/*width: 60px;*/
 		/*border: 1px dashed red;*/
+	}
+	
+	th.period_header_period {
+		vertical-align: middle;
+		padding-right: 10px;
 	}
 	
 	.rotate { /* text rotated 90 degrees counterclockwise; using for "Period" at left of tables */
@@ -95,13 +101,7 @@
 		/*width: 10px;*/
 	}
 	
-	.period_labels_col { /* column for period labels: make narrower */
-		/*text-align: right;*/
-		/*width: 25px;*/
-		/*border: 1px solid blue;*/
-	}
-	
-	th.period_labels_col { /* column for period labels: make narrower */
+	th.period_labels_col { /* column for period labels */
 		text-align: right;
 		/*width: 25px;*/
 		/*border: 1px solid red;*/
@@ -125,6 +125,14 @@
 		vertical-align: middle;
 	}
 	
+	a.nav_period { /* for navigation arrows adjacent to group or period numbers */
+		/*border: 1px solid blue;*/
+		font-size:200%;
+		/*vertical-align: middle;*/
+		margin-right: -7px;
+		line-height: 50%;
+	}
+
 	table#f_block { /* f-block table on home page (groups f1-f14, periods 6-7) */
 		margin-top: 20px;
 	}
@@ -135,11 +143,6 @@
 	
 	table.f_period th {
 		width: 65px;
-	}
-
-	th.col1 {
-		/*border: 3px solid pink;*/
-		/*width: 68px;*/
 	}
 
 	table.home {
