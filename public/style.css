@@ -208,6 +208,11 @@
 		width: 23%;
 	}
 
+	.group_labels { /* group labels (e.g., 	⇐ 2 ⇒ ⇛ ) on group.erb */
+		line-height:160%;
+		/*border: 1px solid red;*/
+	}
+	
 	/*table.f_period tr th:last-child {
 		border-right: 50px dashed green;
 		padding-right: 50px;
