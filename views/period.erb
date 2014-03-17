@@ -37,7 +37,6 @@
 				<% next # skip this group, go to next group %>
 			<% else # plot this group %>
 				<th>
-					<% # if group_header == 1 %> Group <% # end %>
 					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => group_header} %>
 				</th>
 			<% end %>

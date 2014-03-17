@@ -91,7 +91,7 @@
 		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 	}
 
-	.period_word { /* making "Period" like a th */
+	.period_word { /* for "Period" */
 		/*font-size: 150%;
 		font-weight: bold;
 		color: #444; */
@@ -101,6 +101,22 @@
 		/*width: 10px;*/
 	}
 	
+	table.element .period_word { /* for "Period" on element.erb */
+		/*font-size: 150%;
+		font-weight: bold;*/
+		/*color: red;*/
+		/*vertical-align: middle;*/
+		margin-top: 20px;
+		margin-right: -40px;
+		/*float: left;*/
+		/*width: 10px;*/
+	}
+
+	/*.period_labels_element { /* on element.erb */
+		/*width: 1px;
+		/*border: 1px solid blue;
+	}*/
+
 	th.period_labels_col { /* column for period labels */
 		text-align: right;
 		/*width: 25px;*/
@@ -185,11 +201,11 @@
 	}
 
 	table.group th {
-		width: 5%;
+		width: 0.1%;
 	}
 
 	table.group td {
-		width: 20%;
+		width: 23%;
 	}
 
 	/*table.f_period tr th:last-child {
@@ -205,6 +221,7 @@
 	table.element {
 		table-layout: auto;
 		width: 80%;
+		margin-left: -60px;
 	}	
 
 	table.element th {
