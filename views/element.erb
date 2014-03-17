@@ -154,20 +154,20 @@
 				{
 				case "above":
 					console.log("Element moused over: above");
-					$this.css({"border-bottom":"1px dotted black"});
-					$origin.css({"border-top":"1px dotted black"})
+					$this.css({"border-bottom":"1px dashed DarkGray"});
+					$origin.css({"border-top":"1px dashed DarkGray"})
 					break;
 				case "left":
 					adj_edge_to_hightlight = "right";
 					console.log("Element moused over: left");
-					$this.css({"border-right":"1px dashed green"});
-					$origin.css({"border-left":"1px dashed green"})
+					$this.css({"border-right":"1px dashed LightGray"});
+					$origin.css({"border-left":"1px dashed LightGray"})
 					break;
 				case "right":
 					adj_edge_to_hightlight = "left";
 					console.log("Element moused over: right");
-					$this.css({"border-left":"1px dashed yellow"});
-					$origin.css({"border-right":"1px dashed yellow"})
+					$this.css({"border-left":"1px dashed DimGray"});
+					$origin.css({"border-right":"1px dashed DimGray"})
 					break;
 				case "below":
 					adj_edge_to_hightlight = "top";
