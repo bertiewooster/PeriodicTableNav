@@ -141,12 +141,47 @@
 <script>
 	$(document).ready(function() {
 		console.log("Running jQuery"); // debugging
-		$origin_terms = $('#origin').find('.terms'); // get terms (orbitals, e.g. 3s2) in origin element
+		$origin = $('#origin');
+		$origin_terms = $origin.find('.terms'); // get terms (orbitals, e.g. 3s2) in origin element
 
 		// When user hovers mouse over an adjacent element, highlight the electron terms compared to the origin element
 		$('#above, #left, #right, #below').hover(
 			// On mouseover adjacent element
 			function() {
+				$this = $(this);
+				// alert($(this).attr('id'));
+				switch ($this.attr('id'))
+				{
+				case "above":
+					console.log("Element moused over: above");
+					$this.css({"border-bottom":"1px dashed black"});
+					$origin.css({"border-top":"1px dashed black"})
+					break;
+				case "left":
+					adj_edge_to_hightlight = "right";
+					console.log("Element moused over: left");
+					$this.css({"border-right":"1px dashed black"});
+					$origin.css({"border-left":"1px dashed black"})
+					break;
+				case "right":
+					adj_edge_to_hightlight = "left";
+					console.log("Element moused over: right");
+					$this.css({"border-left":"1px dashed black"});
+					$origin.css({"border-right":"1px dashed black"})
+					break;
+				case "below":
+					adj_edge_to_hightlight = "top";
+					console.log("Element moused over: below");
+					$this.css({"border-top":"1px dashed black"});
+					$origin.css({"border-bottom":"1px dashed black"})
+					break;
+				}
+//				css_element = "border-" + adj_edge_to_hightlight;
+//				console.log(css_element);
+//				console.log(typeof css_element);
+//				$this.css({css_element:"5px solid green"});
+				//$this.css({"border-right":"2px solid green"});
+
 				$adj_terms = $(this).find('.terms'); // get terms (orbitals, e.g. 4f10) in adjacent element
 				$adj_terms.children().each(function() { // for each orbital term in adjacent element
 					adj_term = $(this).text().replace(/\s/g, ''); // e.g., 4f10 [format: nlc where c = electron count]
@@ -195,6 +230,8 @@
 			}, function() { // Remove all highlighting of orbital(s) (and parts thereof) on adjacent and origin elements
 				$adj_terms.find('*').removeClass('new_orbital diff_n diff_count');
 				$origin_terms.find('*').removeClass('new_orbital diff_n diff_count');
+				$this.css({"border":"1px solid black"});
+				$origin.css({"border":"1px solid black"});
  			}
 		);
 
