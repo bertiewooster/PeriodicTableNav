@@ -267,7 +267,9 @@
 
 	div.pt_symbol {
 		font-size: 200%;
-		line-height:85%;
+		line-height:95%;
+		margin-top: -2px;
+		margin-bottom: 2px;
 		/*border: 1px dashed red;*/
 	}
 
