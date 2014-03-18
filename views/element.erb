@@ -148,34 +148,40 @@
 		$('#above, #left, #right, #below').hover(
 			// On mouseover adjacent element
 			function() {
+			
+				// Change the border between the moused-over adjacent element, and the origin,
+				// to show which adjacent element was selected on mobile (mouse-less) devices
 				$this = $(this);
 				// alert($(this).attr('id'));
 				switch ($this.attr('id')) // Case statement: which is the element moused over
 				{
 				case "above":
-					console.log("Element moused over: above");
-					$this.css({"border-bottom":"1px dashed DarkGray"});
-					$origin.css({"border-top":"1px dashed DarkGray"})
+					//adj_edge_to_hightlight = "bottom";
+					//console.log("Element moused over: above");
+					$this.css({"border-bottom":"1px dashed DimGray"});
+					$origin.css({"border-top":"1px dashed DimGray"})
 					break;
 				case "left":
 					adj_edge_to_hightlight = "right";
 					console.log("Element moused over: left");
-					$this.css({"border-right":"1px dashed LightGray"});
-					$origin.css({"border-left":"1px dashed LightGray"})
+					$this.css({"border-right":"1px dashed DimGray"});
+					$origin.css({"border-left":"1px dashed DimGray"})
 					break;
 				case "right":
-					adj_edge_to_hightlight = "left";
-					console.log("Element moused over: right");
+					//adj_edge_to_hightlight = "left";
+					//console.log("Element moused over: right");
 					$this.css({"border-left":"1px dashed DimGray"});
 					$origin.css({"border-right":"1px dashed DimGray"})
 					break;
 				case "below":
-					adj_edge_to_hightlight = "top";
-					console.log("Element moused over: below");
-					$this.css({"border-top":"1px dashed gray"});
-					$origin.css({"border-bottom":"1px dashed gray"})
+					//adj_edge_to_hightlight = "top";
+					//console.log("Element moused over: below");
+					$this.css({"border-top":"1px dashed DimGray"});
+					$origin.css({"border-bottom":"1px dashed DimGray"})
 					break;
 				}
+				// Would be better to store borders (top, left, right, bottom) in variable and only call $this.css and $origin.css once,
+				// but had problem getting strings ("border-" + e.g. "right") to work in .css. Try again--refactor.
 //				css_element = "border-" + adj_edge_to_hightlight;
 //				console.log(css_element);
 //				console.log(typeof css_element);
