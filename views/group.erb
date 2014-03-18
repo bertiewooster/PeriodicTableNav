@@ -58,6 +58,7 @@
 			<tr>	
 				<th class="period_header period_labels_col">
 					<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
+					<% if period_header == 4 %><div class="rotate period_word">Period</div> <% end %>
 	                <% period_header += 1 %>
 				</th>
 				<td></td>
