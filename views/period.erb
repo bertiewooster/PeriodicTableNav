@@ -1,6 +1,6 @@
 <% @ethisp = @ebyp[@period-1] %>
 
-<!-- Database queries to find adjacent periods (above and below). If one doesn't exist, flagged as such to remove navigation arrows. -->
+<%# Database queries to find adjacent periods (above and below). If one doesn't exist, flagged as such to remove navigation arrows. %>
 <% begin %>
 	<% @above = Element.where(:period => @period-1)[0] %>
 	<% above_exists = true if @above.atomic_num # OK if there is a group to the right; will go to rescue if not %>
@@ -15,7 +15,7 @@
 	<% below_exists = false %>
 <% end %>
 
-<!-- Database query to determine if there are f-block elements in this period. If no, flagged as such so will skip columns for f groups. -->
+<%# Database query to determine if there are f-block elements in this period. If no, flagged as such so will skip columns for f groups. %>
 
 <% begin %>
 	<% f_this_period = Element.where(:period=>@period, :grouplin => @f_groups)[0] %>
@@ -23,12 +23,16 @@
 <% rescue %>
 	<% f_exists = false %>
 <% end %>
-	
-<!--p>Start of table of elements for selected period </p-->
+
+<!--Start of table of elements for selected period-->
 <table <%="class='f_period'" if f_exists %>
 	<tr>
 		<th></th>
 		<th>Group</th>
+		<% more_cells = f_exists ? (@max_group-1) : (@max_group-@num_f_groups-1)%>
+		<% for group_header in 1..more_cells do %>
+			<th></th>
+		<% end %>
 	</tr>
 	<tr>
 		<th></th>
@@ -51,7 +55,7 @@
 				<br>
 			<% end %>
 			<%= @period %>
-			<div class="rotate period_word">Period</div>
+			<div class="rotate period_word <%='no_above' if !above_exists%> <%='no_below' if !below_exists%>">Period</div>
 			<% if below_exists %>
 				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period+1, "text" => @down_arrow, "nav_period"=>true]} %>
 			<% end %>
@@ -75,4 +79,4 @@
 		<% end %>
  	 </tr>
 </table>
-<!--p>End of table of elements for selected period </p-->
+<!--End of table of elements for selected period-->

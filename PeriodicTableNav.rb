@@ -87,6 +87,7 @@ helpers do
 		@main_resumes_group = 17 # where main part of periodic table (non-f block) picks back up
 		#HTML codes for special characters
 		@star = "&#9733;" # 5-pointed star, ★
+		@space = "&nbsp;" # non-breaking space, used as a spacer
 		@left_arrow = "&#8656;" # left double arrow, ⇐
 		@left_jump_arrow = "&#8666;" # left triple arrow, ⇚
 		@right_arrow = "&#8658;" # right double arrow, ⇒
@@ -202,35 +203,3 @@ end # helpers
 before do
 	load_orbitals("")
 end
-
-=begin
-get '/test/:name' do
-	load_elements(params[:name])
-	ERB.new(File.read('views/inactive/test.erb'), nil, '<>').result
-	#erb :'inactive/test'
-end
-
-#=end
-
-=begin
-get '/eo' do # load elements_orbitals test page
-	@eo = Orb.all
-	@e = Element.all
-	erb :eo
-end
-=end
-
-=begin
-get '/' do  # load home page
-	erb :home_static
-end
-=end
-
-=begin
-get '/' do  # load home page
-	load_elements(params[:name])
-	@title = 'All Elements'
-	#ERB.new(File.read('views/home'), nil, '<>').result
-	erb :home
-end
-=end

@@ -26,7 +26,7 @@
 		<th></th>
 		<th>
 			<% if @linear_group == @main_pauses_group # put in spacer to keep group number centered on column on group 2 %>
-				&nbsp; &nbsp; &nbsp;
+				<%=@space%> <%=@space%> <%=@space%>
 			<% end %>				
 			<% if left_exists %>
 				<% if @linear_group == @main_resumes_group # if is linear group 17 = traditional group 3, provide link to traditional group 2 (skipping f groups) %>
@@ -34,7 +34,7 @@
 				<% end %>				
 				<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @linear_group-1, :link => Hash["type" => 'group', "text"=>@left_arrow, "nav"=>true]} %>
 			<% else %>
-				&nbsp; &nbsp;
+				<%=@space%> <%=@space%>
 			<% end %>
 			<%= @traditional_group %>
 			<% if right_exists %>
@@ -43,10 +43,10 @@
 					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @main_resumes_group, :link => Hash["type" => 'group', 'text'=>@right_jump_arrow, "nav"=>true]} %>
 				<% end %>				
 			<% else # if no group to the right, put in spaces (b/c no arrows) to keep group number centered %>
-				&nbsp; &nbsp;
+				<%=@space%> <%=@space%>
 			<% end %>
 			<% if @linear_group == @main_resumes_group # put in spacer to keep group number centered on column on group 2 %>
-				&nbsp; &nbsp; &nbsp;
+				<%=@space%> <%=@space%> <%=@space%>
 			<% end %>				
 		</th>
 	</tr>

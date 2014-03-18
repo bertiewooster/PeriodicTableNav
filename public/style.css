@@ -60,6 +60,10 @@
 		text-decoration: none;
 	}
 
+	table.period {
+		table-layout: auto;
+	}
+
 	th.period_header {
 		vertical-align: middle;
 		padding-right: 5px;
@@ -100,6 +104,10 @@
 		/*float: left;*/
 		/*width: 10px;*/
 	}
+	
+	/*.no_above {
+		margin-top: 5px;
+	}*/
 	
 	table.element .period_word { /* for "Period" on element.erb */
 		/*font-size: 150%;
