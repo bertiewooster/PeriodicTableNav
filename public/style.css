@@ -231,6 +231,10 @@
 		margin-bottom: 50px;
 	}*/
 
+	td.inPTable {	
+		border: 1px solid black;
+	}  
+
 	table.element {
 		table-layout: auto;
 		width: 80%;
@@ -246,13 +250,13 @@
 	}	
 
 	table.element td.origin_col {
-		/*width: 50%;*/ // actually, leave this width unspecified so web browser will fill remaining space with it (widths for other cols are specified)
+		/*width: 50%; actually, leave this width unspecified so web browser will fill remaining space with it (widths for other cols are specified) */
 	}	
 
-	td.inPTable {	
-		border: 1px solid black;
-	}  
-
+	td.adj { /* adjacent element cells on element.erb */
+		padding-bottom: 75px;
+	}
+	
 	td.origin {	
 		/*border: 5px solid yellow;*/
 	}  

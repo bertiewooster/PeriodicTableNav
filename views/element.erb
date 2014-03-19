@@ -61,12 +61,8 @@
                         <% if left_exists %>
                                 <td class="left_col"></td>
                         <% end %>
-                        <td id="above" class="inPTable origin_col">
+                        <td id="above" class="inPTable origin_col adj">
 							<%= erb :'partials/pt_element', :locals=> {:element => @above, :ec_class => "wide"} %>
-							<p><%=@space%></p>
-							<p><%=@space%></p>
-							<p><%=@space%></p>
-							<p><%=@space%></p>
                         </td>
                         <% if right_exists %>
                                 <td class="right_col"></td>
@@ -81,7 +77,7 @@
 			</th>
 
 		<% if left_exists %>
-			<td id="left" class="inPTable left_col">
+			<td id="left" class="inPTable left_col adj">
 				<!-- For element to the left of origin element -->
 				<%= erb :'partials/pt_element', :locals=> {:element => @left, :ec_class => "wide"} %>
 			</td>
@@ -105,7 +101,7 @@
 				<%= erb :'partials/pt_element', :locals=> {:element => @origin, :properties=>origin_properties, :ec_class => "wide", :no_link => true} %>
 		</td>
 		<% if right_exists %>
-			<td id="right" class="inPTable right_col">
+			<td id="right" class="inPTable right_col adj">
 				<!-- For element to the right of origin element -->
 				<%= erb :'partials/pt_element', :locals=> {:element => @right, :ec_class => "wide"} %>
 			</td>
@@ -121,13 +117,9 @@
 			<% if left_exists %>
 				<td class="left_col"></td>
 			<% end %>
-			<td id="below" class="inPTable origin_col">
+			<td id="below" class="inPTable origin_col adj">
 				<!-- For element below origin element -->
 				<%= erb :'partials/pt_element', :locals=> {:element => @below, :ec_class => "wide"} %>
-				<p><%=@space%></p>
-				<p><%=@space%></p>
-				<p><%=@space%></p>
-				<p><%=@space%></p>
 			</td>
 			<% if right_exists %>
 				<td class="right_col"></td>
