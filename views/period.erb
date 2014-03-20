@@ -27,7 +27,7 @@
 <!--Start of table of elements for selected period-->
 <table class="element<%=' f_period' if f_exists %>">
 	<tr>
-		<th class="period_word"></th>
+		<th></th>
 		<th></th>
 		<th>Group</th>
 		<% more_cells = f_exists ? (@max_group-1) : (@max_group-@num_f_groups-1)%>
@@ -36,7 +36,7 @@
 		<% end %>
 	</tr>
 	<tr>
-		<th class="period_word"></th>
+		<th></th>
 		<th></th>
 		<% for group_header in 1..@max_group do %>
 			<% if (!f_exists) && (@f_groups.include? group_header) # if no f groups in this period and current group is an f group %>

@@ -10,9 +10,11 @@
 <table class="home">
 	<tr>
 		<th></th>
+		<th></th>
 		<th>Group</th>
 	</tr>
 	<tr>
+		<th></th>
 		<th></th>
 		<% @main_groups.each do |group_header| %>
 			<th class="home_element">
@@ -25,9 +27,15 @@
 	<% period_header += 1 #increment the period number in preparation for next period %>
 	<% lastGroup = 0 %>
 	<tr>
+		<% if period_header != 4 %>
+			<th></th>
+		<% else %>
+			<th class="period_word rotate">
+				Period
+			</th>
+		<% end %>
 		<th class="period_header period_labels_col">
 			<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
-			<% if period_header == 4 %><div class="rotate period_word">Period</div> <% end %>
 		</th>
 		<% period.each do |element| %>
 			<% next if not @main_groups.include? element.grouplin # skip non-main group (e.g., f-block) elements %>
@@ -49,11 +57,11 @@
 <% end %> 
 </table>
 
-<div class="rotate like_th"></div><%# placeholder to push f-block table to right the same distance as main groups table %>
 <!-- f groups table -->
 <% period_header = 0 # labels for periods %>
 <table class="home" id="f_block">
 	<tr>
+		<th></th>
 		<th><!--Group--></th>
 		<th class="spacer"></th>
 		<th class="spacer"></th>
@@ -69,6 +77,7 @@
 		<% lastGroup = 0 %>
 		<% if Element.where(:period => period_header, :grouplin => @f_groups.min).size > 0 # if there are f group elements in this period, plot them; if not, skip period %>
 			<tr>
+				<th class="period_word rotate hidden">Period</th>
 				<th class="period_header period_labels_col">
 					<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>			
 				</th>
