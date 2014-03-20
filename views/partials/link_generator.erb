@@ -5,8 +5,6 @@
 <% #         <a href="/period/6" title="period 6">^</a> %>
 
 <% text = link.has_key?('text') ? link['text'] : link['number'] # if link text specified, use it; otherwise use number (of period, element, or group) %>
-<%# class_html = link.has_key?('class') ? "class='nav'" : "" %>
-<%# class_html = link.has_key?('class') ? "class='nav'" : "" %>
 <% if link['nav_period'] %>
 	<% class_html = "class='nav_period'" %>
 <% elsif link['nav'] %>

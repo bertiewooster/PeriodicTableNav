@@ -88,12 +88,12 @@ helpers do
 		#HTML codes for special characters
 		@star = "&#9733;" # 5-pointed star, ★
 		@space = "&nbsp;" # non-breaking space, used as a spacer
-		@left_arrow = "&#8656;" # left double arrow, ⇐
-		@left_jump_arrow = "&#8666;" # left triple arrow, ⇚
-		@right_arrow = "&#8658;" # right double arrow, ⇒
-		@right_jump_arrow = "&#8667;" # right triple arrow, ⇛
-		@up_arrow = "&#8657;" # up double arrow, ⇑
-		@down_arrow = "&#8659;" # down double arrow, ⇓
+		@left_arrow = "<" # "&#8656;" # left double arrow, ⇐
+		@left_jump_arrow = "<<" # "&#8666;" # left triple arrow, ⇚
+		@right_arrow = ">" # "&#8658;" # right double arrow, ⇒
+		@right_jump_arrow = ">>" # "&#8667;" # right triple arrow, ⇛
+		@up_arrow = "^" # "&#923;" # "&#8657;" # up double arrow, ⇑
+		@down_arrow = "V" # "&#8659;" # down double arrow, ⇓
 	end
 	
 	def group_lin_to_trad(linear_group)
