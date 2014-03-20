@@ -82,7 +82,7 @@
 				<% lastGroup = element.grouplin %>
 			</td>
 		<% end %>
-			<% while lastGroup < @max_group %>
+			<% while lastGroup < (@max_group-@num_f_groups) %>
 				<td></td>
 				<% lastGroup += 1 %>
 			<% end %>

@@ -45,7 +45,7 @@
 	  
 	table {
 		table-layout: fixed;
-		width: 100%; /*1170px;*/
+		/*width: 100%; /*1170px;*/
 		margin-left: -15px;
 	}
 	
@@ -231,23 +231,13 @@
 		/*border: 1px solid red;*/
 	}
 	
-	/*table.f_period tr th:last-child {
-		border-right: 50px dashed green;
-		padding-right: 50px;
-	}
-
-	/*table.f_period {
-		border: 5px solid red;
-		margin-bottom: 50px;
-	}*/
-
 	td.inPTable {	
 		border: 1px solid black;
 	}  
 
 	table.element {
 		table-layout: fixed;
-		width: auto; /*100%;*/
+		/*width: auto; /*100%;*/
 		margin-left: -50px;
 	}	
 
