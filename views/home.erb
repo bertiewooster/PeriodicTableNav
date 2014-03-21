@@ -9,9 +9,9 @@
 <!-- Main groups -->
 <% period_header = 0 # labels for periods %>
 	<tr>
-		<% rows_total = @max_period + 2 + 2 + 1 %>
+		<% rows_total = 2 + @max_period + 2 + 1 %>
 			<%# Number of rows for "Period" to span: 12 =
-				7 main periods +  2 f periods + 2 header rows for main + 1 header row for f %>
+				2 header rows for main + 7 main periods + 1 header row for f + 2 f periods %>
 		<th rowspan="<%=rows_total%>" class="period_word rotate">
 			Period
 		</th>

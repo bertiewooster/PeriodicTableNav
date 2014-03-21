@@ -277,15 +277,21 @@
 	}
 
 /* ELEMENT PAGE */
+	table.element {
+		table-layout: fixed;
+		/*width: auto; /*100%;*/
+		/*margin-left: -280px;*/
+	}	
+
 	table.element .period_word { /* for "Period" on element.erb */
 		/*font-size: 150%;
 		font-weight: bold;*/
 		/*color: red;*/
-		/*vertical-align: middle;*/
 		/*margin-top: 20px;*/
 		/*margin-right: -40px;*/
 		/*float: left;*/
 		/*width: 10px;*/
+		vertical-align: right;
 	}
 
 	/*.period_labels_element { /* on element.erb */
@@ -295,19 +301,17 @@
 
 	table.element th.period_labels_col { /* column for period labels */
 		text-align: right;
-		width: 50px;
+		width: 20px;
 		/*border: 1px solid red;*/
 	}
 
-	table.element {
-		table-layout: fixed;
-		/*width: auto; /*100%;*/
-		margin-left: -50px;
-	}	
-
 	table.element th {
-		width: 3%;
-		/*border: 1px dashed green;*/
+		width: 2%;
+		border: 1px dashed red;
+	}
+
+	table.element td {
+		border: 1px dashed green;
 	}
 
 	table.element left_col, table.element right_col {
@@ -322,10 +326,6 @@
 		padding-bottom: 75px;
 	}
 	
-	td.origin {	
-		/*border: 5px solid yellow;*/
-	}  
-
 	/* Highlighting for similar but differing electron configuration terms between elements */ 
 	.diff_n {
 		background-color: yellow;
