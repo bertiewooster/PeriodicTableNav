@@ -5,9 +5,9 @@
 	"name"=>nil,
 	"e_config" => {"base" => false, "space_terms" => true, "term_spans"=>false}} %>
 
-<!-- Main groups table -->
-<% period_header = 0 # labels for periods %>
 <table class="home">
+<!-- Main groups -->
+<% period_header = 0 # labels for periods %>
 	<tr>
 		<th rowspan="9" class="period_word rotate">
 			Period
@@ -49,14 +49,12 @@
 		<% end %>
  	 </tr>
 <% end %> 
-</table>
 
 <!-- f groups table -->
 <% period_header = 0 # labels for periods %>
-<table class="home" id="f_block">
 	<tr>
 		<th></th>
-		<th><!--Group--></th>
+		<th></th>
 		<th class="spacer"></th>
 		<th class="spacer"></th>
 		<% @f_groups.each do |group_header| %>
