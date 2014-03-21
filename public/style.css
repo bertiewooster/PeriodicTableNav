@@ -1,3 +1,4 @@
+/* GLOBAL */
 	body {  
 		/*margin: 10px auto;  */
 		margin-left: 10px;
@@ -6,6 +7,22 @@
 
 	p {  
 		margin: 0 0 5px;  
+	}
+
+	a.nav { /* for navigation arrows adjacent to group or period numbers */
+		/*border: 1px solid blue;*/
+		/*font-size:200%;*/
+		/*vertical-align: middle;*/
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	
+	a.nav_period { /* for navigation arrows adjacent to group or period numbers */
+		/*border: 1px solid blue;*/
+		/*font-size:200%;*/
+		/*margin-right: -7px;*/
+		/*line-height: 50%;*/
+		/*padding-top: 20px;*/
 	}
 	
 	header {  
@@ -46,42 +63,7 @@
 	.hidden {
 		visibility: hidden;
 	}	  
-	
-	table {
-		table-layout: fixed;
-		/*width: 100%; /*1170px;*/
-		margin-left: -25px;
-	}
-	
-	th {
-		font-size: 150%;
-		vertical-align: bottom;
-		/*border: 1px solid green;*/
-		/*width: 65px; /*5.1%;*/
-	}
-	
-	th a {
-		text-decoration: none;
-	}
 
-	table.period {
-		border: 2px dashed red;
-		table-layout: auto;
-		margin-left: -25px;
-	}
-
-	th.period_header {
-		vertical-align: middle;
-		padding-right: 5px;
-		/*width: 60px;*/
-		/*border: 1px dashed red;*/
-	}
-	
-	th.period_header_period {
-		vertical-align: middle;
-		padding-right: 10px;
-	}
-	
 	.rotate { /* text rotated 90 degrees counterclockwise; using for "Period" at left of tables */
 		/*float:left;*/
 		/*border: 1px solid red; */ 
@@ -101,9 +83,47 @@
 		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 	}
 
-	table.element th.period_word {
-		width: 2.0%;
-		text-align: right;
+	/* Debugging */
+	.highlighted {
+		background-color: orange;
+	}
+	
+/* TABLE -- GENERIC */	
+	table {
+		table-layout: fixed;
+		/*width: 100%; /*1170px;*/
+		margin-left: -25px;
+	}
+
+	td {
+		width: 5.1%; /* 95% / 19 cols 65px;*/
+		height: 82px;
+		/*border: 1px solid red;*/
+		text-align: center;
+	}  
+
+	
+	th {
+		font-size: 150%;
+		vertical-align: bottom;
+		/*border: 1px solid green;*/
+		/*width: 65px; /*5.1%;*/
+	}
+	
+	th a {
+		text-decoration: none;
+	}
+
+	th.period_header {
+		vertical-align: middle;
+		padding-right: 5px;
+		/*width: 60px;*/
+		/*border: 1px dashed red;*/
+	}
+	
+	th.period_header_period {
+		vertical-align: middle;
+		padding-right: 10px;
 	}
 
 	th.period_word { /* for "Period" */
@@ -116,76 +136,66 @@
 		/*padding-left: 0px; /*-20px;*/
 		/*float: left;*/
 	}
-	
-	/*.no_above {
-		margin-top: 5px;
-	}*/
-	
-	table.element .period_word { /* for "Period" on element.erb */
-		/*font-size: 150%;
-		font-weight: bold;*/
-		/*color: red;*/
-		/*vertical-align: middle;*/
-		/*margin-top: 20px;*/
-		/*margin-right: -40px;*/
-		/*float: left;*/
-		/*width: 10px;*/
-	}
 
-	/*.period_labels_element { /* on element.erb */
-		/*width: 1px;
-		/*border: 1px solid blue;
-	}*/
-
-	table.element th.period_labels_col { /* column for period labels */
-		text-align: right;
-		width: 50px;
-		/*border: 1px solid red;*/
-	}
-
-	td {
-		width: 5.1%; /* 95% / 19 cols 65px;*/
-		height: 82px;
-		/*border: 1px solid red;*/
-		text-align: center;
+	td.inPTable {	
+		border: 1px solid black;
 	}  
+
+	td.inPTable a {	
+		text-decoration: none;
+	}  
+
+	div.pt_atomic_num {
+		font-size: 100%;
+	}
+
+	div.pt_symbol {
+		font-size: 200%;
+		line-height:95%;
+		margin-top: -2px;
+		margin-bottom: 2px;
+		/*border: 1px dashed red;*/
+	}
+
+	div.pt_name {
+		font-size: 73%;
+		/*margin-top: 0 px;*/
+	}
+
+	.pt_density_g_per_cm3 sup { /* for superscript 3 in g/cm3 */
+		top: +0.2em;
+	}
+
+/* NARROW-CELL PAGES (HOME AND PERIOD) */
+	div.narrow { /* for narrow table cells: home and period pages */
+		font-size: 100%; /*150%;*/
+		/*font-weight: bold;*/
+	}
+
+	div.narrow sup { /* for superscripts in narrow table cells (home and period) */
+		/*font-size: 50%; */
+		top: +0.0em;
+		/*background-color: red;*/
+	}
+
+/* HOME PAGE */
+	table.home th.period_word {
+		vertical-align: middle;
+		padding-top: 60px; /* this is really left padding because rotated 90deg */
+	}
 
 	th.home_element {
 		/*border: 3px solid black;*/
 		/*width: 65px; /*5.1%;*/
 	}
 	
-	a.nav { /* for navigation arrows adjacent to group or period numbers */
-		/*border: 1px solid blue;*/
-		/*font-size:200%;*/
-		/*vertical-align: middle;*/
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-	
-	a.nav_period { /* for navigation arrows adjacent to group or period numbers */
-		/*border: 1px solid blue;*/
-		/*font-size:200%;*/
-		/*margin-right: -7px;*/
-		/*line-height: 50%;*/
-		/*padding-top: 20px;*/
-	}
-
 	table#f_block { /* f-block table on home page (groups f1-f14, periods 6-7) */
 		margin-top: 20px;
 	}
 
-	table.f_period {
-		width: 150%; /*1170px;*/
-	}
-	
-	table.f_period th {
-		width: 65px;
-	}
-
 	table.home {
 		table-layout: fixed;
-		margin-left: -50px;
+		margin-left: -65px;
 		/*width: 1170px; /*96.9%;*/
 	}
 
@@ -207,6 +217,7 @@
 
 	table.home th.period_header {
 		vertical-align: middle;
+		width: 10px;
 	}
 	
 	table.home td {
@@ -217,27 +228,76 @@
 		word-wrap: break-word;
    	}  
 
-	table.group {
+	sup.pointer { /* for 5-pointed star superscripts on Ba and Ra, pointing to lanthanides and actinides respectively */
+		/*font-size: x-small;*/
+		font-size: 40%;
+		top: +0.05em;
+	}
+
+/* PERIOD PAGE */
+	table.period {
+		border: 2px dashed red;
 		table-layout: auto;
-		width: 25%;
+		margin-left: -25px;
 	}
 
-	table.group th {
-		width: 0.1%;
+	table.element th.period_word {
+		width: 2.0%;
+		text-align: right;
 	}
 
-	table.group td {
-		width: 23%;
-	}
-
-	.group_labels { /* group labels (e.g., 	⇐ 2 ⇒ ⇛ ) on group.erb */
-		line-height:160%;
+	table.element th.period_labels_col { /* column for period labels */
+		/*text-align: right;*/
+		width: 20px;
 		/*border: 1px solid red;*/
 	}
+
+	/*.no_above {
+		margin-top: 5px;
+	}*/
+
+	table.f_period {
+		width: 150%; /*1170px;*/
+	}
 	
-	td.inPTable {	
-		border: 1px solid black;
-	}  
+	table.f_period th {
+		width: 65px;
+	}
+
+/* WIDE-CELL PAGES (GROUP AND ELEMENT) */
+	div.wide { /* for wide table cells: group and element pages */
+		font-size: 150%;
+		/*font-weight: bold;*/
+	}
+
+	div.wide sup { /* for superscripts in wide table cells (group and element), make text bigger so easier to read */
+		font-size: 65%;
+		top: +0.2em;
+		/*background-color: green;*/
+	}
+
+/* ELEMENT PAGE */
+	table.element .period_word { /* for "Period" on element.erb */
+		/*font-size: 150%;
+		font-weight: bold;*/
+		/*color: red;*/
+		/*vertical-align: middle;*/
+		/*margin-top: 20px;*/
+		/*margin-right: -40px;*/
+		/*float: left;*/
+		/*width: 10px;*/
+	}
+
+	/*.period_labels_element { /* on element.erb */
+		/*width: 1px;
+		/*border: 1px solid blue;
+	}*/
+
+	table.element th.period_labels_col { /* column for period labels */
+		text-align: right;
+		width: 50px;
+		/*border: 1px solid red;*/
+	}
 
 	table.element {
 		table-layout: fixed;
@@ -266,62 +326,6 @@
 		/*border: 5px solid yellow;*/
 	}  
 
-	td.inPTable a {	
-		text-decoration: none;
-	}  
-
-	div.pt_atomic_num {
-		font-size: 100%;
-	}
-
-	div.pt_symbol {
-		font-size: 200%;
-		line-height:95%;
-		margin-top: -2px;
-		margin-bottom: 2px;
-		/*border: 1px dashed red;*/
-	}
-
-	div.pt_name {
-		font-size: 73%;
-		/*margin-top: 0 px;*/
-	}
-
-	.pt_density_g_per_cm3 sup { /* for superscript 3 in g/cm3 */
-		top: +0.2em;
-	}
-	div.narrow { /* for narrow table cells: home and period pages */
-		font-size: 100%; /*150%;*/
-		/*font-weight: bold;*/
-	}
-
-	div.narrow sup { /* for superscripts in narrow table cells (home and period) */
-		/*font-size: 50%; */
-		top: +0.0em;
-		/*background-color: red;*/
-	}
-
-	div.wide { /* for wide table cells: group and element pages */
-		font-size: 150%;
-		/*font-weight: bold;*/
-	}
-
-	div.wide sup { /* for superscripts in wide table cells (group and element), make text bigger so easier to read */
-		font-size: 65%;
-		top: +0.2em;
-		/*background-color: green;*/
-	}
-
-	sup.pointer { /* for 5-pointed star superscripts on Ba and Ra, pointing to lanthanides and actinides respectively */
-		/*font-size: x-small;*/
-		font-size: 40%;
-		top: +0.05em;
-	}
-
-	span.ec_base {
-		/*color: red;*/
-	}
-
 	/* Highlighting for similar but differing electron configuration terms between elements */ 
 	.diff_n {
 		background-color: yellow;
@@ -336,7 +340,21 @@
 		background-color: orange;
 	}
 
-	/* Debugging */
-	.highlighted {
-		background-color: orange;
+/* GROUP PAGE */
+	table.group {
+		table-layout: auto;
+		width: 25%;
+	}
+
+	table.group th {
+		width: 0.1%;
+	}
+
+	table.group td {
+		width: 23%;
+	}
+
+	.group_labels { /* group labels (e.g., 	⇐ 2 ⇒ ⇛ ) on group.erb */
+		line-height:160%;
+		/*border: 1px solid red;*/
 	}

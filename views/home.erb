@@ -9,13 +9,14 @@
 <% period_header = 0 # labels for periods %>
 <table class="home">
 	<tr>
-		<th></th>
+		<th rowspan="9" class="period_word rotate">
+			Period
+		</th>
 		<th></th>
 		<th>Group</th>
 	</tr>
 	<tr>
-		<th></th>
-		<th></th>
+		<th class="period_header period_labels_col"></th>
 		<% @main_groups.each do |group_header| %>
 			<th class="home_element">
 				<% # if group_header == 1 %> Group <% # end %>
@@ -27,13 +28,6 @@
 	<% period_header += 1 #increment the period number in preparation for next period %>
 	<% lastGroup = 0 %>
 	<tr>
-		<% if period_header != 4 %>
-			<th></th>
-		<% else %>
-			<th class="period_word rotate">
-				Period
-			</th>
-		<% end %>
 		<th class="period_header period_labels_col">
 			<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
 		</th>
