@@ -51,11 +51,11 @@
 				</th>
 			<% end %>
         </tr>
+                        <% if above_exists %>
         <tr>
                 <!--th class="period_header period_labels_col"-->
         <!-- For element above origin element -->
-                        <% if above_exists %>
-                        	<th colspan="2">
+                        	<th colspan="2" class="period_header period_labels_col">
 							<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@origin.period-1]} %>
                 </th>
                 
@@ -70,10 +70,10 @@
                                 <td class="right_col"></td>
                         <% end %>
                 </tr>
-                <tr>
-                	<th>Period</th>
-        	    	<th class="period_header period_labels_col">
                         <% end %>
+                <tr>
+                	<th class="period_word rotate">Period</th>
+        	    	<th class="period_header period_labels_col">
 				<!-- Row for left, origin, right elements-->
 				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@origin.period]} %>
 			</th>
