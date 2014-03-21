@@ -19,6 +19,12 @@
 
 <table class="group">
 	<tr>
+		<% rows_total = @max_period + 2 %>
+			<%# Number of rows for "Period" to span: 9 =
+				7 main periods +  2 header rows %>
+		<th rowspan="<%=rows_total%>" class="period_word rotate">
+			Period
+		</th>
 		<th></th>
 		<th>Group</th>
 	</tr>
@@ -58,7 +64,6 @@
 			<tr>	
 				<th class="period_header period_labels_col">
 					<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
-					<% if period_header == 4 %><div class="rotate period_word">Period</div> <% end %>
 	                <% period_header += 1 %>
 				</th>
 				<td></td>
@@ -68,7 +73,6 @@
 		<tr>
 			<th class="period_header period_labels_col">
 				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>period_header]} %>
-				<% if period_header == 4 %><div class="rotate period_word">Period</div> <% end %>
 			</th>
 				<td class="inPTable">
 					<%= erb :'partials/pt_element', :locals=> {:element => element, :ec_class => "wide"} %>

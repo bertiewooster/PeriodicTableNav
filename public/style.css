@@ -344,6 +344,7 @@
 	table.group {
 		table-layout: auto;
 		width: 25%;
+		margin-left: -40px;
 	}
 
 	table.group th {
@@ -358,3 +359,9 @@
 		line-height:160%;
 		/*border: 1px solid red;*/
 	}
+	
+	table.group th.period_word {
+		vertical-align: middle;
+		padding-top: 40px; /* this is really left padding because rotated 90deg */
+	}
+
