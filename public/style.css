@@ -236,19 +236,19 @@
 
 /* PERIOD PAGE */
 	table.period {
-		border: 2px dashed red;
+		/*border: 2px dashed red;*/
 		table-layout: auto;
-		margin-left: -25px;
+		margin-left: -50px;
 	}
 
-	table.element th.period_word {
-		width: 2.0%;
+	table.period .period_word {
+		padding-bottom: 10px;
+	}
+
+	table.period th.period_labels_col { /* column for period labels */
 		text-align: right;
-	}
-
-	table.element th.period_labels_col { /* column for period labels */
-		/*text-align: right;*/
-		width: 20px;
+		width: 0.2%;
+		/*color: red;*/
 		/*border: 1px solid red;*/
 	}
 
@@ -257,10 +257,10 @@
 	}*/
 
 	table.f_period {
-		width: 150%; /*1170px;*/
+		width: 200%; /*1170px;*/
 	}
 	
-	table.f_period th {
+	table.f_period th, table.f_period td {
 		width: 65px;
 	}
 
@@ -279,8 +279,8 @@
 /* ELEMENT PAGE */
 	table.element {
 		table-layout: fixed;
-		/*width: auto; /*100%;*/
-		/*margin-left: -280px;*/
+		/*width: 100%;*/
+		margin-left: -220px;
 	}	
 
 	table.element .period_word { /* for "Period" on element.erb */
@@ -291,7 +291,13 @@
 		/*margin-right: -40px;*/
 		/*float: left;*/
 		/*width: 10px;*/
-		vertical-align: right;
+		/*vertical-align: center;*/
+		/*padding-left: 30px;*/ /* this is really left padding because rotated 90deg */
+		/*margin-right: 30px;*/
+		/*margin-left: 30px;*/
+		padding-right: 100px;
+		width: 2.0%;
+		text-align: right;
 	}
 
 	/*.period_labels_element { /* on element.erb */
@@ -301,21 +307,21 @@
 
 	table.element th.period_labels_col { /* column for period labels */
 		text-align: right;
-		width: 20px;
+		width: 0.2%;
 		/*border: 1px solid red;*/
 	}
 
 	table.element th {
-		width: 2%;
-		border: 1px dashed red;
+		/*width: 2%;*/
 	}
 
 	table.element td {
-		border: 1px dashed green;
+		/*border: 1px dashed green;*/
 	}
 
 	table.element left_col, table.element right_col {
 		width: 25%;
+		color: red;
 	}	
 
 	table.element td.origin_col {

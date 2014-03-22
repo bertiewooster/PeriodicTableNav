@@ -40,7 +40,7 @@
 				<% end %>				
 				<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @linear_group-1, :link => Hash["type" => 'group', "text"=>@left_arrow, "nav"=>true]} %>
 			<% else # if no group to left, put in spaces to keep group number centered above cell %>
-				<%=@space%> <%=@space%>
+				<%=@space%> <%=@space%> <%=@space%>
 			<% end %>
 			<%= @traditional_group %>
 			<% if right_exists %>
@@ -49,7 +49,7 @@
 					<%= erb :'partials/group_link_generator', :locals=> {:linear_group => @main_resumes_group, :link => Hash["type" => 'group', 'text'=>@right_jump_arrow, "nav"=>false]} %>
 				<% end %>				
 			<% else # if no group to the right, put in spaces (b/c no arrows) to keep group number centered %>
-				<%=@space%> <%=@space%>
+				<%=@space%> <%=@space%> <%=@space%>
 			<% end %>
 			<% if @linear_group == @main_resumes_group # put in spacer to keep group number centered on column on group 2 %>
 				<%=@space%> <%=@space%> <%=@space%>
