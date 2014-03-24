@@ -93,6 +93,7 @@
 		table-layout: fixed;
 		/*width: 100%; /*1170px;*/
 		margin-left: -25px;
+		margin-right: 5px;
 	}
 
 	td {
@@ -279,7 +280,7 @@
 /* ELEMENT PAGE */
 	table.element {
 		table-layout: fixed;
-		/*width: 100%;*/
+		/*width: auto;*/
 		margin-left: -220px;
 	}	
 
