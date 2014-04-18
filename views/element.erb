@@ -142,11 +142,13 @@
 		$('#above, #left, #right, #below').hover(
 			// On mouseover adjacent element
 			function() {
-			
 				// Change the border between the moused-over adjacent element, and the origin,
 				// to show which adjacent element was selected on mobile (mouse-less) devices
 				$adj = $(this);
-				//alert($(this).attr('id'));
+				
+				adj_posn = $adj.attr('id');
+				//terms_mouseover($origin,$adj,adj_posn);
+
 				switch ($adj.attr('id')) // Case statement: which is the element moused over
 				{
 				case "above":
@@ -231,12 +233,21 @@
 				}) // end $origin_terms.children().each
 			// On mouseout adjacent element,
 			}, function() { // Remove all highlighting of orbital(s) (and parts thereof) on adjacent and origin elements
-				$adj_terms.find('*').removeClass('new_orbital diff_n diff_count');
-				$origin_terms.find('*').removeClass('new_orbital diff_n diff_count');
-				$adj.css({"border":"1px solid black"});
-				$origin.css({"border":"1px solid black"});
+				terms_mouseout($origin,$adj);
  			}
 		);
-
 	}); // end ready
+	
+	function terms_mouseover($origin,$adj,adj_posn) {
+		console.log("Running terms_mouseover" + adj_posn);	// debugging
+	}
+
+	function terms_mouseout($origin,$adj) {
+		console.log("Running terms_mouseout");	// debugging
+		$adj_terms.find('*').removeClass('new_orbital diff_n diff_count');
+		$origin_terms.find('*').removeClass('new_orbital diff_n diff_count');
+		$adj.css({"border":"1px solid black"});
+		$origin.css({"border":"1px solid black"});
+	}
+
 </script>
