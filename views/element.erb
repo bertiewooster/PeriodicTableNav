@@ -145,37 +145,45 @@
 				// Change the border between the moused-over adjacent element, and the origin,
 				// to show which adjacent element was selected on mobile (mouse-less) devices
 				$adj = $(this);
-				
 				adj_posn = $adj.attr('id');
-				//terms_mouseover($origin,$adj,adj_posn);
+				terms_mouseover($origin,$adj,adj_posn);
+			}, // end mouseover adjacent element
+			// On mouseout adjacent element,
+			function() { // Remove all highlighting of orbital(s) (and parts thereof) on adjacent and origin elements
+				terms_mouseout($origin,$adj);
+ 			}
+		);
+	}); // end ready
 
-				switch ($adj.attr('id')) // Case statement: which is the element moused over
-				{
-				case "above":
-					//adj_edge_to_hightlight = "bottom";
-					//console.log("Element moused over: above");
-					$adj.css({"border-bottom":"1px dashed DimGray"});
-					$origin.css({"border-top":"1px dashed DimGray"})
-					break;
-				case "left":
-					//adj_edge_to_hightlight = "right";
-					//console.log("Element moused over: left");
-					$adj.css({"border-right":"1px dashed DimGray"});
-					$origin.css({"border-left":"1px dashed DimGray"})
-					break;
-				case "right":
-					//adj_edge_to_hightlight = "left";
-					//console.log("Element moused over: right");
-					$adj.css({"border-left":"1px dashed DimGray"});
-					$origin.css({"border-right":"1px dashed DimGray"})
-					break;
-				case "below":
-					//adj_edge_to_hightlight = "top";
-					//console.log("Element moused over: below");
-					$adj.css({"border-top":"1px dashed DimGray"});
-					$origin.css({"border-bottom":"1px dashed DimGray"})
-					break;
-				}
+	function terms_mouseover($origin,$adj,adj_posn) {
+		console.log("Running terms_mouseover: " + adj_posn);	// debugging
+		switch (adj_posn) // Case statement: which is the element moused over
+		{
+		case "above":
+			//adj_edge_to_hightlight = "bottom";
+			//console.log("Element moused over: above");
+			$adj.css({"border-bottom":"1px dashed DimGray"});
+			$origin.css({"border-top":"1px dashed DimGray"})
+			break;
+		case "left":
+			//adj_edge_to_hightlight = "right";
+			//console.log("Element moused over: left");
+			$adj.css({"border-right":"1px dashed DimGray"});
+			$origin.css({"border-left":"1px dashed DimGray"})
+			break;
+		case "right":
+			//adj_edge_to_hightlight = "left";
+			//console.log("Element moused over: right");
+			$adj.css({"border-left":"1px dashed DimGray"});
+			$origin.css({"border-right":"1px dashed DimGray"})
+			break;
+		case "below":
+			//adj_edge_to_hightlight = "top";
+			//console.log("Element moused over: below");
+			$adj.css({"border-top":"1px dashed DimGray"});
+			$origin.css({"border-bottom":"1px dashed DimGray"})
+			break;
+		}
 				// Would be better to store borders (top, left, right, bottom) in variable and only call $adj.css and $origin.css once,
 				// but had problem getting strings ("border-" + e.g. "right") to work in .css. Try again--refactor.
 //				css_element = "border-" + adj_edge_to_hightlight;
@@ -184,62 +192,53 @@
 //				$this.css({css_element:"5px solid green"});
 				//$this.css({"border-right":"2px solid green"});
 
-				//alert($(this).attr('id'));
-				$adj_terms = $adj.find('.terms'); // get terms (orbitals, e.g. 4f10) in adjacent element
-				$adj_terms.children().each(function() { // for each orbital term in adjacent element
-					$adj_term = $(this);
-					adj_term = $adj_term.text().replace(/\s/g, ''); // e.g., 4f10 [format: nlc where c = electron count]
-					adj_n  = adj_term.charAt(0); // extract n quantum number (1, 2, 3,...) from term
-					adj_l = adj_term.charAt(1); // extract l letter (s, p, d, or f) from term
-					adj_count  = adj_term.substring(2,adj_term.length); // extract electron count (1-14) from term
-					same_l_selector = 'span[class^="ec_"][class$="' + adj_l + '"]'; // jQuery selector for term in origin
-					$same_l_in_origin = $origin_terms.find(same_l_selector); // jQuery object: analogous term in origin, e.g. 4f9 (will test to see if exists below)
-					same_l = $same_l_in_origin.text().replace(/\s/g, ''); // text of analogous term in origin
-					origin_n = same_l.charAt(0); // origin's principal quantum number, n, for this term
-					origin_count  = same_l.substring(2,same_l.length); // extract electron count (1-14) from term					
+		//alert($(this).attr('id'));
+		$adj_terms = $adj.find('.terms'); // get terms (orbitals, e.g. 4f10) in adjacent element
+		$adj_terms.children().each(function() { // for each orbital term in adjacent element
+			$adj_term = $(this);
+			adj_term = $adj_term.text().replace(/\s/g, ''); // e.g., 4f10 [format: nlc where c = electron count]
+			adj_n  = adj_term.charAt(0); // extract n quantum number (1, 2, 3,...) from term
+			adj_l = adj_term.charAt(1); // extract l letter (s, p, d, or f) from term
+			adj_count  = adj_term.substring(2,adj_term.length); // extract electron count (1-14) from term
+			same_l_selector = 'span[class^="ec_"][class$="' + adj_l + '"]'; // jQuery selector for term in origin
+			$same_l_in_origin = $origin_terms.find(same_l_selector); // jQuery object: analogous term in origin, e.g. 4f9 (will test to see if exists below)
+			same_l = $same_l_in_origin.text().replace(/\s/g, ''); // text of analogous term in origin
+			origin_n = same_l.charAt(0); // origin's principal quantum number, n, for this term
+			origin_count  = same_l.substring(2,same_l.length); // extract electron count (1-14) from term					
 
-					// If origin doesn't contain term with this l, highlight whole term in adjacent element
-					origin_terms_text = $origin_terms.text().replace(/\s/g, '');
-					// Mash-together of all terms in origin, e.g. 6s24f9. So can check one string to see if origin has term with same l value as current term of adjacent element.
+			// If origin doesn't contain term with this l, highlight whole term in adjacent element
+			origin_terms_text = $origin_terms.text().replace(/\s/g, '');
+			// Mash-together of all terms in origin, e.g. 6s24f9. So can check one string to see if origin has term with same l value as current term of adjacent element.
 
-					origin_has_term = origin_terms_text.indexOf(adj_l) != -1
-					if (!origin_has_term) { // if origin doesn't contain term with this l, highlight whole term in adjacent element
-						$adj_term.addClass('new_orbital');
-						return true; // skip rest of highlighting rules for this term: whole term is highlighted because new
-					}
+			origin_has_term = origin_terms_text.indexOf(adj_l) != -1
+			if (!origin_has_term) { // if origin doesn't contain term with this l, highlight whole term in adjacent element
+				$adj_term.addClass('new_orbital');
+				return true; // skip rest of highlighting rules for this term: whole term is highlighted because new
+			}
 
-					// If n value (for same l term) is different (adj vs. origin), highlight n value in both elements
-					if(adj_n != origin_n) {
-						$same_l_in_origin.find('span[class^="ec_"][class$="n"]').addClass('diff_n');
-						$adj_term.find('span[class^="ec_"][class$="n"]').addClass('diff_n');
-					}
+			// If n value (for same l term) is different (adj vs. origin), highlight n value in both elements
+			if(adj_n != origin_n) {
+				$same_l_in_origin.find('span[class^="ec_"][class$="n"]').addClass('diff_n');
+				$adj_term.find('span[class^="ec_"][class$="n"]').addClass('diff_n');
+			}
 					
-					// If n and l values are same but electron count is different (adj vs. origin), highlight counts in both elements
-					if(adj_count != origin_count) {
-						$same_l_in_origin.find('span[class^="ec_"][class$="c"]').find('sup').addClass('diff_count');
-						$adj_term.find('span[class^="ec_"][class$="c"]').find('sup').addClass('diff_count');
-					}
+			// If n and l values are same but electron count is different (adj vs. origin), highlight counts in both elements
+			if(adj_count != origin_count) {
+				$same_l_in_origin.find('span[class^="ec_"][class$="c"]').find('sup').addClass('diff_count');
+				$adj_term.find('span[class^="ec_"][class$="c"]').find('sup').addClass('diff_count');
+			}
 					
-				}) // end $adj_terms.children().each
-				$origin_terms.children().each(function() { // for each orbital term in origin element
-					$origin_term = $(this);
-					origin_term = $origin_term.text().replace(/\s/g, ''); // get the text of the origin term, e.g. 4f10
-					origin_l = origin_term.charAt(1); // extract l letter (s, p, d, or f) from term
-					adj_ec_text = $adj_terms.text().replace(/\s/g, '');
-					adj_has_term = adj_ec_text.indexOf(origin_l) != -1
-					if (!adj_has_term) { // if adj element doesn't contain term with this l, highlight whole term in origin element
-						$origin_term.addClass('new_orbital');
-					}
-				}) // end $origin_terms.children().each
-			// On mouseout adjacent element,
-			}, function() { // Remove all highlighting of orbital(s) (and parts thereof) on adjacent and origin elements
-				terms_mouseout($origin,$adj);
- 			}
-		);
-	}); // end ready
-	
-	function terms_mouseover($origin,$adj,adj_posn) {
-		console.log("Running terms_mouseover" + adj_posn);	// debugging
+		}) // end $adj_terms.children().each
+		$origin_terms.children().each(function() { // for each orbital term in origin element
+			$origin_term = $(this);
+			origin_term = $origin_term.text().replace(/\s/g, ''); // get the text of the origin term, e.g. 4f10
+			origin_l = origin_term.charAt(1); // extract l letter (s, p, d, or f) from term
+			adj_ec_text = $adj_terms.text().replace(/\s/g, '');
+			adj_has_term = adj_ec_text.indexOf(origin_l) != -1
+			if (!adj_has_term) { // if adj element doesn't contain term with this l, highlight whole term in origin element
+				$origin_term.addClass('new_orbital');
+			}
+		}) // end $origin_terms.children().each	
 	}
 
 	function terms_mouseout($origin,$adj) {
