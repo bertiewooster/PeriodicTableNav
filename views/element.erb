@@ -146,11 +146,11 @@
 				// to show which adjacent element was selected on mobile (mouse-less) devices
 				$adj = $(this);
 				adj_posn = $adj.attr('id');
-				terms_mouseover($origin,$adj,adj_posn);
+				terms_mouseover($adj,$origin,adj_posn);
 			}, // end mouseover adjacent element
 			// On mouseout adjacent element,
 			function() { // Remove all highlighting of orbital(s) (and parts thereof) on adjacent and origin elements
-				terms_mouseout($origin,$adj);
+				terms_mouseout($adj,$origin);
  			}
 		);
 	}); // end ready
