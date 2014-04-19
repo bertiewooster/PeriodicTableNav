@@ -138,18 +138,18 @@
 		//console.log("Running jQuery"); // debugging
 		$origin = $('#origin');
 
-		// When user hovers mouse over an adjacent element, highlight the electron terms compared to the origin element
+		// When user hovers mouse over an adjacent element, highlight the electron terms compared to the origin (base) element
 		$('#above, #left, #right, #below').hover(
 			// On mouseover adjacent element
 			function() {
-				// Change the border between the moused-over adjacent element, and the origin,
+				// Change the border between the hovered-over adjacent element, and the base,
 				// to show which adjacent element was selected on mobile (mouse-less) devices
 				$adj = $(this);
 				adj_posn = $adj.attr('id');
 				terms_mouseover($adj,$origin,adj_posn);
 			}, // end mouseover adjacent element
 			// On mouseout adjacent element,
-			function() { // Remove all highlighting of orbital(s) (and parts thereof) on adjacent and origin elements
+			function() { // Remove all highlighting of orbital(s) (and parts thereof) on hovered-over and base elements
 				terms_mouseout($adj,$origin);
  			}
 		);

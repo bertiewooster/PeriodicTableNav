@@ -95,6 +95,6 @@
 		$base.css({"border":"1px solid black"});
 	}
 	
-	$.fn.exists = function () {
+	$.fn.exists = function () { // function to return true (selector returned jQuery object(s)) or false (selector returned null)
 	    return this.length !== 0;
 	}
