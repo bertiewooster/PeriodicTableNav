@@ -1,7 +1,5 @@
 	function terms_mouseover($hovering,$base,hovering_posn) {
-	
-	
-		console.log("Running terms_mouseover: " + hovering_posn);	// debugging
+		//console.log("Running terms_mouseover: " + hovering_posn);	// debugging
 		$base_terms = $base.find('.terms'); // get terms (orbitals, e.g. 3s2) in origin element
 		switch (hovering_posn) // Case statement: which is the element moused over
 		{
@@ -88,7 +86,7 @@
 	}
 
 	function terms_mouseout($hovering,$base) {
-		console.log("Running terms_mouseout");	// debugging
+		//console.log("Running terms_mouseout");	// debugging
 		$hovering_terms.find('*').removeClass('new_orbital diff_n diff_count');
 		$base_terms.find('*').removeClass('new_orbital diff_n diff_count');
 		$hovering.css({"border":"1px solid black"});
