@@ -65,8 +65,7 @@
 	}	  
 
 	.rotate { /* text rotated 90 degrees counterclockwise; using for "Period" at left of tables */
-		/*float:left;*/
-		/*border: 1px solid red; */ 
+		z-index: -50; /* Send behind other HTML items so its false (unrotated) position doesn't cover other items */
 		/* Safari */
 		-webkit-transform: rotate(-90deg);
 

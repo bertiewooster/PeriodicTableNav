@@ -89,3 +89,34 @@
  	 </tr>
 </table>
 <!--End of table of elements for selected period-->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../periodictablenav.js"></script>
+
+<script>
+	$(document).ready(function() {
+		//console.log("Running jQuery"); // debugging
+
+		// When user hovers mouse over an adjacent element, highlight the electron terms compared to the origin element
+		$('td.inPTable').hover(
+			// On mouseover an element
+			function() {
+				// Change the border between the hovered-over adjacent element, and the base,
+				// to show which adjacent element was selected on mobile (mouse-less) devices
+				//$(this).css({"border":"1px dashed DimGray"}); // testing
+				$hovering = $(this);
+				$base = $hovering.nextAll('.inPTable').first(); // Select first element cell to the right of hovered-over element
+				if ($base.exists()) { // if there's an element cell to the right, do terms comparison
+					hovering_posn = 'left';
+					terms_mouseover($hovering,$base,hovering_posn);
+					console.log('There is a base element for comparison');
+				}
+			}, // end mouseover adjacent element
+			// On mouseout adjacent element,
+			function() { // Remove all highlighting of orbital(s) (and parts thereof) on hovered-over and base elements
+				terms_mouseout($hovering,$base);
+ 			}
+		);
+	}); // end ready
+
+</script>
