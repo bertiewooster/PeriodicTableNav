@@ -6,5 +6,5 @@ See how the elements are related to each other. Emphasizes the relationship betw
 --Group (column of the periodic table)
 --Element
 
-© 2014 White Glove Apps, LLC
-http://www.whitegloveapps.com
+© 2014 White Glove Apps
+http://www.whitegloveapps.com/blog
