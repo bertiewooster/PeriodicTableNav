@@ -1,0 +1,58 @@
+DATABASE_URL
+postgres://qkmjjpuypluywn:zjRktTTbdt6QuLJW8mZaF46vtJ@ec2-50-17-207-54.compute-1.amazonaws.com:5432/d6j8os7s175bdh
+
+Go to PeriodicTableNavInProjects in terminal
+cd ~/Projects/PeriodicTableNav
+ruby PeriodicTableNav.rb
+
+Log in to psql (as user postgres)
+psql -U postgres
+
+Try to restore postgres database
+pg_restore elements.dump -d elements -U postgres
+
+Add postures to path
+export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH;
+
+Update Gemfile.lock without installing gems (http://stackoverflow.com/questions/26335777/ddg#46553586)
+bundle lock --update. 
+
+Go to ruby-sinatra-tutorial project in terminal (https://www.devdungeon.com/content/ruby-sinatra-tutorial)
+Go to: cd ~/Projects/ruby-sinatra-tutorial
+Run: ruby hello.rb
+
+To open a location in Finder by typing (or pasting) the path:
+Command-Shift-G (while in Finder)
+
+To show hidden files in Finder:
+Command-Shift-. (period)
+
+2021-02-22 postgresql installation
+Path to psql: /Applications/Postgres.app/Contents/Versions/13/bin/psql
+Add path to psql in terminal: export PATH=/Applications/Postgres.app/Contents/Versions/13/bin:$PATH;
+Installation Directory: /Library/PostgreSQL/13
+Server Installation Directory: /Library/PostgreSQL/13
+Data Directory: /Library/PostgreSQL/13/data
+Database Port: 5432 -> changed to 5434 because 5432 and 5433 were already in use (not sure why)
+Database Superuser: postgres
+Password: See 1Password
+Operating System Account: postgres
+Database Service: postgresql-13
+Command Line Tools Installation Directory: /Library/PostgreSQL/13
+pgAdmin4 Installation Directory: /Library/PostgreSQL/13/pgAdmin 4
+Stack Builder Installation Directory: /Library/PostgreSQL/13
+
+Trying to install pg (PostgreSQL) gem install pg -- --with-pg-config=/opt/local/lib/postgresql0.18.4/bin/pg_config
+sudo PATH=$PATH:/Library/PostgreSQL/13.2/bin gem install pg
+
+export CONFIGURE_ARGS="with-pg-include=/Library/PostgreSQL/13/include/"
+
+
+2021-020-20 5:15PM removed from ~/.zshrc
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+2021-02-20 5:59PM TO DO: remove the script calls in the following files: 
+	X•	~/.bashrc 
+	X•	~/.bash_profile 
+	X•	~/.profile
