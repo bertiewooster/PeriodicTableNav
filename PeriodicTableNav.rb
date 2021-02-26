@@ -49,6 +49,7 @@ end
 get '/element/:atomic_num' do |atomic_num| # load element page
 	load_elements(params[:name])
 	atomic_num = atomic_num.to_i
+	redirect('/') if (atomic_num > 118) or (atomic_num <= 0)	# redirect to home page if user tries to compose a URL to a non-existent element
 	@origin = Element.find(atomic_num)
 	@title = "Element ##{atomic_num}"
 	erb :element
@@ -58,7 +59,7 @@ get '/period/:period' do |period| # load period page
 	load_elements(params[:name])
 	period = period.to_i
 	@period = period
-	redirect('/') if @period > @max_period	# redirect to home page if user tries to compose a URL to a non-existent period
+	redirect('/') if (@period > @max_period) or	(@period <= 0) # redirect to home page if user tries to compose a URL to a non-existent period
 	@title = "Period ##{period}"
 	erb :period
 end
