@@ -2,6 +2,9 @@ Go to PeriodicTableNavInProjects in terminal
 cd ~/Projects/PeriodicTableNav
 ruby PeriodicTableNav.rb
 
+Push code from Github to Heroku
+git push heroku master
+
 Log in to psql (as user postgres)
 psql -U postgres
 
