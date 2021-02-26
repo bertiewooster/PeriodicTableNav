@@ -49,7 +49,7 @@ end
 get '/element/:atomic_num' do |atomic_num| # load element page
 	load_elements(params[:name])
 	atomic_num = atomic_num.to_i
-	redirect('/') if (atomic_num > 118) or (atomic_num <= 0)	# redirect to home page if user tries to compose a URL to a non-existent element
+	redirect('/') if (atomic_num > @max_element) or (atomic_num <= 0)	# redirect to home page if user tries to compose a URL to a non-existent element
 	@origin = Element.find(atomic_num)
 	@title = "Element ##{atomic_num}"
 	erb :element
@@ -159,6 +159,7 @@ helpers do
 	@elements = Element.order("atomic_num ASC")
 	@max_period			= Element.last(1)[0].period
 	@max_group = Element.order(grouplin: :desc)[0].grouplin
+	@max_element = Element.last(1)[0].atomic_num
 	@ebyp = Array.new(@max_period) # array to hold elements
 	@ebyp.each_index do |period| # build a 2D array: by period, then by element
 		@ebyp[period] = @elements.select{|element| element.period == period+1}
