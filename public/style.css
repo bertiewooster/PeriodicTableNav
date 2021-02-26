@@ -128,6 +128,7 @@
 
 	th.period_word { /* for "Period" */
 		width: 20px;
+		position: relative;
 		/*font-size: 150%;
 		font-weight: bold;
 		color: #444; */
@@ -243,6 +244,7 @@
 
 	table.period .period_word {
 		padding-bottom: 10px;
+		/*position: relative;*/
 	}
 
 	table.period th.period_labels_col { /* column for period labels */
