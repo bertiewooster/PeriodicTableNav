@@ -5,13 +5,16 @@ ruby PeriodicTableNav.rb
 Push code from Github to Heroku
 git push heroku master
 
+Migrate postgres database on Heroku
+heroku run rake db:migrate
+
 Log in to psql (as user postgres)
 psql -U postgres
 
 Dump postgres database
 pg_dump --format=c elements > elements20210227c.dump
 
-Try to restore postgres database
+Try to restore postgres database to local postgres server
 pg_restore elements.dump -d elements -U postgres
 
 Upload postgres database to Heroku

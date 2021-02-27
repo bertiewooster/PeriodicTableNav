@@ -1,4 +1,4 @@
-class Elements < ActiveRecord::Migration
+class Elements < ActiveRecord::Migration[6.1]
   def change
   end
 end
