@@ -1,0 +1,622 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.2
+-- Dumped by pg_dump version 13.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: bases; Type: TABLE; Schema: public; Owner: jemonat
+--
+
+CREATE TABLE public.bases (
+    id integer NOT NULL,
+    base text
+);
+
+
+ALTER TABLE public.bases OWNER TO jemonat;
+
+--
+-- Name: elements; Type: TABLE; Schema: public; Owner: jemonat
+--
+
+CREATE TABLE public.elements (
+    atomic_num integer NOT NULL,
+    symbol text,
+    name text,
+    name_origin text,
+    period integer,
+    atomic_weight numeric,
+    atomic_wt_is_mass_number_of_longest_lived_isotope boolean,
+    specific_heat_capacity_j_per_gk numeric,
+    density_g_per_cm3 numeric,
+    density_is_estimated boolean,
+    melting_point_k numeric,
+    melt_is_estimated boolean,
+    boiling_point_k numeric,
+    boil_is_estimated boolean,
+    electronegativity numeric,
+    abundance_mg_per_kg numeric,
+    abundance_is_upper_limit boolean,
+    grouplin integer
+);
+
+
+ALTER TABLE public.elements OWNER TO jemonat;
+
+--
+-- Name: orbitals; Type: TABLE; Schema: public; Owner: jemonat
+--
+
+CREATE TABLE public.orbitals (
+    id integer NOT NULL,
+    n integer NOT NULL,
+    l character(1)
+);
+
+
+ALTER TABLE public.orbitals OWNER TO jemonat;
+
+--
+-- Name: orbs; Type: TABLE; Schema: public; Owner: jemonat
+--
+
+CREATE TABLE public.orbs (
+    element_id integer NOT NULL,
+    orbital_id integer NOT NULL,
+    count integer
+);
+
+
+ALTER TABLE public.orbs OWNER TO jemonat;
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: jemonat
+--
+
+CREATE TABLE public.schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO jemonat;
+
+--
+-- Data for Name: bases; Type: TABLE DATA; Schema: public; Owner: jemonat
+--
+
+COPY public.bases (id, base) FROM stdin;
+1	\N
+2	[He]
+3	[Ne]
+4	[Ar]
+5	[Kr]
+6	[Xe]
+7	[Rn]
+8	[Og]
+\.
+
+
+--
+-- Data for Name: elements; Type: TABLE DATA; Schema: public; Owner: jemonat
+--
+
+COPY public.elements (atomic_num, symbol, name, name_origin, period, atomic_weight, atomic_wt_is_mass_number_of_longest_lived_isotope, specific_heat_capacity_j_per_gk, density_g_per_cm3, density_is_estimated, melting_point_k, melt_is_estimated, boiling_point_k, boil_is_estimated, electronegativity, abundance_mg_per_kg, abundance_is_upper_limit, grouplin) FROM stdin;
+1	H	Hydrogen	the Greek 'hydro' and 'genes' meaning water-forming	1	1.008	f	14.304	0.00008988	f	14.01	f	20.28	f	2.2	1400	f	1
+2	He	Helium	the Greek 'helios' meaning sun	1	4.002602	f	5.193	0.0001785	f	0.956	f	4.22	f	\N	0.008	f	2
+3	Li	Lithium	the Greek 'lithos' meaning stone	2	6.942	f	3.582	0.534	f	453.69	f	1560	f	0.98	20	f	1
+7	N	Nitrogen	the Greek 'nitron' and 'genes' meaning nitre-forming	2	14.007	f	1.04	0.0012506	f	63.15	f	77.36	f	3.04	19	f	29
+8	O	Oxygen	the Greek 'oxy' and 'genes' meaning acid-forming	2	15.999	f	0.918	0.001429	f	54.36	f	90.2	f	3.44	461000	f	30
+11	Na	Sodium	the English word soda (natrium in Latin)[2]	3	22.98976928	f	1.228	0.971	f	370.87	f	1156	f	0.93	23600	f	1
+19	K	Potassium	the English word potash (kalium in Latin)[2]	4	39.0983	f	0.757	0.862	f	336.53	f	1032	f	0.82	20900	f	1
+20	Ca	Calcium	the Latin 'calx' meaning lime	4	40.078	f	0.647	1.54	f	1115	f	1757	f	1	41500	f	2
+21	Sc	Scandium	Scandinavia (with the Latin name Scandia)	4	44.955912	f	0.568	2.989	f	1814	f	3109	f	1.36	22	f	17
+26	Fe	Iron	the Anglo-Saxon name iren (ferrum in Latin)	4	55.845	f	0.449	7.874	f	1811	f	3134	f	1.83	56300	f	22
+28	Ni	Nickel	the shortened of the German 'kupfernickel' meaning either devil's copper or St. Nicholas's copper	4	58.6934	f	0.444	8.912	f	1728	f	3186	f	1.91	84	f	24
+31	Ga	Gallium	France (with the Latin name Gallia)	4	69.723	f	0.371	5.907	f	302.9146	f	2477	f	1.81	19	f	27
+32	Ge	Germanium	Germany (with the Latin name Germania)	4	72.63	f	0.32	5.323	f	1211.4	f	3106	f	2.01	1.5	f	28
+33	As	Arsenic	the Greek name 'arsenikon' for the yellow pigment orpiment	4	74.9216	f	0.329	5.776	f	1090	f	887	f	2.18	1.8	f	29
+34	Se	Selenium	Moon (with the Greek name selene)	4	78.96	f	0.321	4.809	f	453	f	958	f	2.55	0.05	f	30
+35	Br	Bromine	the Greek 'bromos' meaning stench	4	79.9049	f	0.474	3.122	f	265.8	f	332	f	2.96	2.4	f	31
+42	Mo	Molybdenum	the Greek 'molybdos' meaning lead	5	95.96	f	0.251	10.22	f	2896	f	4912	f	2.16	1.2	f	20
+43	Tc	Technetium	the Greek 'tekhnetos' meaning artificial	5	98	t	\N	11.5	f	2430	f	4538	f	1.9	0.001	t	21
+44	Ru	Ruthenium	Russia (with the Latin name Ruthenia)	5	101.07	f	0.238	12.37	f	2607	f	4423	f	2.2	0.001	f	22
+47	Ag	Silver	the Anglo-Saxon name siolfur (argentum in Latin)[2]	5	107.8682	f	0.235	10.501	f	1234.93	f	2435	f	1.93	0.075	f	25
+6	C	Carbon	the Latin 'carbo', meaning charcoal	2	12.011	f	0.709	2.267	f	3800	f	4300	f	2.55	200	f	28
+5	B	Boron	the Arabic 'buraq', which was the name for borax	2	10.81	f	1.026	2.34	f	2349	f	4200	f	2.04	10	f	27
+9	F	Fluorine	the Latin 'fluere', meaning to flow	2	18.9984032	f	0.824	0.001696	f	53.53	f	85.03	f	3.98	585	f	31
+10	Ne	Neon	the Greek 'neos', meaning new	2	20.1797	f	1.03	0.0008999	f	24.56	f	27.07	f	\N	0.005	f	32
+12	Mg	Magnesium	Magnesia, a district of Eastern Thessaly in Greece	3	24.305	f	1.023	1.738	f	923	f	1363	f	1.31	23300	f	2
+13	Al	Aluminum	the Latin name for alum, 'alumen' meaning bitter salt	3	26.9815386	f	0.897	2.698	f	933.47	f	2792	f	1.61	82300	f	27
+14	Si	Silicon	the Latin 'silex' or 'silicis', meaning flint	3	28.085	f	0.705	2.3296	f	1687	f	3538	f	1.9	282000	f	28
+15	P	Phosphorus	the Greek 'phosphoros', meaning bringer of light	3	30.973762	f	0.769	1.82	f	317.3	f	550	f	2.19	1050	f	29
+17	Cl	Chlorine	the Greek 'chloros', meaning greenish yellow	3	35.45	f	0.479	0.003214	f	171.6	f	239.11	f	3.16	145	f	31
+18	Ar	Argon	the Greek, 'argos', meaning idle	3	39.948	f	0.52	0.0017837	f	83.8	f	87.3	f	\N	3.5	f	32
+22	Ti	Titanium	Titans, the sons of the Earth goddess of Greek mythology	4	47.867	f	0.523	4.54	f	1941	f	3560	f	1.54	5650	f	18
+23	V	Vanadium	Vanadis, an old Norse name for the Scandinavian goddess Freyja	4	50.9415	f	0.489	6.11	f	2183	f	3680	f	1.63	120	f	19
+24	Cr	Chromium	the Greek 'chroma', meaning colour	4	51.9961	f	0.449	7.15	f	2180	f	2944	f	1.66	102	f	20
+25	Mn	Manganese	Either the Latin 'magnes', meaning magnet or from the black magnesium oxide, 'magnesia nigra'	4	54.938045	f	0.479	7.44	f	1519	f	2334	f	1.55	950	f	21
+27	Co	Cobalt	the German word 'kobald', meaning goblin	4	58.933195	f	0.421	8.86	f	1768	f	3200	f	1.88	25	f	23
+29	Cu	Copper	the Old English name coper in turn derived from the Latin 'Cyprium aes', meaning a metal from Cyprus	4	63.546	f	0.385	8.96	f	1357.77	f	2835	f	1.9	60	f	25
+30	Zn	Zinc	the German, 'zinc', which may in turn be derived from the Persian word 'sing', meaning stone	4	65.38	f	0.388	7.134	f	692.88	f	1180	f	1.65	70	f	26
+36	Kr	Krypton	the Greek 'kryptos', meaning hidden	4	83.798	f	0.248	0.003733	f	115.79	f	119.93	f	3	0.001	t	32
+37	Rb	Rubidium	the Latin 'rubidius', meaning deepest red	5	85.4678	f	0.363	1.532	f	312.46	f	961	f	0.82	90	f	1
+38	Sr	Strontium	Strontian, a small town in Scotland	5	87.62	f	0.301	2.64	f	1050	f	1655	f	0.95	370	f	2
+39	Y	Yttrium	Ytterby, Sweden	5	88.90585	f	0.298	4.469	f	1799	f	3609	f	1.22	33	f	17
+40	Zr	Zirconium	the Persian 'zargun', meaning gold coloured	5	91.224	f	0.278	6.506	f	2128	f	4682	f	1.33	165	f	18
+41	Nb	Niobium	Niobe, daughter of king Tantalus from Greek mythology	5	92.90638	f	0.265	8.57	f	2750	f	5017	f	1.6	20	f	19
+45	Rh	Rhodium	the Greek 'rhodon', meaning rose coloured	5	102.9055	f	0.243	12.41	f	2237	f	3968	f	2.28	0.001	f	23
+46	Pd	Palladium	the then recently-discovered asteroid Pallas, considered a planet at the time	5	106.42	f	0.244	12.02	f	1828.05	f	3236	f	2.2	0.015	f	24
+48	Cd	Cadmium	the Latin name for the mineral calmine, 'cadmia'	5	112.411	f	0.232	8.69	f	594.22	f	1040	f	1.69	0.159	f	26
+49	In	Indium	the Latin 'indicium', meaning violet or indigo	5	114.818	f	0.233	7.31	f	429.75	f	2345	f	1.78	0.25	f	27
+50	Sn	Tin	the Anglo-Saxon word tin (stannum in Latin, meaning hard)	5	118.71	f	0.228	7.287	f	505.08	f	2875	f	1.96	2.3	f	28
+51	Sb	Antimony	the Greek 'anti + monos', meaning not alone (stibium in Latin)	5	121.76	f	0.207	6.685	f	903.78	f	1860	f	2.05	0.2	f	29
+52	Te	Tellurium	Earth, the third planet on solar system (with the Latin word tellus)	5	127.6	f	0.202	6.232	f	722.66	f	1261	f	2.1	0.001	f	30
+105	Db	Dubnium	Dubna, Russia	7	268	t	\N	29.3	t	\N	f	\N	f	\N	0	f	19
+53	I	Iodine	the Greek 'iodes' meaning violet	5	126.90447	f	0.214	4.93	f	386.85	f	457.4	f	2.66	0.45	f	31
+54	Xe	Xenon	the Greek 'xenos' meaning stranger	5	131.293	f	0.158	0.005887	f	161.4	f	165.03	f	2.6	0.001	t	32
+59	Pr	Praseodymium	the Greek 'prasios didymos' meaning green twin	6	140.90765	f	0.193	6.773	f	1208	f	3793	f	1.13	9.2	f	5
+60	Nd	Neodymium	the Greek 'neos didymos' meaning new twin	6	144.242	f	0.19	7.007	f	1297	f	3347	f	1.14	41.5	f	6
+61	Pm	Promethium	Prometheus of Greek mythology who stole fire from the Gods and gave it to humans	6	145	t	\N	7.26	f	1315	f	3273	f	1.13	0.001	t	7
+63	Eu	Europium	Europe	6	151.964	f	0.182	5.243	f	1099	f	1802	f	1.2	2	f	9
+83	Bi	Bismuth	the German 'Bisemutum' a corruption of 'Weisse Masse' meaning white mass	6	208.9804	f	0.122	9.807	f	544.7	f	1837	f	2.02	0.009	f	29
+56	Ba	Barium	the Greek 'barys', meaning heavy	6	137.327	f	0.204	3.594	f	1000	f	2170	f	0.89	425	f	2
+57	La	Lanthanum	the Greek 'lanthanein', meaning to lie hidden	6	138.90547	f	0.195	6.145	f	1193	f	3737	f	1.1	39	f	3
+58	Ce	Cerium	Ceres, the Roman God of agriculture	6	140.116	f	0.192	6.77	f	1068	f	3716	f	1.12	66.5	f	4
+62	Sm	Samarium	Samarskite, the name of the mineral from which it was first isolated	6	150.36	f	0.197	7.52	f	1345	f	2067	f	1.17	7.05	f	8
+64	Gd	Gadolinium	Johan Gadolin, chemist, physicist and mineralogist	6	157.25	f	0.236	7.895	f	1585	f	3546	f	1.2	6.2	f	10
+65	Tb	Terbium	Ytterby, Sweden	6	158.92535	f	0.182	8.229	f	1629	f	3503	f	1.2	1.2	f	11
+66	Dy	Dysprosium	the Greek 'dysprositos', meaning hard to get	6	162.5	f	0.17	8.55	f	1680	f	2840	f	1.22	5.2	f	12
+67	Ho	Holmium	Stockholm, Sweden (with the Latin name Holmia)	6	164.93032	f	0.165	8.795	f	1734	f	2993	f	1.23	1.3	f	13
+68	Er	Erbium	Ytterby, Sweden	6	167.259	f	0.168	9.066	f	1802	f	3141	f	1.24	3.5	f	14
+69	Tm	Thulium	Thule, the ancient name for Scandinavia	6	168.93421	f	0.16	9.321	f	1818	f	2223	f	1.25	0.52	f	15
+70	Yb	Ytterbium	Ytterby, Sweden	6	173.054	f	0.155	6.965	f	1097	f	1469	f	1.1	3.2	f	16
+71	Lu	Lutetium	Paris, France (with the Roman name Lutetia)	6	174.9668	f	0.154	9.84	f	1925	f	3675	f	1.27	0.8	f	17
+72	Hf	Hafnium	Copenhagen, Denmark (with the Latin name Hafnia)	6	178.49	f	0.144	13.31	f	2506	f	4876	f	1.3	3	f	18
+73	Ta	Tantalum	King Tantalus, father of Niobe from Greek mythology	6	180.94788	f	0.14	16.654	f	3290	f	5731	f	1.5	2	f	19
+75	Re	Rhenium	Rhine, a river that flows from Grisons in the eastern Swiss Alps to the North Sea coast in the Netherlands (with the Latin name Rhenia)	6	186.207	f	0.137	21.02	f	3459	f	5869	f	1.9	0.001	t	21
+76	Os	Osmium	the Greek 'osme', meaning smell	6	190.23	f	0.13	22.61	f	3306	f	5285	f	2.2	0.002	f	22
+77	Ir	Iridium	Iris, the Greek goddess of the rainbow	6	192.217	f	0.131	22.56	f	2719	f	4701	f	2.2	0.001	f	23
+78	Pt	Platinum	the Spanish 'platina', meaning little silver	6	195.084	f	0.133	21.46	f	2041.4	f	4098	f	2.28	0.005	f	24
+79	Au	Gold	the Anglo-Saxon word gold (aurum in Latin, meaning glow of sunrise)	6	196.966569	f	0.129	19.282	f	1337.33	f	3129	f	2.54	0.004	f	25
+80	Hg	Mercury	Mercury, the first planet in the Solar System (Hg from former name hydrargyrum, from Greek hydr- water and argyros silver)	6	200.592	f	0.14	13.5336	f	234.43	f	629.88	f	2	0.085	f	26
+81	Tl	Thallium	the Greek 'thallos', meaning a green twig	6	204.389	f	0.129	11.85	f	577	f	1746	f	1.62	0.85	f	27
+82	Pb	Lead	the Anglo-Saxon lead (plumbum in Latin)	6	207.2	f	0.129	11.342	f	600.61	f	2022	f	1.87	14	f	28
+84	Po	Polonium	Poland, the native country of Marie Curie, who first isolated the element	6	209	t	\N	9.32	f	527	f	1235	f	2	0.001	t	30
+85	At	Astatine	the Greek 'astatos', meaning unstable	6	210	t	\N	7	f	575	f	610	f	2.2	0.001	t	31
+86	Rn	Radon	From radium, as it was first detected as an emission from radium during radioactive decay	6	222	t	0.094	0.00973	f	202	f	211.3	f	2.2	0.001	t	32
+87	Fr	Francium	France, where it was first discovered	7	223	t	\N	1.87	f	300	f	950	f	0.7	0.001	t	1
+88	Ra	Radium	the Latin 'radius', meaning ray	7	226	t	0.094	5.5	f	973	f	2010	f	0.9	0.001	t	2
+89	Ac	Actinium	the Greek 'actinos', meaning a ray	7	227	t	0.12	10.07	f	1323	f	3471	f	1.1	0.001	t	3
+90	Th	Thorium	Thor, the Scandinavian god of thunder	7	232.03806	f	0.113	11.72	f	2115	f	5061	f	1.3	9.6	f	4
+91	Pa	Protactinium	the Greek 'protos', meaning first, as a prefix to the element actinium, which is produced through the radioactive decay of protactinium	7	231.03588	f	\N	15.37	f	1841	f	4300	f	1.5	0.001	t	5
+92	U	Uranium	Uranus, the seventh planet in the Solar System	7	238.02891	f	0.116	18.95	f	1405.3	f	4404	f	1.38	2.7	f	6
+93	Np	Neptunium	Neptune, the eighth planet in the Solar System	7	237	t	\N	20.45	f	917	f	4273	f	1.36	0.001	t	7
+94	Pu	Plutonium	Pluto, a dwarf planet in the Solar System	7	244	t	\N	19.84	f	912.5	f	3501	f	1.28	0.001	t	8
+95	Am	Americium	Americas, the continent where the element was first synthesized	7	243	t	\N	13.69	f	1449	f	2880	f	1.13	0.001	t	9
+96	Cm	Curium	Pierre Curie, a physicist, and Marie Curie, a physicist and chemist	7	247	t	\N	13.51	f	1613	f	3383	f	1.28	0.001	t	10
+97	Bk	Berkelium	Berkeley, California, USA, where the element was first synthesized	7	247	t	\N	14.79	f	1259	f	2900	f	1.3	0.001	t	11
+98	Cf	Californium	State of California, USA, where the element was first synthesized	7	251	t	\N	15.1	f	1173	f	1743	t	1.3	0.001	t	12
+99	Es	Einsteinium	Albert Einstein, physicist	7	252	t	\N	8.84	f	1133	f	1269	t	1.3	0	f	13
+100	Fm	Fermium	Enrico Fermi, physicist	7	257	t	\N	\N	f	1125	t	\N	f	1.3	0	f	14
+101	Md	Mendelevium	Dmitri Mendeleyev, chemist and inventor	7	258	t	\N	\N	f	1100	t	\N	f	1.3	0	f	15
+102	No	Nobelium	Alfred Nobel, chemist, engineer, innovator, and armaments manufacturer	7	259	t	\N	\N	f	1100	t	\N	f	1.3	0	f	16
+103	Lr	Lawrencium	Ernest O. Lawrence, physicist	7	262	t	\N	\N	f	1900	t	\N	f	1.3	0	f	17
+104	Rf	Rutherfordium	Ernest Rutherford, chemist and physicist	7	267	t	\N	23.2	t	2400	t	5800	t	\N	0	f	18
+4	Be	Beryllium	the Greek name for beryl, 'beryllo'	2	9.012182	f	1.825	1.85	f	1560	f	2742	f	1.57	2.8	f	2
+16	S	Sulfur	Either from the Sanskrit 'sulvere', or the Latin 'sulfurium', both names for sulfur	3	32.06	f	0.71	2.067	f	388.36	f	717.87	f	2.58	350	f	30
+55	Cs	Cesium	the Latin 'caesius', meaning sky blue	6	132.9054519	f	0.242	1.873	f	301.59	f	944	f	0.79	3	f	1
+74	W	Tungsten	the Swedish 'tung sten' meaning heavy stone (W is wolfram, the old name of the tungsten mineral wolframite)	6	183.84	f	0.132	19.25	f	3695	f	5828	f	2.36	1.3	f	20
+106	Sg	Seaborgium	Glenn T. Seaborg, scientist	7	269	t	\N	35	t	\N	f	\N	f	\N	0	f	20
+107	Bh	Bohrium	Niels Bohr, physicist	7	270	t	\N	37.1	t	\N	f	\N	f	\N	0	f	21
+108	Hs	Hassium	Hesse, Germany, where the element was first synthesized	7	269	t	\N	40.7	t	\N	f	\N	f	\N	0	f	22
+109	Mt	Meitnerium	Lise Meitner, physicist	7	278	t	\N	37.4	t	\N	f	\N	f	\N	0	f	23
+110	Ds	Darmstadtium	Darmstadt, Germany, where the element was first synthesized	7	281	t	\N	34.8	t	\N	f	\N	f	\N	0	f	24
+111	Rg	Roentgenium	Wilhelm Conrad Rontgen, physicist	7	281	t	\N	28.7	t	\N	f	\N	f	\N	0	f	25
+112	Cn	Copernicium	Nicolaus Copernicus, astronomer	7	285	t	\N	23.7	t	\N	f	357	f	\N	0	f	26
+113	Nh	Nihonium	Japanese Nihon, 'Japan' (where the element was first synthesised)	7	286	t	\N	16	t	700	t	1400	t	\N	0	f	27
+114	Fl	Flerovium	Georgy Flyorov, physicist	7	289	t	\N	14	t	340	t	420	t	\N	0	f	28
+115	Mc	Moscovium	Moscow Oblast, Russia, where the element was first synthesised	7	288	t	\N	13.5	t	700	t	1400	t	\N	0	f	29
+116	Lv	Livermorium	Lawrence Livermore National Laboratory (in Livermore, California) which collaborated with JINR on its synthesis	7	293	t	\N	12.9	t	708.5	t	1085	t	\N	0	f	30
+117	Ts	Tennessine	Tennessee, United States (where Oak Ridge National Laboratory is located)	7	294	t	\N	7.2	t	673	t	823	t	\N	0	f	31
+118	Og	Oganesson	Yuri Oganessian, Russian-born Armenian physicist	7	294	t	\N	5	t	258	t	263	t	\N	0	f	32
+\.
+
+
+--
+-- Data for Name: orbitals; Type: TABLE DATA; Schema: public; Owner: jemonat
+--
+
+COPY public.orbitals (id, n, l) FROM stdin;
+1	1	s
+2	2	s
+3	2	p
+4	3	s
+5	3	p
+6	4	s
+7	3	d
+8	4	p
+9	5	s
+10	4	d
+11	5	p
+12	6	s
+13	4	f
+14	5	d
+15	6	p
+16	7	s
+17	5	f
+18	6	d
+19	7	p
+\.
+
+
+--
+-- Data for Name: orbs; Type: TABLE DATA; Schema: public; Owner: jemonat
+--
+
+COPY public.orbs (element_id, orbital_id, count) FROM stdin;
+1	1	1
+2	1	2
+3	2	1
+4	2	2
+5	2	2
+5	3	1
+6	2	2
+6	3	2
+7	2	2
+7	3	3
+8	2	2
+8	3	4
+9	2	2
+9	3	5
+10	2	2
+10	3	6
+11	4	1
+12	4	2
+13	4	2
+13	5	1
+14	4	2
+14	5	2
+15	4	2
+15	5	3
+16	4	2
+16	5	4
+17	4	2
+17	5	5
+18	4	2
+18	5	6
+19	6	1
+20	6	2
+21	6	2
+21	7	1
+22	6	2
+22	7	2
+23	6	2
+23	7	3
+24	6	1
+24	7	5
+25	6	2
+25	7	5
+26	6	2
+26	7	6
+27	6	2
+27	7	7
+28	6	2
+28	7	8
+29	6	1
+29	7	10
+30	6	2
+30	7	10
+31	6	2
+31	7	10
+31	8	1
+32	6	2
+32	7	10
+32	8	2
+33	6	2
+33	7	10
+33	8	3
+34	6	2
+34	7	10
+34	8	4
+35	6	2
+35	7	10
+35	8	5
+36	6	2
+36	7	10
+36	8	6
+37	9	1
+38	9	2
+39	9	2
+39	10	1
+40	9	2
+40	10	2
+41	9	2
+41	10	3
+42	9	1
+42	10	5
+43	9	2
+43	10	5
+44	9	2
+44	10	6
+45	9	2
+45	10	7
+46	9	2
+46	10	8
+47	9	1
+47	10	10
+48	9	2
+48	10	10
+49	9	2
+49	10	10
+49	11	1
+50	9	2
+50	10	10
+50	11	2
+51	9	2
+51	10	10
+51	11	3
+52	9	2
+52	10	10
+52	11	4
+53	9	2
+53	10	10
+53	11	5
+54	9	2
+54	10	10
+54	11	6
+55	12	1
+56	12	2
+57	12	2
+57	14	1
+58	12	2
+58	13	1
+58	14	1
+59	12	2
+59	13	3
+60	12	2
+60	13	4
+61	12	2
+61	13	5
+62	12	2
+62	13	6
+63	12	2
+63	13	7
+64	12	2
+64	13	7
+64	14	1
+65	12	2
+65	13	9
+66	12	2
+66	13	10
+67	12	2
+67	13	11
+68	12	2
+68	13	12
+69	12	2
+69	13	13
+70	12	2
+70	13	14
+71	12	2
+71	13	14
+71	14	1
+72	12	2
+72	13	14
+72	14	2
+73	12	2
+73	13	14
+73	14	3
+74	12	2
+74	13	14
+74	14	4
+75	12	2
+75	13	14
+75	14	5
+76	12	2
+76	13	14
+76	14	6
+77	12	2
+77	13	14
+77	14	7
+78	12	1
+78	13	14
+78	14	9
+79	12	1
+79	13	14
+79	14	10
+80	12	2
+80	13	14
+80	14	10
+81	12	2
+81	13	14
+81	14	10
+81	15	1
+82	12	2
+82	13	14
+82	14	10
+82	15	2
+83	12	2
+83	13	14
+83	14	10
+83	15	3
+84	12	2
+84	13	14
+84	14	10
+84	15	4
+85	12	2
+85	13	14
+85	14	10
+85	15	5
+86	12	2
+86	13	14
+86	14	10
+86	15	6
+87	16	1
+88	16	2
+89	16	2
+89	18	1
+90	16	2
+90	18	2
+91	16	2
+91	17	2
+91	18	1
+92	16	2
+92	17	3
+92	18	1
+93	16	2
+93	17	4
+93	18	1
+94	16	2
+94	17	6
+95	16	2
+95	17	7
+96	16	2
+96	17	7
+96	18	1
+97	16	2
+97	17	9
+98	16	2
+98	17	10
+99	16	2
+99	17	11
+100	16	2
+100	17	12
+101	16	2
+101	17	13
+102	16	2
+102	17	14
+103	16	2
+103	17	14
+103	19	1
+104	16	2
+104	17	14
+104	18	2
+105	16	2
+105	17	14
+105	18	3
+106	16	2
+106	17	14
+106	18	4
+107	16	2
+107	17	14
+107	18	5
+108	16	2
+108	17	14
+108	18	6
+109	16	2
+109	17	14
+109	18	7
+110	16	1
+110	17	14
+110	18	9
+111	16	1
+111	17	14
+111	18	10
+112	16	2
+112	17	14
+112	18	10
+113	16	2
+113	17	14
+113	18	10
+113	19	1
+114	16	2
+114	17	14
+114	18	10
+114	19	2
+115	16	2
+115	17	14
+115	18	10
+115	19	3
+116	16	2
+116	17	14
+116	18	10
+116	19	4
+117	16	2
+117	17	14
+117	18	10
+117	19	5
+118	16	2
+118	17	14
+118	18	10
+118	19	6
+\.
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: jemonat
+--
+
+COPY public.schema_migrations (version) FROM stdin;
+20140222011659
+\.
+
+
+--
+-- Name: bases bases_pkey; Type: CONSTRAINT; Schema: public; Owner: jemonat
+--
+
+ALTER TABLE ONLY public.bases
+    ADD CONSTRAINT bases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: elements elements_pkey; Type: CONSTRAINT; Schema: public; Owner: jemonat
+--
+
+ALTER TABLE ONLY public.elements
+    ADD CONSTRAINT elements_pkey PRIMARY KEY (atomic_num);
+
+
+--
+-- Name: orbitals orbitals_pkey; Type: CONSTRAINT; Schema: public; Owner: jemonat
+--
+
+ALTER TABLE ONLY public.orbitals
+    ADD CONSTRAINT orbitals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: orbs orbs_pkey; Type: CONSTRAINT; Schema: public; Owner: jemonat
+--
+
+ALTER TABLE ONLY public.orbs
+    ADD CONSTRAINT orbs_pkey PRIMARY KEY (element_id, orbital_id);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: jemonat
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: jemonat
+--
+
+REVOKE ALL ON SCHEMA public FROM postgres;
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+GRANT ALL ON SCHEMA public TO jemonat;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

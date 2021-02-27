@@ -1,0 +1,119 @@
+"atomic_num","symbol","name","name_origin","period","atomic_weight","atomic_wt_is_mass_number_of_longest_lived_isotope","specific_heat_capacity_j_per_gk","density_g_per_cm3","density_is_estimated","melting_point_k","melt_is_estimated","boiling_point_k","boil_is_estimated","electronegativity","abundance_mg_per_kg","abundance_is_upper_limit","grouplin"
+1,"H","Hydrogen","the Greek 'hydro' and 'genes' meaning water-forming",1,1.008,FALSE,14.304,0.00008988,FALSE,14.01,FALSE,20.28,FALSE,2.2,1400,FALSE,1
+2,"He","Helium","the Greek 'helios' meaning sun",1,4.002602,FALSE,5.193,0.0001785,FALSE,0.956,FALSE,4.22,FALSE,,0.008,FALSE,2
+3,"Li","Lithium","the Greek 'lithos' meaning stone",2,6.942,FALSE,3.582,0.534,FALSE,453.69,FALSE,1560,FALSE,0.98,20,FALSE,1
+4,"Be","Beryllium","the Greek name for beryl, 'beryllo'",2,9.012182,FALSE,1.825,1.85,FALSE,1560,FALSE,2742,FALSE,1.57,2.8,FALSE,2
+5,"B","Boron","the Arabic 'buraq', which was the name for borax",2,10.81,FALSE,1.026,2.34,FALSE,2349,FALSE,4200,FALSE,2.04,10,FALSE,27
+6,"C","Carbon","the Latin 'carbo', meaning charcoal",2,12.011,FALSE,0.709,2.267,FALSE,3800,FALSE,4300,FALSE,2.55,200,FALSE,28
+7,"N","Nitrogen","the Greek 'nitron' and 'genes' meaning nitre-forming",2,14.007,FALSE,1.04,0.0012506,FALSE,63.15,FALSE,77.36,FALSE,3.04,19,FALSE,29
+8,"O","Oxygen","the Greek 'oxy' and 'genes' meaning acid-forming",2,15.999,FALSE,0.918,0.001429,FALSE,54.36,FALSE,90.2,FALSE,3.44,461000,FALSE,30
+9,"F","Fluorine","the Latin 'fluere', meaning to flow",2,18.9984032,FALSE,0.824,0.001696,FALSE,53.53,FALSE,85.03,FALSE,3.98,585,FALSE,31
+10,"Ne","Neon","the Greek 'neos', meaning new",2,20.1797,FALSE,1.03,0.0008999,FALSE,24.56,FALSE,27.07,FALSE,,0.005,FALSE,32
+11,"Na","Sodium","the English word soda (natrium in Latin)[2]",3,22.98976928,FALSE,1.228,0.971,FALSE,370.87,FALSE,1156,FALSE,0.93,23600,FALSE,1
+12,"Mg","Magnesium","Magnesia, a district of Eastern Thessaly in Greece",3,24.305,FALSE,1.023,1.738,FALSE,923,FALSE,1363,FALSE,1.31,23300,FALSE,2
+13,"Al","Aluminum","the Latin name for alum, 'alumen' meaning bitter salt",3,26.9815386,FALSE,0.897,2.698,FALSE,933.47,FALSE,2792,FALSE,1.61,82300,FALSE,27
+14,"Si","Silicon","the Latin 'silex' or 'silicis', meaning flint",3,28.085,FALSE,0.705,2.3296,FALSE,1687,FALSE,3538,FALSE,1.9,282000,FALSE,28
+15,"P","Phosphorus","the Greek 'phosphoros', meaning bringer of light",3,30.973762,FALSE,0.769,1.82,FALSE,317.3,FALSE,550,FALSE,2.19,1050,FALSE,29
+16,"S","Sulfur","Either from the Sanskrit 'sulvere', or the Latin 'sulfurium', both names for sulfur",3,32.06,FALSE,0.71,2.067,FALSE,388.36,FALSE,717.87,FALSE,2.58,350,FALSE,30
+17,"Cl","Chlorine","the Greek 'chloros', meaning greenish yellow",3,35.45,FALSE,0.479,0.003214,FALSE,171.6,FALSE,239.11,FALSE,3.16,145,FALSE,31
+18,"Ar","Argon","the Greek, 'argos', meaning idle",3,39.948,FALSE,0.52,0.0017837,FALSE,83.8,FALSE,87.3,FALSE,,3.5,FALSE,32
+19,"K","Potassium","the English word potash (kalium in Latin)[2]",4,39.0983,FALSE,0.757,0.862,FALSE,336.53,FALSE,1032,FALSE,0.82,20900,FALSE,1
+20,"Ca","Calcium","the Latin 'calx' meaning lime",4,40.078,FALSE,0.647,1.54,FALSE,1115,FALSE,1757,FALSE,1,41500,FALSE,2
+21,"Sc","Scandium","Scandinavia (with the Latin name Scandia)",4,44.955912,FALSE,0.568,2.989,FALSE,1814,FALSE,3109,FALSE,1.36,22,FALSE,17
+22,"Ti","Titanium","Titans, the sons of the Earth goddess of Greek mythology",4,47.867,FALSE,0.523,4.54,FALSE,1941,FALSE,3560,FALSE,1.54,5650,FALSE,18
+23,"V","Vanadium","Vanadis, an old Norse name for the Scandinavian goddess Freyja",4,50.9415,FALSE,0.489,6.11,FALSE,2183,FALSE,3680,FALSE,1.63,120,FALSE,19
+24,"Cr","Chromium","the Greek 'chroma', meaning colour",4,51.9961,FALSE,0.449,7.15,FALSE,2180,FALSE,2944,FALSE,1.66,102,FALSE,20
+25,"Mn","Manganese","Either the Latin 'magnes', meaning magnet or from the black magnesium oxide, 'magnesia nigra'",4,54.938045,FALSE,0.479,7.44,FALSE,1519,FALSE,2334,FALSE,1.55,950,FALSE,21
+26,"Fe","Iron","the Anglo-Saxon name iren (ferrum in Latin)",4,55.845,FALSE,0.449,7.874,FALSE,1811,FALSE,3134,FALSE,1.83,56300,FALSE,22
+27,"Co","Cobalt","the German word 'kobald', meaning goblin",4,58.933195,FALSE,0.421,8.86,FALSE,1768,FALSE,3200,FALSE,1.88,25,FALSE,23
+28,"Ni","Nickel","the shortened of the German 'kupfernickel' meaning either devil's copper or St. Nicholas's copper",4,58.6934,FALSE,0.444,8.912,FALSE,1728,FALSE,3186,FALSE,1.91,84,FALSE,24
+29,"Cu","Copper","the Old English name coper in turn derived from the Latin 'Cyprium aes', meaning a metal from Cyprus",4,63.546,FALSE,0.385,8.96,FALSE,1357.77,FALSE,2835,FALSE,1.9,60,FALSE,25
+30,"Zn","Zinc","the German, 'zinc', which may in turn be derived from the Persian word 'sing', meaning stone",4,65.38,FALSE,0.388,7.134,FALSE,692.88,FALSE,1180,FALSE,1.65,70,FALSE,26
+31,"Ga","Gallium","France (with the Latin name Gallia)",4,69.723,FALSE,0.371,5.907,FALSE,302.9146,FALSE,2477,FALSE,1.81,19,FALSE,27
+32,"Ge","Germanium","Germany (with the Latin name Germania)",4,72.63,FALSE,0.32,5.323,FALSE,1211.4,FALSE,3106,FALSE,2.01,1.5,FALSE,28
+33,"As","Arsenic","the Greek name 'arsenikon' for the yellow pigment orpiment",4,74.9216,FALSE,0.329,5.776,FALSE,1090,FALSE,887,FALSE,2.18,1.8,FALSE,29
+34,"Se","Selenium","Moon (with the Greek name selene)",4,78.96,FALSE,0.321,4.809,FALSE,453,FALSE,958,FALSE,2.55,0.05,FALSE,30
+35,"Br","Bromine","the Greek 'bromos' meaning stench",4,79.9049,FALSE,0.474,3.122,FALSE,265.8,FALSE,332,FALSE,2.96,2.4,FALSE,31
+36,"Kr","Krypton","the Greek 'kryptos', meaning hidden",4,83.798,FALSE,0.248,0.003733,FALSE,115.79,FALSE,119.93,FALSE,3,0.001,TRUE,32
+37,"Rb","Rubidium","the Latin 'rubidius', meaning deepest red",5,85.4678,FALSE,0.363,1.532,FALSE,312.46,FALSE,961,FALSE,0.82,90,FALSE,1
+38,"Sr","Strontium","Strontian, a small town in Scotland",5,87.62,FALSE,0.301,2.64,FALSE,1050,FALSE,1655,FALSE,0.95,370,FALSE,2
+39,"Y","Yttrium","Ytterby, Sweden",5,88.90585,FALSE,0.298,4.469,FALSE,1799,FALSE,3609,FALSE,1.22,33,FALSE,17
+40,"Zr","Zirconium","the Persian 'zargun', meaning gold coloured",5,91.224,FALSE,0.278,6.506,FALSE,2128,FALSE,4682,FALSE,1.33,165,FALSE,18
+41,"Nb","Niobium","Niobe, daughter of king Tantalus from Greek mythology",5,92.90638,FALSE,0.265,8.57,FALSE,2750,FALSE,5017,FALSE,1.6,20,FALSE,19
+42,"Mo","Molybdenum","the Greek 'molybdos' meaning lead",5,95.96,FALSE,0.251,10.22,FALSE,2896,FALSE,4912,FALSE,2.16,1.2,FALSE,20
+43,"Tc","Technetium","the Greek 'tekhnetos' meaning artificial",5,98,TRUE,,11.5,FALSE,2430,FALSE,4538,FALSE,1.9,0.001,TRUE,21
+44,"Ru","Ruthenium","Russia (with the Latin name Ruthenia)",5,101.07,FALSE,0.238,12.37,FALSE,2607,FALSE,4423,FALSE,2.2,0.001,FALSE,22
+45,"Rh","Rhodium","the Greek 'rhodon', meaning rose coloured",5,102.9055,FALSE,0.243,12.41,FALSE,2237,FALSE,3968,FALSE,2.28,0.001,FALSE,23
+46,"Pd","Palladium","the then recently-discovered asteroid Pallas, considered a planet at the time",5,106.42,FALSE,0.244,12.02,FALSE,1828.05,FALSE,3236,FALSE,2.2,0.015,FALSE,24
+47,"Ag","Silver","the Anglo-Saxon name siolfur (argentum in Latin)[2]",5,107.8682,FALSE,0.235,10.501,FALSE,1234.93,FALSE,2435,FALSE,1.93,0.075,FALSE,25
+48,"Cd","Cadmium","the Latin name for the mineral calmine, 'cadmia'",5,112.411,FALSE,0.232,8.69,FALSE,594.22,FALSE,1040,FALSE,1.69,0.159,FALSE,26
+49,"In","Indium","the Latin 'indicium', meaning violet or indigo",5,114.818,FALSE,0.233,7.31,FALSE,429.75,FALSE,2345,FALSE,1.78,0.25,FALSE,27
+50,"Sn","Tin","the Anglo-Saxon word tin (stannum in Latin, meaning hard)",5,118.71,FALSE,0.228,7.287,FALSE,505.08,FALSE,2875,FALSE,1.96,2.3,FALSE,28
+51,"Sb","Antimony","the Greek 'anti + monos', meaning not alone (stibium in Latin)",5,121.76,FALSE,0.207,6.685,FALSE,903.78,FALSE,1860,FALSE,2.05,0.2,FALSE,29
+52,"Te","Tellurium","Earth, the third planet on solar system (with the Latin word tellus)",5,127.6,FALSE,0.202,6.232,FALSE,722.66,FALSE,1261,FALSE,2.1,0.001,FALSE,30
+53,"I","Iodine","the Greek 'iodes' meaning violet",5,126.90447,FALSE,0.214,4.93,FALSE,386.85,FALSE,457.4,FALSE,2.66,0.45,FALSE,31
+54,"Xe","Xenon","the Greek 'xenos' meaning stranger",5,131.293,FALSE,0.158,0.005887,FALSE,161.4,FALSE,165.03,FALSE,2.6,0.001,TRUE,32
+55,"Cs","Cesium","the Latin 'caesius', meaning sky blue",6,132.9054519,FALSE,0.242,1.873,FALSE,301.59,FALSE,944,FALSE,0.79,3,FALSE,1
+56,"Ba","Barium","the Greek 'barys', meaning heavy",6,137.327,FALSE,0.204,3.594,FALSE,1000,FALSE,2170,FALSE,0.89,425,FALSE,2
+57,"La","Lanthanum","the Greek 'lanthanein', meaning to lie hidden",6,138.90547,FALSE,0.195,6.145,FALSE,1193,FALSE,3737,FALSE,1.1,39,FALSE,3
+58,"Ce","Cerium","Ceres, the Roman God of agriculture",6,140.116,FALSE,0.192,6.77,FALSE,1068,FALSE,3716,FALSE,1.12,66.5,FALSE,4
+59,"Pr","Praseodymium","the Greek 'prasios didymos' meaning green twin",6,140.90765,FALSE,0.193,6.773,FALSE,1208,FALSE,3793,FALSE,1.13,9.2,FALSE,5
+60,"Nd","Neodymium","the Greek 'neos didymos' meaning new twin",6,144.242,FALSE,0.19,7.007,FALSE,1297,FALSE,3347,FALSE,1.14,41.5,FALSE,6
+61,"Pm","Promethium","Prometheus of Greek mythology who stole fire from the Gods and gave it to humans",6,145,TRUE,,7.26,FALSE,1315,FALSE,3273,FALSE,1.13,0.001,TRUE,7
+62,"Sm","Samarium","Samarskite, the name of the mineral from which it was first isolated",6,150.36,FALSE,0.197,7.52,FALSE,1345,FALSE,2067,FALSE,1.17,7.05,FALSE,8
+63,"Eu","Europium","Europe",6,151.964,FALSE,0.182,5.243,FALSE,1099,FALSE,1802,FALSE,1.2,2,FALSE,9
+64,"Gd","Gadolinium","Johan Gadolin, chemist, physicist and mineralogist",6,157.25,FALSE,0.236,7.895,FALSE,1585,FALSE,3546,FALSE,1.2,6.2,FALSE,10
+65,"Tb","Terbium","Ytterby, Sweden",6,158.92535,FALSE,0.182,8.229,FALSE,1629,FALSE,3503,FALSE,1.2,1.2,FALSE,11
+66,"Dy","Dysprosium","the Greek 'dysprositos', meaning hard to get",6,162.5,FALSE,0.17,8.55,FALSE,1680,FALSE,2840,FALSE,1.22,5.2,FALSE,12
+67,"Ho","Holmium","Stockholm, Sweden (with the Latin name Holmia)",6,164.93032,FALSE,0.165,8.795,FALSE,1734,FALSE,2993,FALSE,1.23,1.3,FALSE,13
+68,"Er","Erbium","Ytterby, Sweden",6,167.259,FALSE,0.168,9.066,FALSE,1802,FALSE,3141,FALSE,1.24,3.5,FALSE,14
+69,"Tm","Thulium","Thule, the ancient name for Scandinavia",6,168.93421,FALSE,0.16,9.321,FALSE,1818,FALSE,2223,FALSE,1.25,0.52,FALSE,15
+70,"Yb","Ytterbium","Ytterby, Sweden",6,173.054,FALSE,0.155,6.965,FALSE,1097,FALSE,1469,FALSE,1.1,3.2,FALSE,16
+71,"Lu","Lutetium","Paris, France (with the Roman name Lutetia)",6,174.9668,FALSE,0.154,9.84,FALSE,1925,FALSE,3675,FALSE,1.27,0.8,FALSE,17
+72,"Hf","Hafnium","Copenhagen, Denmark (with the Latin name Hafnia)",6,178.49,FALSE,0.144,13.31,FALSE,2506,FALSE,4876,FALSE,1.3,3,FALSE,18
+73,"Ta","Tantalum","King Tantalus, father of Niobe from Greek mythology",6,180.94788,FALSE,0.14,16.654,FALSE,3290,FALSE,5731,FALSE,1.5,2,FALSE,19
+74,"W","Tungsten","the Swedish 'tung sten' meaning heavy stone (W is wolfram, the old name of the tungsten mineral wolframite)",6,183.84,FALSE,0.132,19.25,FALSE,3695,FALSE,5828,FALSE,2.36,1.3,FALSE,20
+75,"Re","Rhenium","Rhine, a river that flows from Grisons in the eastern Swiss Alps to the North Sea coast in the Netherlands (with the Latin name Rhenia)",6,186.207,FALSE,0.137,21.02,FALSE,3459,FALSE,5869,FALSE,1.9,0.001,TRUE,21
+76,"Os","Osmium","the Greek 'osme', meaning smell",6,190.23,FALSE,0.13,22.61,FALSE,3306,FALSE,5285,FALSE,2.2,0.002,FALSE,22
+77,"Ir","Iridium","Iris, the Greek goddess of the rainbow",6,192.217,FALSE,0.131,22.56,FALSE,2719,FALSE,4701,FALSE,2.2,0.001,FALSE,23
+78,"Pt","Platinum","the Spanish 'platina', meaning little silver",6,195.084,FALSE,0.133,21.46,FALSE,2041.4,FALSE,4098,FALSE,2.28,0.005,FALSE,24
+79,"Au","Gold","the Anglo-Saxon word gold (aurum in Latin, meaning glow of sunrise)",6,196.966569,FALSE,0.129,19.282,FALSE,1337.33,FALSE,3129,FALSE,2.54,0.004,FALSE,25
+80,"Hg","Mercury","Mercury, the first planet in the Solar System (Hg from former name hydrargyrum, from Greek hydr- water and argyros silver)",6,200.592,FALSE,0.14,13.5336,FALSE,234.43,FALSE,629.88,FALSE,2,0.085,FALSE,26
+81,"Tl","Thallium","the Greek 'thallos', meaning a green twig",6,204.389,FALSE,0.129,11.85,FALSE,577,FALSE,1746,FALSE,1.62,0.85,FALSE,27
+82,"Pb","Lead","the Anglo-Saxon lead (plumbum in Latin)",6,207.2,FALSE,0.129,11.342,FALSE,600.61,FALSE,2022,FALSE,1.87,14,FALSE,28
+83,"Bi","Bismuth","the German 'Bisemutum' a corruption of 'Weisse Masse' meaning white mass",6,208.9804,FALSE,0.122,9.807,FALSE,544.7,FALSE,1837,FALSE,2.02,0.009,FALSE,29
+84,"Po","Polonium","Poland, the native country of Marie Curie, who first isolated the element",6,209,TRUE,,9.32,FALSE,527,FALSE,1235,FALSE,2,0.001,TRUE,30
+85,"At","Astatine","the Greek 'astatos', meaning unstable",6,210,TRUE,,7,FALSE,575,FALSE,610,FALSE,2.2,0.001,TRUE,31
+86,"Rn","Radon","From radium, as it was first detected as an emission from radium during radioactive decay",6,222,TRUE,0.094,0.00973,FALSE,202,FALSE,211.3,FALSE,2.2,0.001,TRUE,32
+87,"Fr","Francium","France, where it was first discovered",7,223,TRUE,,1.87,FALSE,300,FALSE,950,FALSE,0.7,0.001,TRUE,1
+88,"Ra","Radium","the Latin 'radius', meaning ray",7,226,TRUE,0.094,5.5,FALSE,973,FALSE,2010,FALSE,0.9,0.001,TRUE,2
+89,"Ac","Actinium","the Greek 'actinos', meaning a ray",7,227,TRUE,0.12,10.07,FALSE,1323,FALSE,3471,FALSE,1.1,0.001,TRUE,3
+90,"Th","Thorium","Thor, the Scandinavian god of thunder",7,232.03806,FALSE,0.113,11.72,FALSE,2115,FALSE,5061,FALSE,1.3,9.6,FALSE,4
+91,"Pa","Protactinium","the Greek 'protos', meaning first, as a prefix to the element actinium, which is produced through the radioactive decay of protactinium",7,231.03588,FALSE,,15.37,FALSE,1841,FALSE,4300,FALSE,1.5,0.001,TRUE,5
+92,"U","Uranium","Uranus, the seventh planet in the Solar System",7,238.02891,FALSE,0.116,18.95,FALSE,1405.3,FALSE,4404,FALSE,1.38,2.7,FALSE,6
+93,"Np","Neptunium","Neptune, the eighth planet in the Solar System",7,237,TRUE,,20.45,FALSE,917,FALSE,4273,FALSE,1.36,0.001,TRUE,7
+94,"Pu","Plutonium","Pluto, a dwarf planet in the Solar System",7,244,TRUE,,19.84,FALSE,912.5,FALSE,3501,FALSE,1.28,0.001,TRUE,8
+95,"Am","Americium","Americas, the continent where the element was first synthesized",7,243,TRUE,,13.69,FALSE,1449,FALSE,2880,FALSE,1.13,0.001,TRUE,9
+96,"Cm","Curium","Pierre Curie, a physicist, and Marie Curie, a physicist and chemist",7,247,TRUE,,13.51,FALSE,1613,FALSE,3383,FALSE,1.28,0.001,TRUE,10
+97,"Bk","Berkelium","Berkeley, California, USA, where the element was first synthesized",7,247,TRUE,,14.79,FALSE,1259,FALSE,2900,FALSE,1.3,0.001,TRUE,11
+98,"Cf","Californium","State of California, USA, where the element was first synthesized",7,251,TRUE,,15.1,FALSE,1173,FALSE,1743,TRUE,1.3,0.001,TRUE,12
+99,"Es","Einsteinium","Albert Einstein, physicist",7,252,TRUE,,8.84,FALSE,1133,FALSE,1269,TRUE,1.3,0,FALSE,13
+100,"Fm","Fermium","Enrico Fermi, physicist",7,257,TRUE,,,FALSE,1125,TRUE,,FALSE,1.3,0,FALSE,14
+101,"Md","Mendelevium","Dmitri Mendeleyev, chemist and inventor",7,258,TRUE,,,FALSE,1100,TRUE,,FALSE,1.3,0,FALSE,15
+102,"No","Nobelium","Alfred Nobel, chemist, engineer, innovator, and armaments manufacturer",7,259,TRUE,,,FALSE,1100,TRUE,,FALSE,1.3,0,FALSE,16
+103,"Lr","Lawrencium","Ernest O. Lawrence, physicist",7,262,TRUE,,,FALSE,1900,TRUE,,FALSE,1.3,0,FALSE,17
+104,"Rf","Rutherfordium","Ernest Rutherford, chemist and physicist",7,267,TRUE,,23.2,TRUE,2400,TRUE,5800,TRUE,,0,FALSE,18
+105,"Db","Dubnium","Dubna, Russia",7,268,TRUE,,29.3,TRUE,,FALSE,,FALSE,,0,FALSE,19
+106,"Sg","Seaborgium","Glenn T. Seaborg, scientist",7,269,TRUE,,35,TRUE,,FALSE,,FALSE,,0,FALSE,20
+107,"Bh","Bohrium","Niels Bohr, physicist",7,270,TRUE,,37.1,TRUE,,FALSE,,FALSE,,0,FALSE,21
+108,"Hs","Hassium","Hesse, Germany, where the element was first synthesized",7,269,TRUE,,40.7,TRUE,,FALSE,,FALSE,,0,FALSE,22
+109,"Mt","Meitnerium","Lise Meitner, physicist",7,278,TRUE,,37.4,TRUE,,FALSE,,FALSE,,0,FALSE,23
+110,"Ds","Darmstadtium","Darmstadt, Germany, where the element was first synthesized",7,281,TRUE,,34.8,TRUE,,FALSE,,FALSE,,0,FALSE,24
+111,"Rg","Roentgenium","Wilhelm Conrad Rontgen, physicist",7,281,TRUE,,28.7,TRUE,,FALSE,,FALSE,,0,FALSE,25
+112,"Cn","Copernicium","Nicolaus Copernicus, astronomer",7,285,TRUE,,23.7,TRUE,,FALSE,357,FALSE,,0,FALSE,26
+113,"Nh","Nihonium","Japanese Nihon, 'Japan' (where the element was first synthesised)",7,286,TRUE,,16,TRUE,700,TRUE,1400,TRUE,,0,FALSE,27
+114,"Fl","Flerovium","Georgy Flyorov, physicist",7,289,TRUE,,14,TRUE,340,TRUE,420,TRUE,,0,FALSE,28
+115,"Mc","Moscovium","Moscow Oblast, Russia, where the element was first synthesised",7,288,TRUE,,13.5,TRUE,700,TRUE,1400,TRUE,,0,FALSE,29
+116,"Lv","Livermorium","Lawrence Livermore National Laboratory (in Livermore, California) which collaborated with JINR on its synthesis",7,293,TRUE,,12.9,TRUE,708.5,TRUE,1085,TRUE,,0,FALSE,30
+117,"Ts","Tennessine","Tennessee, United States (where Oak Ridge National Laboratory is located)",7,294,TRUE,,7.2,TRUE,673,TRUE,823,TRUE,,0,FALSE,31
+118,"Og","Oganesson","Yuri Oganessian, Russian-born Armenian physicist",7,294,TRUE,,5,TRUE,258,TRUE,263,TRUE,,0,FALSE,32
