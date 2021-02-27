@@ -8,8 +8,14 @@ git push heroku master
 Log in to psql (as user postgres)
 psql -U postgres
 
+Dump postgres database
+pg_dump --format=c elements > elements20210227c.dump
+
 Try to restore postgres database
 pg_restore elements.dump -d elements -U postgres
+
+Upload postgres database to Heroku
+heroku pg:backups:restore 'https://drive.google.com/uc?export=download&id=1110YFxLbilrcfuEyyb_tfnyRroTaRaJN' DATABASE_URL --app ptablenav
 
 Add postures to path
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH;
