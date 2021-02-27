@@ -4,7 +4,7 @@
 #end
 
 configure :production do # Production does get called on Heroku, so it will override development
-	db = URI.parse(ENV['DATABASE_URL'] # || 'postgres:///localhost/dbempicqi8itsb')
+	db = URI.parse(ENV['DATABASE_URL']) # || 'postgres:///localhost/dbempicqi8itsb')
 	#@@config = "production"
 end
 
