@@ -1,1 +1,1 @@
-web: bundle exec ruby PeriodicTableNav.rb -p process.env.PORT
+web: bundle exec ruby PeriodicTableNav.rb -p $PORT
