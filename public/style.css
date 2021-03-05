@@ -328,10 +328,12 @@
 
 	table.element td.origin_col {
 		/*width: 50%; actually, leave this width unspecified so web browser will fill remaining space with it (widths for other cols are specified) */
+		padding: 5px;
 	}	
 
 	td.adj { /* adjacent element cells on element.erb */
-		padding-bottom: 75px;
+		padding: 5px 5px 75px 5px !important;
+		/* padding-bottom: 75px !important; */
 	}
 	
 	/* Highlighting for similar but differing electron configuration terms between elements */ 
