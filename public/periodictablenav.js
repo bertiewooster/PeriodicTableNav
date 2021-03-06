@@ -1,27 +1,31 @@
 	function terms_mouseover($hovering,$base,hovering_posn) {
-		//console.log("Running terms_mouseover: " + hovering_posn);	// debugging
+		console.log("Running terms_mouseover: " + hovering_posn);	// debugging
 		$base_terms = $base.find('.terms'); // get terms (orbitals, e.g. 3s2) in origin element
 		switch (hovering_posn) // Case statement: which is the element moused over
 		{
 		case "above":
+			console.log("Running above");	// debugging
 			//adj_edge_to_hightlight = "bottom";
 			//console.log("Element moused over: above");
 			$hovering.css({"border-bottom":"1px dashed DimGray"});
 			$base.css({"border-top":"1px dashed DimGray"})
 			break;
 		case "left":
+			console.log("Running left");	// debugging
 			//adj_edge_to_hightlight = "right";
 			//console.log("Element moused over: left");
 			$hovering.css({"border-right":"1px dashed DimGray"});
 			$base.css({"border-left":"1px dashed DimGray"})
 			break;
 		case "right":
+			console.log("Running right");	// debugging
 			//adj_edge_to_hightlight = "left";
 			//console.log("Element moused over: right");
 			$hovering.css({"border-left":"1px dashed DimGray"});
 			$base.css({"border-right":"1px dashed DimGray"})
 			break;
 		case "below":
+			console.log("Running below");	// debugging
 			//adj_edge_to_hightlight = "top";
 			//console.log("Element moused over: below");
 			$hovering.css({"border-top":"1px dashed DimGray"});
@@ -87,6 +91,9 @@
 
 	function terms_mouseout($hovering,$base) {
 		//console.log("Running terms_mouseout");	// debugging
+		$base_terms = $base.find('.terms'); // get terms (orbitals, e.g. 3s2) in origin element
+		$hovering_terms = $hovering.find('.terms'); // get terms (orbitals, e.g. 4f10) in adjacent element
+
 		$hovering_terms.find('*').removeClass('new_orbital diff_n diff_count');
 		$base_terms.find('*').removeClass('new_orbital diff_n diff_count');
 		$hovering.css({"border":"1px solid black"});

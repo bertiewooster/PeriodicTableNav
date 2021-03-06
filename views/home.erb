@@ -3,7 +3,7 @@
 	{"atomic_num"=>nil,
 	"symbol"=>nil,
 	"name"=>nil,
-	"e_config" => {"base" => false, "space_terms" => true, "term_spans"=>false}} %>
+	"e_config" => {"base" => false, "space_terms" => true, "term_spans" => true}} %>
 
 <table class="home">
 <!-- Main groups -->
@@ -55,8 +55,8 @@
 
 <!-- f groups table -->
 <% period_header = 0 # labels for periods %>
-	<tr>
-		<th class="f_group_labels"></th>
+	<tr class="f_group_labels">
+		<th class="f_group_labels spacer"></th>
 		<th class="spacer"></th>
 		<th class="spacer"></th>
 		<% @f_groups.each do |group_header| %>
@@ -64,6 +64,8 @@
 				<%= erb :'partials/group_link_generator', :locals=> {:linear_group => group_header} %>
 			</th>
 		<% end %>
+		<th class="spacer"></th>
+		<th class="spacer"></th>
 	</tr>
 	
 	<% @ebyp.each do |period| %>
@@ -93,5 +95,43 @@
 	<% end %>
 </table>
 
-<p class="footnote">Note: Only valence electrons are shown on this page to save space.</p>
+<div id="log"></div>
+
+<p class="footnote" id="footnote">Note: Only valence electrons are shown on this page to save space.</p>
+<p>Tip: Hover over an element to compare its electron configuration to that of the element to its right.</p>
+
+
 <%#="home.erb time: " + (Time.new-start_time).to_s %>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../periodictablenav.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('td.inPTable').mousemove(function( event ) {
+			$hovering = $(this);
+			$base = $hovering.nextAll('.inPTable').first(); // Select first element cell to the right of hovered-over element
+
+			var msg = "Hover: " + $(this).find(".pt_symbol").text() + " at " + event.pageX + ", " + event.pageY + ". Compare: " + $base.find(".pt_symbol").text();
+			// $( "#log" ).prepend( "<div>" + msg + "</div>" );
+			if ($base.exists()) { // if there's an element cell to the right, do terms comparison
+				hovering_posn = 'left';
+				terms_mouseover($hovering,$base,hovering_posn);
+				$('th.home_element').css({"border":"0px solid black"});
+				$('th.spacer').css({"border":"0px solid black"});
+				console.log('There is a base element for comparison');
+			}
+		});
+		$('td.inPTable').mouseleave(function() {
+			$hovering = $(this);
+			$base = $hovering.nextAll('.inPTable').first(); // Select first element cell to the right of hovered-over element
+			var msg = "Left: " + $(this).find(".pt_symbol").text() + ", Compare: " + $base.find(".pt_symbol").text();
+			// $( "#log" ).prepend( "<div>" + msg + "</div>" );
+			if ($base.exists()) { // if there's an element cell to the right, do terms comparison
+				hovering_posn = 'left';
+				terms_mouseout($hovering,$base);
+				console.log('There is a base element for comparison');
+			}
+		});
+	}); // end ready
+</script>
