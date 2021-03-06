@@ -343,18 +343,22 @@
 		/* padding-bottom: 75px !important; */
 	}
 	
-	/* Highlighting for similar but differing electron configuration terms between elements */ 
+/* Highlighting for similar but differing electron configuration terms between elements */ 
 	.diff_n {
-		background-color: yellow;
-		/*border: 1px solid green;*/
+		background-color: peachpuff;
+		/* border-bottom: 2px solid black; */
+		/* font-weight: bold; */
 	}
 
 	.diff_count {
 		background-color: lightgreen;
+		/* border-bottom: 1px solid black; */
 	}
 
 	.new_orbital {
-		background-color: orange;
+		background-color: lightblue;
+		/* border-bottom: 3px solid black; */
+		/* font-style: italic; */
 	}
 
 /* GROUP PAGE */
