@@ -26,6 +26,7 @@ export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH;
 Update Gemfile.lock without installing gems (http://stackoverflow.com/questions/26335777/ddg#46553586)
 bundle lock --update
 
+Original tutorial I followed: https://code.tutsplus.com/tutorials/singing-with-sinatra--net-18965
 Go to ruby-sinatra-tutorial project in terminal (https://www.devdungeon.com/content/ruby-sinatra-tutorial)
 Go to: cd ~/Projects/ruby-sinatra-tutorial
 Run: ruby hello.rb

@@ -77,10 +77,17 @@ get '/group/:group' do |traditional_group|  # load group page
 	@title = "Group ##{traditional_group}"
 	erb :group
 end
+
+get '*' do # redirect any other requests to homepage
+	redirect('/')
+end
+
+=begin
 get '/test/:name' do
 	@elementAR = Element.find(2)
 	erb :'inactive/test'
 end
+=end
 
 helpers do
 
