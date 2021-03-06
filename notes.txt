@@ -31,6 +31,9 @@ Go to ruby-sinatra-tutorial project in terminal (https://www.devdungeon.com/cont
 Go to: cd ~/Projects/ruby-sinatra-tutorial
 Run: ruby hello.rb
 
+Force cache refresh in Firefox for Mac, to make sure page uses latest css etc. files
+Press "Command + Shift + R" (https://support.mozilla.org/en-US/questions/1103414)
+
 To open a location in Finder by typing (or pasting) the path:
 Command-Shift-G (while in Finder)
 
