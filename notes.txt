@@ -51,7 +51,7 @@ Command Line Tools Installation Directory: /Library/PostgreSQL/13
 pgAdmin4 Installation Directory: /Library/PostgreSQL/13/pgAdmin 4
 Stack Builder Installation Directory: /Library/PostgreSQL/13
 
-Trying to install pg (PostgreSQL) gem install pg -- --with-pg-config=/opt/local/lib/postgresql0.18.4/bin/pg_config
+Trying to install pg (PostgreSQL)gem install pg -- --with-pg-config=/opt/local/lib/postgresql0.18.4/bin/pg_config
 sudo PATH=$PATH:/Library/PostgreSQL/13.2/bin gem install pg
 
 export CONFIGURE_ARGS="with-pg-include=/Library/PostgreSQL/13/include/"
