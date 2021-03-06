@@ -33,12 +33,14 @@ end
 class Orbital < ActiveRecord::Base
 end
 
+=begin
 get "/index" do
 	load_elements(params[:name])
 	@element = Element.find(2)
 	@elements = Element.order("atomic_num ASC")
 	erb :index
 end
+=end
 
 get "/" do
 	load_elements(params[:name])
