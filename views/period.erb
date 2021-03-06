@@ -59,7 +59,9 @@
 				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period-1, "text" => @up_arrow, "nav_period"=>true]} %>
 				<br>
 			<% end %>
-			<%= @period %>
+			<span class="period_number">
+				<%= @period %>
+			</span>
 			<% if below_exists %>
 				<br>
 				<%= erb :'partials/link_generator', :locals=> {:link => Hash["type" => 'period','number'=>@period+1, "text" => @down_arrow, "nav_period"=>true]} %>
