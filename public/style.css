@@ -17,13 +17,13 @@
 		padding-right: 10px;
 	}
 	
-	a.nav_period { /* for navigation arrows adjacent to group or period numbers */
+	/* a.nav_period {  for navigation arrows adjacent to group or period numbers */
 		/*border: 1px solid blue;*/
 		/*font-size:200%;*/
 		/*margin-right: -7px;*/
 		/*line-height: 50%;*/
-		/*padding-top: 20px;*/
-	}
+		/*padding-top: 20px;
+	} */
 	
 	header {  
 		text-align: center;  
@@ -66,6 +66,8 @@
 
 	.rotate { /* text rotated 90 degrees counterclockwise; using for "Period" at left of tables */
 		z-index: -50; /* Send behind other HTML items so its false (unrotated) position doesn't cover other items */
+		transform: rotate(90deg) ;
+		
 		/* Safari */
 		-webkit-transform: rotate(-90deg);
 
@@ -185,10 +187,10 @@
 		padding-top: 60px; /* this is really left padding because rotated 90deg */
 	}
 
-	th.home_element {
+	/* th.home_element {
 		/*border: 3px solid black;*/
-		/*width: 65px; /*5.1%;*/
-	}
+		/*width: 65px; /*5.1%;
+	} */
 	
 	.f_group_labels {
 		padding-top: 30px;
@@ -313,13 +315,13 @@
 		/*border: 1px solid red;*/
 	}
 
-	table.element th {
-		/*width: 2%;*/
-	}
+	/* table.element th {
+		/*width: 2%;
+	} */
 
-	table.element td {
-		/*border: 1px dashed green;*/
-	}
+	/* table.element td {
+		/*border: 1px dashed green;
+	} */
 
 	table.element left_col, table.element right_col {
 		width: 25%;
