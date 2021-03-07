@@ -110,27 +110,30 @@
 	$(document).ready(function() {
 		$('td.inPTable').mousemove(function( event ) {
 			$hovering = $(this);
-			$base = $hovering.nextAll('.inPTable').first(); // Select first element cell to the right of hovered-over element
+			$base = $hovering.nextAll('.inPTable').first(); // Select first element cell to the right of hovered-over element; .nextAll.first lets jump d-block (groups 3-12) for group 2
 
 			var msg = "Hover: " + $(this).find(".pt_symbol").text() + " at " + event.pageX + ", " + event.pageY + ". Compare: " + $base.find(".pt_symbol").text();
 			// $( "#log" ).prepend( "<div>" + msg + "</div>" );
 			if ($base.exists()) { // if there's an element cell to the right, do terms comparison
 				hovering_posn = 'left';
 				terms_mouseover($hovering,$base,hovering_posn);
+
+				// remove any extraneous borders from table cells above or to right of f-group elements
 				$('th.home_element').css({"border":"0px solid black"});
 				$('th.spacer').css({"border":"0px solid black"});
-				console.log('There is a base element for comparison');
+
+				// console.log('There is a base element for comparison');
 			}
 		});
 		$('td.inPTable').mouseleave(function() {
 			$hovering = $(this);
-			$base = $hovering.nextAll('.inPTable').first(); // Select first element cell to the right of hovered-over element
+			$base = $hovering.nextAll('.inPTable').first(); // Select first element cell to the right of hovered-over element; .nextAll.first lets jump d-block (groups 3-12) for group 2
 			var msg = "Left: " + $(this).find(".pt_symbol").text() + ", Compare: " + $base.find(".pt_symbol").text();
 			// $( "#log" ).prepend( "<div>" + msg + "</div>" );
 			if ($base.exists()) { // if there's an element cell to the right, do terms comparison
 				hovering_posn = 'left';
 				terms_mouseout($hovering,$base);
-				console.log('There is a base element for comparison');
+				// console.log('There is a base element for comparison');
 			}
 		});
 	}); // end ready
