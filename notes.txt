@@ -5,6 +5,13 @@ ruby PeriodicTableNav.rb
 Push code from Github to Heroku
 git push heroku master
 
+2021-03-06 plan for hover between elements to compare:
+1) Test if four adjacent elements (left, right, above, below) exist
+2) If each adjacent element exists, add mouse's distance from that element to array (position [top], distance [27 (pixels)])
+3) Sort array numerical ascending
+4) Select first element from array--position
+5) Use a case statement to set $base, for example (first array element =) top, set $base to above
+
 Migrate postgres database on Heroku
 heroku run rake db:migrate
 
@@ -14,7 +21,7 @@ psql -U postgres
 Dump postgres database
 pg_dump --format=c elements > elements20210227c.dump
 
-Try to restore postgres database to local postgres server
+Restore postgres database to local postgres server
 pg_restore elements.dump -d elements -U postgres
 
 Upload postgres database to Heroku

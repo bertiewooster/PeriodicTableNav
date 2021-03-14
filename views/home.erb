@@ -107,13 +107,92 @@
 <script src="../periodictablenav.js"></script>
 
 <script>
+
+const log = (...strs) => 
+  document.querySelector("pre").textContent += `\n${strs.join("\n")}`;
+const showSortedValues = (arr, key) => 
+  ` => ${arr.reduce((acc, val) => ([...acc, val[key]]), [])}`;
+
+	// the actual sort lamda factory function
+	const sortOnKey = (key, string, desc) => {
+	const caseInsensitive = string && string === "CI";
+	return (a, b) => {
+		a = caseInsensitive ? a[key].toLowerCase() : a[key];
+		b = caseInsensitive ? b[key].toLowerCase() : b[key];
+		if (string) {
+		return desc ? b.localeCompare(a) : a.localeCompare(b);
+		}
+		return desc ? b - a : a - b;
+	}
+	};
+
+	// a few examples
+	const onNameStringAscendingCaseSensitive = getTestArray().sort( sortOnKey("name", true) );
+	const onNameStringAscendingCaseInsensitive = getTestArray().sort( sortOnKey("name", "CI", true) );
+	const onValueNumericDescending = getTestArray().sort( sortOnKey("value", false, true) );
+
+	function getTestArray() {
+	return [{
+		name: 'Bob',
+		artist: 'Rudy',
+		value: 23,
+	}, {
+		name: 'John',
+		artist: 'Drusko',
+		value: 123,
+	}, {
+		name: 'Tiff',
+		artist: 'Needell',
+		value: 1123,
+	}, {
+		name: 'Top',
+		artist: 'Gear',
+		value: 11123,
+	}, {
+		name: 'john',
+		artist: 'Johanson',
+		value: 12,
+	}, ];
+	}
+
 	$(document).ready(function() {
-		$('td.inPTable').mousemove(function( event ) {
+		//$('td.inPTable').mousemove(function( event ) { // Use instead of mouseenter for "hover between elements to compare them"
+		$('td.inPTable').mouseenter(function() {
 			$hovering = $(this);
+
+			/* Work in progress: "hover between elements to compare them"
+			// Mouse coordinates
+			var X = event.pageX;
+			var Y = event.pageY;
+
+			// Element (td) bounds
+			var offset = $hovering.offset();
+			var l = offset.left;
+			var t = offset.top;
+			var w = $hovering.width();
+			var h = $hovering.height();
+			var r = offset.left + w;
+			var b = offset.top + h;
+
+			// Distances from mouse to bounds
+			var from_l = Math.abs(l-X);
+			var from_t = Math.abs(t-Y);
+			var from_r = Math.abs(r-X);
+			var from_b = Math.abs(b-Y);
+
+			//console.log('*key = name, string ascending case sensitive',showSortedValues(onNameStringAscendingCaseSensitive, "name"));
+			console.log(`\n*key = value, numeric desc`,   showSortedValues(onValueNumericDescending, "value"));
+			console.log(`\n*key = value, numeric desc`,   showSortedValues(onValueNumericDescending, "name"));
+
+			var msg = "left: " + offset.left + ", top: " + offset.top;
+			msg += ", right: " + r  + ", bottom: " + b;
+			$( "#log" ).html( "left: " + offset.left + ", top: " + offset.top + ", right: " + r  + ", bottom: " + b);
+			// end of "hover between elements to compare them" work in progress */
+
 			$base = $hovering.nextAll('.inPTable').first(); // Select first element cell to the right of hovered-over element; .nextAll.first lets jump d-block (groups 3-12) for group 2
 
-			var msg = "Hover: " + $(this).find(".pt_symbol").text() + " at " + event.pageX + ", " + event.pageY + ". Compare: " + $base.find(".pt_symbol").text();
-			// $( "#log" ).prepend( "<div>" + msg + "</div>" );
+			msg = "Hover: " + $(this).find(".pt_symbol").text() + " at " + event.pageX + ", " + event.pageY + ". Compare: " + $base.find(".pt_symbol").text();
+			 $( "#log" ).prepend( "<div>" + msg + "</div>" );
 			if ($base.exists()) { // if there's an element cell to the right, do terms comparison
 				hovering_posn = 'left';
 				terms_mouseover($hovering,$base,hovering_posn);

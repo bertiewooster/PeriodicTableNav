@@ -4,28 +4,28 @@
 		switch (hovering_posn) // Case statement: which is the element moused over
 		{
 		case "above":
-			console.log("Running above");	// debugging
+			//console.log("Running above");	// debugging
 			//adj_edge_to_hightlight = "bottom";
 			//console.log("Element moused over: above");
 			$hovering.css({"border-bottom":"1px dashed DimGray"});
 			$base.css({"border-top":"1px dashed DimGray"})
 			break;
 		case "left":
-			console.log("Running left");	// debugging
+			//console.log("Running left");	// debugging
 			//adj_edge_to_hightlight = "right";
 			//console.log("Element moused over: left");
 			$hovering.css({"border-right":"1px dashed DimGray"});
 			$base.css({"border-left":"1px dashed DimGray"})
 			break;
 		case "right":
-			console.log("Running right");	// debugging
+			//console.log("Running right");	// debugging
 			//adj_edge_to_hightlight = "left";
 			//console.log("Element moused over: right");
 			$hovering.css({"border-left":"1px dashed DimGray"});
 			$base.css({"border-right":"1px dashed DimGray"})
 			break;
 		case "below":
-			console.log("Running below");	// debugging
+			//console.log("Running below");	// debugging
 			//adj_edge_to_hightlight = "top";
 			//console.log("Element moused over: below");
 			$hovering.css({"border-top":"1px dashed DimGray"});
