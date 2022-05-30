@@ -1,4 +1,4 @@
-Periodic Table Navigator
+# Periodic Table Navigator
 
 See how the elements are related to each other. Emphasizes the relationship between elements, especially as revealed by their electron configurations. Has four views:
 - Periodic table
